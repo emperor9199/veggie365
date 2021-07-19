@@ -72,7 +72,7 @@ export const TestinomialContainer = styled.div`
     position: absolute;
     top: 200px;
     transform: translateY(-50%);
-    background: hsl(210, 22%, 49%);
+    background: #1e6f5c;
     color: #fff;
     width: 1.75rem;
     height: 1.65rem;
@@ -93,7 +93,7 @@ export const TestinomialContainer = styled.div`
     left: 0;
 
     span {
-      margin-left: -0.2rem;
+      margin-left: -0.3rem;
     }
   }
   .next {

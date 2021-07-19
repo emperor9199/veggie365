@@ -7,6 +7,11 @@ export const ImgStyle = styled.div`
   img {
     height: 100%;
     width: 100%;
+    filter: brightness(50%);
     object-fit: cover;
+  }
+
+  @media (max-width: 720px) {
+    height: 35vh;
   }
 `;
