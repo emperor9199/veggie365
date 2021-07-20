@@ -1,5 +1,5 @@
 .CategoryCard_Container {
-  margin: 4rem 2rem;
+  margin: 4rem 2rem 2rem 2rem;
 }
 .categorycard_head {
   display: flex;
@@ -58,7 +58,7 @@
 
 @media (max-width: 539px) {
   .CategoryCard_Container {
-    margin: 0 0.5rem;
+    margin: 1.5rem 0.5rem;
   }
 
   .big_title {

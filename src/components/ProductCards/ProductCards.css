@@ -12,9 +12,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #020202;
 }
-
 .ProductCards_Container {
-  margin: 3rem 2rem;
+  margin: 1rem 2rem 3rem 2rem;
 }
 .productcards_head {
   display: flex;
@@ -29,7 +28,7 @@
   font-size: 1.5rem;
 }
 .productcards_head_dic {
-  color: #9acd32;
+  color: #1e6f5c;
   font-size: 1rem;
 }
 .productcards_head_subtitle {
@@ -72,7 +71,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #9acd32;
+  background-color: #1e6f5c;
   padding: 0.5rem;
   border-radius: 4px;
   font-weight: 600;

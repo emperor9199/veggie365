@@ -36,7 +36,7 @@ function Footer() {
                         <div className="footer_categories">
                             <h4>ABOUT</h4>
                             <ul>
-                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, consequatur est sunt voluptates quibusdam tempore minus, omnis odit incidunt quia, error accusamus consectetur rem velit ea distinctio aliquid cumque ipsam?</li>
+                                <li style={{textAlign:"justify"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, consequatur est sunt voluptates quibusdam tempore minus, omnis odit incidunt quia, error accusamus consectetur rem velit ea distinctio aliquid cumque ipsam?</li>
                             </ul>
                         </div>
                     </div>
