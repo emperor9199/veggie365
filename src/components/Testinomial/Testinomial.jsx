@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { FaQuoteRight } from "react-icons/fa";
+import React, { useEffect } from "react";
 import data from "./data";
 import { TestinomialContainer } from "./Styles";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
+
 function Testinomial() {
-  const [people, setPeople] = useState(data);
   const [index, setIndex] = React.useState(0);
 
   useEffect(() => {
-    const lastIndex = people.length - 1;
+    const lastIndex = data.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
     if (index > lastIndex) {
       setIndex(0);
     }
-  }, [index, people]);
+  }, [index]);
 
   useEffect(() => {
     let slider = setInterval(() => {
@@ -29,12 +30,10 @@ function Testinomial() {
   return (
     <TestinomialContainer>
       <div className="title">
-        <h2>
-          <span>/</span>Testinomials
-        </h2>
+        <h2>Testinomials</h2>
       </div>
       <div className="section-center">
-        {people.map((person, personIndex) => {
+        {data.map((person, personIndex) => {
           const { id, image, name, title, quote } = person;
 
           let position = "nextSlide";
@@ -43,7 +42,7 @@ function Testinomial() {
           }
           if (
             personIndex === index - 1 ||
-            (index === 0 && personIndex === people.length - 1)
+            (index === 0 && personIndex === data.length - 1)
           ) {
             position = "lastSlide";
           }
@@ -54,18 +53,18 @@ function Testinomial() {
               <h4>{name}</h4>
               <p className="title">{title}</p>
               <p className="text">{quote}</p>
-              <FaQuoteRight className="icon" />
+              <FormatQuoteIcon fontSize="large" style={{ color: "#1e6f5c" }} />
             </article>
           );
         })}
         <button className="prev" onClick={() => setIndex(index - 1)}>
           <span>
-            <FiChevronLeft />
+            <ArrowBackIosIcon fontSize="small" />
           </span>
         </button>
         <button className="next" onClick={() => setIndex(index + 1)}>
           <span>
-            <FiChevronRight />
+            <ArrowForwardIosIcon fontSize="small" />
           </span>
         </button>
       </div>

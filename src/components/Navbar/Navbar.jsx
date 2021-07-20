@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import BallotIcon from "@material-ui/icons/Ballot";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
 
-const Navbar = ({ setToggle, toggle }) => {
+const Navbar = ({ setToggle, toggle, path }) => {
   const [showColor, setShowColor] = useState(false);
 
   const changeBackground = () => {
@@ -19,7 +19,9 @@ const Navbar = ({ setToggle, toggle }) => {
   window.addEventListener("scroll", changeBackground);
 
   return (
-    <NavContainer className={showColor ? "show-color" : ""}>
+    <NavContainer
+      className={!path ? "show-color" : showColor ? "show-color" : ""}
+    >
       <NavLogo>
         <h2>VEGGI</h2>
         <label html="check">

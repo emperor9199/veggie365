@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TestinomialContainer = styled.div`
   width: 90vw;
-  margin: 5rem auto;
+  margin: 4rem auto;
   max-width: 1170px;
 
   @media screen and (min-width: 720px) {
@@ -19,15 +19,10 @@ export const TestinomialContainer = styled.div`
     justify-content: center;
     font-weight: 500;
   }
-  .title span {
-    font-size: 0.85em;
-    color: hsl(21, 62%, 45%);
-    margin-right: 1rem;
-    font-weight: 700;
-  }
+
   .section-center {
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
     width: 80vw;
     height: 450px;
     max-width: 800px;
@@ -47,7 +42,7 @@ export const TestinomialContainer = styled.div`
   }
   article h4 {
     text-transform: uppercase;
-    color: hsl(21, 62%, 45%);
+    color: #1e6f5c;
     margin-bottom: 0.25rem;
   }
   .title {
@@ -58,14 +53,9 @@ export const TestinomialContainer = styled.div`
   .text {
     max-width: 35em;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     line-height: 2;
     color: hsl(210, 22%, 49%);
-  }
-  .icon {
-    font-size: 3rem;
-    margin-top: 1rem;
-    color: hsl(21, 62%, 45%);
   }
   .prev,
   .next {
@@ -93,15 +83,11 @@ export const TestinomialContainer = styled.div`
     left: 0;
 
     span {
-      margin-left: -0.3rem;
+      margin-left: 0.4rem;
     }
   }
   .next {
     right: 0;
-
-    span {
-      margin-left: -0.2rem;
-    }
   }
   @media (max-width: 720px) {
     .text {
@@ -110,7 +96,7 @@ export const TestinomialContainer = styled.div`
     .prev,
     .next {
       width: 2rem;
-      height: 2rem;
+      height: 1.8rem;
       font-size: 1.5rem;
     }
   }
@@ -132,5 +118,9 @@ export const TestinomialContainer = styled.div`
   }
   article.nextSlide {
     transform: translateX(100%);
+  }
+
+  .icon {
+    display: none;
   }
 `;

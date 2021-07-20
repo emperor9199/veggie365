@@ -6,7 +6,7 @@ export const NavContainer = styled.div.attrs((props) => ({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7vh;
+  height: 9vh;
   position: fixed;
   width: 100vw;
   z-index: 10000 !important;
@@ -21,8 +21,12 @@ export const NavContainer = styled.div.attrs((props) => ({
 
   @media (max-width: 720px) {
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    background-color: #1e6f5c;
     color: black;
+    position: fixed;
+    width: 100vw;
+    z-index: 10000 !important;
   }
 `;
 
@@ -117,7 +121,7 @@ export const NavItems = styled.div.attrs((props) => ({
     cursor: pointer;
   }
 
-  @media (min-width: 720px) {
+  @media (min-width: 721px) {
     .nav-links {
       display: flex;
       align-items: center;
