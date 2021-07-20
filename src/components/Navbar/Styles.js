@@ -6,7 +6,7 @@ export const NavContainer = styled.div.attrs((props) => ({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 9vh;
+  height: 11vh;
   position: fixed;
   width: 100vw;
   z-index: 10000 !important;
@@ -144,7 +144,7 @@ export const NavItems = styled.div.attrs((props) => ({
       /* border: 1px solid red; */
       padding-top: 1rem;
       z-index: 10000 !important;
-      margin-top: 7vh;
+      margin-top: 8.7vh;
       top: 0;
       animation: nav-anime 0.5s;
       color: white;
@@ -189,7 +189,7 @@ export const NavItems = styled.div.attrs((props) => ({
 export const NavSearchBar = styled.div`
   .search-input {
     display: flex;
-    padding: 0.1rem;
+    padding: 0.4rem 0.1rem;
     /* width: 35vw; */
     margin-right: 2rem;
     border: 1px solid gray;
@@ -209,5 +209,11 @@ export const NavSearchBar = styled.div`
 
   @media (min-width: 720px) {
     flex: 1;
+  }
+
+  @media (max-width: 720px) {
+    .search-input{
+      padding: 0.5rem;
+    }
   }
 `;

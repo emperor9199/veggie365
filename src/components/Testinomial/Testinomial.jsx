@@ -4,15 +4,9 @@ import { TestinomialContainer } from "./Styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
-import Aos from "aos";
-import "aos/dist/aos.css";
 
 function Testinomial() {
   const [index, setIndex] = React.useState(0);
-
-  useEffect(() => {
-    Aos.init(500);
-  }, []);
 
   useEffect(() => {
     const lastIndex = data.length - 1;
