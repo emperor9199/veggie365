@@ -5,6 +5,7 @@ import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
 import CheckoutStatus from "./components/CheckoutStatus/CheckoutStatus";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/checkout" component={CheckoutStatus} exact />
         </Switch>
+        <Footer />
       </Router>
     </>
   );

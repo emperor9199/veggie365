@@ -1,66 +1,66 @@
-.footer_container{
-    width: 100%;
-    margin-top: 5.5rem;
+.footer_container {
+  width: 100%;
+  margin-top: 5.5rem;
 }
-.footer_con{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #0F044C;
-    position: absolute;
+.footer_con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f044c;
+  position: absolute;
 }
-.footer_float{
-    position: relative;
-    background-color: #185ADB;
-    height: 5rem;
-    width: 90%;
-    padding: .5rem 0;
-    margin-top: -2.5rem;
-    border-radius: .3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+.footer_float {
+  position: relative;
+  background-color: #185adb;
+  height: 5rem;
+  width: 90%;
+  padding: 0.5rem 0;
+  margin-top: -2.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.footer_regular{
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    padding: 2rem;
+.footer_regular {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  padding: 2rem;
 }
-.footer_categories{
-    flex-basis: 25%;
+.footer_categories {
+  flex-basis: 25%;
 }
-.footer_buy_with_us{
-    flex-basis: 25%;
+.footer_buy_with_us {
+  flex-basis: 25%;
 }
-.footer_about{
-    flex-basis: 30%;
+.footer_about {
+  flex-basis: 30%;
 }
-.footer_contact{
-    flex-basis: 20%;
-    display: flex;
-    justify-content: center;
+.footer_contact {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
 }
-h4{
-    color: white;
+h4 {
+  color: white;
 }
-ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: #929A9A;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #929a9a;
 }
-ul li:not(:last-child){
-    margin-bottom: .5rem;
+ul li:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
-@media (max-width:539px) {
-    .footer_regular{
-        flex-direction: column;
-    }
-    .footer_contact{
-        justify-content: flex-start;
-    }
+@media (max-width: 539px) {
+  .footer_regular {
+    flex-direction: column;
+  }
+  .footer_contact {
+    justify-content: flex-start;
+  }
 }

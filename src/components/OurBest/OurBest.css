@@ -1,76 +1,76 @@
-.ourbest_container{
-    margin: 2rem 2rem;
+.ourbest_container {
+  margin: 4rem 2rem;
 }
-.ourbest_head{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 500;
+.ourbest_head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
-.ourbest_card_cont{
-    display: flex;
-    gap: 2rem;
-    margin: 1rem;
-    flex-wrap: wrap; 
+.ourbest_card_cont {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+  flex-wrap: wrap;
 }
-.ourbest_card{
-    height: 20rem;
-    width: 20rem;
-    flex-grow: 1;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ourbest_card {
+  height: 20rem;
+  width: 20rem;
+  flex-grow: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ourbest_card_one{
-    background-image: url('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzh8fGZydWl0c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
-    background-position: center;
-    object-fit: cover;
+.ourbest_card_one {
+  background-image: url("https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzh8fGZydWl0c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-position: center;
+  object-fit: cover;
 }
-.ourbest_card_two{
-    background-image: url("https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2F2aW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
-    background-position: center;
-    object-fit: fill;
+.ourbest_card_two {
+  background-image: url("https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2F2aW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-position: center;
+  object-fit: fill;
 }
-.ourbest_card_three{
-    background-image: url("https://images.unsplash.com/photo-1531697418075-7251c1bdbfdb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fHZlZ2V0YWJsZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
-    background-position: center;
-    object-fit: fill;
+.ourbest_card_three {
+  background-image: url("https://images.unsplash.com/photo-1531697418075-7251c1bdbfdb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fHZlZ2V0YWJsZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-position: center;
+  object-fit: fill;
 }
-.ourbest_card_data{
-    backdrop-filter: blur(0px) saturate(200%);
-    -webkit-backdrop-filter: blur(0px) saturate(200%);
-    background-color: rgba(255, 255, 255, 0.74);
-    border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
-    font-size: 1.5rem;
-    padding: 1rem;
-    font-weight: 600;
-    width: 40%;
+.ourbest_card_data {
+  backdrop-filter: blur(0px) saturate(200%);
+  -webkit-backdrop-filter: blur(0px) saturate(200%);
+  background-color: rgba(255, 255, 255, 0.74);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  font-size: 1.5rem;
+  padding: 1rem;
+  font-weight: 600;
+  width: 40%;
 }
-.ourbest_heiglight{
-    font-weight: 700;
-    color: #1E6F5C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ourbest_heiglight {
+  font-weight: 700;
+  color: #1e6f5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.ourbest_no_heiglight{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ourbest_no_heiglight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.ourbest_card_data:hover{
-    -moz-transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
+.ourbest_card_data:hover {
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
-@media (max-width:539px) {
-    .ourbest_container{
-        margin: 0 .5rem;
-    }
+@media (max-width: 539px) {
+  .ourbest_container {
+    margin: 0 0.5rem;
+  }
 }

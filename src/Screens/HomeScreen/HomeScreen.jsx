@@ -5,7 +5,6 @@ import CabCards from "../../components/CabCards/CabCards";
 import Testinomial from "../../components/Testinomial/Testinomial";
 import ProductCards from "../../components/ProductCards/ProductCards";
 import OurBest from "../../components/OurBest/OurBest";
-import Footer from "../../components/Footer/Footer";
 
 const HomeScreen = () => {
   return (
@@ -28,9 +27,8 @@ const HomeScreen = () => {
         discount="10"
         subtitle="Fresh Root Vegetable"
       />
-      <OurBest/>
+      <OurBest />
       <Testinomial />
-      <Footer />
     </>
   );
 };
