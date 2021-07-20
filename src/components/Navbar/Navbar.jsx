@@ -23,7 +23,7 @@ const Navbar = ({ setToggle, toggle, path }) => {
       className={!path ? "show-color" : showColor ? "show-color" : ""}
     >
       <NavLogo>
-        <h2>VEGGI</h2>
+        <h2>VEGGI-365</h2>
         <label html="check">
           <input
             type="checkbox"

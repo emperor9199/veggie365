@@ -7,9 +7,9 @@ export const AboutContainer = styled.div`
     position: absolute;
     background-color: white;
     border-radius: 0.5rem;
-    top: 50%;
+    top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
     /* top: 50vh; */
     display: flex;
 
@@ -178,12 +178,22 @@ export const AboutContainer = styled.div`
   }
 
   @media (max-width: 720px) {
+    overflow-y: scroll;
+
     .context {
-      flex-direction: column-reverse;
+      margin-top: 9vh;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    /* .context .about-img {
+    .context .about-img {
       display: none;
-    } */
+    }
+
+    .area {
+      height: 100%;
+      overflow-y: scroll;
+    }
   }
 `;
