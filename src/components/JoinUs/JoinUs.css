@@ -43,8 +43,16 @@
 @media (max-width:539px) {
     .joinus_container{
         flex-direction: column;
+        
     }
     .joinus_box_con input{
         width: 100%;
     }
+    .joinus_msg{
+        padding: 1rem 0 .5rem 0;
+    }
+    .joinus_box_con{
+        margin-bottom: 1.5rem;
+    }
+    
 }

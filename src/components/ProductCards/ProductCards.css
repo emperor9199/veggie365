@@ -28,7 +28,7 @@
     font-size: 1.5rem;
 }
 .productcards_head_dic{
-    color: #9ACD32;
+    color: #1E6F5C;
     font-size: 1rem;
 }
 .productcards_head_subtitle{
@@ -70,7 +70,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #9ACD32;
+    background-color: #1E6F5C;
     padding: .5rem;
     border-radius: 4px;
     font-weight: 600;

@@ -3,9 +3,9 @@ import { ImgStyle } from "./Styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import one from "../../img/one.jpg";
-import two from "../../img/two.jpg";
-import three from "../../img/three.jpg";
+import four from "../../img/four.jpg";
+import seven from "../../img/seven.jpg";
+import six from "../../img/six.jpg";
 
 const Carousal = () => {
   const settings = {
@@ -20,13 +20,13 @@ const Carousal = () => {
   return (
     <Slider {...settings}>
       <ImgStyle>
-        <img src={one} alt="imgOne" />
+        <img src={four} alt="imgOne" />
       </ImgStyle>
       <ImgStyle>
-        <img src={two} alt="imgTwo" />
+        <img src={seven} alt="imgTwo" />
       </ImgStyle>
       <ImgStyle>
-        <img src={three} alt="imgThree" />
+        <img src={six} alt="imgThree" />
       </ImgStyle>
     </Slider>
   );
