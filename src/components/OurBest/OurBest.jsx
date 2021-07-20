@@ -5,7 +5,7 @@ function OurBest() {
   return (
     <div className="ourbest_container" data-aos="fade-left">
       <div className="ourbest_head">Our Best</div>
-      <hr />
+      
 
       <div className="ourbest_card_cont">
       

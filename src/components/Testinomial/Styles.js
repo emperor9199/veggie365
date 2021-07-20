@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const TestinomialContainer = styled.div`
   width: 90vw;
   margin: 4rem auto;
+  margin-bottom:-5rem;
   max-width: 1170px;
 
   @media screen and (min-width: 720px) {

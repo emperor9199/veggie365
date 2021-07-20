@@ -8,7 +8,7 @@ function CategoryCard() {
           <span className="small_title">Best Category</span>
           <span className="big_title">Browse Througth Our Best Category</span>
       </div>
-      <hr />
+      
       <div className="category_card_con" >
       {
           CategoryCardDatas.map((categorycarddata) => {
