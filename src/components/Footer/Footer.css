@@ -32,6 +32,16 @@
 .footer_categories {
   flex-basis: 20%;
 }
+.footer_line{
+  width: 3rem;
+  height: .2rem;
+  background-image: linear-gradient(to right bottom, #a8eb12, #8fe331, #77db44, #60d152, #4ac85d);
+  margin-bottom: .5rem;
+  transition: all 0.5s ease;
+}
+.footer_categories:hover .footer_line{
+  width: 5rem;
+}
 .footer_buy_with_us {
   flex-basis: 20%;
 }
@@ -44,7 +54,7 @@
 }
 h4 {
   color: white;
-  margin-bottom: 0.8rem;
+  margin: 0 0 .4rem 0;
 }
 ul {
   list-style: none;
@@ -54,6 +64,12 @@ ul {
 }
 ul li:not(:last-child) {
   margin-bottom: 0.5rem;
+}
+ul li:hover{
+  margin-left: .4rem;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
 }
 
 @media (max-width: 539px) {

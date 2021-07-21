@@ -12,6 +12,7 @@ function Footer() {
                 <div className="footer_regular">
                     <div className="footer_categories">
                         <h4>CATEGORIES</h4>
+                        <div className="footer_line" />
                         <ul>
                             <li>Root Vegetable</li>
                             <li>leafy Green</li>
@@ -23,6 +24,7 @@ function Footer() {
                     <div className="footer_buy_with_us">
                         <div className="footer_categories">
                             <h4>BUY WITH US</h4>
+                            <div className="footer_line" />
                             <ul>
                                 <li>About us</li>
                                 <li>Contact Us</li>
@@ -35,6 +37,7 @@ function Footer() {
                     <div className="footer_about">
                         <div className="footer_categories">
                             <h4>ABOUT</h4>
+                            <div className="footer_line" />
                             <ul>
                                 <li style={{textAlign:"justify"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, consequatur est sunt voluptates quibusdam tempore minus, omnis odit incidunt quia, error accusamus consectetur rem velit ea distinctio aliquid cumque ipsam?</li>
                             </ul>
@@ -43,6 +46,7 @@ function Footer() {
                     <div className="footer_contact">
                         <div className="footer_categories">
                             <h4>CONNECT US</h4>
+                            <div className="footer_line" />
                             <ul>
                                 <li>INSTAGRAM</li>
                                 <li>FACEBOOK</li>

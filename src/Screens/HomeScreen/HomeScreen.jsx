@@ -9,8 +9,8 @@ const HomeScreen = () => {
     <>
       <Banner />
       <Features />
-      <StarProducts />
-      <StarProducts />
+      <StarProducts no="evan"/>
+      <StarProducts no="odd"/>
       <Testinomial />
     </>
   );
