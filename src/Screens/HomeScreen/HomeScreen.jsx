@@ -1,15 +1,18 @@
 import React from "react";
-import Carousal from "../../components/Carousal/Carousal";
-import CategoryCard from "../../components/CategoryCard/CategoryCard";
-import CabCards from "../../components/CabCards/CabCards";
+import Banner from "../../components/Banner/Banner";
+// import CategoryCard from "../../components/CategoryCard/CategoryCard";
+// import CabCards from "../../components/CabCards/CabCards";
 import Testinomial from "../../components/Testinomial/Testinomial";
-import ProductCards from "../../components/ProductCards/ProductCards";
-import OurBest from "../../components/OurBest/OurBest";
+// import ProductCards from "../../components/ProductCards/ProductCards";
+// import OurBest from "../../components/OurBest/OurBest";
 
 const HomeScreen = () => {
   return (
     <>
-      <Carousal />
+      <Banner />
+      <Testinomial />
+
+      {/* 
       <CategoryCard />
       <CabCards />
       <ProductCards
@@ -28,7 +31,7 @@ const HomeScreen = () => {
         subtitle="Fresh Root Vegetable"
       />
       <OurBest />
-      <Testinomial />
+       */}
     </>
   );
 };

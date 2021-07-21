@@ -1,101 +1,101 @@
-.cabcard_container{
-    margin: 2rem 0rem;   
-    background-color: #F7F7F7;
-    margin-bottom: 1rem;
-    padding: 2rem 0;
+.cabcard_container {
+  margin: 2rem 0rem;
+  background-color: #f7f7f7;
+  margin-bottom: 1rem;
+  padding: 2rem 0;
 }
-.cabcard_head{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .5rem;
+.cabcard_head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
-.cabcard_small_title{
-    font-weight: 500;
-    font-size: 1.2rem;
+.cabcard_small_title {
+  font-weight: 500;
+  font-size: 1.2rem;
 }
-.cabcard_big_title{
-    font-weight: 650;
-    font-size: 1.7rem;
+.cabcard_big_title {
+  font-weight: 650;
+  font-size: 1.7rem;
 }
-.cabcard_card_container{
-    display: flex;
-    gap: 3rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.cabcard_card_container {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
-.cabcard_card_con{
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    width: 20rem;
-    height: 22rem;
-    background-color: #F6F6F6;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    border-bottom: 1px solid #DADADA;
+.cabcard_card_con {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 20rem;
+  height: 22rem;
+  background-color: #f6f6f6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-bottom: 1px solid #dadada;
 }
-.cabcard_card_img_part{
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
+.cabcard_card_img_part {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
-.cabcard_card_img_data{
-    width: 100%;
-    height: 18rem;
-    object-fit: fill;
-    position: relative;
+.cabcard_card_img_data {
+  width: 100%;
+  height: 18rem;
+  object-fit: fill;
+  position: relative;
 }
-.cabcard_card_buy{
-    position: absolute;
-    bottom: -20;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: #191919;
-    height: 3rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: white;
-    transition: all .5s ease;
+.cabcard_card_buy {
+  position: absolute;
+  bottom: -20;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #191919;
+  height: 3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  transition: all 0.5s ease;
 }
-.cabcard_card_img_part:hover .cabcard_card_buy{
-    bottom: 0;
+.cabcard_card_img_part:hover .cabcard_card_buy {
+  bottom: 0;
 }
-.cabcard_card_add{
-    flex-basis: 80%;
-    border-right: 1px solid white;
-    margin-left: .5rem;
-    display: flex;
-    align-items: center;
+.cabcard_card_add {
+  flex-basis: 80%;
+  border-right: 1px solid white;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
 }
-.cabcard_card_add_icon{
-    flex-basis: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cabcard_card_add_icon {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.cabcard_card_buy:hover .cabcard_card_add_icon{
-    background-color: #108A91;
+.cabcard_card_buy:hover .cabcard_card_add_icon {
+  background-color: #108a91;
 }
-.cabcard_card_body_part{
-    position: relative;
-    padding: .5rem;
-    font-size: 1.2rem;
-    font-weight: 500;
+.cabcard_card_body_part {
+  position: relative;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
-.cabcard_card_body_title{
-    margin-bottom: .5rem;
+.cabcard_card_body_title {
+  margin-bottom: 0.5rem;
 }
 
-@media (max-width:539px) {
-    .cabcard_container{
-        margin: 0 .5rem;
-    }
-    .cabcard_big_title{
-        font-size: 1.2rem;
-    }
-    
+@media (max-width: 539px) {
+  .cabcard_container {
+    margin: 0 0.5rem;
+  }
+  .cabcard_big_title {
+    font-size: 1.2rem;
+  }
 }
