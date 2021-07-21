@@ -8,7 +8,7 @@ import "./Features.css";
 function Features() {
     return (
         <div className="features_container">
-            <div className="features_con_cards_con">
+            <div className="features_con_cards_con" data-aos="fade-right">
                 <div className="features_card_con feature_with_line feature_with_line_hor">
                     <div className="features_card_icon">
                         <LocalShippingIcon style={{color:"4AC85D", fontSize: 40}}/>

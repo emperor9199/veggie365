@@ -10,7 +10,7 @@ function StarProducts({no}) {
         <span className="starproducts_head_dic"> (10% off)</span>
       </div>
       <div className="starproducts_line" />
-      <div className="starproducts_card_con">
+      <div className="starproducts_card_con" data-aos={`${no=== "evan" ? "fade-left":"fade-right"}`}>
 
         <div className="starproduct_card">
           <div className="starproduct_img">
