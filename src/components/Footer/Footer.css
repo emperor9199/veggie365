@@ -7,12 +7,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #1e6f5c;
+  background-color: #212121;
   position: absolute;
 }
 .footer_float {
   position: relative;
-  background-color: #29bb89;
+  background-color: #4ac85d;
   height: 5rem;
   width: 90%;
   padding: 0.5rem 0;

@@ -46,4 +46,34 @@ export const CabContainer = styled.div`
       border-radius: 5px;
     }
   }
+
+  @media (max-width: 720px) {
+    max-height: 6rem;
+    width: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 0;
+
+    .cab-left {
+      > img {
+        height: 10vh;
+        object-fit: contain;
+      }
+    }
+
+    .cab-right {
+      padding: 0;
+      text-align: center;
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        display: none;
+      }
+      button {
+        padding: 0.5rem;
+      }
+    }
+  }
 `;

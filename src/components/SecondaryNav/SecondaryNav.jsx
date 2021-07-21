@@ -31,7 +31,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
       <div className="mobile-nav-container">
         <div className="mobile-nav-logo">
           <h1>VEGGIE 365</h1>
-          <button onClick={() => setToggle(!toggle)}>=</button>
+          <button onClick={() => setToggle(!toggle)}>
+            {toggle ? "X" : "☰"}
+          </button>
         </div>
         <div
           className={toggle ? "mobile-nav-items " : "mobile-nav-items-no-show"}

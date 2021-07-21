@@ -34,6 +34,7 @@ export const BannerContainer = styled.div`
   margin-top: 3vh;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10rem;
 
   .banner-img {
     height: 100%;
@@ -47,5 +48,15 @@ export const BannerContainer = styled.div`
     display: flex;
     z-index: 1;
     margin: 0 5px;
+  }
+
+  @media (max-width: 720px) {
+    width: 100vw;
+    height: 35vh;
+    margin-top: 0;
+    margin-bottom: 6rem;
+    .banner-img {
+      margin-bottom: -9rem;
+    }
   }
 `;

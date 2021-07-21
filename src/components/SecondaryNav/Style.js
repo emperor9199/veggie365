@@ -86,6 +86,14 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         justify-content: space-between;
         align-items: center;
         margin: 0 1.5rem;
+
+        > button {
+          background-color: #212121;
+          color: white;
+          border: none;
+          font-size: 2rem;
+          outline: none;
+        }
       }
 
       .mobile-nav-items-no-show {

@@ -56,7 +56,7 @@ function Testinomial() {
                 <p className="text">{quote}</p>
                 <FormatQuoteIcon
                   fontSize="large"
-                  style={{ color: "#1e6f5c" }}
+                  style={{ color: "#4ac85d" }}
                 />
               </article>
             );

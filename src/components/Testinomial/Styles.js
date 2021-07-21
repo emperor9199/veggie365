@@ -43,7 +43,7 @@ export const TestinomialContainer = styled.div`
   }
   article h4 {
     text-transform: uppercase;
-    color: #1e6f5c;
+    color: #4ac85d;
     margin-bottom: 0.25rem;
   }
   .title {
@@ -63,7 +63,7 @@ export const TestinomialContainer = styled.div`
     position: absolute;
     top: 200px;
     transform: translateY(-50%);
-    background: #1e6f5c;
+    background: #4ac85d;
     color: #fff;
     width: 1.75rem;
     height: 1.65rem;
@@ -82,15 +82,13 @@ export const TestinomialContainer = styled.div`
   }
   .prev {
     left: 0;
-
-    span {
-      margin-left: 0.4rem;
-    }
   }
   .next {
     right: 0;
   }
   @media (max-width: 720px) {
+    margin-bottom: 4rem;
+
     .text {
       max-width: 45em;
     }
