@@ -29,9 +29,9 @@ import styled from "styled-components";
 // `;
 
 export const BannerContainer = styled.div`
-  width: 97vw;
+  width: 100vw;
   height: 60vh;
-  margin-top: 3vh;
+  /* margin-top: 3vh; */
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10rem;

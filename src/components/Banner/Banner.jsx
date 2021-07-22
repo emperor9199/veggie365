@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImg from "../../img/banner-img.jpg";
+import bannerImg from "../../img/banner.jpg";
 import CabCard from "../CabCard/CabCard";
 import { BannerContainer } from "./Style";
 

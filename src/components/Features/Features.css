@@ -1,6 +1,7 @@
 .features_container {
   margin: 2rem 2rem -2rem 2rem;
   background-color: #ffff;
+  box-shadow: 0 4px 8px 3px lightgray;
 }
 .features_con_cards_con {
   display: grid;
