@@ -50,6 +50,7 @@
   .features_container {
     margin: 1rem 1rem;
     margin-bottom: 3rem;
+    overflow-x: hidden;
   }
   .features_con_cards_con {
     display: grid;
@@ -77,6 +78,6 @@
 @media (max-width: 720px) {
   /* space added */
   .features_container {
-    margin-top: 17rem;
+    margin-top: 19rem;
   }
 }
