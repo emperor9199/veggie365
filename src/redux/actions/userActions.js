@@ -12,9 +12,11 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
-export const userLogin = (email, password) => async (dispatch) => {
+export const userLogin = (email, password) => async (dispatch, getState) => {
   dispatch({ type: USER_LOGIN_LOADING });
+  const { cartItems } = getState();
 
+  console.log(cartItems);
   try {
     const {
       data: { token },

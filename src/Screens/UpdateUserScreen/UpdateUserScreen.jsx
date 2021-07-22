@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import {  useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { userUpdate } from "../../redux/actions/userActions";
 import LoadingBox from "../../components/LoadingBox";
 import ErrorBox from "../../components/ErrorBox";
 import { UpdateContainer } from "./Style";
 
 const UpdateUserScreen = (props) => {
-  const dispatch = useDispatch();
   const { loading, user, error } = useSelector(
     (state) => state.userLoginReducer
   );

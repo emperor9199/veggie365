@@ -9,6 +9,8 @@ import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen"
 import UpdateUserScreen from "./Screens/UpdateUserScreen/UpdateUserScreen";
 import PrimaryNav from "./components/PrimaryNav/PrimaryNav";
 import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
+import TestProducts from "./Screens/TestProducts";
+import CartScreen from "./Screens/CartScreen";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -35,6 +37,8 @@ function App() {
           <Route path="/login" component={LoginScreen} exact />
           <Route path="/register" component={RegistrationScreen} exact />
           <Route path="/update-user" component={UpdateUserScreen} exact />
+          <Route path="/all-products" component={TestProducts} exact />
+          <Route path="/cart" component={CartScreen} exact />
         </Switch>
         <Footer />
       </Router>
