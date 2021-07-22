@@ -86,7 +86,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         justify-content: space-between;
         align-items: center;
         margin: 0 1.5rem;
-        /* height: 3vh; */
+        height: 8vh;
 
         > button {
           background-color: #212121;
@@ -114,7 +114,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
             opacity: 0;
           }
           50% {
-            height: 500px;
+            height: 600px;
             opacity: 0.7;
           }
           100% {
