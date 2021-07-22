@@ -5,7 +5,7 @@ export const TestinomialContainer = styled.div`
   margin: 4rem auto;
   /* margin-bottom: -5rem; */
   max-width: 1170px;
-  height: 75vh;
+  height: fit-content;
   background-color: white;
 
   .main-container {
@@ -13,7 +13,7 @@ export const TestinomialContainer = styled.div`
     width: 100%;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 1020px) {
     /* width: 95vw; */
     height: auto;
   }
@@ -95,6 +95,7 @@ export const TestinomialContainer = styled.div`
   .next {
     right: 0;
   }
+
   @media (max-width: 720px) {
     margin-bottom: 4rem;
 

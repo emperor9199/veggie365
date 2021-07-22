@@ -48,11 +48,6 @@ export const CabContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    /* max-height: 6rem;
-    width: 18rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem 0; */
     flex-direction: column;
     align-items: center;
     background-color: transparent;
@@ -60,6 +55,7 @@ export const CabContainer = styled.div`
     margin: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2rem;
     justify-content: center;
 
     .cab-left {
@@ -85,7 +81,7 @@ export const CabContainer = styled.div`
     }
   }
   /* tablet view */
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 725px) {
     width: 65rem;
     margin-top: -10rem;
 

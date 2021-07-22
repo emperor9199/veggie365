@@ -14,12 +14,19 @@
 }
 .starproducts_line {
   height: 0.2rem;
-  background-image: linear-gradient(to right bottom, #a8eb12, #8fe331, #77db44, #60d152, #4ac85d);
+  background-image: linear-gradient(
+    to right bottom,
+    #a8eb12,
+    #8fe331,
+    #77db44,
+    #60d152,
+    #4ac85d
+  );
   width: 3rem;
   margin-bottom: 1.5rem;
   transition: all 0.5s ease;
 }
-.starproducts_container:hover .starproducts_line{
+.starproducts_container:hover .starproducts_line {
   width: 5rem;
 }
 .starproducts_card_con {
@@ -55,10 +62,17 @@
   color: #fff;
   cursor: pointer;
 }
-.starproduct_color_card_color_two{
-  background-image: linear-gradient(to right bottom, #a8eb12, #8fe331, #77db44, #60d152, #4ac85d);
+.starproduct_color_card_color_two {
+  background-image: linear-gradient(
+    to right bottom,
+    #a8eb12,
+    #8fe331,
+    #77db44,
+    #60d152,
+    #4ac85d
+  );
 }
-.starproduct_color_card_color_one{
+.starproduct_color_card_color_one {
   background-image: linear-gradient(
     to right bottom,
     #4ac85d,
@@ -94,7 +108,7 @@
   position: relative;
   overflow: hidden;
 }
-.starproduct_color_card_btn::before{
+.starproduct_color_card_btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -109,7 +123,7 @@
   );
   transition: all 650ms;
 }
-.starproduct_color_card_btn:hover::before{
+.starproduct_color_card_btn:hover::before {
   left: 100%;
 }
 .starproduct_img {
