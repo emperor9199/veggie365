@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const AboutContainer = styled.div`
   .context {
-    width: 70%;
-    height: 70%;
+    width: 70vw;
+    height: 80vh;
     position: absolute;
     background-color: white;
     border-radius: 0.5rem;
-    top: 60%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -60%);
     /* top: 50vh; */
@@ -15,11 +15,13 @@ export const AboutContainer = styled.div`
 
     .about-detail {
       flex: 0.55;
-      padding: 2rem;
+      padding: 0 2rem;
       text-align: justify;
-      background-color: rgb(55, 176, 151);
+      /* background-color: rgb(55, 176, 151); */
+      background: #212121;
       border-bottom-right-radius: 14rem;
       color: white;
+      height: 100%;
     }
 
     .about-img {
@@ -50,7 +52,7 @@ export const AboutContainer = styled.div`
       padding: 0.5rem 1rem;
       border: none;
       background-color: white;
-      color: #37b097;
+      color: #212121;
       font-size: 1.1rem;
       border-radius: 5px;
       cursor: pointer;
@@ -62,7 +64,7 @@ export const AboutContainer = styled.div`
   }
 
   .area {
-    background: #11998e;
+    background: #f1f3f6;
     background: -webkit-linear-gradient(to left, #11998e, #38ef7d);
     width: 100vw;
     height: 100vh;
