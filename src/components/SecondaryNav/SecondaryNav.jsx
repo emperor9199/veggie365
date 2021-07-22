@@ -5,7 +5,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
 
   const changeBackground = () => {
-    if (window.scrollY >= 45) {
+    if (window.scrollY >= 55) {
       setShow(true);
     } else {
       setShow(false);

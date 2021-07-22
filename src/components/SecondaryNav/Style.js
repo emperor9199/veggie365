@@ -66,6 +66,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
   .mobile-nav-container {
     display: none;
   }
+
   @media (max-width: 720px) {
     .nav-items {
       display: none;
