@@ -95,6 +95,7 @@ export const TestinomialContainer = styled.div`
   .next {
     right: 0;
   }
+
   @media (max-width: 720px) {
     margin-bottom: 4rem;
 
