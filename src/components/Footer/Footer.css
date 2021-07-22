@@ -47,10 +47,12 @@
 }
 .footer_about {
   flex-basis: 40%;
-  padding-right: 5rem;
 }
 .footer_contact {
   flex-basis: 20%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
 }
 h4 {
   color: white;
@@ -75,7 +77,10 @@ ul li:hover{
   color: #fff;
   font-weight: 600;
 }
-
+.footer_copy{
+  color: #fff;
+  margin-bottom: 1rem;
+}
 @media (max-width: 539px) {
   .footer_regular {
     flex-direction: column;

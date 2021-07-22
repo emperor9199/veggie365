@@ -52,13 +52,16 @@ function Footer() {
                             <h4>CONNECT US</h4>
                             <div className="footer_line" />
                             <ul>
-                                <li><InstagramIcon style={{marginRight:"3", color:"8a3ab9",fontSize: 35}}/>Instagram</li>
-                                <li><FacebookIcon style={{marginRight:"3", color:"3b5998",fontSize: 35}}/>FACEBOOK</li>
-                                <li><TwitterIcon style={{marginRight:"3", color:"1DA1F2",fontSize: 35}}/>TWITTER</li>
-                                <li><LinkedInIcon style={{marginRight:"3", color:"0077b5",fontSize: 35}}/>LINDIN</li> 
+                                <li><InstagramIcon style={{marginRight:"3", color:"fff",fontSize: 30}}/>Instagram</li>
+                                <li><FacebookIcon style={{marginRight:"3", color:"fff",fontSize: 30}}/>Facebook</li>
+                                <li><TwitterIcon style={{marginRight:"3", color:"fff",fontSize: 30}}/>Twitter</li>
+                                <li><LinkedInIcon style={{marginRight:"3", color:"fff",fontSize: 30}}/>Linkdin</li> 
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div className="footer_copy">
+                ©Copyright 2021 VEGGIE 365
                 </div>
             </div>
         </div>

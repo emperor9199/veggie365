@@ -178,12 +178,11 @@
   color: #fff;
   cursor: pointer;
 }
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .starproducts_container {
     margin: 5rem 2rem;
     height: 21.5rem;
   }
-
   .starproducts_card_con {
     overflow: scroll;
   }
