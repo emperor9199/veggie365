@@ -107,18 +107,24 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         height: 900px;
         text-align: center;
         animation: nav-amination 0.7s;
+        position: absolute;
+        width: 100%;
+        z-index: 10000;
+        margin-top: 8vh;
 
         @keyframes nav-amination {
           0% {
-            height: 0;
+            /* height: 0; */
+            margin-top: -9vh;
             opacity: 0;
           }
-          50% {
-            height: 600px;
-            opacity: 0.7;
-          }
+          /* 50% { */
+          /* height: 600px; */
+          /* opacity: 0.7; */
+          /* } */
           100% {
-            height: 900px;
+            /* height: 900px; */
+            margin-top: 8vh;
             opacity: 1;
           }
         }
