@@ -72,3 +72,10 @@
     margin-left: -1rem;
   }
 }
+
+@media (max-width: 720px) {
+  /* space added */
+  .features_container {
+    margin-top: 17rem;
+  }
+}

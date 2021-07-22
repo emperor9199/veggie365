@@ -4,6 +4,7 @@ export const PrimaryNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 
   .nav-logo {
     flex: 0.15;
@@ -45,6 +46,8 @@ export const PrimaryNavContainer = styled.div`
 
       > p {
         margin-right: 2rem;
+        display: flex;
+        align-items: center;
       }
     }
   }

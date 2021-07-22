@@ -16,7 +16,9 @@ export const userLogin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_LOGIN_LOADING });
 
   try {
-    const { data } = await axios.post(
+    const {
+      data: { token },
+    } = await axios.post(
       "https://veggi365.thestarttodaytech-tst.com/api/user/auth",
       {
         user_email: email,
@@ -24,9 +26,38 @@ export const userLogin = (email, password) => async (dispatch) => {
       }
     );
 
-    console.log(data);
+    console.log(token);
 
-    dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+    // const userData = await fetch(
+    //   "https://veggi365.thestarttodaytech-tst.com/api/user/",
+    //   {
+    //     method: "GET",
+    //     headers: { Authorization: "Bearer " + token },
+    //   }
+    // )
+    //   .then((response) => {
+    //     console.log(response.json());
+    //     return response.json();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    // axios token check
+
+    // const authAxios = axios.create({
+    //   baseURL: "https://veggi365.thestarttodaytech-tst.com/api",
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+
+    // const result = await authAxios.get("/user");
+    // console.log("result" + result);
+
+    // localStorage.setItem("userToken", token);
+
+    // dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_ERROR,

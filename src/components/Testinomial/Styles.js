@@ -3,11 +3,19 @@ import styled from "styled-components";
 export const TestinomialContainer = styled.div`
   width: 90vw;
   margin: 4rem auto;
-  margin-bottom: -5rem;
+  /* margin-bottom: -5rem; */
   max-width: 1170px;
+  height: 75vh;
+  background-color: white;
 
-  @media screen and (min-width: 720px) {
-    width: 95vw;
+  .main-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media (max-width: 720px) {
+    /* width: 95vw; */
+    height: auto;
   }
 
   .title {
@@ -19,6 +27,7 @@ export const TestinomialContainer = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    padding-top: 2rem;
   }
 
   .section-center {

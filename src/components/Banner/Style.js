@@ -42,6 +42,8 @@ export const BannerContainer = styled.div`
     object-fit: cover;
     z-index: -1;
     margin-bottom: -12rem;
+    /* fade image */
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
 
   .cab-card {
@@ -52,7 +54,7 @@ export const BannerContainer = styled.div`
 
   @media (max-width: 720px) {
     width: 100vw;
-    height: 35vh;
+    height: 25vh;
     margin-top: 0;
     margin-bottom: 6rem;
     .banner-img {

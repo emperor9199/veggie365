@@ -1,5 +1,8 @@
 import React from "react";
 import { PrimaryNavContainer } from "./Styles";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import PersonIcon from "@material-ui/icons/Person";
 
 const PrimaryNav = () => {
   return (
@@ -13,10 +16,18 @@ const PrimaryNav = () => {
           <button>Search</button>
         </div>
         <div className="nav-links">
-          <p>Login</p>
-          <p>My Account</p>
-          <p>Wishlist</p>
-          <p>Cart</p>
+          <p>
+            <PersonIcon style={{ marginRight: ".3rem" }} />
+            Login
+          </p>
+          <p>
+            <FavoriteIcon style={{ marginRight: ".3rem" }} />
+            Wishlist
+          </p>
+          <p>
+            <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
+            Cart
+          </p>
         </div>
       </div>
     </PrimaryNavContainer>
