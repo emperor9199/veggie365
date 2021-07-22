@@ -13,10 +13,13 @@ import {
 
 import produce from "immer";
 
+const currentUser = localStorage.getItem("loggedUser");
+
 const initialState = {
   loading: false,
-  user: {},
+  user: currentUser ? JSON.parse(currentUser)[0] : {},
   error: false,
+  newUser: "",
 };
 
 export const userLoginReducer = produce((state = initialState, action) => {
@@ -28,7 +31,7 @@ export const userLoginReducer = produce((state = initialState, action) => {
 
     case USER_LOGIN_SUCCESSFUL: {
       state.loading = false;
-      state.user = action.payload;
+      state.user = JSON.parse(action.payload)[0];
       return;
     }
 
@@ -59,7 +62,7 @@ export const userRegistrationReducer = produce(
 
       case USER_REGISTRATION_SUCCESSFUL: {
         state.loading = false;
-        state.user = action.payload;
+        state.newUser = action.payload;
         return;
       }
 

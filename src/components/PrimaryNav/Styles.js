@@ -44,10 +44,12 @@ export const PrimaryNavContainer = styled.div`
       display: flex;
       align-items: center;
 
-      > p {
+      .nav-specific-link {
         margin-right: 2rem;
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: black;
       }
     }
   }

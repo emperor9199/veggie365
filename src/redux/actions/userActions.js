@@ -18,46 +18,25 @@ export const userLogin = (email, password) => async (dispatch) => {
   try {
     const {
       data: { token },
-    } = await axios.post(
-      "https://veggi365.thestarttodaytech-tst.com/api/user/auth",
-      {
-        user_email: email,
-        user_password: password,
-      }
-    );
-
-    console.log(token);
-
-    // const userData = await fetch(
-    //   "https://veggi365.thestarttodaytech-tst.com/api/user/",
-    //   {
-    //     method: "GET",
-    //     headers: { Authorization: "Bearer " + token },
-    //   }
-    // )
-    //   .then((response) => {
-    //     console.log(response.json());
-    //     return response.json();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    } = await axios.post("https://dharm.ga/api/user/auth", {
+      email: email,
+      password: password,
+    });
 
     // axios token check
 
-    // const authAxios = axios.create({
-    //   baseURL: "https://veggi365.thestarttodaytech-tst.com/api",
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    // const result = await authAxios.get("/user");
-    // console.log("result" + result);
+    const { data } = await authAxios.get("/user");
 
-    // localStorage.setItem("userToken", token);
+    localStorage.setItem("loggedUser", JSON.stringify(data));
 
-    // dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+    dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_ERROR,
@@ -80,18 +59,17 @@ export const userRegister =
     dispatch({ type: USER_REGISTRATION_LOADING });
 
     try {
-      const { data } = await axios.post(
-        "https://veggi365.thestarttodaytech-tst.com/api/user/",
-        {
-          user_name: name,
-          user_phone: Number(mobile),
-          user_email: email,
-          user_password: password,
-        }
-      );
+      const {
+        data: { status },
+      } = await axios.post("https://dharm.ga/api/user", {
+        user_name: name,
+        user_phone: Number(mobile),
+        user_email: email,
+        user_password: password,
+      });
 
-      dispatch({ type: USER_REGISTRATION_SUCCESSFUL, payload: data });
-      dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+      dispatch({ type: USER_REGISTRATION_SUCCESSFUL, payload: status });
+      // dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
     } catch (error) {
       dispatch({
         type: USER_REGISTRATION_ERROR,

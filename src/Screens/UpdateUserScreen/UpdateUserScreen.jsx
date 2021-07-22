@@ -13,11 +13,10 @@ const UpdateUserScreen = (props) => {
   );
 
   console.log(user);
-  const [name, setName] = useState();
-  const [mobile, setMobile] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState(user.user_name);
+  const [mobile, setMobile] = useState(user.user_phone);
+  const [email, setEmail] = useState(user.user_email);
+  const [password, setPassword] = useState(user.user_password);
 
   const handleSignin = (e) => {
     // e.preventDefault();
@@ -45,6 +44,7 @@ const UpdateUserScreen = (props) => {
             <input
               type="text"
               name="name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -54,6 +54,7 @@ const UpdateUserScreen = (props) => {
             <input
               type="text"
               name="name"
+              value={mobile}
               onChange={(e) => setMobile(e.target.value)}
               required
             />
@@ -63,6 +64,7 @@ const UpdateUserScreen = (props) => {
             <input
               type="email"
               name="email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -71,18 +73,12 @@ const UpdateUserScreen = (props) => {
             <label htmlFor="password">Password</label>
             <input
               type="password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
+
           <div>
             <button type="submit" className="general-button">
               Update User

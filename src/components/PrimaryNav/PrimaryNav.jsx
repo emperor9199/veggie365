@@ -3,8 +3,12 @@ import { PrimaryNavContainer } from "./Styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const PrimaryNav = () => {
+  const { user } = useSelector((state) => state.userLoginReducer);
+
   return (
     <PrimaryNavContainer>
       <div className="nav-logo">
@@ -16,18 +20,18 @@ const PrimaryNav = () => {
           <button>Search</button>
         </div>
         <div className="nav-links">
-          <p>
+          <Link to="/login" className="nav-specific-link">
             <PersonIcon style={{ marginRight: ".3rem" }} />
-            Login
-          </p>
-          <p>
+            {Object.keys(user).length ? user.user_name : "Login"}
+          </Link>
+          <Link to="/" className="nav-specific-link">
             <FavoriteIcon style={{ marginRight: ".3rem" }} />
             Wishlist
-          </p>
-          <p>
+          </Link>
+          <Link to="/" className="nav-specific-link">
             <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
             Cart
-          </p>
+          </Link>
         </div>
       </div>
     </PrimaryNavContainer>
