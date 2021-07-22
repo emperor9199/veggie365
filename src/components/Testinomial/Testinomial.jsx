@@ -28,7 +28,7 @@ function Testinomial() {
   }, [index]);
 
   return (
-    <div data-aos="fade-up">
+    <div>
       <TestinomialContainer>
         <div className="main-container">
           <div className="title">

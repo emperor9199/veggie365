@@ -24,7 +24,7 @@
 }
 .starproducts_card_con {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   gap: 2rem;
