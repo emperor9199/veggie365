@@ -2,7 +2,7 @@ import React from "react";
 import StarIcon from "@material-ui/icons/Star";
 import "./StarProducts.css";
 
-function StarProducts() {
+function StarProducts({no}) {
   return (
     <div className="starproducts_container">
       <div className="starproducts_head_title">
@@ -10,7 +10,7 @@ function StarProducts() {
         <span className="starproducts_head_dic"> (10% off)</span>
       </div>
       <div className="starproducts_line" />
-      <div className="starproducts_card_con">
+      <div className="starproducts_card_con" data-aos={`${no=== "evan" ? "fade-left":"fade-right"}`}>
 
         <div className="starproduct_card">
           <div className="starproduct_img">
@@ -102,7 +102,7 @@ function StarProducts() {
           </div>
         </div>
 
-        <div className="starproduct_color_card">
+        <div className={`starproduct_color_card ${no=== "evan" ? "starproduct_color_card_color_one":"starproduct_color_card_color_two"}`}>
             <div className="starproduct_color_card_title">Save Max!</div>
             <div className="starproduct_color_card_subt">Handpicked deals with best Prices.</div>
             <div className="starproduct_color_card_btn">View All</div>
