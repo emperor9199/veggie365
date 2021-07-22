@@ -13,7 +13,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
   &.active {
     position: fixed;
     top: 0;
-    width: 100vw; //if there comes extra space then put 100% here;
+    width: 100%; //if there comes extra space then put 100% here;
   }
 
   .nav-items {
@@ -86,6 +86,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         justify-content: space-between;
         align-items: center;
         margin: 0 1.5rem;
+        /* height: 3vh; */
 
         > button {
           background-color: #212121;
