@@ -83,28 +83,32 @@ export const CabContainer = styled.div`
         padding: 0.5rem;
       }
     }
+  }
+  /* tablet view */
+  @media (max-width: 1024px) {
+    width: 65rem;
+    margin-top: -10rem;
 
-    /* 
     .cab-left {
       > img {
-        height: 10vh;
+        height: 35vh;
         object-fit: contain;
+        width: 100%;
       }
     }
 
     .cab-right {
-      padding: 0;
+      background-color: white;
+      padding: 0.5rem;
       text-align: center;
       h1 {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
       }
-      p {
-        display: none;
-      }
+
       button {
         padding: 0.5rem;
-      } */
-    /* } */
+      }
+    }
   }
 `;
