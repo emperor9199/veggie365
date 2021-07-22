@@ -52,6 +52,11 @@ export const PrimaryNavContainer = styled.div`
     }
   }
 
+  @media (max-width: 1024px) and (min-width: 725px) {
+    .nav-logo > h1 {
+      font-size: 1.3rem;
+    }
+  }
   @media (max-width: 720px) {
     display: none;
   }
