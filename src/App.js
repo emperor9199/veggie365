@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LoginPage from "./components/LoginPage/LoginPage";
 import AboutScreen from "./Screens/AboutScreen/AboutScreen";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -32,6 +33,8 @@ function App() {
         <SecondaryNav setToggle={setToggle} toggle={toggle} />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
+          <Route path="/login" component={LoginPage} exact />
+          <Route path="/signup" component={LoginPage} exact />
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/checkout" component={CheckoutStatus} exact />
           <Route path="/login" component={LoginScreen} exact />
