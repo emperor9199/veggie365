@@ -1,4 +1,8 @@
-import { ADD_TO_CART, DECREASE_QTY } from "../constants/cartConstants";
+import {
+  ADD_TO_CART,
+  DECREASE_QTY,
+  SAVE_SHIPPING_ADDRESS,
+} from "../constants/cartConstants";
 import produce from "immer";
 
 const initialState = {
@@ -8,6 +12,9 @@ const initialState = {
   cartItemsId: localStorage.getItem("cartItemsId")
     ? JSON.parse(localStorage.getItem("cartItemsId"))
     : [],
+  shippingAddress: localStorage.getItem("shippingAddress")
+    ? JSON.parse(localStorage.getItem("shippingAddress"))
+    : {},
 };
 
 export const addToCartReducer = produce((state = initialState, action) => {
@@ -44,16 +51,10 @@ export const addToCartReducer = produce((state = initialState, action) => {
       return;
     }
 
-    // case CART_EMPTY: {
-    //   state.cartItems = {};
-    //   state.cartItemsId = [];
-    //   return;
-    // }
-
-    // case SAVE_SHIPPING_ADDRESS: {
-    //   state.shippingAddress = action.payload;
-    //   return;
-    // }
+    case SAVE_SHIPPING_ADDRESS: {
+      state.shippingAddress = action.payload;
+      return;
+    }
 
     // case SAVE_PAYMENT_METHOD: {
     //   state.paymentMethod = action.payload;

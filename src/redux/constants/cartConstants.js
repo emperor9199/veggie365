@@ -1,2 +1,4 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DECREASE_QTY = "DECREASE_QTY";
+
+export const SAVE_SHIPPING_ADDRESS = "SAVE_SHIPPING_ADDRESS";

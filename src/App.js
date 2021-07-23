@@ -12,6 +12,8 @@ import PrimaryNav from "./components/PrimaryNav/PrimaryNav";
 import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
 import TestProducts from "./Screens/TestProducts";
 import CartScreen from "./Screens/CartScreen";
+import ShippingScreen from "./Screens/ShippingScreen";
+import PaymentScreen from "./Screens/PaymentScreen";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -33,7 +35,7 @@ function App() {
         <SecondaryNav setToggle={setToggle} toggle={toggle} />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
-          <Route path="/login" component={LoginPage} exact />
+          {/* <Route path="/login" component={LoginPage} exact /> */}
           <Route path="/signup" component={LoginPage} exact />
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/checkout" component={CheckoutStatus} exact />
@@ -42,6 +44,8 @@ function App() {
           <Route path="/update-user" component={UpdateUserScreen} exact />
           <Route path="/all-products" component={TestProducts} exact />
           <Route path="/cart" component={CartScreen} exact />
+          <Route path="/shipping" component={ShippingScreen} exact />
+          <Route path="/payment" component={PaymentScreen} exact />
         </Switch>
         <Footer />
       </Router>
