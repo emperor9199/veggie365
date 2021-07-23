@@ -1,36 +1,38 @@
 import { ADD_TO_CART, DECREASE_QTY } from "../constants/cartConstants";
 // import axios from "axios";
 
-export const addToCart = (product, pid, qty) => (dispatch, getState) => {
-  let localCartItems, localCartItemsId;
+export const addToCart =
+  (product, pid, unit_price, qty) => (dispatch, getState) => {
+    let localCartItems, localCartItemsId;
 
-  // increase milliseconds if localstorage have some issuues
-  setTimeout(() => {
-    const {
-      addToCartReducer: { cartItems, cartItemsId },
-    } = getState();
+    // increase milliseconds if localstorage have some issuues
+    setTimeout(() => {
+      const {
+        addToCartReducer: { cartItems, cartItemsId },
+      } = getState();
 
-    localCartItems = cartItems;
-    localCartItemsId = cartItemsId;
-  }, 200);
+      localCartItems = cartItems;
+      localCartItemsId = cartItemsId;
+    }, 200);
 
-  dispatch({
-    type: ADD_TO_CART,
-    payload: {
-      p_id: pid,
-      name: product.product_name,
-      about: product.product_about,
-      img: product.product_img,
-      fresh_till: product.product_fresh_till,
-      qty: Number(qty),
-    },
-  });
+    dispatch({
+      type: ADD_TO_CART,
+      payload: {
+        p_id: pid,
+        name: product.product_name,
+        about: product.product_about,
+        img: product.product_img,
+        fresh_till: product.product_fresh_till,
+        unit_price: unit_price,
+        qty: qty,
+      },
+    });
 
-  setTimeout(() => {
-    localStorage.setItem("cartItems", JSON.stringify(localCartItems));
-    localStorage.setItem("cartItemsId", JSON.stringify(localCartItemsId));
-  }, 200);
-};
+    setTimeout(() => {
+      localStorage.setItem("cartItems", JSON.stringify(localCartItems));
+      localStorage.setItem("cartItemsId", JSON.stringify(localCartItemsId));
+    }, 200);
+  };
 
 export const decreaseQty = (productId) => (dispatch, getState) => {
   let localCartItems, localCartItemsId;
