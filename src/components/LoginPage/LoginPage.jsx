@@ -6,15 +6,15 @@ import LoginPageNav from '../LoginPageNav/LoginPageNav';
 import "./LoginPage.css";
 
 function LoginPage() {
+
     const url = window.location.href;
-
-    const ProductionUrl = url === "http://localhost:3000/login" ? "http://localhost:3000" : "https://veggi.netlify.app";
-
+    const ProductionUrl = url.includes("http://localhost:3000") ? "http://localhost:3000" :  "https://veggi.netlify.app";
+    
     const renderForm = () => {
-        if(url === ProductionUrl+"/login"){
+        if(url === `${ProductionUrl}/login`){
             return <LoginPageForm />                    
         }
-        else if(url === ProductionUrl+"/login"){
+        else if(url === `${ProductionUrl}/signup`){
             return <SignUpPageForm />
         }
     }

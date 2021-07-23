@@ -4,9 +4,11 @@ import signup from "../../img/signup.svg"
 import "./LoginPageCover.css";
 
 function LoginPageCover({ProductionUrl}) {
+    const url = window.location.href;
+    const NewUrl = ProductionUrl+"/login";
     return (
         <div className="LoginPageCover_container">
-            <img className="loginpage_cover_img" src={ProductionUrl === ProductionUrl+"/login" ? loginIcon : signup} alt="loginpage_cover" />
+            <img className="loginpage_cover_img" src={url === NewUrl ? loginIcon : signup} alt="loginpage_cover" />
         </div>
     )
 }
