@@ -1,0 +1,27 @@
+.AboutProduct_Container{
+    margin: 2rem 2rem 0 2rem;
+}
+.AboutProduct_Cont{
+    display: flex;
+    flex-direction: column;
+}
+.aboutproduct_title{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.about_product_description_tite{
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+.about_product_description_body{
+    margin-bottom: .8rem;
+    line-height: 1.6;
+    color: rgb(36, 35, 35);
+    font-size: 1.1rem;
+}
+.about_product_other_body{
+    line-height: 1.6;
+    color: rgb(36, 35, 35);
+    font-size: 1.1rem;
+}

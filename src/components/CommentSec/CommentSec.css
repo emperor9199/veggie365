@@ -1,0 +1,41 @@
+.CommentSec_container{
+    margin: 3rem 2rem 2rem 2rem;
+    overflow: hidden;
+}
+.comments_sec_comment_container{
+    margin-top: 1.5rem;
+    width: 80%;
+    overflow: hidden;
+}
+.comments_sec_comment{
+    display: flex;
+    margin-bottom: 1rem;
+}
+.comment_sec_comment_img{
+    margin-right: 1rem;
+}
+.comment_sec_comment_img_data{
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.comments_sec_user_name{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+.comments_sec_user_date{
+    font-size: .8rem;
+    color: grey;
+    font-weight: 500;
+}
+.comments_sec_user_comment{
+    margin-top: .2rem;
+    font-size: 1.2rem;
+    color: grey;
+}
+@media (max-width:1024px) {
+    .comments_sec_comment_container{
+        width: 100%;
+    }
+}

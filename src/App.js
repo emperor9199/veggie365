@@ -16,6 +16,7 @@ import ShippingScreen from "./Screens/ShippingScreen";
 import PaymentScreen from "./Screens/PaymentScreen";
 import ReviewOrderScreen from "./Screens/ReviewOrderScreen";
 import YourOrderScreen from "./Screens/YourOrderScreen";
+import SoloProduct from "./components/SoloProduct/SoloProduct";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -49,6 +50,7 @@ function App() {
           <Route path="/payment" component={PaymentScreen} exact />
           <Route path="/order-summary" component={ReviewOrderScreen} exact />
           <Route path="/order/:id" component={YourOrderScreen} exact />
+          <Route path="/product/flower" component={SoloProduct} exact />
         </Switch>
         <Footer />
       </Router>
