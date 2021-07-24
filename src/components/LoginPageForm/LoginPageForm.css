@@ -86,6 +86,10 @@ input[type=submit]:focus{
 .error_msg{
     color: red;
 }
+.router_link{
+    text-decoration: none;
+    color: #4AC85D;
+}
 @media (max-width:720px) {
     .LoginPageForm_container{
         margin-top: 1rem;

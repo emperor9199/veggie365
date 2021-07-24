@@ -1,30 +1,52 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { userLogin } from "../../redux/actions/userActions";
+import LoadingBox from "../../components/LoadingBox";
+import ErrorBox from "../../components/ErrorBox";
 import * as yup from "yup";
 import "./LoginPageForm.css";
 
 const schema = yup.object().shape({
   Email: yup.string().email().required(),
-  Password: yup.string().required().min(8).max(12),
+  Password: yup.string().required().min(3).max(12),
 });
 
-function LoginPageForm() {
+function LoginPageForm(props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  let history = useHistory();
+
+  const dispatch = useDispatch();
+  const { loading, user, error } = useSelector(
+    (state) => state.userLoginReducer
+  );
+
   const handleLogin = (data) => {
     console.log("data", data);
+    dispatch(userLogin(data.Email, data.Password));
   };
+
+  useEffect(() => {
+    if (Object.keys(user).length) {
+      history.push("/");
+    }
+  }, [props.history, user]);
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="loginform_container">
         <div className="loginfrom_title common_flex">Login To Veggi</div>
+          {loading && <LoadingBox />}
+          {error && <ErrorBox msg={error} />}
         <div className="loginform_form">
-          <form onSubmit={handleSubmit(handleLogin)} novalidate>
+          <form onSubmit={handleSubmit(handleLogin)}>
             <div className="login_form_fields">
               <label htmlFor="Email" className="form_label">
                 Email
@@ -93,7 +115,7 @@ function LoginPageForm() {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <div className="loginform_external_btn common_flex">Create Account</div>
+        <div className="loginform_external_btn common_flex"><Link to="/signup" className="router_link">Create Account</Link></div>
       </div>
     </div>
   );

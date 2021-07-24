@@ -71,7 +71,7 @@ export const userRegister =
       });
 
       dispatch({ type: USER_REGISTRATION_SUCCESSFUL, payload: status });
-      // dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+      //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
     } catch (error) {
       dispatch({
         type: USER_REGISTRATION_ERROR,
