@@ -45,10 +45,40 @@
   font-size: 0.7rem;
 }
 
-@media (max-width: 540px) {
+/* @media (max-width: 540px) {
   .features_container {
     margin: 1rem 1rem;
     margin-bottom: 3rem;
+  }
+  .features_con_cards_con {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0 0px;
+    padding: 0;
+  }
+  .features_title_text {
+    font-size: 1.2rem;
+  }
+  .feature_with_line {
+    border-right: 1px solid black;
+    border-color: lightgray;
+  }
+  .feature_with_line_hor {
+    border-bottom: 1px solid black;
+    border-color: lightgray;
+  }
+  .features_card_con {
+    margin-left: -1rem;
+  }
+} */
+
+@media (max-width: 720px) {
+  .features_container {
+    margin: 1rem 1rem;
+    margin-bottom: 3rem;
+    margin-top: 21rem;
+    overflow-x: hidden;
   }
   .features_con_cards_con {
     display: grid;

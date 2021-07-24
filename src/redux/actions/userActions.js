@@ -12,11 +12,9 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
-export const userLogin = (email, password) => async (dispatch, getState) => {
+export const userLogin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_LOGIN_LOADING });
-  const { cartItems } = getState();
 
-  console.log(cartItems);
   try {
     const {
       data: { token },
@@ -37,6 +35,7 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     const { data } = await authAxios.get("/user");
 
     localStorage.setItem("loggedUser", JSON.stringify(data));
+    localStorage.setItem("userToken", JSON.stringify(token));
 
     dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
   } catch (error) {

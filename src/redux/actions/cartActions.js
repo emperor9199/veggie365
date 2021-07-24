@@ -1,11 +1,14 @@
-import { ADD_TO_CART, DECREASE_QTY } from "../constants/cartConstants";
-// import axios from "axios";
+import {
+  ADD_TO_CART,
+  DECREASE_QTY,
+  SAVE_SHIPPING_ADDRESS,
+  SAVE_PAYMENT_METHOD,
+  ORDER_PRICES,
+} from "../constants/cartConstants";
 
 export const addToCart =
   (product, pid, unit_price, qty) => (dispatch, getState) => {
     let localCartItems, localCartItemsId;
-
-    // increase milliseconds if localstorage have some issuues
     setTimeout(() => {
       const {
         addToCartReducer: { cartItems, cartItemsId },
@@ -57,10 +60,32 @@ export const decreaseQty = (productId) => (dispatch, getState) => {
   });
 };
 
-// export const saveShippingAddress = (data) => async (dispatch) => {
-//   dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: data });
-// };
+export const saveShippingAddress = (data) => async (dispatch) => {
+  setTimeout(() => {
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
+  }, 200);
+  dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: data });
+};
 
-// export const savePaymentMethod = (data) => async (dispatch) => {
-//   dispatch({ type: SAVE_PAYMENT_METHOD, payload: data });
-// };
+export const savePaymentMethod = (data) => async (dispatch) => {
+  setTimeout(() => {
+    localStorage.setItem("paymentMethod", JSON.stringify(data));
+  }, 200);
+
+  dispatch({ type: SAVE_PAYMENT_METHOD, payload: data });
+};
+
+export const orderPrices =
+  (itemsPrice, deliveryPrice, taxPrice, totalPrice) => (dispatch) => {
+    setTimeout(() => {
+      localStorage.setItem("itemsPrice", JSON.stringify(itemsPrice));
+      localStorage.setItem("deliveryPrice", JSON.stringify(deliveryPrice));
+      localStorage.setItem("taxPrice", JSON.stringify(taxPrice));
+      localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+    }, 300);
+
+    dispatch({
+      type: ORDER_PRICES,
+      payload: { itemsPrice, deliveryPrice, taxPrice, totalPrice },
+    });
+  };

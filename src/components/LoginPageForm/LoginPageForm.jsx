@@ -115,7 +115,11 @@ function LoginPageForm(props) {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <div className="loginform_external_btn common_flex"><Link to="/signup" className="router_link">Create Account</Link></div>
+        <Link to="/signup" style={{ textDecoration: "none" }}>
+          <div className="loginform_external_btn common_flex">
+            Create Account
+          </div>
+        </Link>
       </div>
     </div>
   );

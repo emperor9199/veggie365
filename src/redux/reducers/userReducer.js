@@ -20,6 +20,7 @@ const initialState = {
   user: currentUser ? JSON.parse(currentUser)[0] : {},
   error: false,
   newUser: "",
+  userToken:localStorage.getItem("userToken")?JSON.parse(localStorage.getItem("userToken")):""
 };
 
 export const userLoginReducer = produce((state = initialState, action) => {
