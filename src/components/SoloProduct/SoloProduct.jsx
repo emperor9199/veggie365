@@ -24,7 +24,7 @@ function SoloProduct() {
                         <LargeImage img={img}/>
                     </div>
                     <div className="soloproduct_info">
-                        <div className="soloproduct_name">Onion</div>
+                        <div className="soloproduct_name">Star Cauliflower</div>
                         <div className="soloproduct_price_original soloproduct_common_font">MRP: <del>₹70.00 Per/Kg </del></div>
                         <div className="soloproduct_price soloproduct_common_font">Our Price: <span className="original_pri">₹50.00 Per/Kg</span></div>
                         <div className="soloproduct_price_original soloproduct_common_font">Discount: 5%</div>
