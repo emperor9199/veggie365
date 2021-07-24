@@ -70,6 +70,7 @@ export const userRegister =
       });
 
       dispatch({ type: USER_REGISTRATION_SUCCESSFUL, payload: status });
+<<<<<<< HEAD
 
       // login automatically
       const {
@@ -94,6 +95,9 @@ export const userRegister =
       localStorage.setItem("userToken", JSON.stringify(token));
 
       dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
+=======
+      //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+>>>>>>> b21dcd36eb76f55ab8efc19b962f965b7eb42d66
     } catch (error) {
       dispatch({
         type: USER_REGISTRATION_ERROR,

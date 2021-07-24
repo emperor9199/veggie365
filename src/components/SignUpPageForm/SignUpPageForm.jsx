@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { userRegister } from "../../redux/actions/userActions";
+import LoadingBox from "../../components/LoadingBox";
+import ErrorBox from "../../components/ErrorBox";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import "./SignUpPageForm.css";
 
@@ -19,21 +25,38 @@ const schema = yup.object().shape({
     .oneOf([yup.ref("Password"), null], "Passwords must match"),
 });
 
-function SignUpPageForm() {
+function SignUpPageForm(props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  let historyTwo = useHistory();
+
+  const dispatch = useDispatch();
+  const { loading, user, error } = useSelector(
+    (state) => state.userRegistrationReducer
+  );
+
   const handleSignup = (data) => {
-    console.log("data", data);
+    var fullName = data.FirstName + data.LastName;
+    dispatch(userRegister(fullName, data.Contactno, data.Email, data.Password));
+    historyTwo.push("/login");
   };
+
+  // useEffect(() => {
+  //   if (Object.keys(user).length) {
+  //     historyTwo.push("/");
+  //   }
+  // }, [props.history, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="signupform_container">
         <div className="loginfrom_title common_flex">Register</div>
+        {loading && <LoadingBox />}
+        {error && <ErrorBox msg={error} />}
         <div className="loginform_form">
           <form onSubmit={handleSubmit(handleSignup)}>
             <div className="signupform_field">
