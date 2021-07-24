@@ -20,7 +20,9 @@ const initialState = {
   user: currentUser ? JSON.parse(currentUser)[0] : {},
   error: false,
   newUser: "",
-  userToken:localStorage.getItem("userToken")?JSON.parse(localStorage.getItem("userToken")):""
+  userToken: localStorage.getItem("userToken")
+    ? JSON.parse(localStorage.getItem("userToken"))
+    : "",
 };
 
 export const userLoginReducer = produce((state = initialState, action) => {
@@ -69,7 +71,7 @@ export const userRegistrationReducer = produce(
 
       case USER_REGISTRATION_ERROR: {
         state.loading = false;
-        state.error = action.payload;
+        state.newUser = action.payload;
         return;
       }
 

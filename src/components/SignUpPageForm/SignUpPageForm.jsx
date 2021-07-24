@@ -35,28 +35,29 @@ function SignUpPageForm(props) {
   let historyTwo = useHistory();
 
   const dispatch = useDispatch();
-  const { loading, user, error } = useSelector(
+  const { loading, newUser } = useSelector(
     (state) => state.userRegistrationReducer
   );
+
+  const { user } = useSelector((state) => state.userLoginReducer);
 
   const handleSignup = (data) => {
     var fullName = data.FirstName + data.LastName;
     dispatch(userRegister(fullName, data.Contactno, data.Email, data.Password));
-    historyTwo.push("/login");
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(user).length) {
-  //     historyTwo.push("/");
-  //   }
-  // }, [props.history, user]);
+  useEffect(() => {
+    if (Object.keys(user).length) {
+      historyTwo.push("/");
+    }
+  }, [props.history, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="signupform_container">
         <div className="loginfrom_title common_flex">Register</div>
         {loading && <LoadingBox />}
-        {error && <ErrorBox msg={error} />}
+        {newUser && <ErrorBox msg={newUser} />}
         <div className="loginform_form">
           <form onSubmit={handleSubmit(handleSignup)}>
             <div className="signupform_field">

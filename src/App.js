@@ -19,26 +19,22 @@ import YourOrderScreen from "./Screens/YourOrderScreen";
 
 function App() {
   const [toggle, setToggle] = useState(false);
-  const [path, setPath] = useState(false);
-  let location = window.location.pathname;
+  // const [path, setPath] = useState(false);
+  // let location = window.location.pathname;
 
-  useEffect(() => {
-    if (location === "/login" || location === "/signup") {
-      setPath(true);
-    } else {
-      setPath(false);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   if (location === "/login" || location === "/signup") {
+  //     setPath(true);
+  //   } else {
+  //     setPath(false);
+  //   }
+  // }, [location]);
 
   return (
     <>
       <Router>
-        {!path && (
-          <>
-            <PrimaryNav />
-            <SecondaryNav setToggle={setToggle} toggle={toggle} />
-          </>
-        )}
+        <PrimaryNav />
+        <SecondaryNav setToggle={setToggle} toggle={toggle} />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginPage} exact />
@@ -54,7 +50,7 @@ function App() {
           <Route path="/order-summary" component={ReviewOrderScreen} exact />
           <Route path="/order/:id" component={YourOrderScreen} exact />
         </Switch>
-        {!path && <Footer />}
+        <Footer />
       </Router>
     </>
   );

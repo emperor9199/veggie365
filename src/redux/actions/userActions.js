@@ -61,7 +61,7 @@ export const userRegister =
 
     try {
       const {
-        data: { status }, //add token if directly wants to login
+        data: { status },
       } = await axios.post("https://dharm.ga/api/user", {
         user_name: name,
         user_phone: Number(mobile),
@@ -70,14 +70,34 @@ export const userRegister =
       });
 
       dispatch({ type: USER_REGISTRATION_SUCCESSFUL, payload: status });
+
+      const {
+        data: { token },
+      } = await axios.post("https://dharm.ga/api/user/auth", {
+        email: email,
+        password: password,
+      });
+
+      // axios token check
+
+      const authAxios = axios.create({
+        baseURL: "https://dharm.ga/api",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const { data } = await authAxios.get("/user");
+
+      localStorage.setItem("loggedUser", JSON.stringify(data));
+      localStorage.setItem("userToken", JSON.stringify(token));
+
+      dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
       //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
     } catch (error) {
       dispatch({
         type: USER_REGISTRATION_ERROR,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: "user already exists",
       });
     }
   };
