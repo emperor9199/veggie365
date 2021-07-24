@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "./LoginPageForm.css";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   Email: yup.string().email().required(),
@@ -93,7 +94,11 @@ function LoginPageForm() {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <div className="loginform_external_btn common_flex">Create Account</div>
+        <Link to="/signup" style={{ textDecoration: "none" }}>
+          <div className="loginform_external_btn common_flex">
+            Create Account
+          </div>
+        </Link>
       </div>
     </div>
   );

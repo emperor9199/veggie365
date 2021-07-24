@@ -3,15 +3,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "./SignUpPageForm.css";
+import { Link } from "react-router-dom";
 
-const Contactno =  /^[6-9]\d{9}$/;
+const Contactno = /^[6-9]\d{9}$/;
 const schema = yup.object().shape({
-  FirstName: yup.string().required('First Name is Required').max(10),
-  LastName: yup.string().required('Last Name is Required').max(10),
-  Email: yup.string().email().required('Email is Required'),
-  Contactno: yup.string().required('Contat No is Required').matches(Contactno,"Contact No is Not Valid"),
-  Password: yup.string().required('Password is Required').min(8).max(12),
-  ConfirmPass: yup.string().oneOf([yup.ref('Password'), null], 'Passwords must match'),
+  FirstName: yup.string().required("First Name is Required").max(10),
+  LastName: yup.string().required("Last Name is Required").max(10),
+  Email: yup.string().email().required("Email is Required"),
+  Contactno: yup
+    .string()
+    .required("Contat No is Required")
+    .matches(Contactno, "Contact No is Not Valid"),
+  Password: yup.string().required("Password is Required").min(8).max(12),
+  ConfirmPass: yup
+    .string()
+    .oneOf([yup.ref("Password"), null], "Passwords must match"),
 });
 
 function SignUpPageForm() {
@@ -60,7 +66,8 @@ function SignUpPageForm() {
                     placeholder="Enter Last Name"
                     className="Signupform_input"
                     {...register("LastName")}
-                  /><span className="error_msg">{errors.LastName?.message}</span>
+                  />
+                  <span className="error_msg">{errors.LastName?.message}</span>
                 </div>
               </div>
             </div>
@@ -78,7 +85,8 @@ function SignUpPageForm() {
                     placeholder="Enter Email"
                     className="Signupform_input"
                     {...register("Email")}
-                  /><span className="error_msg">{errors.Email?.message}</span>
+                  />
+                  <span className="error_msg">{errors.Email?.message}</span>
                 </div>
               </div>
               <div className="sec2">
@@ -93,7 +101,8 @@ function SignUpPageForm() {
                     placeholder="Enter Contact No"
                     className="Signupform_input"
                     {...register("Contactno")}
-                  /><span className="error_msg">{errors.Contactno?.message}</span>
+                  />
+                  <span className="error_msg">{errors.Contactno?.message}</span>
                 </div>
               </div>
             </div>
@@ -111,7 +120,8 @@ function SignUpPageForm() {
                     placeholder="Enter Password"
                     className="Signupform_input"
                     {...register("Password")}
-                  /><span className="error_msg">{errors.Password?.message}</span>
+                  />
+                  <span className="error_msg">{errors.Password?.message}</span>
                 </div>
               </div>
               <div className="sec2">
@@ -126,7 +136,10 @@ function SignUpPageForm() {
                     placeholder="Enter Confirm Password"
                     className="Signupform_input"
                     {...register("ConfirmPass")}
-                  /><span className="error_msg">{errors.ConfirmPass?.message}</span>
+                  />
+                  <span className="error_msg">
+                    {errors.ConfirmPass?.message}
+                  </span>
                 </div>
               </div>
             </div>
@@ -144,7 +157,9 @@ function SignUpPageForm() {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <div className="signupform_external_btn common_flex">Login</div>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <div className="signupform_external_btn common_flex">Login</div>
+        </Link>
       </div>
     </div>
   );
