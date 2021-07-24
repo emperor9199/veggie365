@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "./SignUpPageForm.css";
-import { Link } from "react-router-dom";
 
 const Contactno = /^[6-9]\d{9}$/;
 const schema = yup.object().shape({
@@ -157,9 +156,7 @@ function SignUpPageForm() {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <div className="signupform_external_btn common_flex">Login</div>
-        </Link>
+        <div className="signupform_external_btn common_flex">Login</div>
       </div>
     </div>
   );

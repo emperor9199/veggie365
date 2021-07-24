@@ -25,7 +25,7 @@ function LoginPageForm() {
       <div className="loginform_container">
         <div className="loginfrom_title common_flex">Login To Veggi</div>
         <div className="loginform_form">
-          <form onSubmit={handleSubmit(handleLogin)} novalidate>
+          <form onSubmit={handleSubmit(handleLogin)} noValidate>
             <div className="login_form_fields">
               <label htmlFor="Email" className="form_label">
                 Email

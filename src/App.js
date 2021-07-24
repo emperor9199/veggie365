@@ -45,7 +45,6 @@ function App() {
           <Route path="/signup" component={LoginPage} exact />
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/checkout" component={CheckoutStatus} exact />
-          {/* <Route path="/login" component={LoginScreen} exact /> */}
           <Route path="/register" component={RegistrationScreen} exact />
           <Route path="/update-user" component={UpdateUserScreen} exact />
           <Route path="/all-products" component={TestProducts} exact />
