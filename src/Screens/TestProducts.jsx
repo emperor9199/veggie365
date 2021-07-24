@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/actions/cartActions";
 
-const TestProducts = () => {
+const TestProducts = (props) => {
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);

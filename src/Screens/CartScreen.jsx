@@ -1,9 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { addToCart, decreaseQty } from "../redux/actions/cartActions";
+import {
+  addToCart,
+  decreaseQty,
+  orderPrices,
+} from "../redux/actions/cartActions";
 
-const CartScreen = () => {
+const CartScreen = (props) => {
   const dispatch = useDispatch();
 
   const { cartItems, cartItemsId } = useSelector(
@@ -16,6 +19,30 @@ const CartScreen = () => {
 
   const decreaseItemQty = (productId) => {
     dispatch(decreaseQty(productId));
+  };
+
+  // order save
+  const cart = useSelector((state) => state.addToCartReducer);
+  const { user } = useSelector((state) => state.userLoginReducer);
+
+  if (!Object.keys(user).length) {
+    props.history.push("/login");
+  }
+
+  let { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
+
+  itemsPrice = cartItemsId.reduce(
+    (a, c) => a + cartItems[c].unit_price * cartItems[c].qty,
+    0
+  );
+
+  deliveryPrice = itemsPrice > 100 ? 15 : 0;
+  taxPrice = 0.05 * itemsPrice;
+  totalPrice = itemsPrice + deliveryPrice + taxPrice;
+
+  const handleOrderPrice = () => {
+    dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
+    props.history.push("/shipping");
   };
 
   return (
@@ -31,7 +58,7 @@ const CartScreen = () => {
                 let item = cartItems[id];
                 console.log(item);
                 return (
-                  <div key={item.p_id} className="cart-container">
+                  <div key={item.p_id}>
                     <div>
                       <h3>
                         {item.p_id}-{item.name}
@@ -48,7 +75,7 @@ const CartScreen = () => {
                   </div>
                 );
               })}
-              <div className="checkout-container">
+              <div>
                 Grand Total: (
                 {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}
                 items) : $
@@ -56,14 +83,9 @@ const CartScreen = () => {
                   (a, c) => a + cartItems[c].unit_price * cartItems[c].qty,
                   0
                 )}
-                <Link to="/shipping">
-                  <button
-                    className="general-button"
-                    style={{ marginTop: "1rem" }}
-                  >
-                    Proceed to Checkout
-                  </button>
-                </Link>
+                <button className="general-button" onClick={handleOrderPrice}>
+                  Proceed to Checkout
+                </button>
               </div>
             </div>
           )}

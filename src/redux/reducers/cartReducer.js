@@ -2,6 +2,9 @@ import {
   ADD_TO_CART,
   DECREASE_QTY,
   SAVE_SHIPPING_ADDRESS,
+  SAVE_PAYMENT_METHOD,
+  CART_EMPTY,
+  ORDER_PRICES,
 } from "../constants/cartConstants";
 import produce from "immer";
 
@@ -15,6 +18,21 @@ const initialState = {
   shippingAddress: localStorage.getItem("shippingAddress")
     ? JSON.parse(localStorage.getItem("shippingAddress"))
     : {},
+  paymentMethod: localStorage.getItem("paymentMethod")
+    ? JSON.parse(localStorage.getItem("paymentMethod"))
+    : "",
+  itemsPrice: localStorage.getItem("itemsPrice")
+    ? localStorage.getItem("itemsPrice")
+    : 0,
+  deliveryPrice: localStorage.getItem("deliveryPrice")
+    ? localStorage.getItem("deliveryPrice")
+    : 0,
+  taxPrice: localStorage.getItem("taxPrice")
+    ? localStorage.getItem("taxPrice")
+    : 0,
+  totalPrice: localStorage.getItem("totalPrice")
+    ? localStorage.getItem("totalPrice")
+    : 0,
 };
 
 export const addToCartReducer = produce((state = initialState, action) => {
@@ -51,15 +69,29 @@ export const addToCartReducer = produce((state = initialState, action) => {
       return;
     }
 
+    case CART_EMPTY: {
+      state.cartItems = {};
+      state.cartItemsId = [];
+      return;
+    }
+
     case SAVE_SHIPPING_ADDRESS: {
       state.shippingAddress = action.payload;
       return;
     }
 
-    // case SAVE_PAYMENT_METHOD: {
-    //   state.paymentMethod = action.payload;
-    //   return;
-    // }
+    case SAVE_PAYMENT_METHOD: {
+      state.paymentMethod = action.payload;
+      return;
+    }
+
+    case ORDER_PRICES: {
+      state.itemsPrice = action.payload.itemsPrice;
+      state.deliveryPrice = action.payload.deliveryPrice;
+      state.taxPrice = action.payload.taxPrice;
+      state.totalPrice = action.payload.totalPrice;
+      return;
+    }
 
     default:
       return state;

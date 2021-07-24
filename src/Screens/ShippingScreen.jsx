@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CheckoutStatus from "../components/CheckoutStatus/CheckoutStatus";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../redux/actions/cartActions";
-import { Link } from "react-router-dom";
 
 const ShippingScreen = (props) => {
   const dispatch = useDispatch();
@@ -28,13 +27,13 @@ const ShippingScreen = (props) => {
   };
 
   return (
-    <div className="shipping-screen-container">
+    <div>
       <CheckoutStatus step1 />
       <h1 style={{ textAlign: "center", marginTop: "2rem" }}>
         Shipping Details
       </h1>
       <form onSubmit={handleShippingAddress}>
-        <div className="form-container">
+        <div>
           <div>
             <label htmlFor="fullName">Full name</label>
             <input
@@ -76,9 +75,7 @@ const ShippingScreen = (props) => {
             />
           </div>
           <div>
-            <button type="submit" className="general-button">
-              Continue
-            </button>
+            <button type="submit">Continue</button>
           </div>
         </div>
       </form>
