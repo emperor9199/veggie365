@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { SecondaryNavContainer } from "./Style";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
+  const [dropDownItem, setDropDownItem] = useState(false);
 
   const changeBackground = () => {
     if (window.scrollY >= 55) {
@@ -17,9 +19,21 @@ const SecondaryNav = ({ setToggle, toggle }) => {
     <SecondaryNavContainer className={show ? "active" : ""}>
       <div className="nav-items">
         <p>Home</p>
-        <p>About Us</p>
         <p>Products</p>
-        <p>Contact</p>
+        <p>Your Orders</p>
+        <span
+          onClick={() => setDropDownItem(!dropDownItem)}
+          className="about-us-p"
+        >
+          <span style={{ display: "flex", alignItems: "center" }}>
+            About Us
+            <ArrowDropDownIcon />
+          </span>
+          <div className={dropDownItem ? "inner-item-active" : "inner-item"}>
+            <p>About</p>
+            <p>Contact</p>
+          </div>
+        </span>
         <div className={show ? "search-container" : "not-show"}>
           <input type="text" placeholder="Search Product..." />
           <button>Search</button>
@@ -43,9 +57,10 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <button>Search</button>
           </div>
           <p style={{ fontSize: "1.3rem" }}>Home</p>
-          <p style={{ fontSize: "1.3rem" }}>About Us</p>
           <p style={{ fontSize: "1.3rem" }}>Products</p>
-          <p style={{ fontSize: "1.3rem" }}>Contact</p>
+          <p style={{ fontSize: "1.3rem" }}>Your Orders</p>
+          <p style={{ fontSize: "1.3rem" }}>About Us</p>
+          <p style={{ fontSize: "1.3rem" }}>Contact Us</p>
         </div>
       </div>
     </SecondaryNavContainer>

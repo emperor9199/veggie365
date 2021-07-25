@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PrimaryNavContainer } from "./Styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const PrimaryNav = () => {
   const { user } = useSelector((state) => state.userLoginReducer);
+  const [profileOptions, setProfileOptions] = useState(false);
 
   return (
     <PrimaryNavContainer>
@@ -20,9 +21,42 @@ const PrimaryNav = () => {
           <button>Search</button>
         </div>
         <div className="nav-links">
-          <Link to="/login" className="nav-specific-link">
+          <Link
+            to={Object.keys(user).length ? "" : "/login"}
+            className="user-profile"
+            onClick={() => {
+              Object.keys(user).length && setProfileOptions(!profileOptions);
+            }}
+          >
             <PersonIcon style={{ marginRight: ".3rem" }} />
             {Object.keys(user).length ? user.user_name : "Login"}
+            <div
+              className={
+                Object.keys(user).length
+                  ? profileOptions
+                    ? "profile-options"
+                    : "no-profile-options"
+                  : "no-profile-options"
+              }
+            >
+              <p
+                style={{
+                  borderBottom: "1px solid lightgray",
+                  textAlign: "center",
+                }}
+              >
+                Update Profile
+              </p>
+              <p
+                style={{
+                  borderBottom: "1px solid lightgray",
+                  textAlign: "center",
+                }}
+              >
+                Your Orders
+              </p>
+              <p>Logout</p>
+            </div>
           </Link>
           <Link to="/" className="nav-specific-link">
             <FavoriteIcon style={{ marginRight: ".3rem" }} />

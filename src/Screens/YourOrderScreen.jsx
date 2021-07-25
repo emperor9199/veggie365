@@ -10,7 +10,7 @@ const YourOrderScreen = () => {
       {orders?.map((orderItem) => {
         return (
           <div key={orderItem.order_id}>
-            <h1>
+            <h1 style={{ fontSize: "2rem" }}>
               {orderItem.order_id} - {orderItem.order_total}
             </h1>
           </div>

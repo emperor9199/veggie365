@@ -51,6 +51,31 @@ export const PrimaryNavContainer = styled.div`
         text-decoration: none;
         color: black;
       }
+
+      .user-profile {
+        position: relative;
+        margin-right: 2rem;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+      }
+
+      .user-profile .no-profile-options {
+        display: none;
+      }
+
+      .user-profile .profile-options {
+        position: absolute;
+        top: 3rem;
+        background-color: white;
+        z-index: 1;
+      }
+
+      .user-profile .profile-options > p {
+        padding: 0rem 2.5rem 1rem 2.5rem;
+        /* border-bottom: 1px solid gray; */
+      }
     }
   }
 

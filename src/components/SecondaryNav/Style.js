@@ -24,6 +24,30 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
 
     p {
       margin-right: 3rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .about-us-p {
+      margin-right: 3rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .about-us-p > .inner-item {
+      display: none;
+    }
+
+    .about-us-p > .inner-item-active {
+      display: block;
+      background-color: #212121;
+      position: absolute;
+      top: 2rem;
+      z-index: 1;
+    }
+
+    .about-us-p > .inner-item-active > p {
+      padding: 0.7rem 0.4rem;
     }
 
     .not-show {
@@ -60,7 +84,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
     text-align: center;
     background-color: #4ac85d;
     color: white;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
   }
 
   .mobile-nav-container {
