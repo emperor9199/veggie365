@@ -2,7 +2,7 @@ import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_FAIL,
-  ORDER_RESET,
+  // ORDER_RESET,
 } from "../constants/orderConstants";
 import { CART_EMPTY } from "../constants/cartConstants";
 

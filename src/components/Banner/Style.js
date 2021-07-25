@@ -30,18 +30,19 @@ import styled from "styled-components";
 
 export const BannerContainer = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 85vh;
   /* margin-top: 3vh; */
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10rem;
+  position: relative;
+  /* margin-bottom: 10rem; */
 
   .banner-img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     z-index: -1;
-    margin-bottom: -12rem;
+    /* margin-bottom: -12rem; */
     /* fade image */
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
@@ -50,15 +51,22 @@ export const BannerContainer = styled.div`
     display: flex;
     z-index: 1;
     margin: 0 5px;
+    position: absolute;
+    top: 10rem;
   }
 
   @media (max-width: 720px) {
     width: 100vw;
     height: 25vh;
-    margin-top: 0;
-    margin-bottom: 6rem;
+    /* margin-top: 0; */
+    /* margin-bottom: 6rem; */
+
+    .cab-card {
+      top: 2rem;
+    }
+
     .banner-img {
-      margin-bottom: -9rem;
+      /* margin-bottom: -9rem; */
     }
   }
 `;
