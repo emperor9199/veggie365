@@ -56,13 +56,13 @@ export const BannerContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    width: 100vw;
-    height: 25vh;
+    width: 100%;
+    height: 55vh;
     /* margin-top: 0; */
-    /* margin-bottom: 6rem; */
+    /* margin-bottom: 9rem; */
 
     .cab-card {
-      top: 2rem;
+      top: 7rem;
     }
 
     .banner-img {
