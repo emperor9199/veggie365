@@ -51,7 +51,7 @@ export const CabContainer = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: transparent;
-    width: 23rem;
+    width: 22rem;
     margin: 0;
     margin-left: auto;
     margin-right: auto;
