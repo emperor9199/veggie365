@@ -40,31 +40,31 @@ function StarProducts({ no }) {
           </div>
         </Link>
         <Link to="/product/flower" style={{ textDecoration: "none" }}>
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ109006.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
+          <div className="starproduct_card">
+            <div className="starproduct_img">
+              <img
+                className="starproduct_img_data"
+                src="https://media.starquik.com/catalog/product/SQ109006.jpg"
+                alt="tomato"
+              />
+              <div className="starproduct_dis_label">4%</div>
             </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
+            <div className="starproduct_data">
+              <div className="starproduct_rating">
+                <StarIcon style={{ color: "gold" }} />
+                <StarIcon style={{ color: "gold" }} />
+              </div>
+              <div className="starproduct_title">tomato</div>
+              <div className="starproduct_high">SQ Special | Best Price</div>
+              <div className="starproduct_price">
+                ₹50.00 Per/Kg{" "}
+                <del className="starproduct_price_delete">MRP ₹70.00</del>
+              </div>
+            </div>
+            <div className="starproduct_btn_con">
+              <div className="starproduct_btn">ADD</div>
             </div>
           </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
         </Link>
         <Link to="/product/flower" style={{ textDecoration: "none" }}>
           <div className="starproduct_card">
