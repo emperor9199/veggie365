@@ -58,11 +58,7 @@ const PaymentScreen = (props) => {
               required
             />
             COD
-            <button
-              type="submit"
-              className="general-button"
-              style={{ marginTop: "1rem" }}
-            >
+            <button type="submit" style={{ marginTop: "1rem" }}>
               Pay
             </button>
           </div>

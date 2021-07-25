@@ -46,7 +46,7 @@ function LoginPageForm(props) {
         {loading && <LoadingBox />}
         {error && <ErrorBox msg={error} />}
         <div className="loginform_form">
-          <form onSubmit={handleSubmit(handleLogin)}>
+          <form onSubmit={handleSubmit(handleLogin)} noValidate>
             <div className="login_form_fields">
               <label htmlFor="Email" className="form_label">
                 Email

@@ -69,7 +69,7 @@ const CartScreen = (props) => {
                       <span>{item.qty}</span>
                       <button onClick={() => increaseItemQty(item)}>+</button>
                       <p>{item.about}</p>
-                      <h3> Price: ${item.unit_price * item.qty} </h3>
+                      <h3> Price: ₹{item.unit_price * item.qty} </h3>
                       <hr />
                     </div>
                   </div>
@@ -78,7 +78,7 @@ const CartScreen = (props) => {
               <div>
                 Grand Total: (
                 {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}
-                items) : $
+                items) : ₹
                 {cartItemsId.reduce(
                   (a, c) => a + cartItems[c].unit_price * cartItems[c].qty,
                   0
