@@ -83,7 +83,7 @@ const ReviewOrderScreen = (props) => {
                   <div>
                     <h3>{item.name}</h3>
                     <p>{item.about}</p>
-                    <h3> Price: ${item.unit_price * item.qty} </h3>
+                    <h3> Price: ₹{item.unit_price * item.qty} </h3>
                   </div>
                 </div>
               );
@@ -93,11 +93,11 @@ const ReviewOrderScreen = (props) => {
         Total Summary
         <div>
           <form onSubmit={handleOrders}>
-            <p>Items Price: ${itemsPrice}</p>
-            <p>Delivery Price: ${deliveryPrice}</p>
-            <p>Tax Price: ${taxPrice}</p>
+            <p>Items Price: ₹{itemsPrice}</p>
+            <p>Delivery Price: ₹{deliveryPrice}</p>
+            <p>Tax Price: ₹{taxPrice}</p>
             <p style={{ fontWeight: "bold", color: "green" }}>
-              Total Price: ${totalPrice}
+              Total Price: ₹{totalPrice}
             </p>
             <button type="submit">Place Order</button>
             {loading && <LoadingBox />}

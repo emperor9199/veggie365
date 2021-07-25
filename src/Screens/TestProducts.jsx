@@ -9,8 +9,16 @@ const TestProducts = (props) => {
   const [products, setProducts] = useState([]);
   const [productPrice, setProductPrice] = useState([]);
 
+  const authAxios = axios.create({
+    baseURL: "https://dharm.ga/api",
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
+    },
+  });
+
   const fetchProducts = async () => {
-    const { data } = await axios("https://dharm.ga/api/product");
+    const { data } = await authAxios.get("/product");
+
     setProducts(data.product);
     setProductPrice(data.price);
   };
