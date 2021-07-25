@@ -51,9 +51,9 @@ const ReviewOrderScreen = (props) => {
   useEffect(() => {
     if (success) {
       props.history.push(`/order/${orders[0].order_id}`);
-      dispatch({ type: ORDER_RESET });
+      // dispatch({ type: ORDER_RESET });
     }
-  }, [dispatch, orders, props.history, success]);
+  }, [orders, props.history, success]);
 
   return (
     <>

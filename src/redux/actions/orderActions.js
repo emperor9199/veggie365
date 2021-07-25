@@ -12,7 +12,8 @@ export const createOrder = (order) => async (dispatch) => {
   dispatch({ type: ORDER_CREATE_REQUEST });
 
   try {
-    const status = await axios.post("https://dharm.ga/api/order", order, {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
       headers: {
         Authorization: `Bearer ${JSON.parse(
           localStorage.getItem("userToken")
@@ -20,20 +21,27 @@ export const createOrder = (order) => async (dispatch) => {
       },
     });
 
-    const { data } = await axios.get("https://dharm.ga/api/order", {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(
-          localStorage.getItem("userToken")
-        )}`,
-      },
-    });
+    const status = await authAxios.post("/order", order);
+
+    // localStorage.setItem("loggedUser", JSON.stringify(data));
+    // localStorage.setItem("userToken", JSON.stringify(token));
+
+    // const status = await axios.post("https://dharm.ga/api/order", order, {
+    //   headers: {
+    //     Authorization: `Bearer ${JSON.parse(
+    //       localStorage.getItem("userToken")
+    //     )}`,
+    //   },
+    // });
+
+    const { data } = await authAxios.get("/order");
 
     setTimeout(() => {
       localStorage.setItem("orders", JSON.stringify(data));
     }, 200);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-    dispatch({ type: ORDER_RESET, payload: data });
+    // dispatch({ type: ORDER_RESET });
     dispatch({ type: CART_EMPTY });
     localStorage.removeItem("cartItems");
     localStorage.removeItem("cartItemsId");

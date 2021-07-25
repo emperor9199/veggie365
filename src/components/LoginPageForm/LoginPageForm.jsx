@@ -30,7 +30,6 @@ function LoginPageForm(props) {
   );
 
   const handleLogin = (data) => {
-    console.log("data", data);
     dispatch(userLogin(data.Email, data.Password));
   };
 
