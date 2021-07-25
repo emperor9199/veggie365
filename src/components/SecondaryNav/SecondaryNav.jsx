@@ -42,10 +42,10 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <input type="text" placeholder="Search Product..." />
             <button>Search</button>
           </div>
-          <p>Home</p>
-          <p>About Us</p>
-          <p>Products</p>
-          <p>Contact</p>
+          <p style={{ fontSize: "1.3rem" }}>Home</p>
+          <p style={{ fontSize: "1.3rem" }}>About Us</p>
+          <p style={{ fontSize: "1.3rem" }}>Products</p>
+          <p style={{ fontSize: "1.3rem" }}>Contact</p>
         </div>
       </div>
     </SecondaryNavContainer>

@@ -180,7 +180,9 @@ function SignUpPageForm(props) {
           </form>
         </div>
         <div className="loginform_or_label common_flex">OR</div>
-        <Link to="/login" style={{ textDecoration: "none" }}><div className="signupform_external_btn common_flex">Login</div></Link>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <div className="signupform_external_btn common_flex">Login</div>
+        </Link>
       </div>
     </div>
   );
