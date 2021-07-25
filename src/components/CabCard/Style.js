@@ -34,6 +34,7 @@ export const CabContainer = styled.div`
 
     p {
       text-align: justify;
+      line-height: 1.6rem;
     }
 
     > button {
@@ -82,8 +83,8 @@ export const CabContainer = styled.div`
   }
   /* tablet view */
   @media (max-width: 1024px) and (min-width: 725px) {
-    width: 65rem;
-    margin-top: -10rem;
+    width: 100%;
+    margin-top: 15rem;
 
     .cab-left {
       > img {

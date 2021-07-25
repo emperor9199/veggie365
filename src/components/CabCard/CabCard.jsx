@@ -14,7 +14,10 @@ const CabCard = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dicta
           corrupti molestias! Blanditiis id voluptates, fugiat dicta cumque at.
           A debitis amet minus, dolorem non hic nesciunt animi pariatur enim.
-          lorem
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit eaque
+          sint quisquam temporibus modi repellendus, obcaecati ducimus hic
+          tempora aut at illo. Eveniet, ducimus. Labore ducimus sed obcaecati
+          iste fugit!
         </p>
         <button>Book a Cab</button>
       </div>
