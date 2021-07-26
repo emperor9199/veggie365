@@ -5,15 +5,19 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Bagde from "@material-ui/core/Badge";
 
 const PrimaryNav = () => {
   const { user } = useSelector((state) => state.userLoginReducer);
+  const { cartItemsId } = useSelector((state) => state.addToCartReducer);
   const [profileOptions, setProfileOptions] = useState(false);
 
   return (
     <PrimaryNavContainer>
       <div className="nav-logo">
-        <h1>VEGGI 365</h1>
+        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          <h1>VEGGI 365</h1>
+        </Link>
       </div>
       <div className="nav-items">
         <div className="search-container">
@@ -66,7 +70,16 @@ const PrimaryNav = () => {
             to={Object.keys(user).length ? "/cart" : "/login"}
             className="nav-specific-link"
           >
-            <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
+            <Bagde
+              badgeContent={cartItemsId.length}
+              color="error"
+              style={{
+                cursor: "pointer",
+                marginRight: ".5rem",
+              }}
+            >
+              <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
+            </Bagde>
             Cart
           </Link>
         </div>
