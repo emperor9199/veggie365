@@ -11,12 +11,13 @@ import UpdateUserScreen from "./Screens/UpdateUserScreen/UpdateUserScreen";
 import PrimaryNav from "./components/PrimaryNav/PrimaryNav";
 import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
 import TestProducts from "./Screens/TestProducts";
-import CartScreen from "./Screens/CartScreen";
-import ShippingScreen from "./Screens/ShippingScreen";
+import CartScreen from "./Screens/CartScreen/CartScreen";
+import ShippingScreen from "./components/ShippingScreen/ShippingScreen";
 import PaymentScreen from "./Screens/PaymentScreen";
 import ReviewOrderScreen from "./Screens/ReviewOrderScreen";
 import YourOrderScreen from "./Screens/YourOrderScreen";
 import SoloProduct from "./components/SoloProduct/SoloProduct";
+import PlaceOrderScreen from "./Screens/PlaceOrderScreen/PlaceOrderScreen";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -51,6 +52,7 @@ function App() {
           <Route path="/order-summary" component={ReviewOrderScreen} exact />
           <Route path="/order/:id" component={YourOrderScreen} exact />
           <Route path="/product/flower" component={SoloProduct} exact />
+          <Route path="/place-order" component={PlaceOrderScreen} exact />
         </Switch>
         <Footer />
       </Router>

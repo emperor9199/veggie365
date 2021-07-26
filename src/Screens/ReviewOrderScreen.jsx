@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutStatus from "../components/CheckoutStatus/CheckoutStatus";
 import { createOrder } from "../redux/actions/orderActions";
 // import { ORDER_RESET } from "../redux/constants/orderConstants";
 import LoadingBox from "../components/LoadingBox";
 import ErrorBox from "../components/ErrorBox";
+import { useHistory } from "react-router-dom";
 
-const ReviewOrderScreen = (props) => {
+const ReviewOrderScreen = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
   const {
     shippingAddress,
-    paymentMethod,
+    // paymentMethod,
     cartItems,
     cartItemsId,
     itemsPrice,
@@ -23,9 +23,11 @@ const ReviewOrderScreen = (props) => {
     (state) => state.orderReducer
   );
 
-  if (!paymentMethod) {
-    props.history.push("/payment");
-  }
+  const history = useHistory();
+
+  // if (!paymentMethod) {
+  //   history.push("/payment");
+  // }
 
   const handleOrders = (e) => {
     e.preventDefault();
@@ -46,64 +48,61 @@ const ReviewOrderScreen = (props) => {
     placedOrder["total"] = Number(totalPrice);
     placedOrder["item"] = itemArray;
     dispatch(createOrder(placedOrder));
+    setExpanded("panel3");
   };
 
   useEffect(() => {
     if (success) {
-      props.history.push(`/order/${orders[0].order_id}`);
+      history.push(`/order/${orders[0].order_id}`);
       // dispatch({ type: ORDER_RESET });
     }
-  }, [orders, props.history, success]);
+  }, [orders, history, success]);
 
   return (
     <>
-      <CheckoutStatus step1 step2 step3 />
       <div>
-        ReviewOrderScreen
+        Shipping Address Details
         <div>
-          Shipping Address Details
-          <div>
-            <h3>Shipping Address</h3>
-            <p>Full Name: {shippingAddress.fullName}</p>
-            <p>Address: {shippingAddress.address}</p>
-            <p>Postal Code: {shippingAddress.postalCode}</p>
-          </div>
-          Payment Method Details
+          <h3>Shipping Address</h3>
+          <p>Full Name: {shippingAddress.fullName}</p>
+          <p>Address: {shippingAddress.address}</p>
+          <p>Postal Code: {shippingAddress.postalCode}</p>
+        </div>
+        {/* Payment Method Details
           <div>
             <h3>Shipping Address</h3>
             <p>Payment Method: {paymentMethod}</p>
-          </div>
-          Ordered Items
-          <div>
-            {cartItemsId?.map((id) => {
-              let item = cartItems[id];
-              return (
-                <div key={item.p_id}>
-                  <img src={item.img} alt={item.name} />
-                  <div>
-                    <h3>{item.name}</h3>
-                    <p>{item.about}</p>
-                    <h3> Price: ₹{item.unit_price * item.qty} </h3>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        Total Summary
+          </div> */}
+        Ordered Items
         <div>
-          <form onSubmit={handleOrders}>
-            <p>Items Price: ₹{itemsPrice}</p>
-            <p>Delivery Price: ₹{deliveryPrice}</p>
-            <p>Tax Price: ₹{taxPrice}</p>
-            <p style={{ fontWeight: "bold", color: "green" }}>
-              Total Price: ₹{totalPrice}
-            </p>
-            <button type="submit">Place Order</button>
-            {loading && <LoadingBox />}
-            {error && <ErrorBox msg={error} />}
-          </form>
+          {cartItemsId?.map((id) => {
+            let item = cartItems[id];
+            return (
+              <div key={item.p_id}>
+                <img src={item.img} alt={item.name} />
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.about}</p>
+                  <h3> Price: ₹{item.unit_price * item.qty} </h3>
+                </div>
+              </div>
+            );
+          })}
         </div>
+      </div>
+      Total Summary
+      <div>
+        <form onSubmit={handleOrders}>
+          <p>Items Price: ₹{itemsPrice}</p>
+          <p>Delivery Price: ₹{deliveryPrice}</p>
+          <p>Tax Price: ₹{taxPrice}</p>
+          <p style={{ fontWeight: "bold", color: "green" }}>
+            Total Price: ₹{totalPrice}
+          </p>
+          <button type="submit">Place Order</button>
+          {loading && <LoadingBox />}
+          {error && <ErrorBox msg={error} />}
+        </form>
       </div>
     </>
   );
