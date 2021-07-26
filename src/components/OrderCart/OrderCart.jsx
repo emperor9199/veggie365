@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -8,7 +9,7 @@ import {
 } from "../../redux/actions/cartActions";
 import { CartContainer } from "./Styles";
 
-const OrderCart = () => {
+const OrderCart = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
 
   const { cartItems, cartItemsId } = useSelector(
@@ -17,10 +18,12 @@ const OrderCart = () => {
 
   const increaseItemQty = (product) => {
     dispatch(addToCart(product, product.p_id, product.unit_price, 1));
+    // dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
   };
 
   const decreaseItemQty = (productId) => {
     dispatch(decreaseQty(productId));
+    // dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
   };
 
   // order save
@@ -43,9 +46,12 @@ const OrderCart = () => {
   taxPrice = 0.05 * itemsPrice;
   totalPrice = itemsPrice + deliveryPrice + taxPrice;
 
-  const handleOrderPrice = () => {
+  useEffect(() => {
     dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
-    history.push("/payment");
+  }, [itemsPrice, deliveryPrice, taxPrice, totalPrice]);
+
+  const handleOrderPrice = () => {
+    setExpanded("panel3");
   };
 
   return (
@@ -81,7 +87,9 @@ const OrderCart = () => {
                 </div>
               );
             })}
-            <button className="order-summary-btn">Continue</button>
+            <button className="order-summary-btn" onClick={handleOrderPrice}>
+              Continue
+            </button>
           </div>
         </CartContainer>
       )}

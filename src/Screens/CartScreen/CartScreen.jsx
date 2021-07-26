@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   addToCart,
   decreaseQty,
@@ -25,9 +26,10 @@ const CartScreen = (props) => {
   // order save
   const cart = useSelector((state) => state.addToCartReducer);
   const { user } = useSelector((state) => state.userLoginReducer);
+  const history = useHistory();
 
   if (!Object.keys(user).length) {
-    props.history.push("/login");
+    history.push("/login");
   }
 
   let { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
@@ -43,7 +45,7 @@ const CartScreen = (props) => {
 
   const handleOrderPrice = () => {
     dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
-    props.history.push("/shipping");
+    history.push("/place-order");
   };
 
   return (

@@ -6,7 +6,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
-import ReviewOrderScreen from "../ReviewOrderScreen";
+// import ReviewOrderScreen from "../ReviewOrderScreen";
 import PaymentScreen from "../../components/PaymentScreen/PaymentScreen";
 import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";
@@ -77,7 +77,7 @@ const PlaceOrderScreen = () => {
                 expanded={expanded}
                 setExpanded={setExpanded}
               /> */}
-              <OrderCart />
+              <OrderCart expanded={expanded} setExpanded={setExpanded} />
             </Typography>
           </AccordionDetails>
         </Accordion>
