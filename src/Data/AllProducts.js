@@ -1,0 +1,69 @@
+export const allproducts = [{
+    id:1,
+    img:"https://media.starquik.com/catalog/product/SQ109022.jpg",
+    star:4,
+    title:"aomato",
+    price:30
+},
+{
+    id:2,
+    img:"https://media.starquik.com/catalog/product/SQ109006.jpg",
+    star:5,
+    title:"Onion",
+    price:50
+},
+{
+    id:3,
+    img:"https://media.starquik.com/catalog/product/SQ101373.jpg",
+    star:3,
+    title:"star Flovor",
+    price:60
+},
+{
+    id:4,
+    img:"https://media.starquik.com/catalog/product/SQ101374.jpg",
+    star:4,
+    title:"flovor",
+    price:10
+},
+{
+    id:5,
+    img:"https://media.starquik.com/catalog/product/SQ109022.jpg",
+    star:2,
+    title:"tomato",
+    price:20
+},{
+    id:6,
+    img:"https://media.starquik.com/catalog/product/SQ109022.jpg",
+    star:4,
+    title:"Tomato",
+    price:70
+},
+{
+    id:7,
+    img:"https://media.starquik.com/catalog/product/SQ109006.jpg",
+    star:5,
+    title:"Onion",
+    price:75
+},
+{
+    id:8,
+    img:"https://media.starquik.com/catalog/product/SQ101373.jpg",
+    star:3,
+    title:"star Flovor",
+    price:15
+},
+{
+    id:9,
+    img:"https://media.starquik.com/catalog/product/SQ101374.jpg",
+    star:4,
+    title:"flovor",
+    price:10
+},
+{
+    id:10,
+    img:"https://media.starquik.com/catalog/product/SQ109022.jpg",
+    star:2,
+    title:"tomato",
+    price:100
+},]
