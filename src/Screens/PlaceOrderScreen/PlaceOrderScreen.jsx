@@ -43,7 +43,6 @@ const PlaceOrderScreen = () => {
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
           style={{ padding: "1rem 0" }}
-          disabled={expanded === "panel1" ? false : true}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -64,7 +63,6 @@ const PlaceOrderScreen = () => {
           expanded={expanded === "panel2"}
           onChange={handleChange("panel2")}
           style={{ padding: "1rem 0" }}
-          disabled={expanded === "panel1" ? false : true}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -87,7 +85,6 @@ const PlaceOrderScreen = () => {
           expanded={expanded === "panel3"}
           onChange={handleChange("panel3")}
           style={{ padding: "1rem 0" }}
-          disabled={expanded === "panel1" ? false : true}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
