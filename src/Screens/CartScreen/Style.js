@@ -73,4 +73,34 @@ export const CartContainer = styled.div`
       color: green;
     }
   }
+
+  @media (max-width: 720px) {
+    margin: 1rem 0.2rem;
+    flex-direction: column;
+
+    .cart-left {
+      margin-bottom: 1rem;
+    }
+
+    .cart-inner-container {
+      flex-direction: column;
+
+      .cart-item-img {
+        margin-top: 1rem;
+        > img {
+          height: 50%;
+          width: 50%;
+          object-fit: contain;
+        }
+      }
+
+      .cart-item-delivery-details {
+        padding: 0 1rem;
+
+        p {
+          margin-top: -1rem;
+        }
+      }
+    }
+  }
 `;
