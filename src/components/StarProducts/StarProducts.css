@@ -192,6 +192,9 @@
   color: #fff;
   cursor: pointer;
 }
+.link_class{
+  color: black;
+}
 @media (max-width: 1024px) {
   .starproducts_container {
     margin: 5rem 2rem;
