@@ -7,9 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
 import ReviewOrderScreen from "../ReviewOrderScreen";
-import PaymentScreen from "../PaymentScreen";
+import PaymentScreen from "../../components/PaymentScreen/PaymentScreen";
 import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";
+import OrderCart from "../../components/OrderCart/OrderCart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(20),
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: theme.typography.fontWeightBold,
   },
 }));
 
@@ -72,10 +73,11 @@ const PlaceOrderScreen = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <ReviewOrderScreen
+              {/* <ReviewOrderScreen
                 expanded={expanded}
                 setExpanded={setExpanded}
-              />
+              /> */}
+              <OrderCart />
             </Typography>
           </AccordionDetails>
         </Accordion>

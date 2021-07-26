@@ -18,5 +18,6 @@ export const PlaceOrderContainer = styled.div`
     /* position: fixed; */
     /* right: 0; */
     width: 20.4%;
+    box-shadow: 0 5px 4px 1px lightgray;
   }
 `;

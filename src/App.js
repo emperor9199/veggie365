@@ -13,7 +13,7 @@ import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
 import TestProducts from "./Screens/TestProducts";
 import CartScreen from "./Screens/CartScreen/CartScreen";
 import ShippingScreen from "./components/ShippingScreen/ShippingScreen";
-import PaymentScreen from "./Screens/PaymentScreen";
+import PaymentScreen from "./components/PaymentScreen/PaymentScreen";
 import ReviewOrderScreen from "./Screens/ReviewOrderScreen";
 import YourOrderScreen from "./Screens/YourOrderScreen";
 import SoloProduct from "./components/SoloProduct/SoloProduct";

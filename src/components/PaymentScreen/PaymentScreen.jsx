@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { savePaymentMethod } from "../redux/actions/cartActions";
+import { savePaymentMethod } from "../../redux/actions/cartActions";
+import { PaymentContainer } from "./Styles";
 
-const PaymentScreen = (props) => {
+const PaymentScreen = () => {
   const dispatch = useDispatch();
   const [paymentMethod, setPaymentMethod] = useState("paypal");
 
@@ -17,14 +18,13 @@ const PaymentScreen = (props) => {
   const handlePaymentMethod = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    props.history.push("/order-summary");
+    // history.push("/order-summary");
   };
 
   return (
-    <>
-      <h1 style={{ textAlign: "center", marginTop: "2rem" }}>Payment Method</h1>
-      <form onSubmit={handlePaymentMethod}>
-        <div>
+    <form onSubmit={handlePaymentMethod}>
+      <PaymentContainer>
+        <div className="payment-options">
           <input
             type="radio"
             id="paypal"
@@ -35,17 +35,9 @@ const PaymentScreen = (props) => {
             required
           />
           PayPal
-          <br />
-          <input
-            type="radio"
-            id="stripe"
-            value="stripe"
-            name="paymentMethod"
-            onChange={(e) => setPaymentMethod(e.target.value)}
-            required
-          />
-          Stripe
-          <br />
+        </div>
+        <br />
+        <div className="payment-options">
           <input
             type="radio"
             id="cod"
@@ -55,12 +47,12 @@ const PaymentScreen = (props) => {
             required
           />
           COD
-          <button type="submit" style={{ marginTop: "1rem" }}>
-            Pay
-          </button>
         </div>
-      </form>
-    </>
+        <div className="payment-options">
+          <button type="submit">Make Payment</button>
+        </div>
+      </PaymentContainer>
+    </form>
   );
 };
 

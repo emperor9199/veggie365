@@ -49,7 +49,7 @@ export const ShippingContainer = styled.div`
 
   .continue-shipping-btn > button {
     background-color: #4ac85d;
-    padding: 0.4rem;
+    padding: 0.6rem;
     width: 96%;
     margin-left: 1rem;
     margin-top: 1rem;
