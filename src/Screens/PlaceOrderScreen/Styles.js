@@ -15,9 +15,20 @@ export const PlaceOrderContainer = styled.div`
     padding: 1rem;
     margin: 1rem;
     height: fit-content;
-    /* position: fixed; */
-    /* right: 0; */
+    position: sticky;
+    top: 4.5rem;
     width: 20.4%;
+    line-height: 1.7rem;
     box-shadow: 0 5px 4px 1px lightgray;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    width: 100%;
+    margin: -1rem;
+
+    .price-summary-container {
+      width: 100%;
+    }
   }
 `;

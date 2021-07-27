@@ -18,6 +18,8 @@ export const CartContainer = styled.div`
     padding: 1rem;
     height: fit-content;
     line-height: 2rem;
+    position: sticky;
+    top: 4.5rem;
 
     > .place-order-btn {
       border: none;

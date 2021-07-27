@@ -5,6 +5,7 @@ import {
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
 } from "../constants/cartConstants";
+import axios from "axios";
 
 export const addToCart =
   (product, pid, unit_price, qty) => (dispatch, getState) => {
@@ -60,11 +61,27 @@ export const decreaseQty = (productId) => (dispatch, getState) => {
   });
 };
 
-export const saveShippingAddress = (data) => async (dispatch) => {
-  setTimeout(() => {
-    localStorage.setItem("shippingAddress", JSON.stringify(data));
-  }, 200);
-  dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: data });
+export const saveShippingAddress = (selectedAddress) => async (dispatch) => {
+  try {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const { data } = await authAxios.get("/useraddress");
+    const showAddr = data.find(
+      (address) => address.user_address_name === selectedAddress
+    );
+
+    setTimeout(() => {
+      localStorage.setItem("shippingAddress", JSON.stringify(showAddr));
+    }, 200);
+    dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: showAddr });
+  } catch (error) {}
 };
 
 export const savePaymentMethod = (data) => async (dispatch) => {
