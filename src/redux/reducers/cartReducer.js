@@ -15,9 +15,7 @@ const initialState = {
   cartItemsId: localStorage.getItem("cartItemsId")
     ? JSON.parse(localStorage.getItem("cartItemsId"))
     : [],
-  shippingAddress: localStorage.getItem("shippingAddress")
-    ? JSON.parse(localStorage.getItem("shippingAddress"))
-    : {},
+
   paymentMethod: localStorage.getItem("paymentMethod")
     ? JSON.parse(localStorage.getItem("paymentMethod"))
     : "",
@@ -72,11 +70,6 @@ export const addToCartReducer = produce((state = initialState, action) => {
     case CART_EMPTY: {
       state.cartItems = {};
       state.cartItemsId = [];
-      return;
-    }
-
-    case SAVE_SHIPPING_ADDRESS: {
-      state.shippingAddress = action.payload;
       return;
     }
 

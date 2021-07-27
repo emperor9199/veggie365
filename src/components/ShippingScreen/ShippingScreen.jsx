@@ -1,47 +1,87 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShippingAddress } from "../../redux/actions/cartActions";
 import { useHistory } from "react-router-dom";
 import { ShippingContainer } from "./Styles";
 import axios from "axios";
 
+var val = "";
+
 const ShippingScreen = ({ expanded, setExpanded }) => {
+  var showAddr;
+
   const dispatch = useDispatch();
-  const { shippingAddress } = useSelector((state) => state.addToCartReducer);
   const { user } = useSelector((state) => state.userLoginReducer);
-  const [selectedAddress, setSelectedAddress] = useState("home");
   const history = useHistory();
 
   if (!Object.keys(user).length) {
     history.push("/login");
   }
 
-  useEffect(() => {
-    dispatch(saveShippingAddress(selectedAddress));
-  }, []);
-
-  setTimeout(() => {
-    setAddress(shippingAddress.user_address_name);
-    setPincode(shippingAddress.pincode);
-  }, 250);
-
-  const [fullName, setFullName] = useState(user.user_name);
-  const [mobile, setMobile] = useState(user.user_phone);
-  const [pincode, setPincode] = useState();
+  const [fullName, setFullName] = useState(
+    user.user_name ? user.user_name : ""
+  );
+  const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
+  const [pincode, setPincode] = useState(0);
   const [city, setCity] = useState("cityName");
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState("");
 
-  const handleRadio = (e) => {
-    setSelectedAddress(e.target.value);
-    dispatch(saveShippingAddress(selectedAddress));
+  const handleRadio = async (addr) => {
+    val = addr;
+    console.log("SA:" + addr);
+
+    //fetch address if present
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const { data } = await authAxios.get("/useraddress");
+    showAddr = data.find((address) => address.user_address_name === val);
+
+    if (showAddr !== undefined) {
+      setAddress(showAddr.user_address_name);
+      setPincode(showAddr.pincode);
+    } else {
+      setAddress("");
+      setPincode(0);
+    }
   };
 
-  const handleShippingAddress = (e) => {
-    e.preventDefault();
-    //dispatch(saveShippingAddress(selectedAddress));
+  useEffect(() => {
+    handleRadio("home");
+  }, []);
 
+  const handleShippingAddress = async (e) => {
+    e.preventDefault();
+    if (showAddr === undefined) {
+      try {
+        const authAxios = axios.create({
+          baseURL: "https://dharm.ga/api",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userToken")
+            )}`,
+          },
+        });
+
+        const status = await authAxios.post("/useraddress", {
+          address: [
+            {
+              user_address_name: val,
+              full_address: address,
+              pincode: 331133,
+            },
+          ],
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
     setExpanded("panel2");
-    // props.history.push("/payment");
   };
 
   return (
@@ -106,8 +146,8 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="home"
             name="address_type"
             value="home"
-            onChange={handleRadio}
-            checked={selectedAddress === "home" ? true : false}
+            onChange={(e) => handleRadio(e.target.value)}
+            defaultChecked
           />
            <label htmlFor="home">Home</label>
           <input
@@ -115,8 +155,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="work"
             name="address_type"
             value="work"
-            onChange={handleRadio}
-            checked={selectedAddress === "work" ? true : false}
+            onChange={(e) => handleRadio(e.target.value)}
           />
            <label htmlFor="work">Work</label>
           <input
@@ -124,8 +163,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="other"
             name="address_type"
             value="other"
-            onChange={handleRadio}
-            checked={selectedAddress === "other" ? true : false}
+            onChange={(e) => handleRadio(e.target.value)}
           />
            <label htmlFor="other">Other</label>
           <br />
