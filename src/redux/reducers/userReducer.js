@@ -46,6 +46,7 @@ export const userLoginReducer = produce((state = initialState, action) => {
 
     case USER_LOGOUT: {
       state.user = {};
+      state.userToken = "";
       return;
     }
 

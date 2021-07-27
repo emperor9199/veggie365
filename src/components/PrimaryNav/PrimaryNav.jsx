@@ -3,14 +3,20 @@ import { PrimaryNavContainer } from "./Styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
+import { userLogout } from "../../redux/actions/userActions";
 
 const PrimaryNav = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
   const { cartItemsId } = useSelector((state) => state.addToCartReducer);
   const [profileOptions, setProfileOptions] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(userLogout());
+  };
 
   return (
     <PrimaryNavContainer>
@@ -37,9 +43,7 @@ const PrimaryNav = () => {
             <div
               className={
                 Object.keys(user).length
-                  ? profileOptions
-                    ? "profile-options"
-                    : "no-profile-options"
+                  ? "profile-options"
                   : "no-profile-options"
               }
             >
@@ -59,7 +63,7 @@ const PrimaryNav = () => {
               >
                 Your Orders
               </p>
-              <p>Logout</p>
+              <p onClick={handleLogout}>Logout</p>
             </div>
           </Link>
           <Link to="/" className="nav-specific-link">

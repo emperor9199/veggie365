@@ -59,22 +59,30 @@ export const PrimaryNavContainer = styled.div`
         align-items: center;
         text-decoration: none;
         color: black;
+
+        .profile-options {
+          display: none;
+        }
+
+        .no-profile-options {
+          display: none;
+        }
       }
 
-      .user-profile .no-profile-options {
-        display: none;
-      }
+      .user-profile:hover {
+        .profile-options {
+          display: inline;
+          position: absolute;
+          top: 1.5rem;
+          left: -0.8rem;
+          background-color: white;
+          z-index: 1;
+        }
 
-      .user-profile .profile-options {
-        position: absolute;
-        top: 3rem;
-        background-color: white;
-        z-index: 1;
-      }
-
-      .user-profile .profile-options > p {
-        padding: 0rem 2.5rem 1rem 2.5rem;
-        /* border-bottom: 1px solid gray; */
+        .profile-options > p {
+          padding: 0.6rem 3rem 1rem 3rem;
+          /* border-bottom: 1px solid gray; */
+        }
       }
     }
   }

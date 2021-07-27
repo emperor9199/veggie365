@@ -1,11 +1,9 @@
 import {
   ADD_TO_CART,
   DECREASE_QTY,
-  SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
 } from "../constants/cartConstants";
-import axios from "axios";
 
 export const addToCart =
   (product, pid, unit_price, qty) => (dispatch, getState) => {

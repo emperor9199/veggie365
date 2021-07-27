@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 
 const HomeScreen = () => {
-
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
@@ -36,28 +35,30 @@ const HomeScreen = () => {
   var arrCat = [];
   category.map((iteam) => {
     products?.map((cat) => {
-        if(iteam.category_id === cat.category_id){
-          count++;
-        }
-    })
-    if(count >= 4){
-      arrCat.push({"id":iteam.category_id,"name":iteam.category_name});
+      if (iteam.category_id === cat.category_id) {
+        count++;
+      }
+    });
+    if (count >= 4) {
+      arrCat.push({ id: iteam.category_id, name: iteam.category_name });
     }
     count = 0;
-  })
-  
+  });
+
   return (
     <>
       <Banner />
       <Features />
-      {
-        arrCat.map((d) => {
-          return(
-            <StarProducts no="odd" categoryid={d.id} key={d.id} categoryName={d.name}/>
-          )
-        })
-
-      }
+      {arrCat.map((d) => {
+        return (
+          <StarProducts
+            no="odd"
+            categoryid={d.id}
+            key={d.id}
+            categoryName={d.name}
+          />
+        );
+      })}
       <Testinomial />
     </>
   );
