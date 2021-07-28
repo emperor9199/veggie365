@@ -9,8 +9,11 @@ import SimilarProducts from '../SimilarProducts/SimilarProducts';
 import CommentSec from '../CommentSec/CommentSec';
 import LargeImage from '../LargeImage/LargeImage';
 import SmallImage from '../SmallImage/SmallImage';
+import { useParams } from 'react-router-dom';
 
 function SoloProduct() {
+
+    const { pid } = useParams();
 
     const [img,setImg] = useState("https://media.starquik.com/catalog/product/SQ101373.jpg");
     return (

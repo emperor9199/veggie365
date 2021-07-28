@@ -25,7 +25,7 @@ function StarProducts({ no, categoryName, categoryid }) {
     setProducts(data.product);
     setProductPrice(data.price);
   };
-
+  
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -34,6 +34,25 @@ function StarProducts({ no, categoryName, categoryid }) {
     dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
   };
 
+  var sliceData;
+  var pprice = [];
+
+  function afind(arr,pid){
+    const found = pprice.some(e1 => e1.product_id === pid.product_id);
+    if(!found) {
+      pprice.push(pid);
+    }
+    return pprice; 
+  }
+  sliceData = products.filter(iteam => iteam.category_id === categoryid).slice(0,4)
+  sliceData.map((product) => {
+    productPrice.map((price) => {
+      if(price.product_id === product.product_id){
+        afind(pprice,price)
+      }
+    })
+  })
+  console.log(pprice);
   return (
     <div className="starproducts_container">
       <div className="starproducts_head_title">
@@ -43,37 +62,52 @@ function StarProducts({ no, categoryName, categoryid }) {
       <div className="starproducts_line" />
       <div className="starproducts_card_con">
         {
-          products.filter(iteam => {
-
+          sliceData.map((product) => {
+              return(
+                <div className="starproduct_card">
+                <Link className="link_class" style={{ textDecoration: "none" }} to={`/product/${product.product_id}`}>
+                  <div className="starproduct_img">
+                    <img
+                      className="starproduct_img_data"
+                      src={product.product_img}
+                      alt={product.product_name}
+                    />
+                    <div className="starproduct_dis_label">4%</div>
+                  </div>
+                  </Link>
+                  <div className="starproduct_data">
+                    <div className="starproduct_rating">
+                      <StarIcon style={{ color: "gold" }} />
+                      <StarIcon style={{ color: "gold" }} />
+                    </div>
+                    <Link className="link_class" to="/product/flower" style={{ textDecoration: "none" }}>
+                    <div className="starproduct_title">{product.product_name}</div>
+                    <div className="starproduct_high">SQ Special | Best Price</div>
+                      {
+                        pprice.filter(item => item.product_id === product.product_id).map((p) => {
+                            return(
+                              <div className="starproduct_price">
+                                ₹{p.product_price} per/{p.price_unit_name} 
+                                 <del className="starproduct_price_delete">MRP ₹70.00</del>
+                              </div>
+                            )
+                        })
+                      }
+                      </Link>
+                  </div>
+                  <div className="starproduct_btn_con">
+                  {
+                        pprice.filter(item => item.product_id === product.product_id).map((p) => {
+                            return(
+                              <div className="starproduct_btn" onClick={() => handleAddToCart(product, p.product_price)}>ADD</div>
+                            )
+                        })
+                      }
+                  </div>
+                </div>
+              )
           })
         }
-        <Link className="link_class" to="/product/flower" style={{ textDecoration: "none" }}>
-          <div className="starproduct_card">
-            <div className="starproduct_img">
-              <img
-                className="starproduct_img_data"
-                src="https://media.starquik.com/catalog/product/SQ109022.jpg"
-                alt="tomato"
-              />
-              <div className="starproduct_dis_label">4%</div>
-            </div>
-            <div className="starproduct_data">
-              <div className="starproduct_rating">
-                <StarIcon style={{ color: "gold" }} />
-                <StarIcon style={{ color: "gold" }} />
-              </div>
-              <div className="starproduct_title">tomato</div>
-              <div className="starproduct_high">SQ Special | Best Price</div>
-              <div className="starproduct_price">
-                ₹50.00 Per/Kg{" "}
-                <del className="starproduct_price_delete">MRP ₹70.00</del>
-              </div>
-            </div>
-            <div className="starproduct_btn_con">
-              <div className="starproduct_btn">ADD</div>
-            </div>
-          </div>
-        </Link>
 
         <div
           className={`starproduct_color_card ${
@@ -86,7 +120,9 @@ function StarProducts({ no, categoryName, categoryid }) {
           <div className="starproduct_color_card_subt">
             Handpicked deals with best Prices.
           </div>
-          <div className="starproduct_color_card_btn">View All</div>
+          <Link className="link_class" to="/products/id" style={{ textDecoration: "none" }}>
+            <div className="starproduct_color_card_btn">View All</div>
+          </Link>
         </div>
       </div>
     </div>

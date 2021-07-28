@@ -60,7 +60,6 @@
   justify-content: center;
   padding: 1rem;
   color: #fff;
-  cursor: pointer;
 }
 .starproduct_color_card_color_two {
   background-image: linear-gradient(
@@ -107,6 +106,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .starproduct_color_card_btn::before {
   content: "";
@@ -167,6 +167,7 @@
 .starproduct_price_delete {
   font-size: 0.8rem;
   color: grey;
+  margin-left: 1rem;
 }
 .starproduct_btn_con {
   display: flex;

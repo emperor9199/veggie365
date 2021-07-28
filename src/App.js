@@ -52,7 +52,7 @@ function App() {
           <Route path="/payment" component={PaymentScreen} exact />
           <Route path="/order-summary" component={ReviewOrderScreen} exact />
           <Route path="/order/:id" component={YourOrderScreen} exact />
-          <Route path="/product/flower" component={SoloProduct} exact />
+          <Route path="/product/:pid" component={SoloProduct} exact />
           <Route path="/place-order" component={PlaceOrderScreen} exact />
           <Route path="/products/id" component={AllProducts} exact />
         </Switch>
