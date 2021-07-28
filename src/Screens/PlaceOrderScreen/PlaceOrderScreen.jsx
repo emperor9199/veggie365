@@ -6,7 +6,6 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
-// import ReviewOrderScreen from "../ReviewOrderScreen";
 import PaymentScreen from "../../components/PaymentScreen/PaymentScreen";
 import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";
@@ -32,9 +31,8 @@ const PlaceOrderScreen = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const { itemsPrice, deliveryPrice, taxPrice, totalPrice } = useSelector(
-    (state) => state.addToCartReducer
-  );
+  const { shippingAddress, itemsPrice, deliveryPrice, taxPrice, totalPrice } =
+    useSelector((state) => state.addToCartReducer);
 
   return (
     <PlaceOrderContainer>
@@ -59,10 +57,12 @@ const PlaceOrderScreen = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
+        <br />
         <Accordion
           expanded={expanded === "panel2"}
           onChange={handleChange("panel2")}
           style={{ padding: "1rem 0" }}
+          // disabled={Object.keys(shippingAddress).length ? false : true}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -73,18 +73,16 @@ const PlaceOrderScreen = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              {/* <ReviewOrderScreen
-                expanded={expanded}
-                setExpanded={setExpanded}
-              /> */}
               <OrderCart expanded={expanded} setExpanded={setExpanded} />
             </Typography>
           </AccordionDetails>
         </Accordion>
+        <br />
         <Accordion
           expanded={expanded === "panel3"}
           onChange={handleChange("panel3")}
           style={{ padding: "1rem 0" }}
+          // disabled={Object.keys(shippingAddress).length ? false : true}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -101,11 +99,12 @@ const PlaceOrderScreen = () => {
         </Accordion>
       </div>
       <div className="price-summary-container">
-        <h2>Price Details</h2>
-        <h3>Items Price : ₹{itemsPrice}</h3>
-        <h3>Delivery Price : ₹{deliveryPrice}</h3>
-        <h3>Tax Price : ₹{taxPrice}</h3>
-        <h3>Total Price : ₹{totalPrice}</h3>
+        <h2>PRICE DETAILS</h2>
+        <hr />
+        <p>Items Price : ₹{itemsPrice}</p>
+        <p>Delivery Price : ₹{deliveryPrice}</p>
+        <p>Tax Price : ₹{taxPrice}</p>
+        <h3 style={{ color: "green" }}>Total Price : ₹{totalPrice}</h3>
       </div>
     </PlaceOrderContainer>
   );

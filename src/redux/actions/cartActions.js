@@ -1,7 +1,6 @@
 import {
   ADD_TO_CART,
   DECREASE_QTY,
-  SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
 } from "../constants/cartConstants";
@@ -58,13 +57,6 @@ export const decreaseQty = (productId) => (dispatch, getState) => {
     type: DECREASE_QTY,
     payload: productId,
   });
-};
-
-export const saveShippingAddress = (data) => async (dispatch) => {
-  setTimeout(() => {
-    localStorage.setItem("shippingAddress", JSON.stringify(data));
-  }, 200);
-  dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: data });
 };
 
 export const savePaymentMethod = (data) => async (dispatch) => {

@@ -46,10 +46,17 @@ export const userLogin = (email, password) => async (dispatch) => {
   }
 };
 
-export const userLogout = () => {
-  return {
-    type: USER_LOGOUT,
-  };
+export const userLogout = () => (dispatch) => {
+  localStorage.removeItem("userToken");
+  localStorage.removeItem("loggedUser");
+  localStorage.removeItem("itemsPrice");
+  localStorage.removeItem("deliveryPrice");
+  localStorage.removeItem("taxPrice");
+  localStorage.removeItem("totalPrice");
+  localStorage.removeItem("orders");
+  localStorage.removeItem("cartItems");
+  localStorage.removeItem("cartItemsId");
+  dispatch({ type: USER_LOGOUT });
 };
 
 export const userRegister =

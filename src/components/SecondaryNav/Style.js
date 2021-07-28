@@ -154,7 +154,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
           }
         }
 
-        > p {
+        p {
           padding: 1rem 0;
         }
 

@@ -2,7 +2,6 @@ import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_FAIL,
-  // ORDER_RESET,
 } from "../constants/orderConstants";
 import { CART_EMPTY } from "../constants/cartConstants";
 
@@ -21,7 +20,7 @@ export const createOrder = (order) => async (dispatch) => {
       },
     });
 
-    const status = await authAxios.post("/order", order);
+    await authAxios.post("/order", order);
 
     // localStorage.setItem("loggedUser", JSON.stringify(data));
     // localStorage.setItem("userToken", JSON.stringify(token));
@@ -41,7 +40,6 @@ export const createOrder = (order) => async (dispatch) => {
     }, 200);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-    // dispatch({ type: ORDER_RESET });
     dispatch({ type: CART_EMPTY });
     localStorage.removeItem("cartItems");
     localStorage.removeItem("cartItemsId");

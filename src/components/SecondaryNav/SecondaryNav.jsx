@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SecondaryNavContainer } from "./Style";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { Link } from "react-router-dom";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
@@ -18,9 +19,18 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   return (
     <SecondaryNavContainer className={show ? "active" : ""}>
       <div className="nav-items">
-        <p>Home</p>
-        <p>Products</p>
-        <p>Your Orders</p>
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <p>Home</p>
+        </Link>
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <p>Products</p>
+        </Link>
+        <Link
+          to="/place-order"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <p>Your Orders</p>
+        </Link>
         <span
           onClick={() => setDropDownItem(!dropDownItem)}
           className="about-us-p"
@@ -56,11 +66,52 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <input type="text" placeholder="Search Product..." />
             <button>Search</button>
           </div>
-          <p style={{ fontSize: "1.3rem" }}>Home</p>
-          <p style={{ fontSize: "1.3rem" }}>Products</p>
-          <p style={{ fontSize: "1.3rem" }}>Your Orders</p>
-          <p style={{ fontSize: "1.3rem" }}>About Us</p>
-          <p style={{ fontSize: "1.3rem" }}>Contact Us</p>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <p
+              onClick={() => setToggle(!toggle)}
+              style={{ fontSize: "1.3rem" }}
+            >
+              Home
+            </p>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <p
+              onClick={() => setToggle(!toggle)}
+              style={{ fontSize: "1.3rem" }}
+            >
+              Products
+            </p>
+          </Link>
+          <Link
+            to="/place-order"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <p
+              onClick={() => setToggle(!toggle)}
+              style={{ fontSize: "1.3rem" }}
+            >
+              Your Orders
+            </p>
+          </Link>
+          <Link
+            to="/aboutus"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <p
+              onClick={() => setToggle(!toggle)}
+              style={{ fontSize: "1.3rem" }}
+            >
+              About Us
+            </p>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <p
+              onClick={() => setToggle(!toggle)}
+              style={{ fontSize: "1.3rem" }}
+            >
+              Contact Us
+            </p>
+          </Link>
         </div>
       </div>
     </SecondaryNavContainer>

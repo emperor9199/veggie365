@@ -1,39 +1,87 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShippingAddress } from "../../redux/actions/cartActions";
 import { useHistory } from "react-router-dom";
 import { ShippingContainer } from "./Styles";
+import axios from "axios";
+
+var val = "";
 
 const ShippingScreen = ({ expanded, setExpanded }) => {
+  var showAddr;
+
   const dispatch = useDispatch();
-  const { shippingAddress } = useSelector((state) => state.addToCartReducer);
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  // if (!Object.keys(user).length) {
-  //   history.push("/login");
-  // }
+  if (!Object.keys(user).length) {
+    history.push("/login");
+  }
 
-  const [fullName, setFullName] = useState(shippingAddress.fullName);
-  const [mobile, setMobile] = useState(shippingAddress.mobile);
-  const [pincode, setPincode] = useState(shippingAddress.pincode);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [address, setAddress] = useState(shippingAddress.address);
+  const [fullName, setFullName] = useState(
+    user.user_name ? user.user_name : ""
+  );
+  const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
+  const [pincode, setPincode] = useState(0);
+  const [city, setCity] = useState("cityName");
+  const [address, setAddress] = useState("");
 
-  const handleShippingAddress = (e) => {
+  const handleRadio = async (addr) => {
+    val = addr;
+    console.log("SA:" + addr);
+
+    //fetch address if present
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const { data } = await authAxios.get("/useraddress");
+    showAddr = data.find((address) => address.user_address_name === val);
+
+    if (showAddr !== undefined) {
+      setAddress(showAddr.user_address_name);
+      setPincode(showAddr.pincode);
+    } else {
+      setAddress("");
+      setPincode(0);
+    }
+  };
+
+  useEffect(() => {
+    handleRadio("home");
+  }, []);
+
+  const handleShippingAddress = async (e) => {
     e.preventDefault();
-    dispatch(
-      saveShippingAddress({
-        fullName,
-        mobile,
-        pincode,
-        city,
-        address,
-      })
-    );
+    if (showAddr === undefined) {
+      try {
+        const authAxios = axios.create({
+          baseURL: "https://dharm.ga/api",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userToken")
+            )}`,
+          },
+        });
 
+        const status = await authAxios.post("/useraddress", {
+          address: [
+            {
+              user_address_name: val,
+              full_address: address,
+              pincode: 331133,
+            },
+          ],
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
     setExpanded("panel2");
-    // props.history.push("/payment");
   };
 
   return (
@@ -41,9 +89,10 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
       <ShippingContainer>
         <div className="form-section">
           <div>
-            <label htmlFor="fullName">Full name</label>
+            <label htmlFor="fullName">Your Name</label>
             <input
               type="text"
+              value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
             />
@@ -52,6 +101,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             <label htmlFor="mobile">Mobile no</label>
             <input
               type="text"
+              value={mobile}
               onChange={(e) => setMobile(e.target.value)}
               required
             />
@@ -62,6 +112,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             <label htmlFor="pincode">Pincode</label>
             <input
               type="text"
+              value={pincode}
               onChange={(e) => setPincode(e.target.value)}
               required
             />
@@ -70,6 +121,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             <label htmlFor="city">City</label>
             <input
               type="text"
+              value={city}
               onChange={(e) => setCity(e.target.value)}
               required
             />
@@ -81,11 +133,42 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             <br />
             <textarea
               cols={40}
+              value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>
         </div>
+
+        <div className="choose-address">
+          <input
+            type="radio"
+            id="home"
+            name="address_type"
+            value="home"
+            onChange={(e) => handleRadio(e.target.value)}
+            defaultChecked
+          />
+           <label htmlFor="home">Home</label>
+          <input
+            type="radio"
+            id="work"
+            name="address_type"
+            value="work"
+            onChange={(e) => handleRadio(e.target.value)}
+          />
+           <label htmlFor="work">Work</label>
+          <input
+            type="radio"
+            id="other"
+            name="address_type"
+            value="other"
+            onChange={(e) => handleRadio(e.target.value)}
+          />
+           <label htmlFor="other">Other</label>
+          <br />
+        </div>
+
         <div className="continue-shipping-btn">
           <button type="submit">Continue</button>
         </div>
