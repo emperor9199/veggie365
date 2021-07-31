@@ -68,6 +68,7 @@ export const addShippingAddress =
     //   localStorage.setItem("shippingAddress", JSON.stringify(data));
     // }, 200);
 
+    console.log("add shipping address");
     try {
       const authAxios = axios.create({
         baseURL: "https://dharm.ga/api",
@@ -78,7 +79,7 @@ export const addShippingAddress =
         },
       });
 
-      const status = await authAxios.post("/useraddress", {
+      await authAxios.post("/useraddress", {
         address: [
           {
             user_address_name: val,
@@ -100,6 +101,7 @@ export const updateShippingAddress =
     // setTimeout(() => {
     //   localStorage.setItem("shippingAddress", JSON.stringify(data));
     // }, 200);
+    console.log("update shipping address");
 
     try {
       const authAxios = axios.create({

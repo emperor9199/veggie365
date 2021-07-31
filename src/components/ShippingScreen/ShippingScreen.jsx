@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ShippingContainer } from "./Styles";
@@ -7,12 +7,11 @@ import {
   addShippingAddress,
   updateShippingAddress,
 } from "../../redux/actions/cartActions";
-// var val = "";
+var val = "";
 var addressType = [];
 
 const ShippingScreen = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
-  const radioRef = useRef();
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
@@ -24,11 +23,11 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
     user.user_name ? user.user_name : ""
   );
   const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
-  const [pincode, setPincode] = useState();
+  const [pincode, setPincode] = useState(null);
   const [city, setCity] = useState("Rajkot");
   const [address, setAddress] = useState("");
-  const [userAddressId, setUserAddressId] = useState();
-  const [findAddress, setFindAddress] = useState();
+  const [userAddressId, setUserAddressId] = useState(null);
+  const [findAddress, setFindAddress] = useState(null);
 
   const fetchAddressData = async () => {
     const authAxios = axios.create({
@@ -45,12 +44,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
       addressType.push(item.user_address_name);
     });
 
-    console.log("data address" + data + "val:" + radioRef.current.value);
-
-    const findAddr = data?.find(
-      (item) => item.user_address_name === radioRef.current.value
-    );
-    console.log("findAddr" + findAddr + "val" + radioRef.current.value);
+    const findAddr = data?.find((item) => item.user_address_name === val);
 
     if (findAddr !== undefined) {
       setFindAddress(findAddr);
@@ -59,40 +53,34 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
       setAddress(findAddr.full_address);
       setUserAddressId(findAddr.user_address_id);
     } else {
-      localStorage.setItem("foundAddr", false);
+      setFindAddress(null);
+      setPincode(null);
+      setAddress("");
+      setUserAddressId(null);
+      localStorage.removeItem("foundAddr");
     }
   };
 
-  useEffect(() => {
+  const handleRadio = (addr) => {
+    val = addr;
     fetchAddressData();
-  }, [radioRef]);
+  };
 
-  // useEffect(() => {
-  //   handleRadio("home");
-  //   fetchAddressData();
-  // }, []);
-
-  // const handleRadio = (addr) => {
-  //   val = addr;
-  // };
+  useEffect(() => {
+    handleRadio("home");
+    fetchAddressData();
+  }, []);
 
   const handleShippingAddress = (e) => {
     e.preventDefault();
 
     console.log(localStorage.getItem("foundAddr"));
 
-    if (localStorage.getItem("foundAddr") === "yes") {
-      dispatch(
-        updateShippingAddress(
-          userAddressId,
-          radioRef.current.value,
-          address,
-          pincode
-        )
-      ); // update address
+    if (localStorage.getItem("foundAddr") || findAddress) {
+      dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
       localStorage.removeItem("foundAddr");
     } else {
-      dispatch(addShippingAddress(radioRef.current.value, address, pincode)); // add new address
+      dispatch(addShippingAddress(val, address, pincode)); // add new address
       localStorage.removeItem("foundAddr");
     }
 
@@ -162,8 +150,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="home"
             name="address_type"
             value="home"
-            // onChange={(e) => handleRadio(e.target.value)}
-            ref={radioRef}
+            onChange={(e) => handleRadio(e.target.value)}
             defaultChecked
           />
            <label htmlFor="home">Home</label>
@@ -172,8 +159,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="work"
             name="address_type"
             value="work"
-            // onChange={(e) => handleRadio(e.target.value)}
-            ref={radioRef}
+            onChange={(e) => handleRadio(e.target.value)}
           />
            <label htmlFor="work">Work</label>
           <input
@@ -181,8 +167,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="other"
             name="address_type"
             value="other"
-            // onChange={(e) => handleRadio(e.target.value)}
-            ref={radioRef}
+            onChange={(e) => handleRadio(e.target.value)}
           />
            <label htmlFor="other">Other</label>
           <br />
