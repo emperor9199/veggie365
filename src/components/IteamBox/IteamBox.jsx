@@ -31,7 +31,7 @@ function IteamBox({ prices,total_quantity,setCutmrp,setOurPrice,setYousave,setUn
     })
   };
   return (
-    <div>
+    <div className="IteamBox_container">
       {prices.map((radios) => {
         return (
           <input
