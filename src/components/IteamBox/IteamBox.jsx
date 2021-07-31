@@ -1,47 +1,64 @@
 import React, { useState } from "react";
-import { Qty } from "../../Data/Qty";
 import "./IteamBox.css";
 
-function IteamBox() {
-  const [selectedIteam, setSelectedIteam] = useState(1);
-  var firstIteamPrice = Qty[Object.keys(Qty)[0]].Price;
-    const [defaultIteam,setDefaultiteam] = useState(firstIteamPrice);
+function IteamBox({ prices,total_quantity,setCutmrp,setOurPrice,setYousave,setUnit }) {
+
+  let priceUnitId;
+  let firstPrice,price_unit_name;
+  prices.slice(0, 1).map((priceid) => {
+    priceUnitId = priceid.price_unit_id;
+    firstPrice = priceid.product_price;
+    price_unit_name = priceid.price_unit_name;
+  });
+
+  var firstIteamPrice = firstPrice;
+  const [selectedIteam, setSelectedIteam] = useState(priceUnitId && priceUnitId);
+  const [defaultIteam, setDefaultiteam] = useState(firstIteamPrice);
   
-    const onChangeValue = (event) => {
+  setUnit(price_unit_name);
+  setCutmrp(defaultIteam);
+
+  console.log("selectedIteam",selectedIteam);
+  console.log("defaultIteam",defaultIteam);
+  
+
+  const onChangeValue = (event) => {
     var val = event.target.value;
-    setDefaultiteam(val)
-  }
-  console.log(defaultIteam);
+    setDefaultiteam(val);
+   
+    prices.filter(ut => ut.product_price === val).map((pro) => {
+      setUnit(pro.price_unit_name);
+    })
+  };
   return (
-    <div className="IteamBox_container">
-      {Qty.map((data) => {
+    <div>
+      {prices.map((radios) => {
         return (
           <input
             type="radio"
-            id={data.qty}
-            name="qty"
-            value={data.Price}
-            key={data.id}
-            disabled={data.qtyAva > 0 ? false : true}
-            defaultChecked={data.id === 1 ? true : false}
+            id={radios.price_unit_name}
+            name="price"
+            value={radios.product_price}
             onChange={onChangeValue}
+            defaultChecked={radios.price_unit_id === priceUnitId ? true : false}
+            disabled={total_quantity > radios.unit_in_gm ? false : true}
           />
         );
       })}
       <br />
       <div className="iteam_box_con">
-        {Qty.map((data) => {
-          return (
-            <label htmlFor={data.qty} key={data.id} onClick={data.qtyAva > 0 ? () => setSelectedIteam(data.id) : () => setSelectedIteam(selectedIteam)}>
-              <div className={`iteam_box ${data.qtyAva > 0 ? "general_iteam" : "sold_out_iteam"} ${data.id === selectedIteam ? "active_iteam" : "general_iteam"}`}>
-                <div className={`iteam_box_contetn common_flex ${data.id === selectedIteam ? "active_iteam_box_qty" : "iteam_box_qty"} ${data.qtyAva > 0? "iteam_box_qty": "sold_out_iteam_box_qty"}`}>
-                  {data.qty}
-                </div>
-                <div className="iteam_box_price">₹{data.Price}</div>
+      {prices.map((radios) => {
+        return (
+          <label htmlFor={radios.price_unit_name} onClick={total_quantity > radios.unit_in_gm ? () => setSelectedIteam(radios.price_unit_id) : () => setSelectedIteam(selectedIteam)}>
+            <div className={`iteam_box ${total_quantity > radios.unit_in_gm ? "general_iteam" : "sold_out_iteam"} ${radios.price_unit_id === selectedIteam ? "active_iteam" : "general_iteam"}`}>
+              <div className={`iteam_box_contetn common_flex ${radios.price_unit_id === selectedIteam ? "active_iteam_box_qty" : "iteam_box_qty"} ${total_quantity > radios.unit_in_gm ? "iteam_box_qty": "sold_out_iteam_box_qty"}`}>
+                {radios.price_unit_name}
               </div>
-            </label>
-          );
-        })}
+              <div className="iteam_box_price">₹{radios.product_price}</div>
+            </div>
+          </label>
+        );
+      })}
       </div>
     </div>
   );

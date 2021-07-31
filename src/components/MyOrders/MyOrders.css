@@ -1,0 +1,105 @@
+.MyOrders_container{
+    margin: 2rem;
+}
+.myorder_cont{
+    display: flex;
+    align-items: center;
+    align-items: center;
+}
+.myorder_card{
+    display: flex;
+    background-color: #FFF;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    width: 60%;
+    overflow: hidden;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 1rem;
+}
+.myorder_img{
+    height: 9rem;
+    width: 9rem;
+}
+.myorder_img_data{
+    height: 100%;
+    width: 100%;
+}
+.myorder_order_info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+    gap: .3rem;
+}
+.myorder_product_name{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.myorder_product_cat{
+    color: grey;
+    font-size: .9rem;
+}
+.myorder_product_price{
+    font-weight: 500;
+}
+.myorder_address{
+    margin-left: 3rem;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+.myorder_help{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+.myorder_status{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 0 .3rem 0 .5rem;
+}
+.myorder_product_status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myorder_help_ret_order{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #4AC85D;
+}
+.myorder_product_status{
+    margin-top: .5rem;
+    font-weight: 500;
+}
+@media (max-width:720px) {
+    .myorder_card{
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: flex-start;
+        width: 90%;
+        padding: 1rem;
+    }
+    .myorder_img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .myorder_img_data{
+        width: 80%;
+    }
+    .myorder_order_info{
+        margin: 0;
+    }
+    .myorder_address{
+        margin: 0;
+        width: 100%;
+    }
+    .myorder_product_status{
+        justify-content: flex-start;
+    }
+}

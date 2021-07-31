@@ -6,6 +6,12 @@
     display: flex;
     flex-direction: column;
 }
+.AllProducts_container:hover .starproducts_line {
+    width: 5rem;
+}
+.mar{
+    margin-top: .3rem;
+}
 .allproducts_cat_name{
     font-size: 1.4rem;
     font-weight: 500;

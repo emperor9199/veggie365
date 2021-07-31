@@ -1,8 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StarIcon from "@material-ui/icons/Star";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
 import "./SimilarProducts.css";
 
-function SimilarProducts() {
+function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
+  const dispatch = useDispatch();
+
+  const [products, setProducts] = useState([]);
+  const [productPrice, setProductPrice] = useState([]);
+
+  const authAxios = axios.create({
+    baseURL: "https://dharm.ga/api",
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
+    },
+  });
+
+  const fetchProducts = async () => {
+    const { data } = await authAxios.get("/product");
+
+    setProducts(data.product);
+    setProductPrice(data.price);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (product, unit_price) => {
+    dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+  };
+
+  var sliceData;
+  var pprice = [];
+
+  function afind(arr, pid) {
+    const found = pprice.some((e1) => e1.product_id === pid.product_id);
+    if (!found) {
+      pprice.push(pid);
+    }
+    return pprice;
+  }
+  sliceData = products
+    .filter((iteam) => iteam.category_id === Pcategory_id).filter((pid) => pid.product_id !== Pproduct_id).slice(0,5);
+
+  sliceData.map((product) => {
+    productPrice.map((price) => {
+      if (price.product_id === product.product_id) {
+        afind(pprice, price);
+      }
+    });
+  });
+
   return (
     <div className="SimilarProducts_container">
       <div className="aboutproduct_title">
@@ -10,132 +62,75 @@ function SimilarProducts() {
         <div className="soloproduct_line" />
       </div>
       <div className="SimilarProducts_card_con">
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ109022.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
+      {sliceData.map((product,key) => {
+          return (
+            <div className="starproduct_card" key={key}>
+              <Link
+                className="link_class"
+                style={{ textDecoration: "none" }}
+                to={`/product/${product.product_id}`}
+                onClick={() => setRload(true)}
+              >
+                <div className="starproduct_img">
+                  <img
+                    className="starproduct_img_data"
+                    src={product.product_img}
+                    alt={product.product_name}
+                  />
+                  {/* <div className="starproduct_dis_label">4%</div> */}
+                </div>
+              </Link>
+              <div className="starproduct_data">
+                {/* <div className="starproduct_rating">
+                  <StarIcon style={{ color: "gold" }} />
+                  <StarIcon style={{ color: "gold" }} />
+                </div> */}
+                <Link
+                  className="link_class"
+                  to="/product/flower"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="starproduct_title">
+                    {product.product_name}
+                  </div>
+                  <div className="starproduct_high">
+                    SQ Special | Best Price
+                  </div>
+                  {pprice
+                    .filter((item) => item.product_id === product.product_id)
+                    .map((p,key) => {
+                      return (
+                        <div className="starproduct_price" key={key}>
+                          ₹{p.product_price} per/{p.price_unit_name}
+                          <del className="starproduct_price_delete">
+                            MRP ₹70.00
+                          </del>
+                        </div>
+                      );
+                    })}
+                </Link>
+              </div>
+              <div className="starproduct_btn_con">
+                {pprice
+                  .filter((item) => item.product_id === product.product_id)
+                  .map((p,key) => {
+                    return (
+                      <div
+                        className="starproduct_btn"
+                        onClick={() =>
+                          handleAddToCart(product, p.product_price)
+                        }
+                        key={key}
+                      >
+                        ADD
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
-            </div>
-          </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
-
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ109006.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
-            </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
-            </div>
-          </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ101373.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
-            </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
-            </div>
-          </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ109022.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
-            </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
-            </div>
-          </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
-        <div className="starproduct_card">
-          <div className="starproduct_img">
-            <img
-              className="starproduct_img_data"
-              src="https://media.starquik.com/catalog/product/SQ101374.jpg"
-              alt="tomato"
-            />
-            <div className="starproduct_dis_label">4%</div>
-          </div>
-          <div className="starproduct_data">
-            <div className="starproduct_rating">
-              <StarIcon style={{ color: "gold" }} />
-              <StarIcon style={{ color: "gold" }} />
-            </div>
-            <div className="starproduct_title">tomato</div>
-            <div className="starproduct_high">SQ Special | Best Price</div>
-            <div className="starproduct_price">
-              ₹50.00 Per/Kg{" "}
-              <del className="starproduct_price_delete">MRP ₹70.00</del>
-            </div>
-          </div>
-          <div className="starproduct_btn_con">
-            <div className="starproduct_btn">ADD</div>
-          </div>
-        </div>
+          );
+        })}
+        
       </div>
     </div>
   );

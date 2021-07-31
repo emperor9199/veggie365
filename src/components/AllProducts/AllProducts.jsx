@@ -1,15 +1,65 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { allproducts } from "../../Data/AllProducts";
 import "./AllProducts.css";
 import SortingBar from '../SortingBar/SortingBar';
 import AllProductsCards from '../AllProductCards/AllProductsCards';
+import { Link,useParams } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
 
 function AllProducts() {
-    
-    const [sortVal,setSortval] = useState("acend");
-    const [sortName,setSortname] = useState("acend");
-    console.log(sortVal);
-    
+    let { catName } = useParams();
+    let { catID } = useParams();
+    const dispatch = useDispatch();
+
+  const [products, setProducts] = useState([]);
+  const [productPrice, setProductPrice] = useState([]);
+
+  const authAxios = axios.create({
+    baseURL: "https://dharm.ga/api",
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
+    },
+  });
+
+  const fetchProducts = async () => {
+    const { data } = await authAxios.get("/product");
+
+    setProducts(data.product);
+    setProductPrice(data.price);
+  };
+  
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (product, unit_price) => {
+    dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+  };
+
+  var sliceData;
+  var pprice = [];
+
+  function afind(arr,pid){
+    const found = pprice.some(e1 => e1.product_id === pid.product_id);
+    if(!found) {
+      pprice.push(pid);
+    }
+    return pprice; 
+  }
+  sliceData = products
+    .filter((iteam) => iteam.category_id == catID)
+    .slice(0);
+  sliceData.map((product) => {
+    productPrice.map((price) => {
+      if (price.product_id === product.product_id) {
+        afind(pprice, price);
+      }
+    });
+  });
+    const [sortVal,setSortval] = useState("acends");
+
     if (sortVal === "acend"){
         allproducts.sort((a,b) => {
             return(a.price - b.price);
@@ -21,8 +71,8 @@ function AllProducts() {
         })
     }
     if (sortVal === "acends"){
-        allproducts.sort((a,b) => {
-            let fa = a.title.toLowerCase(),fb = b.title.toLowerCase();
+        products.sort((a,b) => {
+            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
             if (fa < fb) {
                 return -1;
             }
@@ -33,8 +83,8 @@ function AllProducts() {
         })
     }
     if(sortVal === "descs"){
-        allproducts.sort((a,b) => {
-            let fa = a.title.toLowerCase(),fb = b.title.toLowerCase();
+        products.sort((a,b) => {
+            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
             if (fa > fb) {
                 return -1;
             }
@@ -44,17 +94,18 @@ function AllProducts() {
             return 0;
         })
     }
-    
+   
+    console.log("pprice",pprice);
     return (
         <div className="AllProducts_container">
             <div className="allproducts_cont">
-                <div className="allproducts_cat_name">Root Vegetable<div className="soloproduct_line" /></div>
+                <div className="allproducts_cat_name">{catName}<div className="starproducts_line mar" /></div>
                 <div className="allproducts_sorting">
                     <SortingBar setSortval={setSortval}/>
                 </div>
                 <hr />
                 <div className="allproducts_cards">
-                    <AllProductsCards productData={allproducts}/>
+                    <AllProductsCards productData={allproducts} sliceData={sliceData} pprice={pprice} handleAddToCart={handleAddToCart}/>
                 </div>
             </div>
         </div>

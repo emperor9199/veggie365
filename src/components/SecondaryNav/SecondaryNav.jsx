@@ -26,7 +26,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           <p>Products</p>
         </Link>
         <Link
-          to="/place-order"
+          to="/your-order-his"
           style={{ textDecoration: "none", color: "white" }}
         >
           <p>Your Orders</p>

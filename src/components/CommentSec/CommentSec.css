@@ -10,9 +10,13 @@
 .comments_sec_comment{
     display: flex;
     margin-bottom: 1rem;
+    
 }
 .comment_sec_comment_img{
     margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .comment_sec_comment_img_data{
     height: 4.5rem;
@@ -28,11 +32,44 @@
     font-size: .8rem;
     color: grey;
     font-weight: 500;
+    margin-top: .5rem;
 }
 .comments_sec_user_comment{
     margin-top: .2rem;
     font-size: 1.2rem;
     color: grey;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.commentsec_comment_box{
+    display: flex;
+    flex-direction: column;
+}
+.commentsec_comment_box_title{
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: .8rem;
+}
+.comment_sec_cmnt_box{
+    width: 50%;
+    height: 6rem;
+}
+.commentsec_comment_box_btn{
+    width: 6rem;
+    margin-top: .8rem;
+    padding: .7rem .5rem;
+    font-weight: 600;
+    background-color: #4AC85D;
+    border: #4AC85D;
+    border-radius: .5rem;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 @media (max-width:1024px) {
     .comments_sec_comment_container{
