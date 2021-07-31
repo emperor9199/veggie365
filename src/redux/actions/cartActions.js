@@ -3,7 +3,10 @@ import {
   DECREASE_QTY,
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
+  ADD_SHIPPING_ADDRESS,
+  UPDATE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
+import axios from "axios";
 
 export const addToCart =
   (product, pid, unit_price, qty) => (dispatch, getState) => {
@@ -59,6 +62,69 @@ export const decreaseQty = (productId) => (dispatch, getState) => {
   });
 };
 
+export const addShippingAddress =
+  (val, address, pincode) => async (dispatch) => {
+    // setTimeout(() => {
+    //   localStorage.setItem("shippingAddress", JSON.stringify(data));
+    // }, 200);
+
+    try {
+      const authAxios = axios.create({
+        baseURL: "https://dharm.ga/api",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("userToken")
+          )}`,
+        },
+      });
+
+      const status = await authAxios.post("/useraddress", {
+        address: [
+          {
+            user_address_name: val,
+            full_address: address,
+            city_name: "Rajkot",
+            pincode: pincode,
+          },
+        ],
+      });
+    } catch (err) {
+      alert(err.message);
+    }
+
+    // dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
+  };
+
+export const updateShippingAddress =
+  (userAddressId, val, address, pincode) => async (dispatch) => {
+    // setTimeout(() => {
+    //   localStorage.setItem("shippingAddress", JSON.stringify(data));
+    // }, 200);
+
+    try {
+      const authAxios = axios.create({
+        baseURL: "https://dharm.ga/api",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("userToken")
+          )}`,
+        },
+      });
+
+      await authAxios.patch("/useraddress", {
+        user_address_id: userAddressId,
+        user_address_name: val,
+        full_address: address,
+        pincode: pincode,
+        city_name: "Rajkot",
+      });
+    } catch (err) {
+      alert(err);
+    }
+
+    // dispatch({ type: UPDATE_SHIPPING_ADDRESS, payload: data });
+  };
+
 export const savePaymentMethod = (data) => async (dispatch) => {
   setTimeout(() => {
     localStorage.setItem("paymentMethod", JSON.stringify(data));
@@ -81,3 +147,23 @@ export const orderPrices =
       payload: { itemsPrice, deliveryPrice, taxPrice, totalPrice },
     });
   };
+
+export const addComment = (productId, commentText) => async (dispatch) => {
+  try {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    await authAxios.post("/comment", {
+      product_id: productId,
+      comment: commentText,
+    });
+  } catch (err) {
+    alert(err);
+  }
+};

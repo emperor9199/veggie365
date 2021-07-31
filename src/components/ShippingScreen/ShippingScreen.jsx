@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ShippingContainer } from "./Styles";
 import axios from "axios";
-
-var val = "";
+import {
+  addShippingAddress,
+  updateShippingAddress,
+} from "../../redux/actions/cartActions";
+// var val = "";
+var addressType = [];
 
 const ShippingScreen = ({ expanded, setExpanded }) => {
-  var showAddr;
-
   const dispatch = useDispatch();
+  const radioRef = useRef();
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
@@ -21,15 +24,13 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
     user.user_name ? user.user_name : ""
   );
   const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
-  const [pincode, setPincode] = useState(0);
-  const [city, setCity] = useState("cityName");
+  const [pincode, setPincode] = useState();
+  const [city, setCity] = useState("Rajkot");
   const [address, setAddress] = useState("");
+  const [userAddressId, setUserAddressId] = useState();
+  const [findAddress, setFindAddress] = useState();
 
-  const handleRadio = async (addr) => {
-    val = addr;
-    console.log("SA:" + addr);
-
-    //fetch address if present
+  const fetchAddressData = async () => {
     const authAxios = axios.create({
       baseURL: "https://dharm.ga/api",
       headers: {
@@ -40,47 +41,61 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
     });
 
     const { data } = await authAxios.get("/useraddress");
-    showAddr = data.find((address) => address.user_address_name === val);
+    data?.map((item) => {
+      addressType.push(item.user_address_name);
+    });
 
-    if (showAddr !== undefined) {
-      setAddress(showAddr.user_address_name);
-      setPincode(showAddr.pincode);
+    console.log("data address" + data + "val:" + radioRef.current.value);
+
+    const findAddr = data?.find(
+      (item) => item.user_address_name === radioRef.current.value
+    );
+    console.log("findAddr" + findAddr + "val" + radioRef.current.value);
+
+    if (findAddr !== undefined) {
+      setFindAddress(findAddr);
+      localStorage.setItem("foundAddr", true);
+      setPincode(findAddr.pincode);
+      setAddress(findAddr.full_address);
+      setUserAddressId(findAddr.user_address_id);
     } else {
-      setAddress("");
-      setPincode(0);
+      localStorage.setItem("foundAddr", false);
     }
   };
 
   useEffect(() => {
-    handleRadio("home");
-  }, []);
+    fetchAddressData();
+  }, [radioRef]);
 
-  const handleShippingAddress = async (e) => {
+  // useEffect(() => {
+  //   handleRadio("home");
+  //   fetchAddressData();
+  // }, []);
+
+  // const handleRadio = (addr) => {
+  //   val = addr;
+  // };
+
+  const handleShippingAddress = (e) => {
     e.preventDefault();
-    if (showAddr === undefined) {
-      try {
-        const authAxios = axios.create({
-          baseURL: "https://dharm.ga/api",
-          headers: {
-            Authorization: `Bearer ${JSON.parse(
-              localStorage.getItem("userToken")
-            )}`,
-          },
-        });
 
-        const status = await authAxios.post("/useraddress", {
-          address: [
-            {
-              user_address_name: val,
-              full_address: address,
-              pincode: 331133,
-            },
-          ],
-        });
-      } catch (err) {
-        console.log(err);
-      }
+    console.log(localStorage.getItem("foundAddr"));
+
+    if (localStorage.getItem("foundAddr") === "yes") {
+      dispatch(
+        updateShippingAddress(
+          userAddressId,
+          radioRef.current.value,
+          address,
+          pincode
+        )
+      ); // update address
+      localStorage.removeItem("foundAddr");
+    } else {
+      dispatch(addShippingAddress(radioRef.current.value, address, pincode)); // add new address
+      localStorage.removeItem("foundAddr");
     }
+
     setExpanded("panel2");
   };
 
@@ -122,8 +137,9 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             <input
               type="text"
               value={city}
-              onChange={(e) => setCity(e.target.value)}
+              // onChange={(e) => setCity(e.target.value)}
               required
+              disabled
             />
           </div>
         </div>
@@ -146,7 +162,8 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="home"
             name="address_type"
             value="home"
-            onChange={(e) => handleRadio(e.target.value)}
+            // onChange={(e) => handleRadio(e.target.value)}
+            ref={radioRef}
             defaultChecked
           />
            <label htmlFor="home">Home</label>
@@ -155,7 +172,8 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="work"
             name="address_type"
             value="work"
-            onChange={(e) => handleRadio(e.target.value)}
+            // onChange={(e) => handleRadio(e.target.value)}
+            ref={radioRef}
           />
            <label htmlFor="work">Work</label>
           <input
@@ -163,7 +181,8 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
             id="other"
             name="address_type"
             value="other"
-            onChange={(e) => handleRadio(e.target.value)}
+            // onChange={(e) => handleRadio(e.target.value)}
+            ref={radioRef}
           />
            <label htmlFor="other">Other</label>
           <br />
