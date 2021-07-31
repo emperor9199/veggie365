@@ -17,7 +17,6 @@ import { addToCart } from "../../redux/actions/cartActions";
 function SoloProduct() {
   let { pid } = useParams();
 
-
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
@@ -173,7 +172,7 @@ function SoloProduct() {
         </div>
         <div className="solo_sec4">
           <div className="soloproduct_comments">
-            <CommentSec comment={comment} />
+            <CommentSec comment={comment} Pproduct_id={Pproduct_id} setRload={setRload}/>
           </div>
         </div>
       </div>

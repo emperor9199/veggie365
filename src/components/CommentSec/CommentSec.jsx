@@ -1,18 +1,19 @@
 import React , { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { addComment } from "../../redux/actions/cartActions";
+import { addComment } from "../../redux/actions/cartActions";
 import "./CommentSec.css";
 
-function CommentSec({ comment }) {
+function CommentSec({ comment,Pproduct_id,setRload }) {
 
   const dispatch = useDispatch();
 
   const [commentdata, setCommentdata] = useState("");
 
-  // const handleComment = (e) => {
-  //   e.preventDefault();
-  //   dispatch(addComment(99, commentdata));
-  // };
+  const handleComment = () => {
+    
+    dispatch(addComment(Pproduct_id, commentdata));
+    setRload(true);
+  };
 
   return (
     <div className="CommentSec_container">
@@ -23,8 +24,8 @@ function CommentSec({ comment }) {
         </div>
         <div className="commentsec_comment_box">
           <div className="commentsec_comment_box_title">Leave Reply</div>
-          <textarea name="comments" className="comment_sec_cmnt_box" placeholder="Post Your Comments"></textarea>
-          <div className="commentsec_comment_box_btn">Post</div>
+          <textarea name="comments" className="comment_sec_cmnt_box" placeholder="Post Your Comments" onChange={(e) => setCommentdata(e.target.value)}></textarea>
+          <div className="commentsec_comment_box_btn" onClick={() => handleComment()}>Post</div>
         </div>
         <div className="comments_sec_comment_container">
           {
