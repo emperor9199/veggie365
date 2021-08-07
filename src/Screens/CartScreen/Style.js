@@ -74,6 +74,10 @@ export const CartContainer = styled.div`
       flex-basis: 20%;
       padding: 2rem 1rem;
       color: green;
+
+      > p {
+        font-weight: bold;
+      }
     }
   }
 

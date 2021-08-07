@@ -11,6 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import UpdateIcon from "@material-ui/icons/Update";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import veggieLogo from "../../img/veggie-logo.svg";
 
 const PrimaryNav = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,11 @@ const PrimaryNav = () => {
     <PrimaryNavContainer>
       <div className="nav-logo">
         <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <h1>VEGGI 365</h1>
+          <img
+            src={veggieLogo}
+            alt="logo"
+            style={{ width: "6vw", padding: ".5rem" }}
+          />
         </Link>
       </div>
       <div className="nav-items">
@@ -45,7 +50,7 @@ const PrimaryNav = () => {
             }}
           >
             <PersonIcon style={{ marginRight: ".3rem" }} />
-            {Object.keys(user).length ? user.user_name : "Login"}
+            {Object.keys(user).length ? "Hello, " + user.user_name : "Login"}
             <div
               className={
                 Object.keys(user).length

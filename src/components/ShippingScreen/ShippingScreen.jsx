@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import "./shippingStyle.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ShippingContainer } from "./Styles";
 import axios from "axios";
 import {
   addShippingAddress,
   updateShippingAddress,
 } from "../../redux/actions/cartActions";
+
 var val = "";
 var addressType = [];
 
@@ -88,95 +89,93 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   };
 
   return (
-    <form onSubmit={handleShippingAddress}>
-      <ShippingContainer>
-        <div className="form-section">
-          <div>
-            <label htmlFor="fullName">Your Name</label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="mobile">Mobile no</label>
-            <input
-              type="text"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              required
-            />
-          </div>
+    <form className="shipping-container" onSubmit={handleShippingAddress}>
+      <div className="first-sec">
+        <div className="sub-sec">
+          <label htmlFor="fullname">FullName</label>
+          <input
+            type="text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
         </div>
-        <div className="form-section">
-          <div>
-            <label htmlFor="pincode">Pincode</label>
-            <input
-              type="text"
-              value={pincode}
-              onChange={(e) => setPincode(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              value={city}
-              // onChange={(e) => setCity(e.target.value)}
-              required
-              disabled
-            />
-          </div>
+        <div className="sub-sec">
+          <label htmlFor="mobile">Mobile No</label>
+          <input
+            type="text"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            required
+          />
         </div>
-        <div className="form-address-section">
-          <div>
-            <label htmlFor="address">Address</label>
-            <br />
-            <textarea
-              cols={40}
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </div>
+      </div>
+      <div className="second-sec">
+        <div className="sub-sec">
+          <label htmlFor="pincode">Pincode</label>
+          <input
+            type="text"
+            value={pincode}
+            onChange={(e) => setPincode(e.target.value)}
+            required
+          />
         </div>
+        <div className="sub-sec">
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            value={city}
+            // onChange={(e) => setCity(e.target.value)}
+            required
+            disabled
+          />
+        </div>
+      </div>
+      <div className="third-sec">
+        <div className="last-sub-sec">
+          <label htmlFor="address">Address</label>
+          <textarea
+            type="text"
+            rows="3"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </div>
+      </div>
 
-        <div className="choose-address">
-          <input
-            type="radio"
-            id="home"
-            name="address_type"
-            value="home"
-            onChange={(e) => handleRadio(e.target.value)}
-            defaultChecked
-          />
-           <label htmlFor="home">Home</label>
-          <input
-            type="radio"
-            id="work"
-            name="address_type"
-            value="work"
-            onChange={(e) => handleRadio(e.target.value)}
-          />
-           <label htmlFor="work">Work</label>
-          <input
-            type="radio"
-            id="other"
-            name="address_type"
-            value="other"
-            onChange={(e) => handleRadio(e.target.value)}
-          />
-           <label htmlFor="other">Other</label>
-          <br />
-        </div>
+      <div className="choose-address">
+        <input
+          type="radio"
+          id="home"
+          name="address_type"
+          value="home"
+          onChange={(e) => handleRadio(e.target.value)}
+          defaultChecked
+        />
+         <label htmlFor="home">Home</label>
+        <input
+          type="radio"
+          id="work"
+          name="address_type"
+          value="work"
+          onChange={(e) => handleRadio(e.target.value)}
+        />
+         <label htmlFor="work">Work</label>
+        <input
+          type="radio"
+          id="other"
+          name="address_type"
+          value="other"
+          onChange={(e) => handleRadio(e.target.value)}
+        />
+         <label htmlFor="other">Other</label>
+        <br />
+      </div>
 
-        <div className="continue-shipping-btn">
-          <button type="submit">Continue</button>
-        </div>
-      </ShippingContainer>
+      <div className="continue-shipping-btn">
+        <button type="submit">Continue</button>
+      </div>
     </form>
   );
 };
