@@ -7,12 +7,12 @@ export const PrimaryNavContainer = styled.div`
   background-color: white;
 
   .nav-logo {
-    flex: 0.15;
+    flex: 0.1;
     margin-left: 2rem;
   }
 
   .nav-items {
-    flex: 0.85;
+    flex: 0.9;
     display: flex;
     align-items: center;
 

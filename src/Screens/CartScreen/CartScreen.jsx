@@ -44,7 +44,7 @@ const CartScreen = (props) => {
     0
   );
 
-  deliveryPrice = itemsPrice > 100 ? 15 : 0;
+  deliveryPrice = 0;
   taxPrice = 0;
   totalPrice = itemsPrice + deliveryPrice + taxPrice;
 
@@ -94,14 +94,28 @@ const CartScreen = (props) => {
           <div className="cart-right">
             <h3>PRICE DETAILS</h3>
             <hr />
-            <p>Items Price : ₹{itemsPrice}</p>
-            <p>Delivery Charges : ₹{deliveryPrice}</p>
-            <p>Tax Price : ₹{taxPrice}</p>
-            <p style={{ color: "green", fontWeight: "bold" }}>
+            <p style={{ fontWeight: "bold" }}>
+              Items Price :{" "}
+              <span style={{ color: "green" }}> ₹{itemsPrice}</span>
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              Delivery Charges :{" "}
+              <span style={{ color: "green" }}>
+                {deliveryPrice === 0 ? "Free" : "₹" + deliveryPrice}
+              </span>
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              Tax Price :{" "}
+              <span style={{ color: "green" }}>
+                {" "}
+                {taxPrice === 0 ? "No Tax" : "₹" + taxPrice}
+              </span>
+            </p>
+            <h3 style={{ fontWeight: "bold", color: "green" }}>
               Grand Total of {""}
               {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}
               {""} items : ₹{totalPrice}
-            </p>
+            </h3>
             {/* <p>
               Grand Total: (
               {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}

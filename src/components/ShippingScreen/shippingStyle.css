@@ -1,0 +1,74 @@
+.shipping-container {
+  width: 50vw;
+}
+
+.first-sec {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.second-sec {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sub-sec {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 2rem;
+  margin: 0.7rem 0;
+}
+
+.sub-sec > input {
+  padding: 0.4rem;
+}
+
+.last-sub-sec {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 2rem;
+  margin: 0.7rem 0;
+}
+
+.last-sub-sec > input {
+  padding: 0.4rem;
+}
+
+.choose-address {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.continue-shipping-btn {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.continue-shipping-btn > button {
+  background-color: #4ac85d;
+  padding: 0.6rem;
+  /* width: 96%; */
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .shipping-container {
+    width: 90vw;
+  }
+
+  .first-sec {
+    flex-direction: column;
+  }
+
+  .second-sec {
+    flex-direction: column;
+  }
+}

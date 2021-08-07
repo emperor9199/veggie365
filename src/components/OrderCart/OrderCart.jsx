@@ -42,8 +42,8 @@ const OrderCart = ({ expanded, setExpanded }) => {
     0
   );
 
-  deliveryPrice = itemsPrice > 100 ? 15 : 0;
-  taxPrice = 0.05 * itemsPrice;
+  deliveryPrice = 0;
+  taxPrice = 0;
   totalPrice = itemsPrice + deliveryPrice + taxPrice;
 
   useEffect(() => {
