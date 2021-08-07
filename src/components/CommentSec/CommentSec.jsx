@@ -5,6 +5,8 @@ import "./CommentSec.css";
 
 function CommentSec({ comment,Pproduct_id,setRload }) {
 
+  const [loadMore,setLoadmore] = useState(false);
+
   const dispatch = useDispatch();
 
   const [commentdata, setCommentdata] = useState("");
@@ -30,7 +32,7 @@ function CommentSec({ comment,Pproduct_id,setRload }) {
         <div className="comments_sec_comment_container">
           {
           comment.length === 0 ? <div key="123">No Comments Available</div> :
-          comment.map((cmnt, key) => {
+          comment.slice(0,loadMore ? 999 : 3).map((cmnt, key) => {
             return (
               <div key={key}>
                 <div className="comments_sec_comment" >
@@ -57,6 +59,7 @@ function CommentSec({ comment,Pproduct_id,setRload }) {
               </div>
             );
           })}
+          <div className="load_more" onClick={() => setLoadmore(!loadMore)}>{loadMore ? "See Less" : "See More"}</div>
         </div>
       </div>
     </div>

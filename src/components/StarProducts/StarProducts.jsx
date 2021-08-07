@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import StarIcon from "@material-ui/icons/Star";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -128,12 +127,15 @@ function StarProducts({ no, categoryName, categoryid }) {
                     .filter((item) => item.product_id === product.product_id)
                     .map((p) => {
                       return (
-                        <div className="starproduct_price">
-                          ₹{p.product_price} per/{p.price_unit_name}
+                        <div>
                           <del className="starproduct_price_delete">
                             MRP ₹70.00
                           </del>
+                          <div className="starproduct_price">
+                          ₹{p.product_price} per/{p.price_unit_name}
                         </div>
+                        </div>
+                        
                       );
                     })}
                 </Link>

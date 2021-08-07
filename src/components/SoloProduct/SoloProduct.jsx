@@ -61,6 +61,7 @@ function SoloProduct() {
     Pcategory_id,
     Pproduct_id,
     total_quantity;
+
   products.map((propt) => {
     PImg = propt.product_img;
     product_name = propt.product_name;
@@ -114,10 +115,10 @@ function SoloProduct() {
             </div>
             <div className="soloproduct_btns_con">
               <div className="soloproduct_Buy_btn_con">
-                <div className="soloproduct_Buy_btn">Buy Now</div>
+                <div className="soloproduct_Buy_btn">Add To Cart</div>
               </div>
               <div className="soloproduct_Buy_btn_con">
-                <div className="soloproduct_Buy_btn">Add To Cart</div>
+                <div className="soloproduct_Buy_btn" style={{backgroundColor: "#299b3a"}}>Buy Now</div>
               </div>
             </div>
             <div className="soloproduct_service">

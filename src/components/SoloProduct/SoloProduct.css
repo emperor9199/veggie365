@@ -11,6 +11,10 @@
   gap: 1rem;
   overflow: hidden;
 }
+.solo_sec2{
+  background-color: #ffffff;
+  margin-top: 2rem;
+}
 .small_img {
   flex-basis: 15%;
   width: 100%;

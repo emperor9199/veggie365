@@ -100,11 +100,13 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
                     .filter((item) => item.product_id === product.product_id)
                     .map((p,key) => {
                       return (
-                        <div className="starproduct_price" key={key}>
-                          ₹{p.product_price} per/{p.price_unit_name}
+                        <div>
                           <del className="starproduct_price_delete">
                             MRP ₹70.00
                           </del>
+                            <div className="starproduct_price" key={key}>
+                          ₹{p.product_price} per/{p.price_unit_name}
+                        </div>
                         </div>
                       );
                     })}

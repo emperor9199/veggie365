@@ -20,6 +20,7 @@ import SoloProduct from "./components/SoloProduct/SoloProduct";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen/PlaceOrderScreen";
 import AllProducts from "./components/AllProducts/AllProducts";
 import TestComment from "./Screens/TestComment";
+import MyOrders from "./components/MyOrders/MyOrders"
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -59,8 +60,9 @@ function App() {
           <Route path="/order/:id" component={YourOrderScreen} exact />
           <Route path="/product/:pid" component={SoloProduct} exact />
           <Route path="/place-order" component={PlaceOrderScreen} exact />
-          <Route path="/products/id" component={AllProducts} exact />
+          <Route path="/products/:catID/:catName" component={AllProducts} exact />
           <Route path="/comment" component={TestComment} exact />
+          <Route path="/your-order-his" component={MyOrders} exact />
         </Switch>
 
         <Footer />

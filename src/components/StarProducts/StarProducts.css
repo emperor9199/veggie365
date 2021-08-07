@@ -41,7 +41,7 @@
 }
 .starproduct_card {
   width: 14rem;
-  height: 17.2rem;
+  height: 18.4rem;
   background-color: #ffff;
   border-radius: 0.4rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -51,7 +51,7 @@
 .starproduct_color_card {
   flex-shrink: 0;
   width: 14rem;
-  height: 15.7rem;
+  height: 16.4rem;
   opacity: 0.9;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
@@ -155,7 +155,8 @@
   transform: scale(1.1);
 }
 .starproduct_data {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.3rem;
+  
 }
 .starproduct_title {
   font-size: 1.2rem;
@@ -163,14 +164,12 @@
   margin-top: .5rem;
 }
 .starproduct_price {
-  margin-top: 0.2rem;
   font-weight: 500;
   font-size: 0.9rem;
 }
 .starproduct_price_delete {
   font-size: 0.8rem;
   color: grey;
-  margin-left: 1rem;
 }
 .starproduct_btn_con {
   display: flex;
