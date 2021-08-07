@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PlaceOrderScreen = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const classes = useStyles();
 
   // expand accordingly
@@ -40,7 +44,7 @@ const PlaceOrderScreen = () => {
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
-          style={{ padding: "1rem 0" }}
+          style={{ padding: "1rem 0", borderRadius: "5px" }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -61,7 +65,7 @@ const PlaceOrderScreen = () => {
         <Accordion
           expanded={expanded === "panel2"}
           onChange={handleChange("panel2")}
-          style={{ padding: "1rem 0" }}
+          style={{ padding: "1rem 0", borderRadius: "5px" }}
           // disabled={Object.keys(shippingAddress).length ? false : true}
         >
           <AccordionSummary
@@ -81,7 +85,7 @@ const PlaceOrderScreen = () => {
         <Accordion
           expanded={expanded === "panel3"}
           onChange={handleChange("panel3")}
-          style={{ padding: "1rem 0" }}
+          style={{ padding: "1rem 0", borderRadius: "5px" }}
           // disabled={Object.keys(shippingAddress).length ? false : true}
         >
           <AccordionSummary

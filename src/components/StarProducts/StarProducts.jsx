@@ -5,9 +5,35 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import "./StarProducts.css";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 function StarProducts({ no, categoryName, categoryid }) {
-  
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
@@ -33,6 +59,7 @@ function StarProducts({ no, categoryName, categoryid }) {
 
   const handleAddToCart = (product, unit_price) => {
     dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+    setOpen(true);
   };
 
   var sliceData;
@@ -55,7 +82,7 @@ function StarProducts({ no, categoryName, categoryid }) {
       }
     });
   });
-  
+
   return (
     <div className="starproducts_container">
       <div className="starproducts_head_title">
@@ -64,7 +91,7 @@ function StarProducts({ no, categoryName, categoryid }) {
       </div>
       <div className="starproducts_line" />
       <div className="starproducts_card_con">
-        {sliceData.map((product,key) => {
+        {sliceData.map((product, key) => {
           return (
             <div className="starproduct_card" key={key}>
               <Link
@@ -123,6 +150,19 @@ function StarProducts({ no, categoryName, categoryid }) {
                         }
                       >
                         ADD
+                        {/* snackbar */}
+                        <div className={classes.root}>
+                          <Snackbar
+                            open={open}
+                            autoHideDuration={1000}
+                            onClose={handleClose}
+                          >
+                            <Alert onClose={handleClose} severity="success">
+                              Item added in your Cart
+                            </Alert>
+                          </Snackbar>
+                        </div>
+                        {/* snackbar end */}
                       </div>
                     );
                   })}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AboutContainer } from "./Styles";
 import vegStore from "../../img/about.svg";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -7,6 +7,10 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 
 const AboutScreen = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <AboutContainer>
       <div className="context">

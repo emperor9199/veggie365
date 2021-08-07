@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
 import AboutScreen from "./Screens/AboutScreen/AboutScreen";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
@@ -34,6 +34,10 @@ function App() {
   //   }
   // }, [location]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Router>
@@ -58,7 +62,7 @@ function App() {
           <Route path="/products/id" component={AllProducts} exact />
           <Route path="/comment" component={TestComment} exact />
         </Switch>
-        
+
         <Footer />
       </Router>
     </>

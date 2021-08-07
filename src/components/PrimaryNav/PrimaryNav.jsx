@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
 import { userLogout } from "../../redux/actions/userActions";
+import SearchIcon from "@material-ui/icons/Search";
+import UpdateIcon from "@material-ui/icons/Update";
+import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const PrimaryNav = () => {
   const dispatch = useDispatch();
@@ -28,7 +32,9 @@ const PrimaryNav = () => {
       <div className="nav-items">
         <div className="search-container">
           <input type="text" placeholder="Search Product..." />
-          <button>Search</button>
+          <button>
+            <SearchIcon />
+          </button>
         </div>
         <div className="nav-links">
           <Link
@@ -50,20 +56,24 @@ const PrimaryNav = () => {
               <p
                 style={{
                   borderBottom: "1px solid lightgray",
-                  textAlign: "center",
+                  // textAlign: "center",
                 }}
               >
+                <UpdateIcon style={{ marginRight: "1rem" }} />
                 Update Profile
               </p>
               <p
                 style={{
                   borderBottom: "1px solid lightgray",
-                  textAlign: "center",
+                  // textAlign: "center",
                 }}
               >
+                <ShoppingBasketIcon style={{ marginRight: "1rem" }} />
                 Your Orders
               </p>
-              <p onClick={handleLogout}>Logout</p>
+              <p onClick={handleLogout}>
+                <ExitToAppIcon style={{ marginRight: "1rem" }} /> Logout Here
+              </p>
             </div>
           </Link>
           <Link to="/" className="nav-specific-link">

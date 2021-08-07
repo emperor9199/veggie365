@@ -14,6 +14,9 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
     position: fixed;
     top: 0;
     width: 100%; //if there comes extra space then put 100% here;
+    .cart-icon-secondary {
+      display: inline;
+    }
   }
 
   .nav-items {
@@ -74,7 +77,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         font-weight: bold;
         font-size: 1rem;
         background-color: #4ac85d;
-        padding: 0.5rem 1rem;
+        padding: 0.3rem 1rem;
       }
     }
   }
@@ -85,6 +88,35 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
     background-color: #4ac85d;
     color: white;
     padding: 1.2rem 0;
+    font-weight: bold;
+    position: relative;
+
+    .sub-cata {
+      display: none;
+    }
+  }
+
+  .s-logo:hover {
+    cursor: pointer;
+    .sub-cata {
+      position: absolute;
+      background: white;
+      top: 9.3vh;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      width: 20vw;
+
+      ul > li {
+        padding: 0.7rem 0;
+        color: black;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .cart-icon-secondary {
+    display: none;
   }
 
   .mobile-nav-container {

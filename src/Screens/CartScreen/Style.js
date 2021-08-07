@@ -28,6 +28,7 @@ export const CartContainer = styled.div`
       color: white;
       font-size: 1.2rem;
       font-weight: bold;
+      cursor: pointer;
     }
   }
 

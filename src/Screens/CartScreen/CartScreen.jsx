@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import EmptyCart from "../../components/EmptyCart/EmptyCart";
 import {
   addToCart,
   decreaseQty,
@@ -9,6 +10,10 @@ import {
 import { CartContainer } from "./Style";
 
 const CartScreen = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const dispatch = useDispatch();
 
   const { cartItems, cartItemsId } = useSelector(
@@ -40,7 +45,7 @@ const CartScreen = (props) => {
   );
 
   deliveryPrice = itemsPrice > 100 ? 15 : 0;
-  taxPrice = 0.05 * itemsPrice;
+  taxPrice = 0;
   totalPrice = itemsPrice + deliveryPrice + taxPrice;
 
   const handleOrderPrice = () => {
@@ -48,10 +53,14 @@ const CartScreen = (props) => {
     history.push("/place-order");
   };
 
+  var date = String(new Date());
+  var todayDate = date.split(" ");
+  todayDate = todayDate[0] + " " + todayDate[1] + " " + todayDate[2];
+
   return (
     <>
       {cartItemsId.length === 0 ? (
-        <div>Cart is Empty</div>
+        <EmptyCart name="Cart" />
       ) : (
         <CartContainer>
           <div className="cart-left">
@@ -76,7 +85,7 @@ const CartScreen = (props) => {
                     <h3> Price: ₹{item.unit_price * item.qty} </h3>
                   </div>
                   <div className="cart-item-delivery-details">
-                    <p>Delivery by Thu Jul 29</p>
+                    <p>Delivery by {todayDate}</p>
                   </div>
                 </div>
               );
@@ -88,10 +97,10 @@ const CartScreen = (props) => {
             <p>Items Price : ₹{itemsPrice}</p>
             <p>Delivery Charges : ₹{deliveryPrice}</p>
             <p>Tax Price : ₹{taxPrice}</p>
-            <p>
-              Grand Total: (
+            <p style={{ color: "green", fontWeight: "bold" }}>
+              Grand Total of {""}
               {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}
-              items) : ₹{totalPrice}
+              {""} items : ₹{totalPrice}
             </p>
             {/* <p>
               Grand Total: (

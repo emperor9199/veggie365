@@ -74,13 +74,18 @@ export const PrimaryNavContainer = styled.div`
           display: inline;
           position: absolute;
           top: 1.5rem;
-          left: -0.8rem;
+          left: -3rem;
           background-color: white;
+          width: 13vw;
           z-index: 1;
+          border-radius: 5px;
         }
 
         .profile-options > p {
-          padding: 0.6rem 3rem 1rem 3rem;
+          padding: 0.6rem 0 1rem 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           /* border-bottom: 1px solid gray; */
         }
       }

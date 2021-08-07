@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { SecondaryNavContainer } from "./Style";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Link } from "react-router-dom";
+import SearchIcon from "@material-ui/icons/Search";
+import Bagde from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useSelector } from "react-redux";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
   const [dropDownItem, setDropDownItem] = useState(false);
+  const { user } = useSelector((state) => state.userLoginReducer);
+  const { cartItemsId } = useSelector((state) => state.addToCartReducer);
 
   const changeBackground = () => {
     if (window.scrollY >= 55) {
@@ -46,11 +52,44 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         </span>
         <div className={show ? "search-container" : "not-show"}>
           <input type="text" placeholder="Search Product..." />
-          <button>Search</button>
+          <button>
+            <SearchIcon />
+          </button>
+        </div>
+        <Link
+          to={Object.keys(user).length ? "/cart" : "/login"}
+          style={{
+            color: "white",
+            textDecoration: "none",
+            marginRight: "2rem",
+          }}
+          className="cart-icon-secondary"
+        >
+          <Bagde
+            badgeContent={cartItemsId.length}
+            color="error"
+            style={{
+              cursor: "pointer",
+              marginRight: ".5rem",
+            }}
+          >
+            <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
+          </Bagde>
+          Cart
+        </Link>
+      </div>
+      <div className="s-logo">
+        All Catagories
+        <div className="sub-cata">
+          <ul>
+            <li>Vegeis</li>
+            <li>Fruits</li>
+            <li>Tomato</li>
+            <li>Banana</li>
+            <li>Apple</li>
+          </ul>
         </div>
       </div>
-      <div className="s-logo">All Catagories</div>
-
       {/* mobile view */}
       <div className="mobile-nav-container">
         <div className="mobile-nav-logo">
@@ -64,7 +103,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         >
           <div className="mobile-search-container">
             <input type="text" placeholder="Search Product..." />
-            <button>Search</button>
+            <button>
+              <SearchIcon />
+            </button>
           </div>
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
