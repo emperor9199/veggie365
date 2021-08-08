@@ -3,8 +3,6 @@ import {
   DECREASE_QTY,
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
-  ADD_SHIPPING_ADDRESS,
-  UPDATE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import axios from "axios";
 
@@ -64,11 +62,6 @@ export const decreaseQty = (productId) => (dispatch, getState) => {
 
 export const addShippingAddress =
   (val, address, pincode) => async (dispatch) => {
-    // setTimeout(() => {
-    //   localStorage.setItem("shippingAddress", JSON.stringify(data));
-    // }, 200);
-
-    console.log("add shipping address");
     try {
       const authAxios = axios.create({
         baseURL: "https://dharm.ga/api",
@@ -89,20 +82,30 @@ export const addShippingAddress =
           },
         ],
       });
+
+      // set in localStorage
+
+      setTimeout(async () => {
+        const authAxiosTwo = axios.create({
+          baseURL: "https://dharm.ga/api",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userToken")
+            )}`,
+          },
+        });
+
+        const { data } = await authAxiosTwo.get("/useraddress");
+
+        localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
+      }, 200);
     } catch (err) {
       alert(err.message);
     }
-
-    // dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
   };
 
 export const updateShippingAddress =
   (userAddressId, val, address, pincode) => async (dispatch) => {
-    // setTimeout(() => {
-    //   localStorage.setItem("shippingAddress", JSON.stringify(data));
-    // }, 200);
-    console.log("update shipping address");
-
     try {
       const authAxios = axios.create({
         baseURL: "https://dharm.ga/api",
@@ -120,11 +123,26 @@ export const updateShippingAddress =
         pincode: pincode,
         city_name: "Rajkot",
       });
+
+      // set in localStorage
+
+      setTimeout(async () => {
+        const authAxiosTwo = axios.create({
+          baseURL: "https://dharm.ga/api",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userToken")
+            )}`,
+          },
+        });
+
+        const { data } = await authAxiosTwo.get("/useraddress");
+
+        localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
+      }, 200);
     } catch (err) {
       alert(err);
     }
-
-    // dispatch({ type: UPDATE_SHIPPING_ADDRESS, payload: data });
   };
 
 export const savePaymentMethod = (data) => async (dispatch) => {

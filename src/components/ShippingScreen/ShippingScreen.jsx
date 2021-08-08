@@ -45,7 +45,6 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
 
     const findAddr = data?.find((item) => item.user_address_name === a_type);
 
-    console.log(findAddr);
     if (findAddr !== undefined) {
       setFindAddress(findAddr);
       localStorage.setItem("foundAddr", true);
@@ -72,7 +71,6 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   const handleShippingAddress = (e) => {
     e.preventDefault();
 
-    console.log(pincode);
     if (val === "other") {
       setPincode(pincode);
       setAddress(address);
@@ -85,7 +83,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
         pincode: Number(pincode),
       };
 
-      localStorage.setItem("otherAddress", JSON.stringify(other_address));
+      localStorage.setItem("shippingAddress", JSON.stringify(other_address));
     }
 
     if (val === "home" && (localStorage.getItem("foundAddr") || findAddress)) {
