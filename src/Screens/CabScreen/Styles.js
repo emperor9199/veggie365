@@ -31,4 +31,18 @@ export const CabContainer = styled.div`
       background-color: #3eab4e;
     }
   }
+
+  @media (max-width: 720px) {
+    .cab-left {
+      display: none;
+    }
+
+    flex-direction: column;
+    width: 90%;
+    .cab-right {
+      .sub-sec > h1 {
+        text-align: center;
+      }
+    }
+  }
 `;

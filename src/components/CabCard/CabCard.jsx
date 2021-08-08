@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const CabCard = () => {
   const history = useHistory();
+
   const handleCabBook = () => {
     history.push("/book-cab");
   };
