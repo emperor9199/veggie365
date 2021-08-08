@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./shippingStyle.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import {
   addShippingAddress,
   updateShippingAddress,
@@ -13,6 +12,7 @@ var val = "";
 const ShippingScreen = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
+  const { shippingAddress } = useSelector((state) => state.addToCartReducer);
   const history = useHistory();
 
   if (!Object.keys(user).length) {
@@ -32,18 +32,9 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   const fetchAddressData = async (a_type) => {
     val = a_type;
 
-    const authAxios = axios.create({
-      baseURL: "https://dharm.ga/api",
-      headers: {
-        Authorization: `Bearer ${JSON.parse(
-          localStorage.getItem("userToken")
-        )}`,
-      },
-    });
-
-    const { data } = await authAxios.get("/useraddress");
-
-    const findAddr = data?.find((item) => item.user_address_name === a_type);
+    const findAddr = shippingAddress?.find(
+      (item) => item.user_address_name === a_type
+    );
 
     if (findAddr !== undefined) {
       setFindAddress(findAddr);
@@ -65,31 +56,16 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   }, []);
 
   useEffect(() => {
-    fetchAddressData("home");
+    fetchAddressData(val);
   }, [expanded === "panel1"]);
 
   const handleShippingAddress = (e) => {
     e.preventDefault();
 
-    if (val === "other") {
-      setPincode(pincode);
-      setAddress(address);
-
-      const other_address = {
-        user_id: user.user_id,
-        user_address_name: "other",
-        full_address: address,
-        city_name: "Rajkot",
-        pincode: Number(pincode),
-      };
-
-      localStorage.setItem("shippingAddress", JSON.stringify(other_address));
-    }
-
-    if (val === "home" && (localStorage.getItem("foundAddr") || findAddress)) {
+    if (localStorage.getItem("foundAddr") || findAddress) {
       dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
       localStorage.removeItem("foundAddr");
-    } else if (val === "home") {
+    } else {
       dispatch(addShippingAddress(val, address, pincode)); // add new address
       localStorage.removeItem("foundAddr");
     }

@@ -3,6 +3,8 @@ import {
   DECREASE_QTY,
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
+  ADD_SHIPPING_ADDRESS,
+  UPDATE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import axios from "axios";
 
@@ -96,8 +98,12 @@ export const addShippingAddress =
         });
 
         const { data } = await authAxiosTwo.get("/useraddress");
+        // const filterAddress = data?.find(
+        //   (item) => item.user_address_name === val
+        // );
+        dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
 
-        localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
+        // localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
       }, 200);
     } catch (err) {
       alert(err.message);
@@ -137,8 +143,10 @@ export const updateShippingAddress =
         });
 
         const { data } = await authAxiosTwo.get("/useraddress");
-
-        localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
+        // const filterAddress = data?.find(
+        //   (item) => item.user_address_name === val
+        // );
+        dispatch({ type: UPDATE_SHIPPING_ADDRESS, payload: data });
       }, 200);
     } catch (err) {
       alert(err);
