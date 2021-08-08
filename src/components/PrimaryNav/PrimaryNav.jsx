@@ -81,10 +81,7 @@ const PrimaryNav = () => {
               </p>
             </div>
           </Link>
-          <Link to="/" className="nav-specific-link">
-            <FavoriteIcon style={{ marginRight: ".3rem" }} />
-            Wishlist
-          </Link>
+
           <Link
             to={Object.keys(user).length ? "/cart" : "/login"}
             className="nav-specific-link"

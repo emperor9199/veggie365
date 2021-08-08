@@ -37,6 +37,11 @@
   border: none;
   margin-top: 0.5rem;
 }
+
+.signupform_input_btn:hover {
+  background-color: #3eab4e;
+}
+
 .signupform_external_btn {
   margin-top: 0.5rem;
   padding: 0.4rem;

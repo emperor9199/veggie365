@@ -47,6 +47,10 @@ function SignUpPageForm(props) {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (Object.keys(user).length) {
       historyTwo.push("/");
     }

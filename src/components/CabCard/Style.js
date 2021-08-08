@@ -45,6 +45,11 @@ export const CabContainer = styled.div`
       font-weight: bold;
       font-size: 1rem;
       border-radius: 5px;
+      cursor: pointer;
+    }
+
+    > button:hover {
+      background-color: #3eab4e;
     }
   }
 

@@ -76,7 +76,7 @@ export const PrimaryNavContainer = styled.div`
           top: 1.5rem;
           left: -3rem;
           background-color: white;
-          width: 13vw;
+          width: 15vw;
           z-index: 1;
           border-radius: 5px;
         }

@@ -1,8 +1,14 @@
 import React from "react";
 import { CabContainer } from "./Style";
 import img1 from "../../img/cab-book.svg";
+import { useHistory } from "react-router-dom";
 
 const CabCard = () => {
+  const history = useHistory();
+  const handleCabBook = () => {
+    history.push("/book-cab");
+  };
+
   return (
     <CabContainer>
       <div className="cab-left">
@@ -19,7 +25,7 @@ const CabCard = () => {
           tempora aut at illo. Eveniet, ducimus. Labore ducimus sed obcaecati
           iste fugit!
         </p>
-        <button>Book a Cab</button>
+        <button onClick={handleCabBook}>Book a Cab</button>
       </div>
     </CabContainer>
   );

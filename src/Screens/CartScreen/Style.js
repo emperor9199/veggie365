@@ -9,6 +9,7 @@ export const CartContainer = styled.div`
     background-color: white;
     margin: 0 1rem;
     padding: 1rem;
+    border-radius: 5px;
   }
 
   .cart-right {
@@ -20,6 +21,8 @@ export const CartContainer = styled.div`
     line-height: 2rem;
     position: sticky;
     top: 4.5rem;
+    box-shadow: 0 5px 4px 1px lightgray;
+    border-radius: 5px;
 
     > .place-order-btn {
       border: none;
@@ -29,6 +32,7 @@ export const CartContainer = styled.div`
       font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
+      border-radius: 5px;
     }
   }
 

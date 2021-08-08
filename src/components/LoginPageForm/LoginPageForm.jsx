@@ -34,6 +34,10 @@ function LoginPageForm(props) {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (Object.keys(user).length) {
       history.push("/");
     }

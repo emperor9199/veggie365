@@ -59,6 +59,11 @@
   cursor: pointer;
   border: none;
 }
+
+.loginform_input_btn:hover {
+  background-color: #3eab4e;
+}
+
 input[type="submit"]:focus {
   border: none;
   outline: none;
@@ -83,6 +88,7 @@ input[type="submit"]:focus {
   border: 1px solid #4ac85d;
   cursor: pointer;
 }
+
 .error_msg {
   color: red;
 }

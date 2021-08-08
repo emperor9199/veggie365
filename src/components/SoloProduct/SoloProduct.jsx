@@ -20,11 +20,11 @@ function SoloProduct() {
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
-  const [reload,setRload] = useState(false);
-  const [cutMRP,setCutmrp] = useState();
-  const [ourPrice,setOurPrice] = useState();
-  const [youSave,setYousave] = useState();
-  const [unit,setUnit] = useState();
+  const [reload, setRload] = useState(false);
+  const [cutMRP, setCutmrp] = useState();
+  const [ourPrice, setOurPrice] = useState();
+  const [youSave, setYousave] = useState();
+  const [unit, setUnit] = useState();
 
   reload && window.location.reload();
 
@@ -43,6 +43,7 @@ function SoloProduct() {
 
   useEffect(() => {
     fetchProducts();
+    window.scrollTo(0, 0);
   }, []);
 
   const handleAddToCart = (product, unit_price) => {
@@ -84,8 +85,8 @@ function SoloProduct() {
   });
 
   const [img, setImg] = useState(null);
-  console.log("cutMRP",cutMRP);
-  console.log("images",images);
+  console.log("cutMRP", cutMRP);
+  console.log("images", images);
   return (
     <div className="soloproduct_container">
       <div className="soloproduct_content">
@@ -99,10 +100,16 @@ function SoloProduct() {
           <div className="soloproduct_info">
             <div className="soloproduct_name">{product_name}</div>
             <div className="soloproduct_price_original soloproduct_common_font">
-              MRP: <del>₹{cutMRP} Per/{unit} </del>
+              MRP:{" "}
+              <del>
+                ₹{cutMRP} Per/{unit}{" "}
+              </del>
             </div>
             <div className="soloproduct_price soloproduct_common_font">
-              Our Price: <span className="original_pri">₹{ourPrice}.00 Per/{unit}</span>
+              Our Price:{" "}
+              <span className="original_pri">
+                ₹{ourPrice}.00 Per/{unit}
+              </span>
             </div>
             {/* <div className="soloproduct_price_original soloproduct_common_font">
               Discount: 5%
@@ -111,14 +118,26 @@ function SoloProduct() {
               You Save: <span className="original_pri">₹{youSave}.00</span>
             </div>
             <div className="soloproduct_iteam_varients">
-              <IteamBox prices={prices} total_quantity={total_quantity} setCutmrp={setCutmrp} setOurPrice={setOurPrice} setYousave={setYousave} setUnit={setUnit}/>
+              <IteamBox
+                prices={prices}
+                total_quantity={total_quantity}
+                setCutmrp={setCutmrp}
+                setOurPrice={setOurPrice}
+                setYousave={setYousave}
+                setUnit={setUnit}
+              />
             </div>
             <div className="soloproduct_btns_con">
               <div className="soloproduct_Buy_btn_con">
                 <div className="soloproduct_Buy_btn">Add To Cart</div>
               </div>
               <div className="soloproduct_Buy_btn_con">
-                <div className="soloproduct_Buy_btn" style={{backgroundColor: "#299b3a"}}>Buy Now</div>
+                <div
+                  className="soloproduct_Buy_btn"
+                  style={{ backgroundColor: "#299b3a" }}
+                >
+                  Buy Now
+                </div>
               </div>
             </div>
             <div className="soloproduct_service">
@@ -173,7 +192,11 @@ function SoloProduct() {
         </div>
         <div className="solo_sec4">
           <div className="soloproduct_comments">
-            <CommentSec comment={comment} Pproduct_id={Pproduct_id} setRload={setRload}/>
+            <CommentSec
+              comment={comment}
+              Pproduct_id={Pproduct_id}
+              setRload={setRload}
+            />
           </div>
         </div>
       </div>
