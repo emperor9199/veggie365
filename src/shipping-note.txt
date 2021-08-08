@@ -9,6 +9,7 @@ import {
 } from "../../redux/actions/cartActions";
 
 var val = "";
+var addressType = [];
 
 const ShippingScreen = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
@@ -29,9 +30,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   const [userAddressId, setUserAddressId] = useState(null);
   const [findAddress, setFindAddress] = useState(null);
 
-  const fetchAddressData = async (a_type) => {
-    val = a_type;
-
+  const fetchAddressData = async () => {
     const authAxios = axios.create({
       baseURL: "https://dharm.ga/api",
       headers: {
@@ -42,10 +41,12 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
     });
 
     const { data } = await authAxios.get("/useraddress");
+    data?.map((item) => {
+      addressType.push(item.user_address_name);
+    });
 
-    const findAddr = data?.find((item) => item.user_address_name === a_type);
+    const findAddr = data?.find((item) => item.user_address_name === val);
 
-    console.log(findAddr);
     if (findAddr !== undefined) {
       setFindAddress(findAddr);
       localStorage.setItem("foundAddr", true);
@@ -54,44 +55,32 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
       setUserAddressId(findAddr.user_address_id);
     } else {
       setFindAddress(null);
-      setPincode("");
+      setPincode(null);
       setAddress("");
       setUserAddressId(null);
       localStorage.removeItem("foundAddr");
     }
   };
 
-  useEffect(() => {
-    fetchAddressData("home");
-  }, []);
+  const handleRadio = (addr) => {
+    val = addr;
+    fetchAddressData();
+  };
 
   useEffect(() => {
-    fetchAddressData("home");
-  }, [expanded === "panel1"]);
+    handleRadio("home");
+    fetchAddressData();
+  }, []);
 
   const handleShippingAddress = (e) => {
     e.preventDefault();
 
-    console.log(pincode);
-    if (val === "other") {
-      setPincode(pincode);
-      setAddress(address);
+    console.log(localStorage.getItem("foundAddr"));
 
-      const other_address = {
-        user_id: user.user_id,
-        user_address_name: "other",
-        full_address: address,
-        city_name: "Rajkot",
-        pincode: Number(pincode),
-      };
-
-      localStorage.setItem("otherAddress", JSON.stringify(other_address));
-    }
-
-    if (val === "home" && (localStorage.getItem("foundAddr") || findAddress)) {
+    if (localStorage.getItem("foundAddr") || findAddress) {
       dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
       localStorage.removeItem("foundAddr");
-    } else if (val === "home") {
+    } else {
       dispatch(addShippingAddress(val, address, pincode)); // add new address
       localStorage.removeItem("foundAddr");
     }
@@ -133,7 +122,13 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
         </div>
         <div className="sub-sec">
           <label htmlFor="city">City</label>
-          <input type="text" value={city} required disabled />
+          <input
+            type="text"
+            value={city}
+            // onChange={(e) => setCity(e.target.value)}
+            required
+            disabled
+          />
         </div>
       </div>
       <div className="third-sec">
@@ -155,17 +150,24 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
           id="home"
           name="address_type"
           value="home"
-          onChange={(e) => fetchAddressData(e.target.value)}
-          checked={val === "home" ? true : false}
+          onChange={(e) => handleRadio(e.target.value)}
+          defaultChecked
         />
          <label htmlFor="home">Home</label>
+        <input
+          type="radio"
+          id="work"
+          name="address_type"
+          value="work"
+          onChange={(e) => handleRadio(e.target.value)}
+        />
+         <label htmlFor="work">Work</label>
         <input
           type="radio"
           id="other"
           name="address_type"
           value="other"
-          onChange={(e) => fetchAddressData(e.target.value)}
-          checked={val === "other" ? true : false}
+          onChange={(e) => handleRadio(e.target.value)}
         />
          <label htmlFor="other">Other</label>
         <br />
