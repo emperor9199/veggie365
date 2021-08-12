@@ -6,10 +6,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import Bagde from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
   const [dropDownItem, setDropDownItem] = useState(false);
+  const [cata, setCata] = useState();
   const { user } = useSelector((state) => state.userLoginReducer);
   const { cartItemsId } = useSelector((state) => state.addToCartReducer);
 
@@ -21,6 +24,26 @@ const SecondaryNav = ({ setToggle, toggle }) => {
     }
   };
   window.addEventListener("scroll", changeBackground);
+
+  useEffect(() => {
+    const fetchCata = async () => {
+      const authAxios = axios.create({
+        baseURL: "https://dharm.ga/api",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("userToken")
+          )}`,
+        },
+      });
+
+      const { data } = await authAxios.get(
+        "https://dharm.ga/api/product/category"
+      );
+
+      setCata(data);
+    };
+    fetchCata();
+  }, []);
 
   return (
     <SecondaryNavContainer className={show ? "active" : ""}>
@@ -82,11 +105,19 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         All Catagories
         <div className="sub-cata">
           <ul>
-            <li>Vegeis</li>
-            <li>Fruits</li>
-            <li>Tomato</li>
-            <li>Banana</li>
-            <li>Apple</li>
+            {cata?.map((item) => {
+              return (
+                <Link
+                  to={`/products/${item.category_id}/${item.category_name}`}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  <li className="cata">{item.category_name}</li>
+                </Link>
+              );
+            })}
           </ul>
         </div>
       </div>

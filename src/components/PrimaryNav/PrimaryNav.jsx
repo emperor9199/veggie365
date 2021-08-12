@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { PrimaryNavContainer } from "./Styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";

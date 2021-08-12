@@ -107,7 +107,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
       justify-content: center;
       width: 20vw;
 
-      ul > li {
+      .cata {
         padding: 0.7rem 0;
         color: black;
         font-weight: bold;

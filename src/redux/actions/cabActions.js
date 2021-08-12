@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BOOK_CAB } from "../constants/cabConstants";
 
 export const bookCab = (cabData) => async (dispatch) => {
   try {

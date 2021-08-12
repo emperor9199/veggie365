@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { AboutContainer } from "./Styles";
-import vegStore from "../../img/about.svg";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import aboutMain from "../../img/about-1.jpg";
+import aboutSecondary from "../../img/about-4.jpg";
 
 const AboutScreen = () => {
   useEffect(() => {
@@ -13,51 +10,28 @@ const AboutScreen = () => {
 
   return (
     <AboutContainer>
-      <div className="context">
-        <div className="about-detail">
-          <h1>About Us</h1>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-            ipsam distinctio cumque culpa minus consectetur fugit quasi dolorem
-            voluptas beatae doloribus earum nam molestiae, reiciendis ipsa
-            blanditiis recusandae, modi delectus?
-          </p>
-          <br />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-            repudiandae sed veritatis praesentium corrupti, dignissimos voluptas
-            molestias blanditiis accusamus ratione, ut, dolor est nulla facere
-            dolore eveniet nostrum sit voluptatibus! Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Expedita deleniti et non cum debitis
-            iure nostrum dolor hic? Tempora dicta quisquam necessitatibus
-            corporis ipsa ducimus maxime, aut cumque ipsum magnam!
-          </p>
-          <button className="about-btn">Explore Veggi</button>
-        </div>
-        <div className="about-img">
-          <img src={vegStore} alt="vegStore" />
-          <div className="social-icon">
-            <FacebookIcon className="social-sub" />
-            <TwitterIcon className="social-sub" />
-            <InstagramIcon className="social-sub" />
-            <WhatsAppIcon className="social-sub" />
-          </div>
-        </div>
+      <div className="left-side">
+        <img src={aboutMain} alt="aboutMain" className="img-main" />
+        <img
+          src={aboutSecondary}
+          alt="aboutSecondary"
+          className="img-secondary"
+        />
       </div>
-      <div className="area">
-        <ul className="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+      <div className="right-side">
+        <div className="right-sub">
+          <h1>VEGGIE 365</h1>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas sint
+            temporibus non provident officiis numquam rem facere itaque
+            doloremque totam illo cumque, veritatis minima. Tenetur rem quis
+            vitae officiis corporis! Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Quisquam unde dolore ut reprehenderit quibusdam
+            maiores consequuntur laboriosam eius quo ducimus molestiae, saepe
+            laborum ipsa quaerat sunt error ullam culpa repellat?
+          </p>
+          <button>Explore Veggie</button>
+        </div>
       </div>
     </AboutContainer>
   );

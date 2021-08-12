@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
 import AboutScreen from "./Screens/AboutScreen/AboutScreen";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import CheckoutStatus from "./components/CheckoutStatus/CheckoutStatus";
 import Footer from "./components/Footer/Footer";
-// import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
 import UpdateUserScreen from "./Screens/UpdateUserScreen/UpdateUserScreen";
 import PrimaryNav from "./components/PrimaryNav/PrimaryNav";
@@ -22,6 +26,7 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import TestComment from "./Screens/TestComment";
 import MyOrders from "./components/MyOrders/MyOrders";
 import CabScreen from "./Screens/CabScreen/CabScreen";
+import TestPayment from "./Screens/TestPayment";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -69,6 +74,8 @@ function App() {
           <Route path="/comment" component={TestComment} exact />
           <Route path="/your-order-his" component={MyOrders} exact />
           <Route path="/book-cab" component={CabScreen} exact />
+          <Route path="/pay" component={TestPayment} exact />
+          <Redirect to="/" />
         </Switch>
 
         <Footer />
