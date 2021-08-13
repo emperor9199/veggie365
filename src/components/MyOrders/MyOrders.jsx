@@ -5,7 +5,10 @@ import "./MyOrders.css";
 function MyOrders() {
 
     const [orders, setOrders] = useState([]);
-  const [productPrice, setProductPrice] = useState([]);
+  const [soloorder, setSoloprder] = useState([]);
+  const user = JSON.parse(localStorage.getItem('loggedUser'));
+ 
+  console.log(user[0].user_id);
 
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
@@ -15,41 +18,74 @@ function MyOrders() {
   });
 
   const fetchProducts = async () => {
-    const { data } = await authAxios.get("/user");
-    const { orderData } = await authAxios.get("/order");
-    const { soloorderData } = await authAxios.get("/order");
-
-    setOrders(data.product);
-    setProductPrice(data.price);
+    const { data } = await authAxios.get("/order/all");
+    setOrders(data.orderdata);
+    setSoloprder(data.orderitem)
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  let myOrder = orders.filter((ord) => ord.user_id === user[0].user_id);
 
+  const checkStatus = (sta) => {
+    if(sta === 0){
+      return "Order Placed";
+    }
+    else if(sta === 1){
+      return "state 1";
+    }
+    else if(sta === 2){
+      return "Out For the Delivery";
+    }
+    else if(sta === 3){
+      return "Deliverd";
+    }
+    else if(sta === 4){
+      return "Cancelled";
+    }
+  }
+  
     return (
         <div className="MyOrders_container">
-            <div className="myorder_cont">
-                <div className="myorder_card">
-                    <div className="myorder_img">
-                        <img className="myorder_img_data" src="https://media.starquik.com/catalog/product/SQ101373.jpg" alt="myorder" />
-                    </div>
-                    <div className="myorder_order_info">
-                        <div className="myorder_product_name">Onion</div>
-                        <div className="myorder_product_cat">Root Vegetable</div>
-                        <div className="myorder_product_cat">Qty: 500g</div>
-                        <div className="myorder_product_price">MRP: ₹50.00</div>
-                        <div className="myorder_product_status">Orders Status: Cancel</div>
-                    </div>
-                    <div className="myorder_address">
-                        <div className="myorder_product_name">Delivery Address</div>
-                        <div className="myorder_product_price">Vishw Kadu</div>
-                        <div className="myorder_user_address">12/382, Krishndham 2, NR. Sharanam 12, Vejalpur, Ahmedabad-380015</div>
-                        <div className="myorder_user_no"><span className="myorder_product_price">Phone No: </span>8128347277</div>
-                    </div>
-                </div>
-            </div>
+            {
+              myOrder.map((ord,key) => {
+                return(
+                  <div className="myorder_card" key={key}>
+                      <div className="myorder_card_head">
+                        <div className="myorder_id">Order Id: {ord.order_id}</div>
+                        <div className="myorder_add">
+                            <div className="myorder_delivery_add">Delivery Address: </div>
+                            <div className="myorder_delivery_add_data">12/982, Amar Heights,Setllite, Ahmedabad-380015</div>
+                        </div>
+                      </div>
+                      <hr />
+                      {
+                        soloorder.filter((solo) => solo.order_id === ord.order_id).map((solod,key) => {
+                          return(
+                            <div className="myorder_card_body" key={key}>
+                              <div className="myorder_card_body_img">
+                                <img src={solod.product_img} alt={solod.product_img} className="myorder_card_body_img"/>
+                              </div>
+                              <div className="myorder_card_body_con">
+                                <div className="myorder_card_body_title" style={{marginBottom:".3rem"}}>{solod.product_name}</div>
+                                <div className="myorder_id" style={{marginBottom:".3rem"}}>Unit: {solod.price_unit_name}</div>
+                                <div className="myorder_card_body_qty" style={{marginBottom:".3rem"}}>Total QTY: {solod.order_quantity}</div>
+                                <div className="myorder_card_body_price">Price: {solod.product_price}</div>
+                              </div>
+                            </div>
+                          );
+                        })
+                      }
+                      <div className="myorder_delivery_footer">
+                        <div className="myorder_card_body_title">Total: {ord.order_total}</div> 
+                        <div className="myorder_card_body_title">Status: {checkStatus(ord.order_status)}{ord.order_status === 0 ? <div className="myorder_cancel_btn">Cancel</div> : ""}</div>
+                      </div>
+                  </div>
+                );
+              })
+            }
         </div>
     )
 }

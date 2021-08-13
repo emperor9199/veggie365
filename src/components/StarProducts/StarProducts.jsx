@@ -125,9 +125,9 @@ function StarProducts({ no, categoryName, categoryid }) {
                   </div>
                   {pprice
                     .filter((item) => item.product_id === product.product_id)
-                    .map((p) => {
+                    .map((p,key) => {
                       return (
-                        <div>
+                        <div key={key}>
                           <del className="starproduct_price_delete">
                             MRP ₹70.00
                           </del>
@@ -143,13 +143,14 @@ function StarProducts({ no, categoryName, categoryid }) {
               <div className="starproduct_btn_con">
                 {pprice
                   .filter((item) => item.product_id === product.product_id)
-                  .map((p) => {
+                  .map((p,key) => {
                     return (
                       <div
                         className="starproduct_btn"
                         onClick={() =>
                           handleAddToCart(product, p.product_price)
                         }
+                        key={key}
                       >
                         ADD
                         {/* snackbar */}
