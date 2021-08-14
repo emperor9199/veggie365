@@ -6,9 +6,6 @@ import {
   USER_REGISTRATION_SUCCESSFUL,
   USER_REGISTRATION_ERROR,
   USER_LOGOUT,
-  USER_UPDATE_SUCCESSFUL,
-  USER_UPDATE_ERROR,
-  USER_UPDATE_LOADING,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -107,29 +104,23 @@ export const userRegister =
   };
 
 export const userUpdate =
-  (id, name, mobile, email, password) => async (dispatch) => {
-    dispatch({ type: USER_UPDATE_LOADING });
-
+  (name, mobile, email, password) => async (dispatch) => {
     try {
-      const { data } = await axios.patch(
-        `https://veggi365.thestarttodaytech-tst.com/api/user/${id}`,
-        {
-          user_name: name,
-          user_phone: Number(mobile),
-          user_email: email,
-          user_password: password,
-        }
-      );
-
-      dispatch({ type: USER_UPDATE_SUCCESSFUL, payload: data });
-      dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
-    } catch (error) {
-      dispatch({
-        type: USER_UPDATE_ERROR,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+      const authAxios = axios.create({
+        baseURL: "https://dharm.ga/api",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("userToken")
+          )}`,
+        },
       });
-    }
+
+      await authAxios.patch("https://dharm.ga/api/user", {
+        user_name: name,
+        user_phone: Number(mobile),
+        user_email: email,
+        user_password: password,
+      });
+      dispatch({ type: USER_LOGIN_SUCCESSFUL });
+    } catch (error) {}
   };
