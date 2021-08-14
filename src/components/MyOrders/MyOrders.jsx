@@ -54,17 +54,18 @@ function MyOrders() {
                 return(
                   <div className="myorder_card" key={key}>
                       <div className="myorder_card_head">
-                        <div className="myorder_id">Order Id: {ord.order_id}</div>
                         <div className="myorder_add">
-                            <div className="myorder_delivery_add">Delivery Address: </div>
+                            <div className="myorder_delivery_add">Delivery Address </div>
                             <div className="myorder_delivery_add_data">12/982, Amar Heights,Setllite, Ahmedabad-380015</div>
                         </div>
+                        <div className="myorder_id">Order Id: {ord.order_id}</div>
                       </div>
                       <hr />
                       {
                         soloorder.filter((solo) => solo.order_id === ord.order_id).map((solod,key) => {
                           return(
-                            <div className="myorder_card_body" key={key}>
+                            <div key={key} className="myorder_card_body_con">
+                            <div className="myorder_card_body" >
                               <div className="myorder_card_body_img">
                                 <img src={solod.product_img} alt={solod.product_img} className="myorder_card_body_img"/>
                               </div>
@@ -74,6 +75,8 @@ function MyOrders() {
                                 <div className="myorder_card_body_qty" style={{marginBottom:".3rem"}}>Total QTY: {solod.order_quantity}</div>
                                 <div className="myorder_card_body_price">Price: {solod.product_price}</div>
                               </div>
+                            </div>
+                            
                             </div>
                           );
                         })
