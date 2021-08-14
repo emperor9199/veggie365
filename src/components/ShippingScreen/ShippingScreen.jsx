@@ -52,6 +52,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
   };
 
   useEffect(() => {
+    val = "home";
     fetchAddressData("home");
   }, []);
 
@@ -65,9 +66,13 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
     if (localStorage.getItem("foundAddr") || findAddress) {
       dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
       localStorage.removeItem("foundAddr");
+      localStorage.removeItem("user_address_ref");
+      localStorage.setItem("user_address_ref", val);
     } else {
       dispatch(addShippingAddress(val, address, pincode)); // add new address
       localStorage.removeItem("foundAddr");
+      localStorage.removeItem("user_address_ref");
+      localStorage.setItem("user_address_ref", val);
     }
 
     setExpanded("panel2");

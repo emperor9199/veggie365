@@ -125,17 +125,19 @@ function StarProducts({ no, categoryName, categoryid }) {
                   </div>
                   {pprice
                     .filter((item) => item.product_id === product.product_id)
-                    .map((p,key) => {
+                    .map((p, key) => {
                       return (
                         <div key={key}>
                           <del className="starproduct_price_delete">
-                            MRP: ₹{p.discount === 0 ?  p.product_price+10: p.discount+p.product_price}
+                            MRP: ₹
+                            {p.discount === 0
+                              ? p.product_price + 10
+                              : p.discount + p.product_price}
                           </del>
                           <div className="starproduct_price">
-                          ₹{p.product_price} per/{p.price_unit_name}
+                            ₹{p.product_price} per/{p.price_unit_name}
+                          </div>
                         </div>
-                        </div>
-                        
                       );
                     })}
                 </Link>
@@ -143,7 +145,7 @@ function StarProducts({ no, categoryName, categoryid }) {
               <div className="starproduct_btn_con">
                 {pprice
                   .filter((item) => item.product_id === product.product_id)
-                  .map((p,key) => {
+                  .map((p, key) => {
                     return (
                       <div
                         className="starproduct_btn"
