@@ -9,18 +9,20 @@
     overflow: hidden;
     width: 50%;
 }
+.myorder_card_body_con{
+    margin-top: 1.5rem;
+}
 .myorder_card_head{
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
 }
 .myorder_id{
     color: grey;
 }
 .myorder_add{
     display: flex;
-    gap: 1.5rem;
-    margin: 1rem 0;
+    flex-direction: column;
+    margin-right: 2rem;
 }
 .myorder_delivery_add{
     font-weight: 600;
@@ -29,7 +31,9 @@
 }
 .myorder_delivery_add_data{
     font-weight: 400;
-    width: 20%;
+    width: 30%;
+    color: grey;
+    font-weight: 500;
 }
 .myorder_card_body{
     display: flex;
