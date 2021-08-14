@@ -102,8 +102,10 @@ const PrimaryNav = () => {
                         window.location.replace(`/product/${ser.product_id}`);
                       }}
                       style={{ textDecoration: "none", color: "black" }}
+                      className="link_class"
                     >
-                      {ser.product_name}
+                      <div className="ser_name"><img src={ser.product_cover_img} alt={ser.product_name} className="search_resule_img"/></div>
+                      <div className="ser_name">{ser.product_name}</div>
                     </Link>
                   </div>
                 );

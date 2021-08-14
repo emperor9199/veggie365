@@ -32,6 +32,25 @@ export const PrimaryNavContainer = styled.div`
 
           .search_resule {
               padding:.5rem 0;
+              margin-bottom:.5rem
+          }
+          .search_resule:hover{
+            background-color: #F1F3F6;
+            border-radius:.5rem
+          }
+          .link_class{
+            display:flex;
+          }
+          .search_resule_img{
+            height: 2rem;
+            width: 2rem;
+            margin:0 1rem 0 .5rem;
+          }
+          .ser_name{
+            font-weight:500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
     }
