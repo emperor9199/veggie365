@@ -8,6 +8,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import SearchBox from "../SearchBox/SearchBox";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
@@ -74,10 +75,13 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           </div>
         </span>
         <div className={show ? "search-container" : "not-show"}>
-          <input type="text" placeholder="Search Product..." />
+          {/* <input type="text" placeholder="Search Product..." />
           <button>
             <SearchIcon />
-          </button>
+          </button> */}
+          <div className="primary_serach_box">
+          <SearchBox />
+        </div>
         </div>
         <Link
           to={Object.keys(user).length ? "/cart" : "/login"}

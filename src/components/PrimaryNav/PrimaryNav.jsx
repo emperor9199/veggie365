@@ -12,6 +12,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import veggieLogo from "../../img/veggie-logo.svg";
 import axios from "axios";
+import SearchBox from "../SearchBox/SearchBox";
 // import "./PrimaryNav.css";
 
 const PrimaryNav = () => {
@@ -54,12 +55,20 @@ const PrimaryNav = () => {
     setSearchData(searched);
     if(event.target.value === ""){
       setSearchData([]);
-      setTxt("Search Somthing");
+      setTxt("Search Something");
     }
     else if(searchData.length === 0){
       setTxt("No match Found");
     }
+    // else if(event.target.value !== ""){
+    //   setFocus(true)
+    // }
   };
+  const handleOnblur = (event) => {
+    if(event.target.value === ""){
+      setFocus(false)
+    }
+  }
 
   console.log(searchData);
   return (
@@ -74,26 +83,28 @@ const PrimaryNav = () => {
         </Link>
       </div>
       <div className="nav-items">
-        <div className="search-container">
+        <div className="primary_serach_box">
+          <SearchBox lab={true}/>
+        </div>
+        
+        {/* <div className="search-container">
           <div className="search-inner">
             <input
               type="text"
               placeholder="Search Product..."
               onChange={(event) => handleSearch(event)}
-              onFocus={() => setFocus(!focus)}
-              onBlur={() => setFocus(!focus)}
+              onFocus={() => setFocus(true)}
+              onBlur={(event) => handleOnblur(event)}
             />
             <button>
               <SearchIcon />
             </button>
           </div>
           <div className="vk" style={{display : !focus && "none"}}>
-            {/* searchData aa var ma result chhe so, have enu design krvu pdse. if length 0 then no match
-          ne css file nikadi deje ne console check krje search kre etle khbr pdi jase */}
             {searchData.length === 0 && focus? (
               <div className="search_resule">{txt}</div>
             ) : (
-              searchData.map((ser, key) => {
+              searchData.slice(0,5).map((ser, key) => {
                 return (
                   <div className="search_resule" key={key}>
                     <Link
@@ -112,7 +123,7 @@ const PrimaryNav = () => {
               })
             )}
           </div>
-        </div>
+        </div> */}
         <div className="nav-links">
           <Link
             to={Object.keys(user).length ? "" : "/login"}

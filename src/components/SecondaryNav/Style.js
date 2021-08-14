@@ -61,8 +61,14 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
       flex: 1;
       display: flex;
       align-items: center;
-      margin: 0 2rem;
-      background-color: white;
+      position: relative;
+      // margin: 0 2rem;
+
+      .primary_serach_box{
+        flex:1;
+        width:100%;
+        position: absolute;
+      }
 
       > input {
         width: 100%;

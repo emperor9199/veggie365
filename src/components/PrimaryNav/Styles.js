@@ -16,71 +16,10 @@ export const PrimaryNavContainer = styled.div`
     display: flex;
     align-items: center;
 
-    .search-container{
-      flex:1;
-      position:relative;
-
-      .vk {
-          position: absolute;
-          display:flex;
-          flex-direction: column;
-          width:86.3%;
-          background-color: white;
-          z-index: 100;
-          padding:1rem;
-          margin:0 3rem;
-
-          .search_resule {
-              padding:.5rem 0;
-              margin-bottom:.5rem
-          }
-          .search_resule:hover{
-            background-color: #F1F3F6;
-            border-radius:.5rem
-          }
-          .link_class{
-            display:flex;
-          }
-          .search_resule_img{
-            height: 2rem;
-            width: 2rem;
-            margin:0 1rem 0 .5rem;
-          }
-          .ser_name{
-            font-weight:500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-    }
-
-    .search-container .search-inner {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      border: 1px solid lightgray;
-      margin: 0 3rem;
-
-      > input {
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: 0 0.5rem;
-      }
-
-      > button {
-        border: none;
-        color: white;
-        font-weight: bold;
-        font-size: 1rem;
-        background-color: #4ac85d;
-        padding: 0.7rem 1rem;
-      }
-
-        
-      }
-    }
+  .primary_serach_box{
+    flex:1;
+  }
+}
 
     .nav-links {
       display: flex;
@@ -132,7 +71,7 @@ export const PrimaryNavContainer = styled.div`
         }
       }
     }
-  }
+  
 
   @media (max-width: 1024px) and (min-width: 725px) {
     .nav-logo > h1 {
