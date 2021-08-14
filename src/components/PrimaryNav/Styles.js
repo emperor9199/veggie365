@@ -16,7 +16,27 @@ export const PrimaryNavContainer = styled.div`
     display: flex;
     align-items: center;
 
-    .search-container {
+    .search-container{
+      flex:1;
+      position:relative;
+
+      .vk {
+          position: absolute;
+          display:flex;
+          flex-direction: column;
+          width:86.3%;
+          background-color: white;
+          z-index: 100;
+          padding:1rem;
+          margin:0 3rem;
+
+          .search_resule {
+              padding:.5rem 0;
+          }
+        }
+    }
+
+    .search-container .search-inner {
       flex: 1;
       display: flex;
       align-items: center;
@@ -37,6 +57,9 @@ export const PrimaryNavContainer = styled.div`
         font-size: 1rem;
         background-color: #4ac85d;
         padding: 0.7rem 1rem;
+      }
+
+        
       }
     }
 
@@ -99,5 +122,24 @@ export const PrimaryNavContainer = styled.div`
   }
   @media (max-width: 720px) {
     display: none;
+  }
+`;
+
+export const Demo = styled.div`
+  text-align: center;
+  background-color: #4ac85d;
+  color: white;
+  padding: 1.2rem 0;
+  font-weight: bold;
+  position: relative;
+
+  .sub-cata {
+    position: absolute;
+    background: white;
+    top: 9.3vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
   }
 `;

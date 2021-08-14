@@ -105,7 +105,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         All Catagories
         <div className="sub-cata">
           <ul>
-            {cata?.map((item) => {
+            {cata?.map((item, index) => {
               return (
                 <Link
                   to={`/products/${item.category_id}/${item.category_name}`}
@@ -113,6 +113,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
                     textDecoration: "none",
                     color: "black",
                   }}
+                  key={index}
                 >
                   <li className="cata">{item.category_name}</li>
                 </Link>

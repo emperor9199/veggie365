@@ -12,7 +12,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import veggieLogo from "../../img/veggie-logo.svg";
 import axios from "axios";
-import "./PrimaryNav.css";
+// import "./PrimaryNav.css";
 
 const PrimaryNav = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const PrimaryNav = () => {
   const { cartItemsId } = useSelector((state) => state.addToCartReducer);
   const [profileOptions, setProfileOptions] = useState(false);
   const [products, setProducts] = useState([]);
-  const [searchData,setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
 
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
@@ -43,10 +43,12 @@ const PrimaryNav = () => {
     dispatch(userLogout());
   };
   const handleSearch = (event) => {
-      // console.log(event.target.value);
-      const searched = products.filter((search) => search.product_name.includes(event.target.value));
-      setSearchData(searched);
-  }
+    // console.log(event.target.value);
+    const searched = products.filter((search) =>
+      search.product_name.includes(event.target.value)
+    );
+    setSearchData(searched);
+  };
   console.log(searchData);
   return (
     <PrimaryNavContainer>
@@ -60,20 +62,40 @@ const PrimaryNav = () => {
         </Link>
       </div>
       <div className="nav-items">
-        <div className="search-container search_con_vk">
-          <input type="text" placeholder="Search Product..." onChange={(event) => handleSearch(event)}/>
-          <button>
-            <SearchIcon />
-          </button>
-          {/* searchData aa var ma result chhe so, have enu design krvu pdse. if length 0 then no match
+        <div className="search-container">
+          <div className="search-inner">
+            <input
+              type="text"
+              placeholder="Search Product..."
+              onChange={(event) => handleSearch(event)}
+            />
+            <button>
+              <SearchIcon />
+            </button>
+          </div>
+          <div className="vk">
+            {/* searchData aa var ma result chhe so, have enu design krvu pdse. if length 0 then no match
           ne css file nikadi deje ne console check krje search kre etle khbr pdi jase */}
-          {
-            searchData.length === 0 ? <div className="search_resule">No Match Found</div> : searchData.map((ser,key) => {
-              return(
-                <div className="search_resule" key={key}>{ser.product_name}</div>
-              )
-            })
-          }
+            {searchData.length === 0 ? (
+              <div className="search_resule">No Match Found</div>
+            ) : (
+              searchData.map((ser, key) => {
+                return (
+                  <div className="search_resule" key={key}>
+                    <Link
+                      to={`/product/${ser.product_id}`}
+                      onClick={() => {
+                        window.location.replace(`/product/${ser.product_id}`);
+                      }}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      {ser.product_name}
+                    </Link>
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
         <div className="nav-links">
           <Link
