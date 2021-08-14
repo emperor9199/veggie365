@@ -148,17 +148,20 @@ const PrimaryNav = () => {
                   // textAlign: "center",
                 }}
               >
+                <Link to="/update-profile" style={{textDecoration:"none",color:"black",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <UpdateIcon style={{ marginRight: "1rem" }} />
-                Update Profile
+                Update Profile</Link>
               </p>
+              
               <p
                 style={{
                   borderBottom: "1px solid lightgray",
                   // textAlign: "center",
                 }}
               >
+                <Link to="/your-order-his" style={{textDecoration:"none",color:"black",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <ShoppingBasketIcon style={{ marginRight: "1rem" }} />
-                Your Orders
+                 Your Orders</Link>
               </p>
               <p onClick={handleLogout}>
                 <ExitToAppIcon style={{ marginRight: "1rem" }} /> Logout Here

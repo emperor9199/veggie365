@@ -102,7 +102,7 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
                       return (
                         <div>
                           <del className="starproduct_price_delete">
-                            MRP ₹70.00
+                          MRP: ₹{p.discount === 0 ?  p.product_price+10: p.discount+p.product_price}
                           </del>
                             <div className="starproduct_price" key={key}>
                           ₹{p.product_price} per/{p.price_unit_name}

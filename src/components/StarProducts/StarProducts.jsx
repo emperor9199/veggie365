@@ -86,7 +86,7 @@ function StarProducts({ no, categoryName, categoryid }) {
     <div className="starproducts_container">
       <div className="starproducts_head_title">
         {categoryName}
-        <span className="starproducts_head_dic"> (10% off)</span>
+        {/* <span className="starproducts_head_dic"> (10% off)</span> */}
       </div>
       <div className="starproducts_line" />
       <div className="starproducts_card_con">
@@ -129,7 +129,7 @@ function StarProducts({ no, categoryName, categoryid }) {
                       return (
                         <div key={key}>
                           <del className="starproduct_price_delete">
-                            MRP ₹70.00
+                            MRP: ₹{p.discount === 0 ?  p.product_price+10: p.discount+p.product_price}
                           </del>
                           <div className="starproduct_price">
                           ₹{p.product_price} per/{p.price_unit_name}

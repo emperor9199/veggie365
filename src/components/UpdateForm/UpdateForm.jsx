@@ -3,29 +3,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { userRegister } from "../../redux/actions/userActions";
+import { userUpdate } from "../../redux/actions/userActions";
 import LoadingBox from "../../components/LoadingBox";
 import ErrorBox from "../../components/ErrorBox";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
-import "./SignUpPageForm.css";
 
 const Contactno = /^[6-9]\d{9}$/;
+const userData = JSON.parse(localStorage.getItem('loggedUser'));
+const userPassword = userData[0].user_password;
+
 const schema = yup.object().shape({
   FirstName: yup.string().required("First Name is Required").max(10),
   LastName: yup.string().required("Last Name is Required").max(10),
-  Email: yup.string().email().required("Email is Required"),
+  Email: yup.string().email(),
   Contactno: yup
     .string()
-    .required("Contat No is Required")
     .matches(Contactno, "Contact No is Not Valid"),
-  Password: yup.string().required("Password is Required").min(6).max(12),
+  Password: yup.string().required("Password is Required").matches(userPassword,"Not valid Password"),
   ConfirmPass: yup
-    .string()
-    .oneOf([yup.ref("Password"), null], "Passwords must match"),
+    .string().required("Confirm Password is Required").min(6).max(12),
 });
 
-function SignUpPageForm(props) {
+function UpdateForm(props) {
   const {
     register,
     handleSubmit,
@@ -33,8 +33,17 @@ function SignUpPageForm(props) {
   } = useForm({ resolver: yupResolver(schema) });
 
   let historyTwo = useHistory();
+  
+  const FullName=userData[0].user_name;
+  const FirstName = FullName.split(' ')[0];
+  const LastName = FullName.split(' ')[1];
 
   const dispatch = useDispatch();
+//   const { userID } = useSelector((state) => state.userLoginReducer);
+//   if (!Object.keys(userID).length) {
+//     historyTwo.push("/login");
+//   }
+
   const { loading, newUser } = useSelector(
     (state) => state.userRegistrationReducer
   );
@@ -42,24 +51,24 @@ function SignUpPageForm(props) {
   const { user } = useSelector((state) => state.userLoginReducer);
 
   const handleSignup = (data) => {
-    var fullName = data.FirstName +" "+ data.LastName;
-    dispatch(userRegister(fullName, data.Contactno, data.Email, data.Password));
+    var fullName = data.FirstName + " " + data.LastName;
+    dispatch(userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass));
+    historyTwo.push("/login");
   };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    if (Object.keys(user).length) {
-      historyTwo.push("/");
-    }
-  }, [props.history, user]);
+//   useEffect(() => {
+//     if (Object.keys(user).length) {
+//       historyTwo.push("/");
+//     }
+//   }, [props.history, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="signupform_container">
-        <div className="loginfrom_title common_flex">Register</div>
+        <div className="loginfrom_title common_flex">Update Profile</div>
         {loading && <LoadingBox />}
         {newUser && <ErrorBox msg={newUser} />}
         <div className="loginform_form">
@@ -77,6 +86,7 @@ function SignUpPageForm(props) {
                     placeholder="Enter First Name"
                     className="Signupform_input"
                     {...register("FirstName")}
+                    defaultValue={FirstName}
                   />
                   <span className="error_msg">{errors.FirstName?.message}</span>
                 </div>
@@ -93,6 +103,7 @@ function SignUpPageForm(props) {
                     placeholder="Enter Last Name"
                     className="Signupform_input"
                     {...register("LastName")}
+                    value={LastName}
                   />
                   <span className="error_msg">{errors.LastName?.message}</span>
                 </div>
@@ -112,6 +123,8 @@ function SignUpPageForm(props) {
                     placeholder="Enter Email"
                     className="Signupform_input"
                     {...register("Email")}
+                    value={userData[0].user_email}
+                    disabled
                   />
                   <span className="error_msg">{errors.Email?.message}</span>
                 </div>
@@ -128,6 +141,8 @@ function SignUpPageForm(props) {
                     placeholder="Enter Contact No"
                     className="Signupform_input"
                     {...register("Contactno")}
+                    value={userData[0].user_phone}
+                    disabled
                   />
                   <span className="error_msg">{errors.Contactno?.message}</span>
                 </div>
@@ -138,7 +153,7 @@ function SignUpPageForm(props) {
               <div className="sec1">
                 <div className="login_form_fields">
                   <label htmlFor="Password" className="form_label">
-                    Password
+                    Old Password
                   </label>
                   <input
                     type="password"
@@ -154,7 +169,7 @@ function SignUpPageForm(props) {
               <div className="sec2">
                 <div className="login_form_fields">
                   <label htmlFor="ConfirmPass" className="form_label">
-                    Confirm Password
+                    New Password
                   </label>
                   <input
                     type="password"
@@ -178,18 +193,18 @@ function SignUpPageForm(props) {
               <input
                 type="submit"
                 className="signupform_input_btn common_flex"
-                value="Sign Up"
+                value="Update"
               />
             </div>
           </form>
         </div>
-        <div className="loginform_or_label common_flex">OR</div>
+        {/* <div className="loginform_or_label common_flex">OR</div>
         <Link to="/login" style={{ textDecoration: "none" }}>
           <div className="signupform_external_btn common_flex">Login</div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
 }
 
-export default SignUpPageForm;
+export default UpdateForm;

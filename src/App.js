@@ -27,6 +27,7 @@ import TestComment from "./Screens/TestComment";
 import MyOrders from "./components/MyOrders/MyOrders";
 import CabScreen from "./Screens/CabScreen/CabScreen";
 import TestPayment from "./Screens/TestPayment";
+import UpdatePage from "./components/UpdatePage/UpdatePage";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -73,6 +74,7 @@ function App() {
           />
           <Route path="/comment" component={TestComment} exact />
           <Route path="/your-order-his" component={MyOrders} exact />
+          <Route path="/update-profile" component={UpdatePage} exact />
           <Route path="/book-cab" component={CabScreen} exact />
           <Route path="/pay" component={TestPayment} exact />
           <Redirect to="/" />

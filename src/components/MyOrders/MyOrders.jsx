@@ -8,8 +8,6 @@ function MyOrders() {
   const [soloorder, setSoloprder] = useState([]);
   const user = JSON.parse(localStorage.getItem('loggedUser'));
  
-  console.log(user[0].user_id);
-
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
     headers: {
