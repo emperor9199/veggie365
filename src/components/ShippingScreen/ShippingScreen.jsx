@@ -130,7 +130,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
           name="address_type"
           value="home"
           onChange={(e) => fetchAddressData(e.target.value)}
-          checked={val === "home" ? true : false}
+          defaultChecked
         />
          <label htmlFor="home">Home</label>
         <input
@@ -139,7 +139,7 @@ const ShippingScreen = ({ expanded, setExpanded }) => {
           name="address_type"
           value="other"
           onChange={(e) => fetchAddressData(e.target.value)}
-          checked={val === "other" ? true : false}
+          defaultChecked={val === "other" ? true : false}
         />
          <label htmlFor="other">Other</label>
         <br />

@@ -64,9 +64,9 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
       position: relative;
       // margin: 0 2rem;
 
-      .primary_serach_box{
-        flex:1;
-        width:100%;
+      .primary_serach_box {
+        flex: 1;
+        width: 100%;
         position: absolute;
       }
 
@@ -114,9 +114,16 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
       width: 20vw;
 
       .cata {
-        padding: 0.7rem 0;
+        padding: 0.7rem 2rem;
+        margin: 0.7rem 0;
         color: black;
         font-weight: bold;
+        display: flex;
+        justify-content: center;
+      }
+
+      .cata:hover {
+        background-color: whitesmoke;
       }
     }
   }
@@ -198,12 +205,12 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
 
         .mobile-search-container {
           flex: 1;
-          display: flex;
-          align-items: center;
-          margin: 0 2rem;
-          background-color: white;
+          /* display: flex;
+          align-items: center; */
+          /* margin: 0 2rem; */
+          /* background-color: white; */
 
-          > input {
+          /* > input {
             width: 100%;
             border: none;
             outline: none;
@@ -217,7 +224,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
             font-size: 1rem;
             background-color: #212121;
             padding: 0.4rem 0.8rem;
-          }
+          } */
         }
       }
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PrimaryNavContainer } from "./Styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PersonIcon from "@material-ui/icons/Person";
@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
 import { userLogout } from "../../redux/actions/userActions";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import UpdateIcon from "@material-ui/icons/Update";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import veggieLogo from "../../img/veggie-logo.svg";
-import axios from "axios";
+// import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
 // import "./PrimaryNav.css";
 
@@ -20,57 +20,58 @@ const PrimaryNav = () => {
   const { user } = useSelector((state) => state.userLoginReducer);
   const { cartItemsId } = useSelector((state) => state.addToCartReducer);
   const [profileOptions, setProfileOptions] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [searchData, setSearchData] = useState([]);
-  const [focus, setFocus] = useState(false);
-  const [term, setTerm] = useState("");
-  const [txt, setTxt] = useState("Search Something");
+  // const [products, setProducts] = useState([]);
+  // const [searchData, setSearchData] = useState([]);
+  // const [focus, setFocus] = useState(false);
+  // const [term, setTerm] = useState("");
+  // const [txt, setTxt] = useState("Search Something");
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
+  // const authAxios = axios.create({
+  //   baseURL: "https://dharm.ga/api",
+  //   headers: {
+  //     Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
+  //   },
+  // });
 
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product");
-    setProducts(data.product);
-  };
+  // const fetchProducts = async () => {
+  //   const { data } = await authAxios.get("/product");
+  //   setProducts(data.product);
+  // };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
-  let lab = true;
+  // let lab = true;
   const handleLogout = () => {
     dispatch(userLogout());
   };
-  const handleSearch = (event) => {
-    // console.log(event.target.value);
-    setTerm(event.target.value);
-    const searched = products.filter((search) =>
-      search.product_name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setSearchData(searched);
-    if(event.target.value === ""){
-      setSearchData([]);
-      setTxt("Search Something");
-    }
-    else if(searchData.length === 0){
-      setTxt("No match Found");
-    }
-    // else if(event.target.value !== ""){
-    //   setFocus(true)
-    // }
-  };
-  const handleOnblur = (event) => {
-    if(event.target.value === ""){
-      setFocus(false)
-    }
-  }
+  // const handleSearch = (event) => {
+  //   // console.log(event.target.value);
+  //   setTerm(event.target.value);
+  //   const searched = products.filter((search) =>
+  //     search.product_name
+  //       .toLowerCase()
+  //       .includes(event.target.value.toLowerCase())
+  //   );
+  //   setSearchData(searched);
+  //   if (event.target.value === "") {
+  //     setSearchData([]);
+  //     setTxt("Search Something");
+  //   } else if (searchData.length === 0) {
+  //     setTxt("No match Found");
+  //   }
+  //   // else if(event.target.value !== ""){
+  //   //   setFocus(true)
+  //   // }
+  // };
+  // const handleOnblur = (event) => {
+  //   if (event.target.value === "") {
+  //     setFocus(false);
+  //   }
+  // };
 
-  console.log(searchData);
+  // console.log(searchData);
   return (
     <PrimaryNavContainer>
       <div className="nav-logo">
@@ -84,9 +85,9 @@ const PrimaryNav = () => {
       </div>
       <div className="nav-items">
         <div className="primary_serach_box">
-          <SearchBox lab={true}/>
+          <SearchBox />
         </div>
-        
+
         {/* <div className="search-container">
           <div className="search-inner">
             <input

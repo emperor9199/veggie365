@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SecondaryNavContainer } from "./Style";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Link } from "react-router-dom";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import Bagde from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector } from "react-redux";
@@ -52,9 +52,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         <Link to="/" style={{ textDecoration: "none", color: "white" }}>
           <p>Home</p>
         </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+        {/* <Link to="/" style={{ textDecoration: "none", color: "white" }}>
           <p>Products</p>
-        </Link>
+        </Link> */}
         <Link
           to="/your-order-his"
           style={{ textDecoration: "none", color: "white" }}
@@ -80,8 +80,8 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <SearchIcon />
           </button> */}
           <div className="primary_serach_box">
-          <SearchBox />
-        </div>
+            <SearchBox lab="secondary" />
+          </div>
         </div>
         <Link
           to={Object.keys(user).length ? "/cart" : "/login"}
@@ -138,10 +138,11 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           className={toggle ? "mobile-nav-items " : "mobile-nav-items-no-show"}
         >
           <div className="mobile-search-container">
-            <input type="text" placeholder="Search Product..." />
+            {/* <input type="text" placeholder="Search Product..." />
             <button>
               <SearchIcon />
-            </button>
+            </button> */}
+            <SearchBox lab="mobile" />
           </div>
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
@@ -151,14 +152,14 @@ const SecondaryNav = ({ setToggle, toggle }) => {
               Home
             </p>
           </Link>
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          {/* <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
               onClick={() => setToggle(!toggle)}
               style={{ fontSize: "1.3rem" }}
             >
               Products
             </p>
-          </Link>
+          </Link> */}
           <Link
             to="/place-order"
             style={{ textDecoration: "none", color: "white" }}
