@@ -21,6 +21,9 @@ const PrimaryNav = () => {
   const [profileOptions, setProfileOptions] = useState(false);
   const [products, setProducts] = useState([]);
   const [searchData, setSearchData] = useState([]);
+  const [focus, setFocus] = useState(false);
+  const [term, setTerm] = useState("");
+  const [txt, setTxt] = useState("Search Something");
 
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
@@ -44,11 +47,20 @@ const PrimaryNav = () => {
   };
   const handleSearch = (event) => {
     // console.log(event.target.value);
+    setTerm(event.target.value);
     const searched = products.filter((search) =>
-      search.product_name.includes(event.target.value)
+      search.product_name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     setSearchData(searched);
+    if(event.target.value === ""){
+      setSearchData([]);
+      setTxt("Search Somthing");
+    }
+    else if(searchData.length === 0){
+      setTxt("No match Found");
+    }
   };
+
   console.log(searchData);
   return (
     <PrimaryNavContainer>
@@ -68,16 +80,18 @@ const PrimaryNav = () => {
               type="text"
               placeholder="Search Product..."
               onChange={(event) => handleSearch(event)}
+              onFocus={() => setFocus(!focus)}
+              onBlur={() => setFocus(!focus)}
             />
             <button>
               <SearchIcon />
             </button>
           </div>
-          <div className="vk">
+          <div className="vk" style={{display : !focus && "none"}}>
             {/* searchData aa var ma result chhe so, have enu design krvu pdse. if length 0 then no match
           ne css file nikadi deje ne console check krje search kre etle khbr pdi jase */}
-            {searchData.length === 0 ? (
-              <div className="search_resule">No Match Found</div>
+            {searchData.length === 0 && focus? (
+              <div className="search_resule">{txt}</div>
             ) : (
               searchData.map((ser, key) => {
                 return (
