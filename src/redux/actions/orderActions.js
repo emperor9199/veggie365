@@ -22,17 +22,6 @@ export const createOrder = (order) => async (dispatch) => {
 
     await authAxios.post("/order", order);
 
-    // localStorage.setItem("loggedUser", JSON.stringify(data));
-    // localStorage.setItem("userToken", JSON.stringify(token));
-
-    // const status = await axios.post("https://dharm.ga/api/order", order, {
-    //   headers: {
-    //     Authorization: `Bearer ${JSON.parse(
-    //       localStorage.getItem("userToken")
-    //     )}`,
-    //   },
-    // });
-
     const { data } = await authAxios.get("/order");
 
     setTimeout(() => {
@@ -60,4 +49,19 @@ export const createOrder = (order) => async (dispatch) => {
   }
 };
 
-export const cancelOrder = () => async () => {};
+export const cancelOrder = (oid) => async () => {
+  try {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    await authAxios.patch("https://dharm.ga/api/order/cancel", {
+      order_id: oid,
+    });
+  } catch (e) {}
+};
