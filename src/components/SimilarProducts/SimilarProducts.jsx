@@ -31,7 +31,7 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
   }, []);
 
   const handleAddToCart = (product, unit_price) => {
-    dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+    dispatch(addToCart(product, product.product_id, Number(unit_price), 1)); //if dropdown appears then put dropdown value in place of qty
   };
 
   var sliceData;

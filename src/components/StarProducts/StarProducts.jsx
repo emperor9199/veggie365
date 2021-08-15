@@ -56,8 +56,10 @@ function StarProducts({ no, categoryName, categoryid }) {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product, unit_price) => {
-    dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, unit_price, unit) => {
+    dispatch(
+      addToCart(product, product.product_id, Number(unit_price), unit, 1)
+    ); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
 
@@ -150,7 +152,11 @@ function StarProducts({ no, categoryName, categoryid }) {
                       <div
                         className="starproduct_btn"
                         onClick={() =>
-                          handleAddToCart(product, p.product_price)
+                          handleAddToCart(
+                            product,
+                            p.product_price,
+                            p.price_unit_name
+                          )
                         }
                         key={key}
                       >

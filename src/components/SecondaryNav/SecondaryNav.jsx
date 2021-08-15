@@ -15,7 +15,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   const [dropDownItem, setDropDownItem] = useState(false);
   const [cata, setCata] = useState();
   const { user } = useSelector((state) => state.userLoginReducer);
-  const { cartItemsId } = useSelector((state) => state.addToCartReducer);
+  const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
+    (state) => state.addToCartReducer
+  );
 
   const changeBackground = () => {
     if (window.scrollY >= 55) {
@@ -70,7 +72,14 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <ArrowDropDownIcon />
           </span>
           <div className={dropDownItem ? "inner-item-active" : "inner-item"}>
-            <p><Link to="/aboutus" style={{textDecoration:"none",color:"#fff"}}>About</Link></p>
+            <p>
+              <Link
+                to="/aboutus"
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                About
+              </Link>
+            </p>
             <p>Contact</p>
           </div>
         </span>
@@ -93,7 +102,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           className="cart-icon-secondary"
         >
           <Bagde
-            badgeContent={cartItemsId.length}
+            badgeContent={
+              cartItemsId500.length + cartItemsId1.length + cartItemsId2.length
+            }
             color="error"
             style={{
               cursor: "pointer",

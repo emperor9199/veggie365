@@ -4,21 +4,37 @@ import {
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
-  UPDATE_SHIPPING_ADDRESS,
-  SAVE_SHIPPING_ADDRESS,
+  // UPDATE_SHIPPING_ADDRESS,
+  // SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import axios from "axios";
 
 export const addToCart =
-  (product, pid, unit_price, qty) => (dispatch, getState) => {
-    let localCartItems, localCartItemsId;
+  (product, pid, unit_price, unit_name, qty) => (dispatch, getState) => {
+    let localCartItems500,
+      localCartItemsId500,
+      localCartItems1,
+      localCartItemsId1,
+      localCartItems2,
+      localCartItemsId2;
     setTimeout(() => {
       const {
-        addToCartReducer: { cartItems, cartItemsId },
+        addToCartReducer: {
+          cartItems500,
+          cartItemsId500,
+          cartItems1,
+          cartItemsId1,
+          cartItems2,
+          cartItemsId2,
+        },
       } = getState();
 
-      localCartItems = cartItems;
-      localCartItemsId = cartItemsId;
+      localCartItems500 = cartItems500;
+      localCartItemsId500 = cartItemsId500;
+      localCartItems1 = cartItems1;
+      localCartItemsId1 = cartItemsId1;
+      localCartItems2 = cartItems2;
+      localCartItemsId2 = cartItemsId2;
     }, 200);
 
     dispatch({
@@ -31,37 +47,70 @@ export const addToCart =
         fresh_till: product.product_fresh_till,
         unit_price: unit_price,
         qty: qty,
+        unit_name: unit_name,
+        unit_total: Number(unit_price),
       },
     });
 
     setTimeout(() => {
-      localStorage.setItem("cartItems", JSON.stringify(localCartItems));
-      localStorage.setItem("cartItemsId", JSON.stringify(localCartItemsId));
+      localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
+      localStorage.setItem(
+        "cartItemsId500",
+        JSON.stringify(localCartItemsId500)
+      );
+      localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
+      localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
+      localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
+      localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
     }, 200);
   };
 
-export const decreaseQty = (productId) => (dispatch, getState) => {
-  let localCartItems, localCartItemsId;
+export const decreaseQty =
+  (productId, unitPrice, unitName) => (dispatch, getState) => {
+    let localCartItems500,
+      localCartItemsId500,
+      localCartItems1,
+      localCartItemsId1,
+      localCartItems2,
+      localCartItemsId2;
 
-  // increase milliseconds if localstorage have some issuues
-  setTimeout(() => {
-    const {
-      addToCartReducer: { cartItems, cartItemsId },
-    } = getState();
+    // increase milliseconds if localstorage have some issuues
+    setTimeout(() => {
+      const {
+        addToCartReducer: {
+          cartItems500,
+          cartItemsId500,
+          cartItems1,
+          cartItemsId1,
+          cartItems2,
+          cartItemsId2,
+        },
+      } = getState();
 
-    localCartItems = cartItems;
-    localCartItemsId = cartItemsId;
-  }, 200);
+      localCartItems500 = cartItems500;
+      localCartItemsId500 = cartItemsId500;
+      localCartItems1 = cartItems1;
+      localCartItemsId1 = cartItemsId1;
+      localCartItems2 = cartItems2;
+      localCartItemsId2 = cartItemsId2;
+    }, 200);
 
-  setTimeout(() => {
-    localStorage.setItem("cartItems", JSON.stringify(localCartItems));
-    localStorage.setItem("cartItemsId", JSON.stringify(localCartItemsId));
-  }, 200);
-  dispatch({
-    type: DECREASE_QTY,
-    payload: productId,
-  });
-};
+    setTimeout(() => {
+      localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
+      localStorage.setItem(
+        "cartItemsId500",
+        JSON.stringify(localCartItemsId500)
+      );
+      localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
+      localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
+      localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
+      localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
+    }, 200);
+    dispatch({
+      type: DECREASE_QTY,
+      payload: { pid: productId, unitPrice: unitPrice, unitName: unitName },
+    });
+  };
 
 export const addShippingAddress =
   (val, address, pincode) => async (dispatch) => {

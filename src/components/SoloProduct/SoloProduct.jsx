@@ -46,8 +46,9 @@ function SoloProduct() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddToCart = (product, Pproduct_id, cutMRP) => {
-    dispatch(addToCart(product, Pproduct_id, cutMRP, 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, Pproduct_id, cutMRP, unit) => {
+    console.log("Jovo:" + unit);
+    dispatch(addToCart(product, Pproduct_id, Number(cutMRP), unit, 1)); //if dropdown appears then put dropdown value in place of qty
   };
 
   //fetch all images from array
@@ -133,7 +134,7 @@ function SoloProduct() {
                 <div
                   className="soloproduct_Buy_btn"
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP)
+                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit)
                   }
                 >
                   Add To Cart
@@ -144,7 +145,7 @@ function SoloProduct() {
                   to="/place-order"
                   style={{ textDecoration: "none", color: "#fff" }}
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP)
+                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit)
                   }
                 >
                   <div

@@ -16,16 +16,23 @@ const CartScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const { cartItems, cartItemsId } = useSelector(
-    (state) => state.addToCartReducer
-  );
+  const {
+    cartItems500,
+    cartItemsId500,
+    cartItems1,
+    cartItemsId1,
+    cartItems2,
+    cartItemsId2,
+  } = useSelector((state) => state.addToCartReducer);
 
   const increaseItemQty = (product) => {
-    dispatch(addToCart(product, product.p_id, product.unit_price, 1));
+    dispatch(
+      addToCart(product, product.p_id, product.unit_price, product.unit_name, 1)
+    );
   };
 
-  const decreaseItemQty = (productId) => {
-    dispatch(decreaseQty(productId));
+  const decreaseItemQty = (product) => {
+    dispatch(decreaseQty(product.p_id, product.unit_price, product.unit_name));
   };
 
   // order save
@@ -37,12 +44,24 @@ const CartScreen = (props) => {
     history.push("/login");
   }
 
-  let { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
+  var { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
 
-  itemsPrice = cartItemsId.reduce(
-    (a, c) => a + cartItems[c].unit_price * cartItems[c].qty,
+  var itemprice500 = cartItemsId500.reduce(
+    (a, c) => a + cartItems500[c].unit_price * cartItems500[c].qty,
     0
   );
+
+  var itemprice1 = cartItemsId1.reduce(
+    (a, c) => a + cartItems1[c].unit_price * cartItems1[c].qty,
+    0
+  );
+
+  var itemprice2 = cartItemsId2.reduce(
+    (a, c) => a + cartItems2[c].unit_price * cartItems2[c].qty,
+    0
+  );
+
+  itemsPrice = itemprice500 + itemprice1 + itemprice2;
 
   deliveryPrice = 0;
   taxPrice = 0;
@@ -59,17 +78,19 @@ const CartScreen = (props) => {
 
   return (
     <>
-      {cartItemsId.length === 0 ? (
+      {cartItemsId500.length === 0 &&
+      cartItemsId1.length === 0 &&
+      cartItemsId2.length === 0 ? (
         <EmptyCart name="Cart" />
       ) : (
         <CartContainer>
           <div className="cart-left">
             <h2>My Cart</h2>
             <hr />
-            {cartItemsId?.map((id) => {
-              let item = cartItems[id];
+            {cartItemsId500?.map((id, index) => {
+              let item = cartItems500[id];
               return (
-                <div key={item.p_id} className="cart-inner-container">
+                <div key={index} className="cart-inner-container">
                   <div className="cart-item-img">
                     <img src={item.img} alt="" />
                   </div>
@@ -77,12 +98,74 @@ const CartScreen = (props) => {
                     <h3>{item.name}</h3>
                     <p>{item.about}</p>
 
-                    <button onClick={() => decreaseItemQty(item.p_id)}>
-                      -
-                    </button>
+                    <button onClick={() => decreaseItemQty(item)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => increaseItemQty(item)}>+</button>
-                    <h3> Price: ₹{item.unit_price * item.qty} </h3>
+                    {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
+                    <h3>
+                      (₹{item.unit_price}/{item.unit_name})
+                    </h3>
+
+                    <h3>Price: ₹{item.unit_total}</h3>
+                  </div>
+                  <div className="cart-item-delivery-details">
+                    <p>Delivery by {todayDate}</p>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* 1kg */}
+            {cartItemsId1?.map((id, index) => {
+              let item = cartItems1[id];
+              return (
+                <div key={index} className="cart-inner-container">
+                  <div className="cart-item-img">
+                    <img src={item.img} alt="" />
+                  </div>
+                  <div className="cart-item-details">
+                    <h3>{item.name}</h3>
+                    <p>{item.about}</p>
+
+                    <button onClick={() => decreaseItemQty(item)}>-</button>
+                    <span>{item.qty}</span>
+                    <button onClick={() => increaseItemQty(item)}>+</button>
+                    {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
+                    <h3>
+                      (₹{item.unit_price}/{item.unit_name})
+                    </h3>
+
+                    <h3>Price: ₹{item.unit_total}</h3>
+                  </div>
+                  <div className="cart-item-delivery-details">
+                    <p>Delivery by {todayDate}</p>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* 2 kg */}
+
+            {cartItemsId2?.map((id, index) => {
+              let item = cartItems2[id];
+              return (
+                <div key={index} className="cart-inner-container">
+                  <div className="cart-item-img">
+                    <img src={item.img} alt="" />
+                  </div>
+                  <div className="cart-item-details">
+                    <h3>{item.name}</h3>
+                    <p>{item.about}</p>
+                    <button onClick={() => decreaseItemQty(item)}>-</button>
+                    <span>{item.qty}</span>
+                    <button onClick={() => increaseItemQty(item)}>
+                      +
+                    </button>{" "}
+                    <h3>
+                      (₹{item.unit_price}/{item.unit_name})
+                    </h3>
+                    {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
+                    <h3>Price: ₹{item.unit_total}</h3>
                   </div>
                   <div className="cart-item-delivery-details">
                     <p>Delivery by {todayDate}</p>
@@ -91,6 +174,7 @@ const CartScreen = (props) => {
               );
             })}
           </div>
+
           <div className="cart-right">
             <h3>PRICE DETAILS</h3>
             <hr />
@@ -113,7 +197,7 @@ const CartScreen = (props) => {
             </p>
             <h3 style={{ fontWeight: "bold", color: "green" }}>
               Grand Total of {""}
-              {cartItemsId.reduce((a, c) => a + cartItems[c].qty, 0)}
+              {cartItemsId500.reduce((a, c) => a + cartItems500[c].qty, 0)}
               {""} items : ₹{totalPrice}
             </h3>
             {/* <p>

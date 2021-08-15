@@ -18,7 +18,9 @@ import SearchBox from "../SearchBox/SearchBox";
 const PrimaryNav = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
-  const { cartItemsId } = useSelector((state) => state.addToCartReducer);
+  const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
+    (state) => state.addToCartReducer
+  );
   const [profileOptions, setProfileOptions] = useState(false);
   // const [products, setProducts] = useState([]);
   // const [searchData, setSearchData] = useState([]);
@@ -148,20 +150,40 @@ const PrimaryNav = () => {
                   // textAlign: "center",
                 }}
               >
-                <Link to="/update-profile" style={{textDecoration:"none",color:"black",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                <UpdateIcon style={{ marginRight: "1rem" }} />
-                Update Profile</Link>
+                <Link
+                  to="/update-profile"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <UpdateIcon style={{ marginRight: "1rem" }} />
+                  Update Profile
+                </Link>
               </p>
-              
+
               <p
                 style={{
                   borderBottom: "1px solid lightgray",
                   // textAlign: "center",
                 }}
               >
-                <Link to="/your-order-his" style={{textDecoration:"none",color:"black",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                <ShoppingBasketIcon style={{ marginRight: "1rem" }} />
-                 Your Orders</Link>
+                <Link
+                  to="/your-order-his"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <ShoppingBasketIcon style={{ marginRight: "1rem" }} />
+                  Your Orders
+                </Link>
               </p>
               <p onClick={handleLogout}>
                 <ExitToAppIcon style={{ marginRight: "1rem" }} /> Logout Here
@@ -174,7 +196,11 @@ const PrimaryNav = () => {
             className="nav-specific-link"
           >
             <Bagde
-              badgeContent={cartItemsId.length}
+              badgeContent={
+                cartItemsId500.length +
+                cartItemsId1.length +
+                cartItemsId2.length
+              }
               color="error"
               style={{
                 cursor: "pointer",
