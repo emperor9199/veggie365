@@ -121,21 +121,6 @@ export const userUpdate =
         user_email: email,
         user_password: password,
       });
-
-      const {
-        data: { token },
-      } = await axios.post("https://dharm.ga/api/user/auth", {
-        email: email,
-        password: password,
-      });
-
-      const { data } = await authAxios.get("/user");
-
-      localStorage.removeItem("loggedUser");
-      localStorage.removeItem("userToken");
-      localStorage.setItem("loggedUser", JSON.stringify(data));
-      localStorage.setItem("userToken", JSON.stringify(token));
-
-      dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
+      dispatch({ type: USER_LOGIN_SUCCESSFUL });
     } catch (error) {}
   };
