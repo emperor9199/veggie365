@@ -13,7 +13,7 @@ import { CartContainer } from "./Styles";
 const OrderCart = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
 
-  const { cartItems, cartItemsId, shippingAddress } = useSelector(
+  const { cartItems, cartItemsId, shippingAddress, savedAddress } = useSelector(
     (state) => state.addToCartReducer
   );
 
@@ -70,12 +70,12 @@ const OrderCart = ({ expanded, setExpanded }) => {
 
     // fetch user_address_id
 
-    const orderAddress = shippingAddress?.find(
-      (item) =>
-        item.user_address_name === localStorage.getItem("user_address_ref")
-    );
+    // const orderAddress = shippingAddress?.find(
+    //   (item) =>
+    //     item.user_address_name === localStorage.getItem("user_address_ref")
+    // );
 
-    placedOrder["user_address_id"] = orderAddress.user_address_id;
+    placedOrder["user_address_id"] = savedAddress.user_address_id;
     dispatch(createOrder(placedOrder));
 
     setExpanded("panel3");
