@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { cancelOrder } from "../../redux/actions/orderActions";
 import axios from "axios";
+import EmptyOrders from '../EmptyOrders/EmptyOrders';
 
 function ProductOrder() {
     const [orders, setOrders] = useState([]);
@@ -51,6 +52,7 @@ function ProductOrder() {
   }
   
     return (
+      myOrder.length === 0 ? <EmptyOrders lab="pro"/> :
         myOrder.map((ord,key) => {
           
             return(

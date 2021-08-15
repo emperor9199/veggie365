@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import EmptyOrders from "../EmptyOrders/EmptyOrders";
 import cab from "../../img/cab.svg";
 import "./CabOrders.css";
 
@@ -40,7 +41,8 @@ function CabOrders() {
   };
   return (
     <div>
-      {myOrder.map((cabo, key) => {
+      {myOrder.length === 0 ? <EmptyOrders lab="cab"/> :
+      myOrder.map((cabo, key) => {
         return (
           <div className="caborder_card" key={key}>
             <div className="caborder_cab_img">

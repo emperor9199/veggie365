@@ -63,7 +63,8 @@ const schema = yup.object().shape({
     dispatch(
       userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass)
     );
-    // historyTwo.push("/login");
+    // localStorage.clear();
+    historyTwo.push("/login");
   };
   useEffect(() => {
     window.scrollTo(0, 0);
