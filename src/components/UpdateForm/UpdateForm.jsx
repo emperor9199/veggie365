@@ -9,9 +9,14 @@ import ErrorBox from "../../components/ErrorBox";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
-const Contactno = /^[6-9]\d{9}$/;
-const userData = JSON.parse(localStorage.getItem("loggedUser"));
-const userPassword = 123;
+
+
+function UpdateForm(props) {
+  const { user } = useSelector((state) => state.userLoginReducer);
+  console.log(user);
+  const Contactno = /^[6-9]\d{9}$/;
+// const userData = JSON.parse(localStorage.getItem("loggedUser"));
+  const userPassword = user.user_password;
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("First Name is Required").max(10),
@@ -29,7 +34,6 @@ const schema = yup.object().shape({
     .max(12),
 });
 
-function UpdateForm(props) {
   const {
     register,
     handleSubmit,
@@ -38,7 +42,7 @@ function UpdateForm(props) {
 
   let historyTwo = useHistory();
 
-  const FullName = userData[0].user_name;
+  const FullName = user.user_name;
   const FirstName = FullName.split(" ")[0];
   const LastName = FullName.split(" ")[1];
 
@@ -52,14 +56,14 @@ function UpdateForm(props) {
     (state) => state.userRegistrationReducer
   );
 
-  const { user } = useSelector((state) => state.userLoginReducer);
+  
 
   const handleSignup = (data) => {
     var fullName = data.FirstName + " " + data.LastName;
     dispatch(
       userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass)
     );
-    historyTwo.push("/login");
+    // historyTwo.push("/login");
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,7 +113,7 @@ function UpdateForm(props) {
                     placeholder="Enter Last Name"
                     className="Signupform_input"
                     {...register("LastName")}
-                    value={LastName}
+                    defaultValue={LastName}
                   />
                   <span className="error_msg">{errors.LastName?.message}</span>
                 </div>
@@ -129,7 +133,7 @@ function UpdateForm(props) {
                     placeholder="Enter Email"
                     className="Signupform_input"
                     {...register("Email")}
-                    value={userData[0].user_email}
+                    value={user.user_email}
                     disabled
                   />
                   <span className="error_msg">{errors.Email?.message}</span>
@@ -147,7 +151,7 @@ function UpdateForm(props) {
                     placeholder="Enter Contact No"
                     className="Signupform_input"
                     {...register("Contactno")}
-                    value={userData[0].user_phone}
+                    value={user.user_phone}
                     disabled
                   />
                   <span className="error_msg">{errors.Contactno?.message}</span>
