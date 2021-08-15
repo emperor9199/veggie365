@@ -2,11 +2,14 @@ import React from 'react';
 import LargeImage from '../LargeImage/LargeImage';
 import "./SmallImage.css";
 
-function SmallImage({setImg,images}) {
-    console.log("images",images);
+function SmallImage({setImg,images,PImg}) {
+    
     return (
         <div className="SmallImage_container">
             <div className="SmallImage_cont">
+            <div className="smallimage_data" onClick={() => setImg(PImg)} >
+                                <img className="smallimage_data_img" src={PImg} alt={PImg} />
+                            </div>
                 {
                     images.map((img) => {
                         return(

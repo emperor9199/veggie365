@@ -15,12 +15,16 @@
 }
 .largeimage_image{
     width: 30rem;
-    height: 27rem;
+    height: 30.5rem;
     object-fit: fill;
 }
 @media (max-width:1024px) {
     .largeimage-data{
         height: 100%;
         width: 100%;
+    }
+    .largeimage_image{
+        width: 80%;
+        height: 100%;
     }
 }

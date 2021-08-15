@@ -1,6 +1,6 @@
-.IteamBox_container > input[type="radio"] {
+/* .IteamBox_container > input[type="radio"] {
   display: none;
-}
+} */
 .iteam_box_con {
   display: flex;
   overflow: hidden;

@@ -5,21 +5,24 @@ function IteamBox({ prices,total_quantity,setCutmrp,setOurPrice,setYousave,setUn
 
   let priceUnitId;
   let firstPrice,price_unit_name;
+  
+  const [defaultIteam, setDefaultiteam] = useState(priceUnitId);
+  const [selectedIteam, setSelectedIteam] = useState();
+  console.log(selectedIteam);
   prices.slice(0, 1).map((priceid) => {
     priceUnitId = priceid.price_unit_id;
     firstPrice = priceid.product_price;
     price_unit_name = priceid.price_unit_name;
+    
   });
-
+  
   var firstIteamPrice = firstPrice;
-  const [selectedIteam, setSelectedIteam] = useState(priceUnitId && priceUnitId);
-  const [defaultIteam, setDefaultiteam] = useState(firstIteamPrice);
   
   setUnit(price_unit_name);
   setCutmrp(defaultIteam);
 
   console.log("selectedIteam",selectedIteam);
-  console.log("defaultIteam",defaultIteam);
+  console.log("defaultIteam",firstIteamPrice);
   
 
   const onChangeValue = (event) => {

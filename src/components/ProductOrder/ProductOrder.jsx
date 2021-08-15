@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { cancelOrder } from "../../redux/actions/orderActions";
 import axios from "axios";
 
 function ProductOrder() {
     const [orders, setOrders] = useState([]);
     const [soloorder, setSoloprder] = useState([]);
+    
+    
   const user = JSON.parse(localStorage.getItem('loggedUser'));
+  const dispatch = useDispatch();
  
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
@@ -18,6 +23,12 @@ function ProductOrder() {
     setOrders(data.orderdata);
     setSoloprder(data.orderitem)
   };
+
+  const handleCancel = (oid) => {
+    dispatch(cancelOrder(oid));
+    window.location.reload();
+    checkStatus(4);
+  }
 
   useEffect(() => {
     fetchProducts();
@@ -38,8 +49,10 @@ function ProductOrder() {
       return "Cancelled";
     }
   }
+  
     return (
         myOrder.map((ord,key) => {
+          
             return(
               <div className="myorder_card" key={key}>
                   <div className="myorder_card_head">
@@ -72,7 +85,7 @@ function ProductOrder() {
                   }
                   <div className="myorder_delivery_footer">
                     <div className="myorder_card_body_title">Total: {ord.order_total}</div> 
-                    <div className="myorder_card_body_title">Status: {checkStatus(ord.order_status)}{ord.order_status === 0 ? <div className="myorder_cancel_btn">Cancel</div> : ""}</div>
+                    <div className="myorder_card_body_title">Status: {checkStatus(ord.order_status)}{ord.order_status === 0 ? <div className="myorder_cancel_btn" onClick = {() => handleCancel(ord.order_id)}>Cancel</div> : ""}</div>
                   </div>
               </div>
             );

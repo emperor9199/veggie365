@@ -83,16 +83,16 @@ function SoloProduct() {
       comment.push(com);
     });
   });
-
+  
   const [img, setImg] = useState(null);
   console.log("cutMRP", cutMRP);
-  console.log("images", images);
+  
   return (
     <div className="soloproduct_container">
       <div className="soloproduct_content">
         <div className="solo_sec1">
           <div className="small_img">
-            <SmallImage setImg={setImg} images={images} />
+            <SmallImage setImg={setImg} images={images} PImg={PImg}/>
           </div>
           <div className="large_img">
             <LargeImage img={img} PImg={PImg} />
