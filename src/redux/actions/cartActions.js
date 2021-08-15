@@ -5,6 +5,7 @@ import {
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
   UPDATE_SHIPPING_ADDRESS,
+  SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import axios from "axios";
 
@@ -98,10 +99,12 @@ export const addShippingAddress =
         });
 
         const { data } = await authAxiosTwo.get("/useraddress");
-        // const filterAddress = data?.find(
-        //   (item) => item.user_address_name === val
-        // );
+        const filterAddress = data?.find(
+          (item) =>
+            item.user_address_name === localStorage.getItem("user_address_ref")
+        );
         dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
+        dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: filterAddress });
 
         // localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
       }, 200);
@@ -143,10 +146,13 @@ export const updateShippingAddress =
         });
 
         const { data } = await authAxiosTwo.get("/useraddress");
-        // const filterAddress = data?.find(
-        //   (item) => item.user_address_name === val
-        // );
+        const filterAddress = data?.find(
+          (item) =>
+            item.user_address_name === localStorage.getItem("user_address_ref")
+        );
+
         dispatch({ type: UPDATE_SHIPPING_ADDRESS, payload: data });
+        dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: filterAddress });
       }, 200);
     } catch (err) {
       alert(err);

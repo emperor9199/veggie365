@@ -6,6 +6,7 @@ import {
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
   UPDATE_SHIPPING_ADDRESS,
+  SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import produce from "immer";
 
@@ -33,6 +34,7 @@ const initialState = {
     ? localStorage.getItem("totalPrice")
     : 0,
   shippingAddress: [],
+  savedAddress: {},
 };
 
 export const addToCartReducer = produce((state = initialState, action) => {
@@ -82,6 +84,11 @@ export const addToCartReducer = produce((state = initialState, action) => {
 
     case UPDATE_SHIPPING_ADDRESS: {
       state.shippingAddress = action.payload;
+      return;
+    }
+
+    case SAVE_SHIPPING_ADDRESS: {
+      state.savedAddress = action.payload;
       return;
     }
 
