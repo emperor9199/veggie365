@@ -9,30 +9,28 @@ import ErrorBox from "../../components/ErrorBox";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
-
-
 function UpdateForm(props) {
   const { user } = useSelector((state) => state.userLoginReducer);
   console.log(user);
   const Contactno = /^[6-9]\d{9}$/;
-// const userData = JSON.parse(localStorage.getItem("loggedUser"));
+  // const userData = JSON.parse(localStorage.getItem("loggedUser"));
   const userPassword = user.user_password;
 
-const schema = yup.object().shape({
-  FirstName: yup.string().required("First Name is Required").max(10),
-  LastName: yup.string().required("Last Name is Required").max(10),
-  Email: yup.string().email(),
-  Contactno: yup.string().matches(Contactno, "Contact No is Not Valid"),
-  Password: yup
-    .string()
-    .required("Password is Required")
-    .matches(userPassword, "Not valid Password"),
-  ConfirmPass: yup
-    .string()
-    .required("Confirm Password is Required")
-    .min(6)
-    .max(12),
-});
+  const schema = yup.object().shape({
+    FirstName: yup.string().required("First Name is Required").max(10),
+    LastName: yup.string().required("Last Name is Required").max(10),
+    Email: yup.string().email(),
+    Contactno: yup.string().matches(Contactno, "Contact No is Not Valid"),
+    Password: yup
+      .string()
+      .required("Password is Required")
+      .matches(userPassword, "Not valid Password"),
+    ConfirmPass: yup
+      .string()
+      .required("Confirm Password is Required")
+      .min(6)
+      .max(12),
+  });
 
   const {
     register,
@@ -56,15 +54,13 @@ const schema = yup.object().shape({
     (state) => state.userRegistrationReducer
   );
 
-  
-
   const handleSignup = (data) => {
     var fullName = data.FirstName + " " + data.LastName;
     dispatch(
       userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass)
     );
-    // localStorage.clear();
-    historyTwo.push("/login");
+
+    historyTwo.push("/");
   };
   useEffect(() => {
     window.scrollTo(0, 0);

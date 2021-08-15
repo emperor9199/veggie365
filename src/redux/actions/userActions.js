@@ -121,6 +121,10 @@ export const userUpdate =
         user_email: email,
         user_password: password,
       });
-      dispatch({ type: USER_LOGIN_SUCCESSFUL });
+
+      setTimeout(() => {
+        dispatch(userLogout());
+      }, 100);
+      //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
     } catch (error) {}
   };
