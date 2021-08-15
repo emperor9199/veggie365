@@ -1,6 +1,6 @@
 import React from "react";
 
-const oid = "order_9A33XWu170gUab";
+const oid = "order_9A33XWu170gU12";
 
 const TestPayment = () => {
   var options = {
@@ -11,7 +11,7 @@ const TestPayment = () => {
     name: "Veggie",
     description: "Test Transaction",
     image: "https://example.com/your_logo",
-    order_id: { oid },
+    order_id: oid,
     // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
     handler: function (response) {
       alert(response.razorpay_payment_id);
@@ -31,6 +31,7 @@ const TestPayment = () => {
     },
   };
 
+  console.log(options.order_id);
   var rzp1 = new window.Razorpay(options);
 
   const payNow = (e) => {
@@ -40,11 +41,7 @@ const TestPayment = () => {
 
   return (
     <div>
-      <button
-        // onClick={() => razorPayPaymentHandler()}
-        onClick={(e) => payNow(e)}
-        className="btn btn-primary"
-      >
+      <button onClick={(e) => payNow(e)} className="btn btn-primary">
         Pay Now
       </button>
     </div>

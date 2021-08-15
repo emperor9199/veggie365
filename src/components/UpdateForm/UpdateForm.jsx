@@ -10,19 +10,23 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const Contactno = /^[6-9]\d{9}$/;
-const userData = JSON.parse(localStorage.getItem('loggedUser'));
-const userPassword = userData[0].user_password;
+const userData = JSON.parse(localStorage.getItem("loggedUser"));
+const userPassword = 123;
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("First Name is Required").max(10),
   LastName: yup.string().required("Last Name is Required").max(10),
   Email: yup.string().email(),
-  Contactno: yup
+  Contactno: yup.string().matches(Contactno, "Contact No is Not Valid"),
+  Password: yup
     .string()
-    .matches(Contactno, "Contact No is Not Valid"),
-  Password: yup.string().required("Password is Required").matches(userPassword,"Not valid Password"),
+    .required("Password is Required")
+    .matches(userPassword, "Not valid Password"),
   ConfirmPass: yup
-    .string().required("Confirm Password is Required").min(6).max(12),
+    .string()
+    .required("Confirm Password is Required")
+    .min(6)
+    .max(12),
 });
 
 function UpdateForm(props) {
@@ -33,16 +37,16 @@ function UpdateForm(props) {
   } = useForm({ resolver: yupResolver(schema) });
 
   let historyTwo = useHistory();
-  
-  const FullName=userData[0].user_name;
-  const FirstName = FullName.split(' ')[0];
-  const LastName = FullName.split(' ')[1];
+
+  const FullName = userData[0].user_name;
+  const FirstName = FullName.split(" ")[0];
+  const LastName = FullName.split(" ")[1];
 
   const dispatch = useDispatch();
-//   const { userID } = useSelector((state) => state.userLoginReducer);
-//   if (!Object.keys(userID).length) {
-//     historyTwo.push("/login");
-//   }
+  //   const { userID } = useSelector((state) => state.userLoginReducer);
+  //   if (!Object.keys(userID).length) {
+  //     historyTwo.push("/login");
+  //   }
 
   const { loading, newUser } = useSelector(
     (state) => state.userRegistrationReducer
@@ -52,18 +56,20 @@ function UpdateForm(props) {
 
   const handleSignup = (data) => {
     var fullName = data.FirstName + " " + data.LastName;
-    dispatch(userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass));
+    dispatch(
+      userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass)
+    );
     historyTwo.push("/login");
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-//   useEffect(() => {
-//     if (Object.keys(user).length) {
-//       historyTwo.push("/");
-//     }
-//   }, [props.history, user]);
+  //   useEffect(() => {
+  //     if (Object.keys(user).length) {
+  //       historyTwo.push("/");
+  //     }
+  //   }, [props.history, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">

@@ -7,12 +7,13 @@ import {
   decreaseQty,
   orderPrices,
 } from "../../redux/actions/cartActions";
+import { createOrder } from "../../redux/actions/orderActions";
 import { CartContainer } from "./Styles";
 
 const OrderCart = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
 
-  const { cartItems, cartItemsId } = useSelector(
+  const { cartItems, cartItemsId, shippingAddress } = useSelector(
     (state) => state.addToCartReducer
   );
 
@@ -51,6 +52,32 @@ const OrderCart = ({ expanded, setExpanded }) => {
   }, [itemsPrice, deliveryPrice, taxPrice, totalPrice]);
 
   const handleOrderPrice = () => {
+    let orderItems = cartItemsId.map((id) => cartItems[id]);
+    let itemArray = [];
+
+    orderItems.map((item) => {
+      let orderObj = {};
+      orderObj["product_id"] = item.p_id;
+      orderObj["product_price"] = item.unit_price;
+      orderObj["price_unit_id"] = 2;
+      orderObj["order_quantity"] = item.qty;
+      itemArray.push(orderObj);
+    });
+
+    let placedOrder = {};
+    placedOrder["total"] = Number(totalPrice);
+    placedOrder["item"] = itemArray;
+
+    // fetch user_address_id
+
+    const orderAddress = shippingAddress?.find(
+      (item) =>
+        item.user_address_name === localStorage.getItem("user_address_ref")
+    );
+
+    placedOrder["user_address_id"] = orderAddress.user_address_id;
+    dispatch(createOrder(placedOrder));
+
     setExpanded("panel3");
   };
 
