@@ -1,36 +1,52 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "./IteamBox.css";
 
-function IteamBox({ prices,total_quantity,setCutmrp,setOurPrice,setYousave,setUnit }) {
+function IteamBox({ prices,total_quantity,setCutmrp,setOurPrice,setYousave,setUnit,setCutmrpD }) {
 
   let priceUnitId;
-  let firstPrice,price_unit_name;
+  let firstPrice,price_unit_name,discount;
   
-  const [defaultIteam, setDefaultiteam] = useState(priceUnitId);
+  const [defaultIteam, setDefaultiteam] = useState();
   const [selectedIteam, setSelectedIteam] = useState();
-  console.log(selectedIteam);
+  const [selectedUnit, setSelectedUnit] = useState();
+  
   prices.slice(0, 1).map((priceid) => {
     priceUnitId = priceid.price_unit_id;
     firstPrice = priceid.product_price;
     price_unit_name = priceid.price_unit_name;
-    
+    discount= priceid.discount === 0 ? 10 : priceid.discount;
   });
+
+  useEffect(() => {
+    setSelectedIteam(priceUnitId);
+    setDefaultiteam(firstPrice);
+    setSelectedUnit(price_unit_name);
+    setCutmrpD(firstPrice+discount);
+  },[priceUnitId,firstPrice,price_unit_name])
+
+  console.log(selectedUnit);
+  console.log("selectedIteam",selectedIteam);
+  console.log("defaultIteam",defaultIteam);
   
   var firstIteamPrice = firstPrice;
   
-  setUnit(price_unit_name);
+  setUnit(selectedUnit);
   setCutmrp(defaultIteam);
 
-  console.log("selectedIteam",selectedIteam);
-  console.log("defaultIteam",firstIteamPrice);
+  // console.log("selectedIteam",selectedIteam);
+  // console.log("defaultIteam",defaultIteam);
   
 
   const onChangeValue = (event) => {
     var val = event.target.value;
     setDefaultiteam(val);
    
-    prices.filter(ut => ut.product_price === val).map((pro) => {
-      setUnit(pro.price_unit_name);
+    prices.filter(ut => ut.product_price === Number(val)).map((pro) => {
+      setSelectedUnit(pro.price_unit_name)
+      let newDis = pro.discount === 0 ? 10 : pro.discount;
+      setCutmrpD(pro.product_price+newDis);
+      //console.log("pro",pro);
     })
   };
   return (

@@ -22,6 +22,7 @@ function SoloProduct() {
   const [products, setProducts] = useState([]);
   const [reload, setRload] = useState(false);
   const [cutMRP, setCutmrp] = useState();
+  const [cutMRPD, setCutmrpD] = useState();
   const [ourPrice, setOurPrice] = useState();
   const [youSave, setYousave] = useState();
   const [unit, setUnit] = useState();
@@ -37,17 +38,17 @@ function SoloProduct() {
 
   const fetchProducts = async () => {
     const { data } = await authAxios.get("/product/" + pid);
-
     setProducts(data);
   };
+  
 
   useEffect(() => {
     fetchProducts();
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddToCart = (product, unit_price) => {
-    dispatch(addToCart(product, product.product_id, unit_price, 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, Pproduct_id,cutMRP) => {
+    dispatch(addToCart(product, Pproduct_id, cutMRP, 1)); //if dropdown appears then put dropdown value in place of qty
   };
 
   //fetch all images from array
@@ -83,16 +84,15 @@ function SoloProduct() {
       comment.push(com);
     });
   });
-  
+
   const [img, setImg] = useState(null);
-  console.log("cutMRP", cutMRP);
-  
+
   return (
     <div className="soloproduct_container">
       <div className="soloproduct_content">
         <div className="solo_sec1">
           <div className="small_img">
-            <SmallImage setImg={setImg} images={images} PImg={PImg}/>
+            <SmallImage setImg={setImg} images={images} PImg={PImg} />
           </div>
           <div className="large_img">
             <LargeImage img={img} PImg={PImg} />
@@ -102,20 +102,20 @@ function SoloProduct() {
             <div className="soloproduct_price_original soloproduct_common_font">
               MRP:{" "}
               <del>
-                ₹{cutMRP} Per/{unit}{" "}
+                ₹{cutMRPD} Per/{unit}{" "}
               </del>
             </div>
             <div className="soloproduct_price soloproduct_common_font">
               Our Price:{" "}
               <span className="original_pri">
-                ₹{ourPrice}.00 Per/{unit}
+                ₹{cutMRP} Per/{unit}{" "}
               </span>
             </div>
             {/* <div className="soloproduct_price_original soloproduct_common_font">
               Discount: 5%
             </div> */}
             <div className="soloproduct_price soloproduct_common_font">
-              You Save: <span className="original_pri">₹{youSave}.00</span>
+              You Save: <span className="original_pri">₹{cutMRPD-cutMRP}.00</span>
             </div>
             <div className="soloproduct_iteam_varients">
               <IteamBox
@@ -125,19 +125,20 @@ function SoloProduct() {
                 setOurPrice={setOurPrice}
                 setYousave={setYousave}
                 setUnit={setUnit}
+                setCutmrpD={setCutmrpD}
               />
             </div>
             <div className="soloproduct_btns_con">
               <div className="soloproduct_Buy_btn_con">
-                <div className="soloproduct_Buy_btn">Add To Cart</div>
+                <div className="soloproduct_Buy_btn" onClick={() => handleAddToCart(products[0],Pproduct_id,cutMRP)}>Add To Cart</div>
               </div>
               <div className="soloproduct_Buy_btn_con">
-                <div
+                <Link to="/place-order" style={{textDecoration:"none",color:"#fff"}} onClick={() => handleAddToCart(products[0],Pproduct_id,cutMRP)}><div
                   className="soloproduct_Buy_btn"
                   style={{ backgroundColor: "#299b3a" }}
                 >
                   Buy Now
-                </div>
+                </div></Link>
               </div>
             </div>
             <div className="soloproduct_service">

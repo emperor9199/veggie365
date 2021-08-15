@@ -59,43 +59,57 @@ function AllProducts() {
     });
   });
     const [sortVal,setSortval] = useState("acends");
-
-    if (sortVal === "acend"){
-        allproducts.sort((a,b) => {
-            return(a.price - b.price);
-        })
-    }
-    if(sortVal === "desc"){
-        allproducts.sort((a,b) => {
-            return(b.price - a.price);
-        })
-    }
-    if (sortVal === "acends"){
-        products.sort((a,b) => {
-            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        })
-    }
-    if(sortVal === "descs"){
-        products.sort((a,b) => {
-            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
-            if (fa > fb) {
-                return -1;
-            }
-            if (fa < fb) {
-                return 1;
-            }
-            return 0;
-        })
-    }
+    console.log(sortVal);
    
-    console.log("pprice",pprice);
+
+    // if (sortVal === "acend"){
+    //     allproducts.sort((a,b) => {
+    //         return(a.price - b.price);
+    //     })
+    // }
+    // if(sortVal === "desc"){
+    //     allproducts.sort((a,b) => {
+    //         return(b.price - a.price);
+    //     })
+    // }
+    if (sortVal === "acends"){
+      products.sort((a,b) => {
+          let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
+          if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+      })
+  }
+    setTimeout(() => {
+      if (sortVal === "descs"){
+        products.sort((a,b) => {
+            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
+            if (fa < fb) {
+              return -1;
+          }
+          if (fa > fb) {
+              return 1;
+          }
+          return 0;
+        })
+    }
+    if(sortVal === "acends"){
+        products.sort((a,b) => {
+            let fa = a.product_name.toLowerCase(),fb = b.product_name.toLowerCase();
+            if (fa > fb) {
+              return -1;
+          }
+          if (fa < fb) {
+              return 1;
+          }
+          return 0;
+        })
+    }
+    },200);
     return (
         <div className="AllProducts_container">
             <div className="allproducts_cont">

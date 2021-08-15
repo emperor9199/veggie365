@@ -4,8 +4,10 @@ import "./SortingBar.css";
 function SortingBar({setSortval}) {
     const [selectedLabel,setSelectedLabel] = useState("az");
     const handleSort = (txt,label) => {
-        setSortval(txt);
-        setSelectedLabel(label);
+        setTimeout(() => {
+            setSortval(txt);
+            setSelectedLabel(label);
+        },100);
     }
     return (
         <div className="SortingBar_container">

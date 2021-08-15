@@ -70,7 +70,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <ArrowDropDownIcon />
           </span>
           <div className={dropDownItem ? "inner-item-active" : "inner-item"}>
-            <p>About</p>
+            <p><Link to="/aboutus" style={{textDecoration:"none",color:"#fff"}}>About</Link></p>
             <p>Contact</p>
           </div>
         </span>

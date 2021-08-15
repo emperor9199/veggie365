@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 
 export const addToCart =
-  (product, pid, unit_price, qty) => (dispatch, getState) => {
+  (product, pid, unit_price, qty=1) => (dispatch, getState) => {
     let localCartItems, localCartItemsId;
     setTimeout(() => {
       const {
