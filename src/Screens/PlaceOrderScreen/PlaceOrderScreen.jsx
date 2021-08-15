@@ -5,11 +5,12 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
+// import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
 import PaymentScreen from "../../components/PaymentScreen/PaymentScreen";
 import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";
 import OrderCart from "../../components/OrderCart/OrderCart";
+import ShippingNew from "../../components/ShippingNew/ShippingNew";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +58,7 @@ const PlaceOrderScreen = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <ShippingScreen expanded={expanded} setExpanded={setExpanded} />
+              <ShippingNew expanded={expanded} setExpanded={setExpanded} />
             </Typography>
           </AccordionDetails>
         </Accordion>
