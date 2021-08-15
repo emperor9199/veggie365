@@ -1,6 +1,6 @@
 import React from "react";
 
-const oid = "order_9A33XWu170gU12";
+// const oid = ;
 
 const TestPayment = () => {
   var options = {
@@ -11,7 +11,7 @@ const TestPayment = () => {
     name: "Veggie",
     description: "Test Transaction",
     image: "https://example.com/your_logo",
-    order_id: oid,
+    order_id: "order_9A33XWu170gU12",
     // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
     handler: function (response) {
       alert(response.razorpay_payment_id);

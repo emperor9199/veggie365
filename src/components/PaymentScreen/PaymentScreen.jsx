@@ -62,7 +62,9 @@ const PaymentScreen = () => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${orders[0].order_id}`);
+      // history.push(`/order/${orders[0].order_id}`);
+      history.push(`/your-order-his`);
+
       // dispatch({ type: ORDER_RESET });
     }
   }, [orders, history, success]);
