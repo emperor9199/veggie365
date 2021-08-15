@@ -31,6 +31,8 @@ export const userLogin = (email, password) => async (dispatch) => {
 
     const { data } = await authAxios.get("/user");
 
+    localStorage.removeItem("loggedUser");
+    localStorage.removeItem("userToen");
     localStorage.setItem("loggedUser", JSON.stringify(data));
     localStorage.setItem("userToken", JSON.stringify(token));
 
@@ -121,6 +123,7 @@ export const userUpdate =
         user_email: email,
         user_password: password,
       });
+      userLogin(email, password);
       dispatch({ type: USER_LOGIN_SUCCESSFUL });
     } catch (error) {}
   };
