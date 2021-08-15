@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import bookCabImg from "../../img/book-cab.svg";
 import { bookCab } from "../../redux/actions/cabActions";
 import { CabContainer } from "./Styles";
@@ -9,6 +10,13 @@ const CabScreen = () => {
 
   const [userAddress, setUserAddress] = useState("");
   const [pincode, setPincode] = useState("");
+
+  const { user } = useSelector((state) => state.userLoginReducer);
+  const history = useHistory();
+
+  if (!Object.keys(user).length) {
+    history.push("/login");
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);

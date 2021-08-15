@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import "./SimilarProducts.css";
 
-function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
+function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
@@ -45,7 +45,9 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
     return pprice;
   }
   sliceData = products
-    .filter((iteam) => iteam.category_id === Pcategory_id).filter((pid) => pid.product_id !== Pproduct_id).slice(0,5);
+    .filter((iteam) => iteam.category_id === Pcategory_id)
+    .filter((pid) => pid.product_id !== Pproduct_id)
+    .slice(0, 5);
 
   sliceData.map((product) => {
     productPrice.map((price) => {
@@ -62,7 +64,7 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
         <div className="soloproduct_line" />
       </div>
       <div className="SimilarProducts_card_con">
-      {sliceData.map((product,key) => {
+        {sliceData.map((product, key) => {
           return (
             <div className="starproduct_card" key={key}>
               <Link
@@ -98,15 +100,18 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
                   </div>
                   {pprice
                     .filter((item) => item.product_id === product.product_id)
-                    .map((p,key) => {
+                    .map((p, key) => {
                       return (
                         <div>
                           <del className="starproduct_price_delete">
-                          MRP: ₹{p.discount === 0 ?  p.product_price+10: p.discount+p.product_price}
+                            MRP: ₹
+                            {p.discount === 0
+                              ? p.product_price + 10
+                              : p.discount + p.product_price}
                           </del>
-                            <div className="starproduct_price" key={key}>
-                          ₹{p.product_price} per/{p.price_unit_name}
-                        </div>
+                          <div className="starproduct_price" key={key}>
+                            ₹{p.product_price} per/{p.price_unit_name}
+                          </div>
                         </div>
                       );
                     })}
@@ -115,7 +120,7 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
               <div className="starproduct_btn_con">
                 {pprice
                   .filter((item) => item.product_id === product.product_id)
-                  .map((p,key) => {
+                  .map((p, key) => {
                     return (
                       <div
                         className="starproduct_btn"
@@ -132,7 +137,6 @@ function SimilarProducts({Pcategory_id,Pproduct_id,setRload}) {
             </div>
           );
         })}
-        
       </div>
     </div>
   );

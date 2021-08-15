@@ -40,14 +40,13 @@ function SoloProduct() {
     const { data } = await authAxios.get("/product/" + pid);
     setProducts(data);
   };
-  
 
   useEffect(() => {
     fetchProducts();
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddToCart = (product, Pproduct_id,cutMRP) => {
+  const handleAddToCart = (product, Pproduct_id, cutMRP) => {
     dispatch(addToCart(product, Pproduct_id, cutMRP, 1)); //if dropdown appears then put dropdown value in place of qty
   };
 
@@ -115,7 +114,8 @@ function SoloProduct() {
               Discount: 5%
             </div> */}
             <div className="soloproduct_price soloproduct_common_font">
-              You Save: <span className="original_pri">₹{cutMRPD-cutMRP}.00</span>
+              You Save:{" "}
+              <span className="original_pri">₹{cutMRPD - cutMRP}.00</span>
             </div>
             <div className="soloproduct_iteam_varients">
               <IteamBox
@@ -130,15 +130,30 @@ function SoloProduct() {
             </div>
             <div className="soloproduct_btns_con">
               <div className="soloproduct_Buy_btn_con">
-                <div className="soloproduct_Buy_btn" onClick={() => handleAddToCart(products[0],Pproduct_id,cutMRP)}>Add To Cart</div>
+                <div
+                  className="soloproduct_Buy_btn"
+                  onClick={() =>
+                    handleAddToCart(products[0], Pproduct_id, cutMRP)
+                  }
+                >
+                  Add To Cart
+                </div>
               </div>
               <div className="soloproduct_Buy_btn_con">
-                <Link to="/place-order" style={{textDecoration:"none",color:"#fff"}} onClick={() => handleAddToCart(products[0],Pproduct_id,cutMRP)}><div
-                  className="soloproduct_Buy_btn"
-                  style={{ backgroundColor: "#299b3a" }}
+                <Link
+                  to="/place-order"
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  onClick={() =>
+                    handleAddToCart(products[0], Pproduct_id, cutMRP)
+                  }
                 >
-                  Buy Now
-                </div></Link>
+                  <div
+                    className="soloproduct_Buy_btn"
+                    style={{ backgroundColor: "#299b3a" }}
+                  >
+                    Buy Now
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="soloproduct_service">

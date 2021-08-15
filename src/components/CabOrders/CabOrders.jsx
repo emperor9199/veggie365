@@ -3,10 +3,18 @@ import axios from "axios";
 import EmptyOrders from "../EmptyOrders/EmptyOrders";
 import cab from "../../img/cab.svg";
 import "./CabOrders.css";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function CabOrders() {
   const [orders, setOrders] = useState([]);
-  const user = JSON.parse(localStorage.getItem("loggedUser"));
+  const userr = JSON.parse(localStorage.getItem("loggedUser"));
+  const { user } = useSelector((state) => state.userLoginReducer);
+  const history = useHistory();
+
+  if (!Object.keys(user).length) {
+    history.push("/login");
+  }
 
   const authAxios = axios.create({
     baseURL: "https://dharm.ga/api",
@@ -24,7 +32,7 @@ function CabOrders() {
     fetchProducts();
   }, []);
 
-  let myOrder = orders.filter((ord) => ord.user_id === user[0].user_id);
+  let myOrder = orders.filter((ord) => ord.user_id === userr[0].user_id);
 
   const checkStatus = (sta) => {
     if (sta === 0) {
@@ -41,28 +49,31 @@ function CabOrders() {
   };
   return (
     <div>
-      {myOrder.length === 0 ? <EmptyOrders lab="cab"/> :
-      myOrder.map((cabo, key) => {
-        return (
-          <div className="caborder_card" key={key}>
-            <div className="caborder_cab_img">
-              <img src={cab} alt="cab" className="caborder_cab_img_data" />
-            </div>
-            <div className="caborder_cab_body">
-              <div className="myorder_id">Order Id: {cabo.cab_order_id}</div>
-              <div className="caborder_cab_body_add">
-                <div className="myorder_delivery_add">Delivery Address </div>
-                <div className="myorder_delivery_add_data">
+      {myOrder.length === 0 ? (
+        <EmptyOrders lab="cab" />
+      ) : (
+        myOrder.map((cabo, key) => {
+          return (
+            <div className="caborder_card" key={key}>
+              <div className="caborder_cab_img">
+                <img src={cab} alt="cab" className="caborder_cab_img_data" />
+              </div>
+              <div className="caborder_cab_body">
+                <div className="myorder_id">Order Id: {cabo.cab_order_id}</div>
+                <div className="caborder_cab_body_add">
+                  <div className="myorder_delivery_add">Delivery Address </div>
+                  <div className="myorder_delivery_add_data">
                     {cabo.user_address + " " + cabo.user_pincode}
+                  </div>
+                </div>
+                <div className="myorder_card_body_title">
+                  Order Status: {checkStatus(cabo.cab_order_status)}
                 </div>
               </div>
-              <div className="myorder_card_body_title">
-                Order Status: {checkStatus(cabo.cab_order_status)} 
-              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 }

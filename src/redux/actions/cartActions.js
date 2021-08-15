@@ -10,8 +10,7 @@ import {
 import axios from "axios";
 
 export const addToCart =
-  (product, pid, unit_price, qty = 1) =>
-  (dispatch, getState) => {
+  (product, pid, unit_price, qty) => (dispatch, getState) => {
     let localCartItems, localCartItemsId;
     setTimeout(() => {
       const {
@@ -100,12 +99,13 @@ export const addShippingAddress =
         });
 
         const { data } = await authAxiosTwo.get("/useraddress");
-        const filterAddress = data?.find(
-          (item) =>
-            item.user_address_name === localStorage.getItem("user_address_ref")
-        );
+
+        // const filterAddress = data?.find(
+        //   (item) =>
+        //     item.user_address_name === localStorage.getItem("user_address_ref")
+        // );
         dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
-        dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: filterAddress });
+        // dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: filterAddress });
 
         // localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
       }, 200);

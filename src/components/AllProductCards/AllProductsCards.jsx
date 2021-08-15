@@ -1,9 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import StarIcon from "@material-ui/icons/Star";
 import "./AllProductsCards.css";
+import { useSelector } from "react-redux";
 
 function AllProductsCards({ sliceData, pprice, handleAddToCart }) {
+  const { user } = useSelector((state) => state.userLoginReducer);
+  const history = useHistory();
+
+  if (!Object.keys(user).length) {
+    history.push("/login");
+  }
+
   console.log("sliceData", sliceData);
   console.log("pprice", pprice);
   return (
@@ -43,7 +51,10 @@ function AllProductsCards({ sliceData, pprice, handleAddToCart }) {
                     return (
                       <div>
                         <del className="starproduct_price_delete">
-                        MRP: ₹{p.discount === 0 ?  p.product_price+10: p.discount+p.product_price}
+                          MRP: ₹
+                          {p.discount === 0
+                            ? p.product_price + 10
+                            : p.discount + p.product_price}
                         </del>
                         <div className="starproduct_price">
                           ₹{p.product_price} per/{p.price_unit_name}

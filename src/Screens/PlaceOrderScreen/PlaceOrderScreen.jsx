@@ -11,6 +11,7 @@ import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";
 import OrderCart from "../../components/OrderCart/OrderCart";
 import ShippingNew from "../../components/ShippingNew/ShippingNew";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PlaceOrderScreen = () => {
+  const { user } = useSelector((state) => state.userLoginReducer);
+  const history = useHistory();
+
+  if (!Object.keys(user).length) {
+    history.push("/login");
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
