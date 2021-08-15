@@ -1,160 +1,160 @@
-import React, { useEffect, useState } from "react";
-import "./shippingStyle.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import {
-  addShippingAddress,
-  updateShippingAddress,
-} from "../../redux/actions/cartActions";
+// import React, { useEffect, useState } from "react";
+// import "./shippingStyle.css";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useHistory } from "react-router-dom";
+// import {
+//   addShippingAddress,
+//   updateShippingAddress,
+// } from "../../redux/actions/cartActions";
 
-var val = "";
+// var val = "";
 
-const ShippingScreen = ({ expanded, setExpanded }) => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.userLoginReducer);
-  const { shippingAddress } = useSelector((state) => state.addToCartReducer);
-  const history = useHistory();
+// const ShippingScreen = ({ expanded, setExpanded }) => {
+//   const dispatch = useDispatch();
+//   const { user } = useSelector((state) => state.userLoginReducer);
+//   const { shippingAddress } = useSelector((state) => state.addToCartReducer);
+//   const history = useHistory();
 
-  if (!Object.keys(user).length) {
-    history.push("/login");
-  }
+//   if (!Object.keys(user).length) {
+//     history.push("/login");
+//   }
 
-  const [fullName, setFullName] = useState(
-    user.user_name ? user.user_name : ""
-  );
-  const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
-  const [pincode, setPincode] = useState(null);
-  const [city, setCity] = useState("Rajkot");
-  const [address, setAddress] = useState("");
-  const [userAddressId, setUserAddressId] = useState(null);
-  const [findAddress, setFindAddress] = useState(null);
+//   const [fullName, setFullName] = useState(
+//     user.user_name ? user.user_name : ""
+//   );
+//   const [mobile, setMobile] = useState(user.user_phone ? user.user_phone : "");
+//   const [pincode, setPincode] = useState(null);
+//   const [city, setCity] = useState("Rajkot");
+//   const [address, setAddress] = useState("");
+//   const [userAddressId, setUserAddressId] = useState(null);
+//   const [findAddress, setFindAddress] = useState(null);
 
-  const fetchAddressData = async (a_type) => {
-    val = a_type;
+//   const fetchAddressData = async (a_type) => {
+//     val = a_type;
 
-    const findAddr = shippingAddress?.find(
-      (item) => item.user_address_name === a_type
-    );
+//     const findAddr = shippingAddress?.find(
+//       (item) => item.user_address_name === a_type
+//     );
 
-    if (findAddr !== undefined) {
-      setFindAddress(findAddr);
-      localStorage.setItem("foundAddr", true);
-      setPincode(findAddr.pincode);
-      setAddress(findAddr.full_address);
-      setUserAddressId(findAddr.user_address_id);
-    } else {
-      setFindAddress(null);
-      setPincode("");
-      setAddress("");
-      setUserAddressId(null);
-      localStorage.removeItem("foundAddr");
-    }
-  };
+//     if (findAddr !== undefined) {
+//       setFindAddress(findAddr);
+//       localStorage.setItem("foundAddr", true);
+//       setPincode(findAddr.pincode);
+//       setAddress(findAddr.full_address);
+//       setUserAddressId(findAddr.user_address_id);
+//     } else {
+//       setFindAddress(null);
+//       setPincode("");
+//       setAddress("");
+//       setUserAddressId(null);
+//       localStorage.removeItem("foundAddr");
+//     }
+//   };
 
-  useEffect(() => {
-    val = "home";
-    fetchAddressData("home");
-  }, []);
+//   useEffect(() => {
+//     val = "home";
+//     fetchAddressData("home");
+//   }, []);
 
-  useEffect(() => {
-    fetchAddressData(val);
-  }, [expanded === "panel1"]);
+//   useEffect(() => {
+//     fetchAddressData(val);
+//   }, [expanded === "panel1"]);
 
-  const handleShippingAddress = (e) => {
-    e.preventDefault();
+//   const handleShippingAddress = (e) => {
+//     e.preventDefault();
 
-    if (localStorage.getItem("foundAddr") || findAddress) {
-      dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
-      localStorage.removeItem("foundAddr");
-      localStorage.removeItem("user_address_ref");
-      localStorage.setItem("user_address_ref", val);
-    } else {
-      dispatch(addShippingAddress(val, address, pincode)); // add new address
-      localStorage.removeItem("foundAddr");
-      localStorage.removeItem("user_address_ref");
-      localStorage.setItem("user_address_ref", val);
-    }
+//     if (localStorage.getItem("foundAddr") || findAddress) {
+//       dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
+//       localStorage.removeItem("foundAddr");
+//       localStorage.removeItem("user_address_ref");
+//       localStorage.setItem("user_address_ref", val);
+//     } else {
+//       dispatch(addShippingAddress(val, address, pincode)); // add new address
+//       localStorage.removeItem("foundAddr");
+//       localStorage.removeItem("user_address_ref");
+//       localStorage.setItem("user_address_ref", val);
+//     }
 
-    setExpanded("panel2");
-  };
+//     setExpanded("panel2");
+//   };
 
-  return (
-    <form className="shipping-container" onSubmit={handleShippingAddress}>
-      <div className="first-sec">
-        <div className="sub-sec">
-          <label htmlFor="fullname">FullName</label>
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="sub-sec">
-          <label htmlFor="mobile">Mobile No</label>
-          <input
-            type="text"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="second-sec">
-        <div className="sub-sec">
-          <label htmlFor="pincode">Pincode</label>
-          <input
-            type="text"
-            value={pincode}
-            onChange={(e) => setPincode(e.target.value)}
-            required
-          />
-        </div>
-        <div className="sub-sec">
-          <label htmlFor="city">City</label>
-          <input type="text" value={city} required disabled />
-        </div>
-      </div>
-      <div className="third-sec">
-        <div className="last-sub-sec">
-          <label htmlFor="address">Address</label>
-          <textarea
-            type="text"
-            rows="3"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </div>
-      </div>
+//   return (
+//     <form className="shipping-container" onSubmit={handleShippingAddress}>
+//       <div className="first-sec">
+//         <div className="sub-sec">
+//           <label htmlFor="fullname">FullName</label>
+//           <input
+//             type="text"
+//             value={fullName}
+//             onChange={(e) => setFullName(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <div className="sub-sec">
+//           <label htmlFor="mobile">Mobile No</label>
+//           <input
+//             type="text"
+//             value={mobile}
+//             onChange={(e) => setMobile(e.target.value)}
+//             required
+//           />
+//         </div>
+//       </div>
+//       <div className="second-sec">
+//         <div className="sub-sec">
+//           <label htmlFor="pincode">Pincode</label>
+//           <input
+//             type="text"
+//             value={pincode}
+//             onChange={(e) => setPincode(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <div className="sub-sec">
+//           <label htmlFor="city">City</label>
+//           <input type="text" value={city} required disabled />
+//         </div>
+//       </div>
+//       <div className="third-sec">
+//         <div className="last-sub-sec">
+//           <label htmlFor="address">Address</label>
+//           <textarea
+//             type="text"
+//             rows="3"
+//             value={address}
+//             onChange={(e) => setAddress(e.target.value)}
+//             required
+//           />
+//         </div>
+//       </div>
 
-      <div className="choose-address">
-        <input
-          type="radio"
-          id="home"
-          name="address_type"
-          value="home"
-          onChange={(e) => fetchAddressData(e.target.value)}
-          defaultChecked
-        />
-         <label htmlFor="home">Home</label>
-        <input
-          type="radio"
-          id="other"
-          name="address_type"
-          value="other"
-          onChange={(e) => fetchAddressData(e.target.value)}
-          defaultChecked={val === "other" ? true : false}
-        />
-         <label htmlFor="other">Other</label>
-        <br />
-      </div>
+//       <div className="choose-address">
+//         <input
+//           type="radio"
+//           id="home"
+//           name="address_type"
+//           value="home"
+//           onChange={(e) => fetchAddressData(e.target.value)}
+//           defaultChecked
+//         />
+//          <label htmlFor="home">Home</label>
+//         <input
+//           type="radio"
+//           id="other"
+//           name="address_type"
+//           value="other"
+//           onChange={(e) => fetchAddressData(e.target.value)}
+//           defaultChecked={val === "other" ? true : false}
+//         />
+//          <label htmlFor="other">Other</label>
+//         <br />
+//       </div>
 
-      <div className="continue-shipping-btn">
-        <button type="submit">Continue</button>
-      </div>
-    </form>
-  );
-};
+//       <div className="continue-shipping-btn">
+//         <button type="submit">Continue</button>
+//       </div>
+//     </form>
+//   );
+// };
 
-export default ShippingScreen;
+// export default ShippingScreen;
