@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { cancelOrder } from "../../redux/actions/orderActions";
 import axios from "axios";
 import EmptyOrders from '../EmptyOrders/EmptyOrders';
@@ -7,8 +7,7 @@ import EmptyOrders from '../EmptyOrders/EmptyOrders';
 function ProductOrder() {
   const [orders, setOrders] = useState([]);
   const [soloorder, setSoloprder] = useState([]);
-
-  const { savedAddress } = useSelector((state) => state.addToCartReducer);
+  const [add, setAdd] = useState([]);
 
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const dispatch = useDispatch();
@@ -24,6 +23,7 @@ function ProductOrder() {
     const { data } = await authAxios.get("/order/all");
     setOrders(data.orderdata);
     setSoloprder(data.orderitem);
+    setAdd(data.address);
   };
 
   const handleCancel = (oid) => {
@@ -52,15 +52,25 @@ function ProductOrder() {
     }
   };
 
-  console.log(savedAddress);
-  return myOrder.map((ord, key) => {
+  return (
+    myOrder.length === 0 ? <EmptyOrders lab="pro"/> : myOrder.map((ord, key) => {
     return (
       <div className="myorder_card" key={key}>
         <div className="myorder_card_head">
           <div className="myorder_add">
             <div className="myorder_delivery_add">Delivery Address </div>
             <div className="myorder_delivery_add_data">
-              12/982, Amar Heights,Setllite, Ahmedabad-380015
+              {
+                add.filter((addId) => addId.user_address_id === ord.user_address_id).map((ad) => {
+                  return(
+                    <div>
+                        <div>{ad.full_address}</div>
+                        <div>{ad.city_name}</div>
+                        <div>{ad.pincode}</div>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
           <div className="myorder_id">Order Id: {ord.order_id}</div>
@@ -126,7 +136,8 @@ function ProductOrder() {
         </div>
       </div>
     );
-  });
+  }));
+  
 }
 
 export default ProductOrder;

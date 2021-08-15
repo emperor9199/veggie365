@@ -1,5 +1,7 @@
 import React from 'react';
 import emptyCartImg from "../../img/empty-cart.svg";
+import cab from "../../img/cab-book.svg";
+import {Link } from "react-router-dom";
 import "./EmptyOrders.css";
 
 function EmptyOrders({lab}) {
@@ -7,10 +9,10 @@ function EmptyOrders({lab}) {
         <div className={`${lab === "pro" ? "EmptyOrders_container" : "EmptyOrders_containerO"}`}>
             <div className="emptyorders_card">
                 <div className="emptyorder_card_img">
-                        <img src={emptyCartImg} alt="EmptyOrder Image" />
+                        <img src={`${lab === "pro" ?  emptyCartImg : cab}`} alt="EmptyOrder Image" className="emptyorder_card_img_data"/>
                 </div>
                 <div className="emptyorder-card_btn">
-                    <span className="empty_btn">Shop Now</span>
+                    <Link to={`${lab === "pro" ? "/" : "/book-cab"}`} style={{textDecoration:"none",color:"#fff"}}><span className="empty_btn">{lab === "pro" ? "Shop Now" : "Book Now"}</span></Link>
                 </div>
             </div>
         </div>
