@@ -31,12 +31,8 @@ export const userLogin = (email, password) => async (dispatch) => {
 
     const { data } = await authAxios.get("/user");
 
-    setTimeout(() => {
-      localStorage.removeItem("loggedUser");
-      localStorage.removeItem("userToen");
-      localStorage.setItem("loggedUser", JSON.stringify(data));
-      localStorage.setItem("userToken", JSON.stringify(token));
-    }, 200);
+    localStorage.setItem("loggedUser", JSON.stringify(data));
+    localStorage.setItem("userToken", JSON.stringify(token));
 
     dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
   } catch (error) {
@@ -125,37 +121,6 @@ export const userUpdate =
         user_email: email,
         user_password: password,
       });
-
-      dispatch({ type: USER_LOGIN_LOADING });
-
-      const {
-        data: { token },
-      } = await axios.post("https://dharm.ga/api/user/auth", {
-        email: email,
-        password: password,
-      });
-
-      // axios token check
-
-      const authAxiosTwo = axios.create({
-        baseURL: "https://dharm.ga/api",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const { data } = await authAxiosTwo.get("/user");
-
-      setTimeout(() => {
-        localStorage.removeItem("loggedUser");
-        localStorage.removeItem("userToen");
-        localStorage.setItem("loggedUser", JSON.stringify(data));
-        localStorage.setItem("userToken", JSON.stringify(token));
-      }, 200);
-
-      dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: JSON.stringify(data) });
-
-      // userLogin(email, password);
-      // dispatch({ type: USER_LOGIN_SUCCESSFUL });
+      dispatch({ type: USER_LOGIN_SUCCESSFUL });
     } catch (error) {}
   };
