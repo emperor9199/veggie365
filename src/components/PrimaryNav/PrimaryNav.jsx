@@ -63,6 +63,7 @@ const PrimaryNav = () => {
               <p
                 style={{
                   borderBottom: "1px solid lightgray",
+                  // textAlign: "center",
                 }}
               >
                 <Link

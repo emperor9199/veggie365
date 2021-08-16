@@ -31,19 +31,10 @@ import UpdatePage from "./components/UpdatePage/UpdatePage";
 
 function App() {
   const [toggle, setToggle] = useState(false);
-  // const [path, setPath] = useState(false);
-  // let location = window.location.pathname;
-
-  // useEffect(() => {
-  //   if (location === "/login" || location === "/signup") {
-  //     setPath(true);
-  //   } else {
-  //     setPath(false);
-  //   }
-  // }, [location]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
     // document.addEventListener("contextmenu", function (e) {
     //   e.preventDefault();
     // });

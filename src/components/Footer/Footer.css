@@ -1,7 +1,6 @@
 .footer_container {
   width: 100%;
   margin-top: 2rem;
-  border: 1px solid red;
 }
 .footer_con {
   display: flex;

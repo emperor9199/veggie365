@@ -7,7 +7,7 @@ const ErrorBox = ({ msg }) => {
         color: "white",
         fontSize: "1.2rem",
         fontWeight: "bold",
-        backgroundColor: "#EE3F3C",
+        backgroundColor: "#8FDDF8",
         marginBottom: "1rem",
         padding: ".5rem 1rem",
         borderRadius: ".5rem",

@@ -9,6 +9,15 @@
   height: 100%;
   gap: 3rem;
   flex-wrap: nowrap;
-  overflow: scroll;
+  overflow: hidden;
   margin: 1.5rem 0 0 0.5rem;
+}
+
+@media (max-width: 720px) {
+  .SimilarProducts_container {
+    margin: 2rem 2rem 0 1rem;
+  }
+  .SimilarProducts_card_con {
+    overflow: scroll;
+  }
 }
