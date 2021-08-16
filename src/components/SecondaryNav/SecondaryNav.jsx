@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
+import veggieLogo from "../../img/veggie-logo.svg";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
@@ -140,21 +141,61 @@ const SecondaryNav = ({ setToggle, toggle }) => {
       {/* mobile view */}
       <div className="mobile-nav-container">
         <div className="mobile-nav-logo">
-          <h1>VEGGIE 365</h1>
-          <button onClick={() => setToggle(!toggle)}>
-            {toggle ? "X" : "☰"}
-          </button>
+          {/* <h3>VEGGIE 365</h3> */}
+          <div className="upper">
+            <Link to="/">
+              <img
+                src={veggieLogo}
+                alt="logo"
+                style={{ width: "11vw", padding: ".5rem" }}
+              />
+            </Link>
+            <h2>VEGGIE-365</h2>
+            {/* cart */}
+            <div className="mobile-right">
+              <Link
+                to={Object.keys(user).length ? "/cart" : "/login"}
+                className="nav-specific-link"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <Bagde
+                  badgeContent={
+                    cartItemsId500.length +
+                    cartItemsId1.length +
+                    cartItemsId2.length
+                  }
+                  color="error"
+                  style={{
+                    cursor: "pointer",
+                    marginRight: ".5rem",
+                  }}
+                >
+                  <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
+                </Bagde>
+              </Link>
+
+              <button onClick={() => setToggle(!toggle)}>
+                {toggle ? "X" : "☰"}
+              </button>
+            </div>
+          </div>
+          <div className="down">
+            <div
+              className="mobile-search-container"
+              style={{ marginTop: ".7rem", width: "100%" }}
+            >
+              <SearchBox lab="mobile" />
+            </div>
+          </div>
         </div>
         <div
           className={toggle ? "mobile-nav-items " : "mobile-nav-items-no-show"}
         >
-          <div className="mobile-search-container">
-            {/* <input type="text" placeholder="Search Product..." />
-            <button>
-              <SearchIcon />
-            </button> */}
+          {/* hide */}
+
+          {/* <div className="mobile-search-container">
             <SearchBox lab="mobile" />
-          </div>
+          </div> */}
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
               onClick={() => setToggle(!toggle)}

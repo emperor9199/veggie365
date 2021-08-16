@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
-export const SearchBoxStyle = styled.div`
+export const SearchBoxStyle = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
+  &.mobile {
+    /* width: 120vw; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* border: 1px solid red; */
+  }
+  /* 
   .search-container {
     flex: 1;
     position: relative;
@@ -34,6 +44,87 @@ export const SearchBoxStyle = styled.div`
       justify-content: center;
       align-items: center;
     }
+  } */
+`;
+
+export const SearchContainer = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
+  &.mobile {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  flex: 1;
+  position: relative;
+  /* width: 100vw; */
+
+  /* .search-inner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    margin: 0 3rem;
+    background-color: #fff;
+    height: 2.5rem;
+
+    > input {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 0 0.5rem;
+    }
+
+    > button {
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      background-color: #4ac85d;
+      padding: 0.7rem 1rem;
+      height: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  } */
+`;
+
+export const SearchInner = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
+  &.mobile {
+    margin: 0 1rem;
+  }
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgray;
+  margin: 0 3rem;
+  background-color: #fff;
+  height: 2.5rem;
+
+  > input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0 0.5rem;
+  }
+
+  > button {
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: #4ac85d;
+    padding: 0.7rem 1rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -45,7 +136,8 @@ export const MainNav = styled.div.attrs((props) => ({
   }
 
   &.mobile {
-    width: 64.5%;
+    width: 82%;
+    margin: 0 1rem;
   }
 
   &.secondary {

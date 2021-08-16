@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
-import { MainNav, SearchBoxStyle } from "./Styles";
+import {
+  MainNav,
+  SearchBoxStyle,
+  SearchContainer,
+  SearchInner,
+} from "./Styles";
 
 function SearchBox({ lab }) {
   const [products, setProducts] = useState([]);
@@ -53,9 +58,11 @@ function SearchBox({ lab }) {
   };
 
   return (
-    <SearchBoxStyle>
-      <div className="search-container">
-        <div className="search-inner">
+    <SearchBoxStyle className={lab === "mobile" ? "mobile" : ""}>
+      <SearchContainer className={lab === "mobile" ? "mobile" : ""}>
+        {/* <div className="search-container"> */}
+        <SearchInner className={lab === "mobile" ? "mobile" : ""}>
+          {/* <div className="search-inner"> */}
           <input
             type="text"
             placeholder="Search Product..."
@@ -66,7 +73,9 @@ function SearchBox({ lab }) {
           <button>
             <SearchIcon />
           </button>
-        </div>
+          {/* </div> */}
+        </SearchInner>
+
         {/* <div className={lab ? "vk" : "vk1"} style={{display : !focus && "none"}}> */}
         <MainNav
           className={
@@ -109,7 +118,8 @@ function SearchBox({ lab }) {
             })
           )}
         </MainNav>
-      </div>
+        {/* </div> */}
+      </SearchContainer>
       {/* </div> */}
     </SearchBoxStyle>
   );

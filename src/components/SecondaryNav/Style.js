@@ -150,21 +150,31 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
       flex-direction: column;
       width: 100vw;
       font-weight: bold;
+      background-color: #4ac85d;
 
-      .mobile-nav-logo {
+      .mobile-nav-logo .upper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 1.5rem;
+        margin: 0 1rem;
         height: 8vh;
 
-        > button {
-          background-color: #212121;
-          color: white;
-          border: none;
-          font-size: 2rem;
-          outline: none;
+        .mobile-right {
+          display: flex;
+          align-items: center;
+
+          > button {
+            background-color: #4ac85d;
+            color: white;
+            border: none;
+            font-size: 2rem;
+            outline: none;
+          }
         }
+      }
+
+      .mobile-nav-logo .down .mobile-search-container {
+        flex: 1;
       }
 
       .mobile-nav-items-no-show {
@@ -201,30 +211,6 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
 
         p {
           padding: 1rem 0;
-        }
-
-        .mobile-search-container {
-          flex: 1;
-          /* display: flex;
-          align-items: center; */
-          /* margin: 0 2rem; */
-          /* background-color: white; */
-
-          /* > input {
-            width: 100%;
-            border: none;
-            outline: none;
-            padding: 0 0.5rem;
-          }
-
-          > button {
-            border: none;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            background-color: #212121;
-            padding: 0.4rem 0.8rem;
-          } */
         }
       }
     }
