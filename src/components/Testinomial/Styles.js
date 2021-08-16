@@ -7,6 +7,9 @@ export const TestinomialContainer = styled.div`
   max-width: 1170px;
   height: fit-content;
   background-color: white;
+  margin-bottom: -1rem;
+  /* display: flex;
+  align-items: center; */
 
   .main-container {
     height: 100%;
@@ -27,14 +30,14 @@ export const TestinomialContainer = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
   }
 
   .section-center {
     margin: 0 auto;
     margin-top: 2rem;
     width: 80vw;
-    height: 450px;
+    height: 370px;
     max-width: 800px;
     text-align: center;
     position: relative;
@@ -98,6 +101,10 @@ export const TestinomialContainer = styled.div`
 
   @media (max-width: 720px) {
     margin-bottom: 4rem;
+
+    .section-center {
+      height: 420px;
+    }
 
     .text {
       max-width: 45em;
