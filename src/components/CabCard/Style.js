@@ -4,8 +4,8 @@ export const CabContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: white;
-  max-height: 25rem;
-  min-width: 6.25rem;
+  /* max-height: 25rem; */
+  /* min-width: 6.25rem; */
   margin: 5rem;
   padding: 1rem;
   z-index: 1;
@@ -54,28 +54,37 @@ export const CabContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column; */
+    /* align-items: center; */
     background-color: transparent;
-    width: 22rem;
+    /* width: 100vw; */
     margin: 0;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     margin-top: 2rem;
+    /* justify-content: center; */
+    display: flex;
     justify-content: center;
+    align-items: center;
+    /* width: 100%; */
 
     .cab-left {
-      > img {
+      display: none;
+      /* > img {
         height: 25vh;
         object-fit: contain;
         width: 100%;
-      }
+      } */
     }
 
     .cab-right {
+      flex: 1;
       background-color: white;
-      padding: 0.5rem;
+      margin: 0 1rem;
+      padding: 1rem;
       text-align: center;
+
       h1 {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
