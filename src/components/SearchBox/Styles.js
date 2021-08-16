@@ -136,7 +136,7 @@ export const MainNav = styled.div.attrs((props) => ({
   }
 
   &.mobile {
-    width: 82%;
+    width: 84%;
     margin: 0 1rem;
   }
 

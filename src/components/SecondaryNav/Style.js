@@ -107,7 +107,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
     .sub-cata {
       position: absolute;
       background: white;
-      top: 9vh;
+      top: 100%;
       z-index: 10;
       display: flex;
       justify-content: center;
