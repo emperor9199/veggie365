@@ -7,44 +7,35 @@ function AboutProduct({
   product_fresh_till,
   product_storage_tip,
 }) {
-  const [more, setMore] = useState(false);
+  const [more, setMore] = useState(true);
 
   return (
     <div className="AboutProduct_Container">
-      <div className="AboutProduct_Cont">
+      <div
+        className="AboutProduct_Cont"
+      >
         <div className="aboutproduct_title">
           About Product
           <div className="soloproduct_line" />
         </div>
         <div className="about_product_description">
           <div className="about_product_description_tite">Description</div>
-          <div className="about_product_description_body">
-            <div className={more ? "see-pro-about" : "pro-about"}>
-              {product_about}
-            </div>
-            <span
-              onClick={() => setMore(!more)}
-              style={{
-                color: "green",
-                borderBottom: "1px solid green",
-                cursor: "pointer",
-              }}
-            >
-              {more ? "See Less" : "See More"}
-            </span>
-          </div>
+          <div className="about_product_description_body">{product_about}</div>
         </div>
-        <div className="about_product_other">
+        <div className={`about_product_other ${more ? "seemore_btn_abooutpageF" : ""}`}>
           <div className="about_product_description_tite">Other Tips</div>
           <div className="about_product_other_body">{product_storage_tip}</div>
         </div>
-        <div className="about_product_other">
+        <div className={`about_product_other ${more ? "seemore_btn_abooutpageF" : ""}`}>
           <div className="about_product_description_tite">
             Product Fresh Till:
           </div>
           <div className="about_product_other_body">{product_fresh_till}</div>
         </div>
       </div>
+      <span onClick={() => setMore(!more)} className="seemore_btn_abooutpage">
+        {more ? "See More" : "See Less"}
+      </span>
     </div>
   );
 }

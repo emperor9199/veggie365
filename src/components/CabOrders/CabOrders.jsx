@@ -8,8 +8,8 @@ import { useHistory } from "react-router-dom";
 
 function CabOrders() {
   const [orders, setOrders] = useState([]);
-  const userr = JSON.parse(localStorage.getItem("loggedUser"));
   const { user } = useSelector((state) => state.userLoginReducer);
+  const userr = JSON.parse(localStorage.getItem("loggedUser"));
   const history = useHistory();
 
   if (!Object.keys(user).length) {

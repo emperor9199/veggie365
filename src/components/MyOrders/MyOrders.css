@@ -9,6 +9,46 @@
   /* justify-content: center; */
   flex-direction: column;
 }
+.starproducts_head_title_phone{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cab_orders_phone{
+  display: none;
+}
+.pill_class{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  width: 85vw;
+}
+.pill_class_active{
+  background-color: #4ac85d;
+  color: #fff;
+}
+.pill_class_active_left{
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border: 1px solid #4ac85d;
+  padding: 0.8rem 1rem;
+}
+.pill_class_active_right{
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 1px solid #4ac85d;
+  padding: 0.8rem 1rem;
+}
+.pill_class_my{
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+}
 .cab_orders {
   flex-basis: 40%;
   display: flex;
