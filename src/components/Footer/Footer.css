@@ -115,6 +115,13 @@ ul li:hover {
 
   .footer_copy {
     flex-direction: column;
+    height: 5rem;
+  }
+
+  .copyright,
+  .play {
+    padding: 0.3rem 0;
+    margin: 0 !important;
   }
 
   .footer_categories {
