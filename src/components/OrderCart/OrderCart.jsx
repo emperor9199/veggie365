@@ -73,37 +73,37 @@ const OrderCart = ({ expanded, setExpanded }) => {
   }, [itemsPrice, deliveryPrice, taxPrice, totalPrice]);
 
   const handleOrderPrice = () => {
-    let orderItems500 = cartItemsId500.map((id) => cartItems500[id]);
-    let orderItems1 = cartItemsId1.map((id) => cartItems1[id]);
-    let orderItems2 = cartItemsId2.map((id) => cartItems2[id]);
+    // let orderItems500 = cartItemsId500.map((id) => cartItems500[id]);
+    // let orderItems1 = cartItemsId1.map((id) => cartItems1[id]);
+    // let orderItems2 = cartItemsId2.map((id) => cartItems2[id]);
 
-    let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
+    // let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
 
-    console.log(orderItems);
-    let itemArray = [];
+    // console.log(orderItems);
+    // let itemArray = [];
 
-    orderItems.map((item) => {
-      let orderObj = {};
-      orderObj["product_id"] = item.p_id;
-      orderObj["product_price"] = item.unit_price;
-      orderObj["price_unit_id"] = 2;
-      orderObj["order_quantity"] = item.qty;
-      itemArray.push(orderObj);
-    });
+    // orderItems.map((item) => {
+    //   let orderObj = {};
+    //   orderObj["product_id"] = item.p_id;
+    //   orderObj["product_price"] = item.unit_price;
+    //   orderObj["price_unit_id"] = 2;
+    //   orderObj["order_quantity"] = item.qty;
+    //   itemArray.push(orderObj);
+    // });
 
-    let placedOrder = {};
-    placedOrder["total"] = Number(totalPrice);
-    placedOrder["item"] = itemArray;
+    // let placedOrder = {};
+    // placedOrder["total"] = Number(totalPrice);
+    // placedOrder["item"] = itemArray;
 
-    // fetch user_address_id
+    // // fetch user_address_id
 
-    const orderAddress = shippingAddress?.find(
-      (item) =>
-        item.user_address_name === localStorage.getItem("user_address_ref")
-    );
+    // const orderAddress = shippingAddress?.find(
+    //   (item) =>
+    //     item.user_address_name === localStorage.getItem("user_address_ref")
+    // );
 
-    placedOrder["user_address_id"] = orderAddress.user_address_id;
-    dispatch(createOrder(placedOrder));
+    // placedOrder["user_address_id"] = orderAddress.user_address_id;
+    // dispatch(createOrder(placedOrder));
 
     setExpanded("panel3");
   };

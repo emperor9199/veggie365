@@ -191,6 +191,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         width: 100%;
         z-index: 10000;
         margin-top: 8vh;
+        /* margin-top: calc(100vh - 82vh); */
 
         @keyframes nav-amination {
           0% {

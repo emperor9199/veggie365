@@ -10,8 +10,8 @@ import {
 } from "react-router-dom";
 import CheckoutStatus from "./components/CheckoutStatus/CheckoutStatus";
 import Footer from "./components/Footer/Footer";
-import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
-import UpdateUserScreen from "./Screens/UpdateUserScreen/UpdateUserScreen";
+// import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
+// import UpdateUserScreen from "./Screens/UpdateUserScreen/UpdateUserScreen";
 import PrimaryNav from "./components/PrimaryNav/PrimaryNav";
 import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
 import TestProducts from "./Screens/TestProducts";
@@ -57,8 +57,8 @@ function App() {
           <Route path="/signup" component={LoginPage} exact />
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/checkout" component={CheckoutStatus} exact />
-          <Route path="/register" component={RegistrationScreen} exact />
-          <Route path="/update-user" component={UpdateUserScreen} exact />
+          {/* <Route path="/register" component={RegistrationScreen} exact /> */}
+          {/* <Route path="/update-user" component={UpdateUserScreen} exact /> */}
           <Route path="/all-products" component={TestProducts} exact />
           <Route path="/cart" component={CartScreen} exact />
           <Route path="/shipping" component={ShippingScreen} exact />

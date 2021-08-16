@@ -11,9 +11,9 @@ function AboutProduct({
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  if (!Object.keys(user).length) {
-    history.push("/login");
-  }
+  // if (!Object.keys(user).length) {
+  //   history.push("/login");
+  // }
 
   return (
     <div className="AboutProduct_Container">

@@ -8,9 +8,9 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  if (!Object.keys(user).length) {
-    history.push("/login");
-  }
+  // if (!Object.keys(user).length) {
+  //   history.push("/login");
+  // }
 
   const [loadMore, setLoadmore] = useState(false);
 
@@ -19,6 +19,9 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
   const [commentdata, setCommentdata] = useState("");
 
   const handleComment = () => {
+    if (!Object.keys(user).length) {
+      history.push("/login");
+    }
     dispatch(addComment(Pproduct_id, commentdata));
     setRload(true);
   };

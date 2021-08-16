@@ -4,6 +4,7 @@ import {
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
+  CART_EMPTY,
   // UPDATE_SHIPPING_ADDRESS,
   // SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
@@ -159,7 +160,7 @@ export const addShippingAddress =
         // localStorage.setItem("shippingAddress", JSON.stringify(data[0]));
       }, 200);
     } catch (err) {
-      alert(err.message);
+      // alert(err.message);
     }
   };
 
@@ -248,6 +249,6 @@ export const addComment = (productId, commentText) => async (dispatch) => {
       comment: commentText,
     });
   } catch (err) {
-    alert(err);
+    // alert(err);
   }
 };
