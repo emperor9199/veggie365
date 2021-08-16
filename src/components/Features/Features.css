@@ -76,8 +76,8 @@
 @media (max-width: 720px) {
   .features_container {
     margin: 1rem 1rem;
-    margin-bottom: 3rem;
-    margin-top: 21rem;
+    margin-bottom: -2rem;
+    margin-top: -5rem;
     overflow-x: hidden;
   }
   .features_con_cards_con {
