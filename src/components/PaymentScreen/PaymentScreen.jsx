@@ -5,6 +5,11 @@ import { savePaymentMethod } from "../../redux/actions/cartActions";
 import { createOrder } from "../../redux/actions/orderActions";
 import { ORDER_RESET } from "../../redux/constants/orderConstants";
 import { PaymentContainer } from "./Styles";
+import cardIcon from "../../img/card-2.png";
+import upiIcon from "../../img/upi.png";
+import paytmIcon from "../../img/paytm.png";
+import phonepayIcon from "../../img/phonepay.png";
+import rsIcon from "../../img/rs.jpg";
 
 const PaymentScreen = () => {
   const dispatch = useDispatch();
@@ -189,7 +194,12 @@ const PaymentScreen = () => {
             defaultChecked
             // required
           />
-          Cash on Delivery
+          <div className="pay-icon">
+            <div className="icon-one">Cash on Delivery</div>
+            <div className="icon-two">
+              <img src={rsIcon} alt="rs" className="rsIcon" />
+            </div>
+          </div>
         </div>
         <br />
         <div className="payment-options">
@@ -201,7 +211,15 @@ const PaymentScreen = () => {
             onChange={(e) => setPaymentMethod(e.target.value)}
             // required
           />
-          RazorPay
+          <div className="pay-icon">
+            <div className="icon-one">RazorPay</div>
+            <div className="icon-two">
+              <img src={cardIcon} alt="card" className="cardImg" />
+              <img src={upiIcon} alt="upi" className="upiImg" />
+              <img src={paytmIcon} alt="paytm" className="paytmImg" />
+              <img src={phonepayIcon} alt="phonepay" className="phonepayImg" />
+            </div>
+          </div>
         </div>
         <br />
         <div className="payment-options">
