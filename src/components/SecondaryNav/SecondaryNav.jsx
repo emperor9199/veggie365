@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { SecondaryNavContainer } from "./Style";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Link } from "react-router-dom";
-// import SearchIcon from "@material-ui/icons/Search";
 import Bagde from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
-import veggieLogo from "../../img/veggie-logo.svg";
+// import veggieLogo from "../../img/veggie-logo.svg";
 import PersonIcon from "@material-ui/icons/Person";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
@@ -155,7 +154,9 @@ const SecondaryNav = ({ setToggle, toggle }) => {
                 style={{ width: "11vw", padding: ".5rem" }}
               />
             </Link> */}
-            <h2>VEGGIE-365</h2>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <h2>VEGGIE-365</h2>
+            </Link>
             {/* cart */}
             <div className="mobile-right">
               <Link

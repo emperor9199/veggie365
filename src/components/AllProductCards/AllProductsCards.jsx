@@ -1,18 +1,11 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import StarIcon from "@material-ui/icons/Star";
+import { Link } from "react-router-dom";
 import "./AllProductsCards.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 
 function AllProductsCards({ sliceData, pprice }) {
-  const { user } = useSelector((state) => state.userLoginReducer);
-  const history = useHistory();
   const dispatch = useDispatch();
-
-  // if (!Object.keys(user).length) {
-  //   history.push("/login");
-  // }
 
   const handleAddToCart = (product, unit_price, unit) => {
     dispatch(

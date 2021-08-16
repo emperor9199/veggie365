@@ -38,21 +38,22 @@ function StarProducts({ no, categoryName, categoryid }) {
   const [products, setProducts] = useState([]);
   const [productPrice, setProductPrice] = useState([]);
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product");
-
-    setProducts(data.product);
-    setProductPrice(data.price);
-  };
-
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product");
+
+      setProducts(data.product);
+      setProductPrice(data.price);
+    };
     fetchProducts();
   }, []);
 

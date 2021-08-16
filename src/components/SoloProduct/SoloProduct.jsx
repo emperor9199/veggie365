@@ -8,7 +8,7 @@ import AboutProduct from "../AboutProduct/AboutProduct";
 import SimilarProducts from "../SimilarProducts/SimilarProducts";
 import CommentSec from "../CommentSec/CommentSec";
 import LargeImage from "../LargeImage/LargeImage";
-import SmallImage from "../SmallImage/SmallImage";
+// import SmallImage from "../SmallImage/SmallImage";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -29,22 +29,24 @@ function SoloProduct() {
 
   reload && window.location.reload();
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product/" + pid);
-    setProducts(data);
-  };
-
   useEffect(() => {
-    fetchProducts();
     window.scrollTo(0, 0);
-  }, []);
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product/" + pid);
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, [pid]);
 
   const handleAddToCart = (product, Pproduct_id, cutMRP, unit) => {
     console.log("Jovo:" + unit);

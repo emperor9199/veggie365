@@ -7,7 +7,6 @@ import {
   decreaseQty,
   orderPrices,
 } from "../../redux/actions/cartActions";
-import { createOrder } from "../../redux/actions/orderActions";
 import { CartContainer } from "./Styles";
 
 const OrderCart = ({ expanded, setExpanded }) => {
@@ -20,20 +19,16 @@ const OrderCart = ({ expanded, setExpanded }) => {
     cartItemsId1,
     cartItems2,
     cartItemsId2,
-    shippingAddress,
-    // savedAddress,
   } = useSelector((state) => state.addToCartReducer);
 
   const increaseItemQty = (product) => {
     dispatch(
       addToCart(product, product.p_id, product.unit_price, product.unit_name, 1)
     );
-    // dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
   };
 
   const decreaseItemQty = (product) => {
     dispatch(decreaseQty(product.p_id, product.unit_price, product.unit_name));
-    // dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
   };
 
   // order save
@@ -70,41 +65,9 @@ const OrderCart = ({ expanded, setExpanded }) => {
 
   useEffect(() => {
     dispatch(orderPrices(itemsPrice, deliveryPrice, taxPrice, totalPrice));
-  }, [itemsPrice, deliveryPrice, taxPrice, totalPrice]);
+  }, [itemsPrice, deliveryPrice, taxPrice, totalPrice, dispatch]);
 
   const handleOrderPrice = () => {
-    // let orderItems500 = cartItemsId500.map((id) => cartItems500[id]);
-    // let orderItems1 = cartItemsId1.map((id) => cartItems1[id]);
-    // let orderItems2 = cartItemsId2.map((id) => cartItems2[id]);
-
-    // let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
-
-    // console.log(orderItems);
-    // let itemArray = [];
-
-    // orderItems.map((item) => {
-    //   let orderObj = {};
-    //   orderObj["product_id"] = item.p_id;
-    //   orderObj["product_price"] = item.unit_price;
-    //   orderObj["price_unit_id"] = 2;
-    //   orderObj["order_quantity"] = item.qty;
-    //   itemArray.push(orderObj);
-    // });
-
-    // let placedOrder = {};
-    // placedOrder["total"] = Number(totalPrice);
-    // placedOrder["item"] = itemArray;
-
-    // // fetch user_address_id
-
-    // const orderAddress = shippingAddress?.find(
-    //   (item) =>
-    //     item.user_address_name === localStorage.getItem("user_address_ref")
-    // );
-
-    // placedOrder["user_address_id"] = orderAddress.user_address_id;
-    // dispatch(createOrder(placedOrder));
-
     setExpanded("panel3");
   };
 

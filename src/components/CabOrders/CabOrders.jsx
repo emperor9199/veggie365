@@ -16,19 +16,20 @@ function CabOrders() {
     history.push("/login");
   }
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/caborder");
-    setOrders(data);
-  };
-
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/caborder");
+      setOrders(data);
+    };
     fetchProducts();
   }, []);
 

@@ -4,35 +4,33 @@ import Testinomial from "../../components/Testinomial/Testinomial";
 import Features from "../../components/Features/Features";
 import StarProducts from "../../components/StarProducts/StarProducts";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/actions/cartActions";
 import LoadingBox from "../../components/LoadingBox";
 
 const HomeScreen = () => {
-  const dispatch = useDispatch();
-
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    const { data } = await authAxios.get("/product");
-
-    setProducts(data.product);
-    setCategory(data.category);
-    setLoading(false);
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      setLoading(true);
+      const { data } = await authAxios.get("/product");
+
+      setProducts(data.product);
+      setCategory(data.category);
+      setLoading(false);
+    };
     fetchProducts();
   }, []);
 

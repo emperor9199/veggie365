@@ -30,19 +30,10 @@ function IteamBox({
     setDefaultiteam(firstPrice);
     setSelectedUnit(price_unit_name);
     setCutmrpD(firstPrice + discount);
-  }, [priceUnitId, firstPrice, price_unit_name]);
-
-  console.log(selectedUnit);
-  console.log("selectedIteam", selectedIteam);
-  console.log("defaultIteam", defaultIteam);
-
-  var firstIteamPrice = firstPrice;
+  }, [priceUnitId, firstPrice, price_unit_name, discount, setCutmrpD]);
 
   setUnit(selectedUnit);
   setCutmrp(defaultIteam);
-
-  // console.log("selectedIteam",selectedIteam);
-  // console.log("defaultIteam",defaultIteam);
 
   const onChangeValue = (event) => {
     var val = event.target.value;

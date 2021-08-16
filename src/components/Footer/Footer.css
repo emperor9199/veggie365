@@ -118,6 +118,10 @@ ul li:hover {
     flex-direction: column;
   }
 
+  .footer_categories {
+    justify-content: flex-start;
+  }
+
   ul li:last-child {
     margin-bottom: 1rem;
   }

@@ -42,7 +42,7 @@ function SignUpPageForm(props) {
   const { user } = useSelector((state) => state.userLoginReducer);
 
   const handleSignup = (data) => {
-    var fullName = data.FirstName +" "+ data.LastName;
+    var fullName = data.FirstName + " " + data.LastName;
     dispatch(userRegister(fullName, data.Contactno, data.Email, data.Password));
   };
 
@@ -54,7 +54,7 @@ function SignUpPageForm(props) {
     if (Object.keys(user).length) {
       historyTwo.push("/");
     }
-  }, [props.history, user]);
+  }, [historyTwo, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">

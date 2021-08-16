@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import "./AboutProduct.css";
 
 function AboutProduct({
@@ -9,13 +7,7 @@ function AboutProduct({
   product_fresh_till,
   product_storage_tip,
 }) {
-  const { user } = useSelector((state) => state.userLoginReducer);
-  const history = useHistory();
   const [more, setMore] = useState(false);
-
-  // if (!Object.keys(user).length) {
-  //   history.push("/login");
-  // }
 
   return (
     <div className="AboutProduct_Container">

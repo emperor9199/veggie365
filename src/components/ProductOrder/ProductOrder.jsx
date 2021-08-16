@@ -14,20 +14,6 @@ function ProductOrder() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const dispatch = useDispatch();
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/order/all");
-    setOrders(data.orderdata);
-    setSoloprder(data.orderitem);
-    setAdd(data.address);
-  };
-
   const handleCancel = (oid) => {
     dispatch(cancelOrder(oid));
     setLoading(true);
@@ -41,6 +27,21 @@ function ProductOrder() {
   };
 
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/order/all");
+      setOrders(data.orderdata);
+      setSoloprder(data.orderitem);
+      setAdd(data.address);
+    };
     fetchProducts();
   }, []);
 

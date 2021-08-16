@@ -1,5 +1,4 @@
 import React from "react";
-import JoinUs from "../JoinUs/JoinUs";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -12,9 +11,6 @@ function Footer() {
   return (
     <div className="footer_container">
       <div className="footer_con">
-        {/* <div className="footer_float">
-          <JoinUs />
-        </div> */}
         <div className="footer_regular">
           <div className="footer_categories">
             <div className="cata-inner">
@@ -47,12 +43,6 @@ function Footer() {
               <h4>ABOUT</h4>
               <div className="footer_line" />
               <ul>
-                {/* <li style={{ textAlign: "justify" }}>
-                  <img src={play} alt="play-img" style={{ height: "4rem" }} />
-                </li>
-                <li>
-                  <img src={app} alt="app-img" style={{ height: "4rem" }} />
-                </li> */}
                 <li style={{ textAlign: "justify" }}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Soluta, consequatur est sunt voluptates quibusdam tempore

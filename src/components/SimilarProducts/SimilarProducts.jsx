@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import StarIcon from "@material-ui/icons/Star";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -12,26 +11,30 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
   const [products, setProducts] = useState([]);
   const [productPrice, setProductPrice] = useState([]);
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product");
-
-    setProducts(data.product);
-    setProductPrice(data.price);
-  };
-
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product");
+
+      setProducts(data.product);
+      setProductPrice(data.price);
+    };
+
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product, unit_price) => {
-    dispatch(addToCart(product, product.product_id, Number(unit_price), 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, unit_price, unit) => {
+    dispatch(
+      addToCart(product, product.product_id, Number(unit_price), unit, 1)
+    ); //if dropdown appears then put dropdown value in place of qty
   };
 
   var sliceData;
@@ -125,7 +128,11 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                       <div
                         className="starproduct_btn"
                         onClick={() =>
-                          handleAddToCart(product, p.product_price)
+                          handleAddToCart(
+                            product,
+                            p.product_price,
+                            p.price_unit_name
+                          )
                         }
                         key={key}
                       >

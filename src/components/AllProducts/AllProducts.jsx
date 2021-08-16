@@ -3,19 +3,12 @@ import { allproducts } from "../../Data/AllProducts";
 import "./AllProducts.css";
 import SortingBar from "../SortingBar/SortingBar";
 import AllProductsCards from "../AllProductCards/AllProductsCards";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 
 function AllProducts() {
-  const { user } = useSelector((state) => state.userLoginReducer);
-  const history = useHistory();
-
-  // if (!Object.keys(user).length) {
-  //   history.push("/login");
-  // }
-
   let { catName } = useParams();
   let { catID } = useParams();
   const dispatch = useDispatch();
@@ -23,21 +16,23 @@ function AllProducts() {
   const [products, setProducts] = useState([]);
   const [productPrice, setProductPrice] = useState([]);
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product");
-
-    setProducts(data.product);
-    setProductPrice(data.price);
-  };
-
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product");
+
+      setProducts(data.product);
+      setProductPrice(data.price);
+    };
+
     fetchProducts();
   }, []);
 
@@ -55,7 +50,9 @@ function AllProducts() {
     }
     return pprice;
   }
-  sliceData = products.filter((iteam) => iteam.category_id == catID).slice(0);
+  sliceData = products
+    .filter((iteam) => String(iteam.category_id) === String(catID))
+    .slice(0);
   sliceData.map((product) => {
     productPrice.map((price) => {
       if (price.product_id === product.product_id) {

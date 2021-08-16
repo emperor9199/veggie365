@@ -41,7 +41,7 @@ function LoginPageForm(props) {
     if (Object.keys(user).length) {
       history.push("/");
     }
-  }, [props.history, user]);
+  }, [history, user]);
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="loginform_container">

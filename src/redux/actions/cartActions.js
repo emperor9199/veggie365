@@ -4,7 +4,6 @@ import {
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
-  CART_EMPTY,
   // UPDATE_SHIPPING_ADDRESS,
   // SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";

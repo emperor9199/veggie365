@@ -13,28 +13,27 @@ function SearchBox({ lab }) {
   const [products, setProducts] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [focus, setFocus] = useState(false);
-  const [term, setTerm] = useState("");
   const [txt, setTxt] = useState("Search Something");
 
-  const authAxios = axios.create({
-    baseURL: "https://dharm.ga/api",
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem("userToken"))}`,
-    },
-  });
-
-  const fetchProducts = async () => {
-    const { data } = await authAxios.get("/product");
-    setProducts(data.product);
-  };
-
   useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product");
+      setProducts(data.product);
+    };
     fetchProducts();
   }, []);
 
   const handleSearch = (event) => {
     // console.log(event.target.value);
-    setTerm(event.target.value);
     const searched = products.filter((search) =>
       search.product_name
         .toLowerCase()
