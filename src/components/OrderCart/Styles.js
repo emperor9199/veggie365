@@ -18,6 +18,7 @@ export const CartContainer = styled.div`
       font-weight: bold;
       padding: 0.4rem 1rem;
       width: 100%;
+      cursor: pointer;
     }
   }
 

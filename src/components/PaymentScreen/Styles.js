@@ -13,6 +13,7 @@ export const PaymentContainer = styled.div`
       color: white;
       font-size: 1.1rem;
       font-weight: bold;
+      cursor: pointer;
     }
   }
 `;

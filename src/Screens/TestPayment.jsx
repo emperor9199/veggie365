@@ -1,7 +1,5 @@
 import React from "react";
 
-// const oid = ;
-
 const TestPayment = () => {
   var options = {
     key: "rzp_test_mCQYP1VXS2KYbo", // Enter the Key ID generated from the Dashboard
@@ -11,7 +9,7 @@ const TestPayment = () => {
     name: "Veggie",
     description: "Test Transaction",
     image: "https://example.com/your_logo",
-    // order_id: "order_9A33XWu170gU12",
+    order_id: localStorage.getItem("order_id"),
     // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
     handler: function (response) {
       alert(response.razorpay_payment_id);
@@ -31,7 +29,6 @@ const TestPayment = () => {
     },
   };
 
-  console.log(options.order_id);
   var rzp1 = new window.Razorpay(options);
 
   const payNow = (e) => {

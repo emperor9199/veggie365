@@ -2,6 +2,7 @@ import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_FAIL,
+  ORDER_RESET,
 } from "../constants/orderConstants";
 import { CART_EMPTY } from "../constants/cartConstants";
 
@@ -20,7 +21,15 @@ export const createOrder = (order) => async (dispatch) => {
       },
     });
 
-    await authAxios.post("/order", order);
+    // check id either cash or razorpay
+    const response = await authAxios.post("/order", order);
+
+    if (order.payment === 1) {
+      localStorage.setItem("order_id", response.data.payment.id);
+      localStorage.setItem("order_id", response.data.payment.id);
+    } else {
+      localStorage.removeItem("order_id");
+    }
 
     const { data } = await authAxios.get("/order");
 
@@ -30,8 +39,12 @@ export const createOrder = (order) => async (dispatch) => {
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CART_EMPTY });
-    localStorage.removeItem("cartItems");
-    localStorage.removeItem("cartItemsId");
+    localStorage.removeItem("cartItems500");
+    localStorage.removeItem("cartItemsId500");
+    localStorage.removeItem("cartItems1");
+    localStorage.removeItem("cartItemsId1");
+    localStorage.removeItem("cartItems2");
+    localStorage.removeItem("cartItemsId2");
     localStorage.removeItem("itemsPrice");
     localStorage.removeItem("deliveryPrice");
     localStorage.removeItem("taxPrice");

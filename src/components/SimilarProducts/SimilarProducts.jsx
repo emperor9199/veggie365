@@ -4,8 +4,35 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import "./SimilarProducts.css";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
@@ -35,6 +62,7 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
     dispatch(
       addToCart(product, product.product_id, Number(unit_price), unit, 1)
     ); //if dropdown appears then put dropdown value in place of qty
+    setOpen(true);
   };
 
   var sliceData;
@@ -137,6 +165,19 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                         key={key}
                       >
                         ADD
+                        {/* snackbar */}
+                        <div className={classes.root}>
+                          <Snackbar
+                            open={open}
+                            autoHideDuration={1000}
+                            onClose={handleClose}
+                          >
+                            <Alert onClose={handleClose} severity="success">
+                              Item added in your Cart
+                            </Alert>
+                          </Snackbar>
+                        </div>
+                        {/* snackbar end */}
                       </div>
                     );
                   })}

@@ -2,6 +2,7 @@ import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_SUCCESS,
+  ORDER_RESET,
   // ORDER_RESET,
 } from "../constants/orderConstants";
 import produce from "immer";
@@ -37,13 +38,13 @@ export const orderReducer = produce((state = initialState, action) => {
       return;
     }
 
-    // case ORDER_RESET: {
-    //   state.loading = false;
-    //   state.error = false;
-    //   state.success = false;
-    //   state.orders = [];
-    //   return;
-    // }
+    case ORDER_RESET: {
+      state.loading = false;
+      state.error = false;
+      state.success = false;
+      state.orders = [];
+      return;
+    }
 
     default:
       return state;

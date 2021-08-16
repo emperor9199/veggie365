@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { savePaymentMethod } from "../../redux/actions/cartActions";
 import { createOrder } from "../../redux/actions/orderActions";
+import { ORDER_RESET } from "../../redux/constants/orderConstants";
 import { PaymentContainer } from "./Styles";
 
 const PaymentScreen = () => {
@@ -72,7 +73,6 @@ const PaymentScreen = () => {
 
     let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
 
-    console.log(orderItems);
     let itemArray = [];
 
     orderItems.map((item) => {
@@ -87,17 +87,62 @@ const PaymentScreen = () => {
     let placedOrder = {};
     placedOrder["total"] = Number(totalPrice);
     placedOrder["item"] = itemArray;
+    if (paymentMethod === "razorpay") {
+      placedOrder["payment"] = 1;
 
-    // fetch user_address_id
+      // integration of razorpay
+      var options = {
+        key: "rzp_test_mCQYP1VXS2KYbo", // Enter the Key ID generated from the Dashboard
+        // key_secret: "Zj6I7kFH6JTbJy7tEDrVLl0p",
+        amount: placedOrder["total"] * 100,
+        currency: "INR",
+        name: "Veggie",
+        description: "Test Transaction",
+        image: "https://example.com/your_logo",
+        order_id: localStorage.getItem("order_id"),
+        // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+        handler: function (response) {
+          const orderAddress = shippingAddress?.find(
+            (item) =>
+              item.user_address_name ===
+              localStorage.getItem("user_address_ref")
+          );
 
-    const orderAddress = shippingAddress?.find(
-      (item) =>
-        item.user_address_name === localStorage.getItem("user_address_ref")
-    );
+          placedOrder["user_address_id"] = orderAddress.user_address_id;
+          dispatch(createOrder(placedOrder));
+        },
+        prefill: {
+          name: "Veggie User",
+          email: "veggie.user@example.com",
+          contact: "9999999999",
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
 
-    placedOrder["user_address_id"] = orderAddress.user_address_id;
-    dispatch(createOrder(placedOrder));
-    history.push(`/your-order-his`);
+      var rzp1 = new window.Razorpay(options);
+      rzp1.open();
+
+      rzp1.on("payment.failed", function (response) {
+        alert(response.error.description);
+      });
+    } else {
+      // fetch user_address_id
+
+      const orderAddress = shippingAddress?.find(
+        (item) =>
+          item.user_address_name === localStorage.getItem("user_address_ref")
+      );
+
+      placedOrder["user_address_id"] = orderAddress.user_address_id;
+      dispatch(createOrder(placedOrder));
+    }
+
+    // history.push(`/your-order-his`);
 
     // filter items for send data to backend
     // let orderItems = cartItemsId.map((id) => cartItems[id]);
@@ -118,13 +163,12 @@ const PaymentScreen = () => {
     // dispatch(createOrder(placedOrder));
   };
 
-  // useEffect(() => {
-  // if (success) {
-  // history.push(`/order/${orders[0].order_id}`);
-  // history.push(`/your-order-his`);
-  // dispatch({ type: ORDER_RESET });
-  // }
-  // }, [orders, history, success]);
+  useEffect(() => {
+    if (success) {
+      history.push(`/your-order-his`);
+      dispatch({ type: ORDER_RESET });
+    }
+  }, [orders, history, success]);
 
   // const handlePaymentMethod = (e) => {
   //   e.preventDefault();

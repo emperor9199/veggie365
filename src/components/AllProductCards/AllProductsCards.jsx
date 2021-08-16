@@ -3,14 +3,42 @@ import { Link } from "react-router-dom";
 import "./AllProductsCards.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 function AllProductsCards({ sliceData, pprice }) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const dispatch = useDispatch();
 
   const handleAddToCart = (product, unit_price, unit) => {
     dispatch(
       addToCart(product, product.product_id, Number(unit_price), unit, 1)
     ); //if dropdown appears then put dropdown value in place of qty
+    setOpen(true);
   };
 
   // console.log("sliceData", sliceData);
@@ -81,6 +109,19 @@ function AllProductsCards({ sliceData, pprice }) {
                       }
                     >
                       ADD
+                      {/* snackbar */}
+                      <div className={classes.root}>
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={1000}
+                          onClose={handleClose}
+                        >
+                          <Alert onClose={handleClose} severity="success">
+                            Item added in your Cart
+                          </Alert>
+                        </Snackbar>
+                      </div>
+                      {/* snackbar end */}
                     </div>
                   );
                 })}

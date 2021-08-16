@@ -13,8 +13,33 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
 
 function SoloProduct() {
+  const [open, setOpen] = React.useState(false);
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "0",
+      "& > * + *": {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+  const classes = useStyles();
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   let { pid } = useParams();
 
   const dispatch = useDispatch();
@@ -49,8 +74,8 @@ function SoloProduct() {
   }, [pid]);
 
   const handleAddToCart = (product, Pproduct_id, cutMRP, unit) => {
-    console.log("Jovo:" + unit);
     dispatch(addToCart(product, Pproduct_id, Number(cutMRP), unit, 1)); //if dropdown appears then put dropdown value in place of qty
+    setOpen(true);
   };
 
   //fetch all images from array
@@ -140,6 +165,19 @@ function SoloProduct() {
                   }
                 >
                   Add To Cart
+                  {/* snackbar */}
+                  <div className={classes.root}>
+                    <Snackbar
+                      open={open}
+                      autoHideDuration={1000}
+                      onClose={handleClose}
+                    >
+                      <Alert onClose={handleClose} severity="success">
+                        Item added in your Cart
+                      </Alert>
+                    </Snackbar>
+                  </div>
+                  {/* snackbar end */}
                 </div>
               </div>
               <div className="soloproduct_Buy_btn_con">
