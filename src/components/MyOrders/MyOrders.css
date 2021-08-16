@@ -76,18 +76,25 @@
 .myorder_add {
   display: flex;
   flex-direction: column;
-  margin-right: 2rem;
+  align-items: flex-end;
+  overflow: hidden;
+  justify-content: flex-end;
+  width: fit-content;
 }
 .myorder_delivery_add {
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 .myorder_delivery_add_data {
   font-weight: 400;
-  width: 35%;
   color: grey;
   font-weight: 500;
+  
+  padding-right: 1rem;
 }
 .myorder_card_body {
   display: flex;
@@ -128,6 +135,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+  }
+  .myorder_card_head{
+    flex-direction: column;
   }
   .myorder_card {
     width: 80%;

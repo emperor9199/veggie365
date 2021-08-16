@@ -29,7 +29,7 @@ function Footer() {
     fetchProducts();
   }, []);
 
-  console.log(cata);
+  
 
   return (
     <div className="footer_container">
