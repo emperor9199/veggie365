@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addComment } from "../../redux/actions/cartActions";
@@ -13,6 +13,13 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
   // }
 
   const [loadMore, setLoadmore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+
+  useEffect(() => {
+    if (comment.length) {
+      setShowMore(true);
+    }
+  }, [comment]);
 
   const dispatch = useDispatch();
 
@@ -22,6 +29,7 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
     if (!Object.keys(user).length) {
       history.push("/login");
     }
+
     dispatch(addComment(Pproduct_id, commentdata));
     setRload(true);
   };
@@ -50,7 +58,12 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
         </div>
         <div className="comments_sec_comment_container">
           {comment.length === 0 ? (
-            <div key="123">No Comments Available</div>
+            <div
+              key="123"
+              style={{ color: "red", fontWeight: 500, fontSize: "1.1rem" }}
+            >
+              No Comments Available{" "}
+            </div>
           ) : (
             comment.slice(0, loadMore ? 999 : 3).map((cmnt, key) => {
               return (
@@ -80,9 +93,14 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
               );
             })
           )}
-          <div className="load_more" onClick={() => setLoadmore(!loadMore)}>
-            {loadMore ? "See Less" : "See More"}
-          </div>
+
+          {showMore ? (
+            <div className="load_more" onClick={() => setLoadmore(!loadMore)}>
+              {loadMore ? "See Less" : "See More"}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

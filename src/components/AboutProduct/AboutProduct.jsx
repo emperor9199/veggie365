@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./AboutProduct.css";
@@ -10,6 +11,7 @@ function AboutProduct({
 }) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
+  const [more, setMore] = useState(false);
 
   // if (!Object.keys(user).length) {
   //   history.push("/login");
@@ -24,7 +26,21 @@ function AboutProduct({
         </div>
         <div className="about_product_description">
           <div className="about_product_description_tite">Description</div>
-          <div className="about_product_description_body">{product_about}</div>
+          <div className="about_product_description_body">
+            <div className={more ? "see-pro-about" : "pro-about"}>
+              {product_about}
+            </div>
+            <span
+              onClick={() => setMore(!more)}
+              style={{
+                color: "green",
+                borderBottom: "1px solid green",
+                cursor: "pointer",
+              }}
+            >
+              {more ? "See Less" : "See More"}
+            </span>
+          </div>
         </div>
         <div className="about_product_other">
           <div className="about_product_description_tite">Other Tips</div>

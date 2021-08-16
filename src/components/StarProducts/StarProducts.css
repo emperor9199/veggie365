@@ -43,6 +43,8 @@
   width: 14rem;
   height: 18.4rem;
   background-color: #ffff;
+  background-color: #f1f3f6;
+
   border-radius: 0.4rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -129,7 +131,6 @@
 .starproduct_img {
   width: 100%;
   overflow: hidden;
-  
 }
 .starproduct_img_data {
   width: 100%;
@@ -156,12 +157,11 @@
 }
 .starproduct_data {
   padding: 0.5rem 0.5rem 0.5rem 1.3rem;
-  
 }
 .starproduct_title {
   font-size: 1.2rem;
   font-weight: 500;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 .starproduct_price {
   font-weight: 500;
@@ -195,7 +195,7 @@
   color: #fff;
   cursor: pointer;
 }
-.link_class{
+.link_class {
   color: black;
 }
 @media (max-width: 1024px) {

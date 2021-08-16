@@ -2,18 +2,26 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import StarIcon from "@material-ui/icons/Star";
 import "./AllProductsCards.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
 
-function AllProductsCards({ sliceData, pprice, handleAddToCart }) {
+function AllProductsCards({ sliceData, pprice }) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // if (!Object.keys(user).length) {
   //   history.push("/login");
   // }
 
-  console.log("sliceData", sliceData);
-  console.log("pprice", pprice);
+  const handleAddToCart = (product, unit_price, unit) => {
+    dispatch(
+      addToCart(product, product.product_id, Number(unit_price), unit, 1)
+    ); //if dropdown appears then put dropdown value in place of qty
+  };
+
+  // console.log("sliceData", sliceData);
+  // console.log("pprice", pprice);
   return (
     <div className="allproducts_cards_container">
       {sliceData.map((product) => {
@@ -71,7 +79,13 @@ function AllProductsCards({ sliceData, pprice, handleAddToCart }) {
                   return (
                     <div
                       className="starproduct_btn"
-                      onClick={() => handleAddToCart(product, p.product_price)}
+                      onClick={() =>
+                        handleAddToCart(
+                          product,
+                          p.product_price,
+                          p.price_unit_name
+                        )
+                      }
                     >
                       ADD
                     </div>

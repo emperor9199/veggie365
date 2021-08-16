@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
 import veggieLogo from "../../img/veggie-logo.svg";
+import PersonIcon from "@material-ui/icons/Person";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
   const [show, setShow] = useState(false);
@@ -143,16 +144,31 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         <div className="mobile-nav-logo">
           {/* <h3>VEGGIE 365</h3> */}
           <div className="upper">
-            <Link to="/">
+            <button onClick={() => setToggle(!toggle)}>
+              {toggle ? "X" : "☰"}
+            </button>
+
+            {/* <Link to="/">
               <img
                 src={veggieLogo}
                 alt="logo"
                 style={{ width: "11vw", padding: ".5rem" }}
               />
-            </Link>
+            </Link> */}
             <h2>VEGGIE-365</h2>
             {/* cart */}
             <div className="mobile-right">
+              <Link
+                to="/update-profile"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  marginRight: ".5rem",
+                }}
+              >
+                <PersonIcon style={{ marginRight: ".3rem", fontSize: 28 }} />
+              </Link>
+
               <Link
                 to={Object.keys(user).length ? "/cart" : "/login"}
                 className="nav-specific-link"
@@ -173,10 +189,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
                   <ShoppingCartIcon style={{ marginRight: ".3rem" }} />
                 </Bagde>
               </Link>
-
-              <button onClick={() => setToggle(!toggle)}>
-                {toggle ? "X" : "☰"}
-              </button>
             </div>
           </div>
           <div className="down">

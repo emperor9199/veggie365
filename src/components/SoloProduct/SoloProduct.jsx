@@ -91,9 +91,9 @@ function SoloProduct() {
     <div className="soloproduct_container">
       <div className="soloproduct_content">
         <div className="solo_sec1">
-          <div className="small_img">
+          {/* <div className="small_img">
             <SmallImage setImg={setImg} images={images} PImg={PImg} />
-          </div>
+          </div> */}
           <div className="large_img">
             <LargeImage img={img} PImg={PImg} />
           </div>

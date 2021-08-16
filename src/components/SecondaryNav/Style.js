@@ -107,7 +107,7 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
     .sub-cata {
       position: absolute;
       background: white;
-      top: 9.3vh;
+      top: 9vh;
       z-index: 10;
       display: flex;
       justify-content: center;
@@ -159,17 +159,24 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         margin: 0 1rem;
         height: 8vh;
 
+        > button {
+          background-color: #4ac85d;
+          color: white;
+          border: none;
+          font-size: 2rem;
+          outline: none;
+        }
         .mobile-right {
           display: flex;
           align-items: center;
 
-          > button {
+          /* > button {
             background-color: #4ac85d;
             color: white;
             border: none;
             font-size: 2rem;
             outline: none;
-          }
+          } */
         }
       }
 
