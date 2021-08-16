@@ -29,7 +29,7 @@ export const AboutContainer = styled.div`
       text-align: justify;
       padding: 1rem;
 
-      > button {
+       .aboutbtn {
         padding: 0.8rem;
         color: green;
         font-size: 1.2rem;
@@ -37,7 +37,7 @@ export const AboutContainer = styled.div`
         background-color: white;
       }
 
-      > button:hover {
+       .aboutbtn:hover {
         color: white;
         border: none;
         background-color: #4ac85d;

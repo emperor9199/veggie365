@@ -1,7 +1,7 @@
 .Loginpage_container{
     display: flex;
     flex-direction: column;
-    background-color: #F1F3F6;
+    background-color: #fff;
 }
 .loginpage_navbar{
     width: 100%;

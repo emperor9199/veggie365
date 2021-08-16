@@ -19,7 +19,7 @@ export const PlaceOrderContainer = styled.div`
     top: 4.5rem;
     width: 20.4%;
     line-height: 1.7rem;
-    box-shadow: 0 5px 4px 1px lightgray;
+    box-shadow: 0px 5px 15px 1px lightgray;
     border-radius: 5px;
   }
 

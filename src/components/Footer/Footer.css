@@ -103,6 +103,10 @@ ul li:hover {
   align-items: center;
   font-weight: 500;
   margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+.playImage{
+  margin-left: 1rem;
 }
 
 @media (max-width: 539px) {
@@ -114,16 +118,21 @@ ul li:hover {
   }
 
   .footer_copy {
-    flex-direction: column;
-    height: 5rem;
+    flex-direction: column-reverse;
+    height: 7rem;
   }
-
   .copyright,
   .play {
-    padding: 0.3rem 0;
     margin: 0 !important;
+    width: 100%;
+    padding: 0 !important;
   }
-
+  .copyright{
+    margin: 1rem 0 !important;
+  }
+  .play{
+    margin-top: 1rem !important;
+  }
   .footer_categories {
     justify-content: flex-start;
   }

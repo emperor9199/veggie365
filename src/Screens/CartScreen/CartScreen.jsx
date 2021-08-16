@@ -96,17 +96,17 @@ const CartScreen = (props) => {
                   </div>
                   <div className="cart-item-details">
                     <h3>{item.name}</h3>
-                    <p>{item.about}</p>
+                    <p style={{color:"#636363"}}>{item.about}</p>
 
                     <button onClick={() => decreaseItemQty(item)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => increaseItemQty(item)}>+</button>
                     {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
-                    <h3>
+                    <h3 style={{fontSize:"1rem",color:"#636363",margin:0,marginBottom:".3rem",padding:0,paddingTop:"1rem"}}>
                       (₹{item.unit_price}/{item.unit_name})
                     </h3>
 
-                    <h3>Price: ₹{item.unit_total}</h3>
+                    <h3 style={{fontSize:"1.5rem",margin:0,padding:0}}>Price: ₹{item.unit_total}</h3>
                   </div>
                   <div className="cart-item-delivery-details">
                     <p>Delivery by {todayDate}</p>
@@ -125,13 +125,13 @@ const CartScreen = (props) => {
                   </div>
                   <div className="cart-item-details">
                     <h3>{item.name}</h3>
-                    <p>{item.about}</p>
+                    <p style={{color:"#636363"}}>{item.about}</p>
 
                     <button onClick={() => decreaseItemQty(item)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => increaseItemQty(item)}>+</button>
                     {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
-                    <h3>
+                    <h3 style={{fontSize:"1rem",color:"#636363",margin:0,marginBottom:".3rem",padding:0,paddingTop:"1rem"}}>
                       (₹{item.unit_price}/{item.unit_name})
                     </h3>
 
@@ -155,13 +155,13 @@ const CartScreen = (props) => {
                   </div>
                   <div className="cart-item-details">
                     <h3>{item.name}</h3>
-                    <p>{item.about}</p>
+                    <p style={{color:"#636363"}}>{item.about}</p>
                     <button onClick={() => decreaseItemQty(item)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => increaseItemQty(item)}>
                       +
                     </button>{" "}
-                    <h3>
+                    <h3 style={{fontSize:"1rem",color:"#636363",margin:0,marginBottom:".3rem",padding:0,paddingTop:"1rem"}}>
                       (₹{item.unit_price}/{item.unit_name})
                     </h3>
                     {/* <h3> Price: ₹{item.unit_price * item.qty} </h3> */}
@@ -178,24 +178,24 @@ const CartScreen = (props) => {
           <div className="cart-right">
             <h3>PRICE DETAILS</h3>
             <hr />
-            <p style={{ fontWeight: "bold" }}>
+            <p style={{ fontWeight: "bold" ,color:"#797878"}}>
               Items Price :{" "}
               <span style={{ color: "green" }}> ₹{itemsPrice}</span>
             </p>
-            <p style={{ fontWeight: "bold" }}>
+            <p style={{ fontWeight: "bold" ,color:"#797878"}}>
               Delivery Charges :{" "}
               <span style={{ color: "green" }}>
                 {deliveryPrice === 0 ? "Free" : "₹" + deliveryPrice}
               </span>
             </p>
-            <p style={{ fontWeight: "bold" }}>
+            <p style={{ fontWeight: "bold" ,color:"#797878"}}>
               Tax Price :{" "}
               <span style={{ color: "green" }}>
                 {" "}
                 {taxPrice === 0 ? "No Tax" : "₹" + taxPrice}
               </span>
             </p>
-            <h3 style={{ fontWeight: "bold", color: "green" }}>
+            <h3 style={{ fontWeight: "bold", color: "black" }}>
               Grand Total of {""}
               {cartItemsId500.reduce((a, c) => a + cartItems500[c].qty, 0)}
               {""} items : ₹{totalPrice}

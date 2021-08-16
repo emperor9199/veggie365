@@ -102,6 +102,8 @@ const ShippingNew = ({ expanded, setExpanded }) => {
             type="text"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
+            minLength={10}
+            maxLength={10}
             required
           />
         </div>
@@ -113,6 +115,8 @@ const ShippingNew = ({ expanded, setExpanded }) => {
             type="text"
             value={pincode}
             onChange={(e) => setPincode(e.target.value)}
+            minLength={6}
+            maxLength={6}
             required
           />
         </div>

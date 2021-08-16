@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -6,8 +6,31 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import "./Footer.css";
 import play from "../../img/playstore.svg";
 import app from "../../img/appstore.svg";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Footer() {
+  const [cata, setCata] = useState();
+
+  useEffect(() => {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product/category");
+      setCata(data);
+    };
+    fetchProducts();
+  }, []);
+
+  console.log(cata);
+
   return (
     <div className="footer_container">
       <div className="footer_con">
@@ -16,13 +39,19 @@ function Footer() {
             <div className="cata-inner">
               <h4>CATEGORIES</h4>
               <div className="footer_line" />
-              <ul>
-                <li>Root Vegetable</li>
-                <li>leafy Green</li>
-                <li>Marrow</li>
-                <li>Mushrooms</li>
-                <li>Gourds</li>
-              </ul>
+              {
+                cata?.slice(0,5).map((cat,key) => {
+                  return(
+                    <ul key={key}>
+                      <Link to={`/products/${cat.category_id}/${cat.category_name}`}
+                  style={{
+                    textDecoration: "none",
+                    color: "#929a9a",
+                  }}><li>{cat.category_name}</li></Link>
+                    </ul>
+                  )
+                })
+              }
             </div>
           </div>
           <div className="footer_buy_with_us">
@@ -30,7 +59,10 @@ function Footer() {
               <h4>BUY WITH US</h4>
               <div className="footer_line" />
               <ul>
-                <li>About us</li>
+              <li><Link to="aboutus" style={{
+                    textDecoration: "none",
+                    color: "#929a9a",
+                  }}>About us</Link></li>
                 <li>Contact Us</li>
                 <li>Services</li>
                 <li>Privacy Policy</li>
@@ -86,21 +118,24 @@ function Footer() {
           </div>
         </div>
         <div className="footer_copy">
-          <div className="copyright" style={{ marginLeft: "2rem" }}>
+        <div className="copyright common_flex" style={{ marginLeft: "2rem" }}>
             ©Copyright 2021 VEGGIE 365
           </div>
-          <div className="play common_flex" style={{ marginRight: "2rem" }}>
+          
+          <div className="play common_flex" style={{ marginRight: "2rem"}}>
             <a href="ab" target="_blank">
               <img
                 src={play}
                 alt=""
-                style={{ height: "2.5rem", marginRight: "1rem" }}
+                style={{ height: "2.5rem"}}
+                className="playImage"
               />
             </a>
             <a href="ab" target="_blank">
-              <img src={app} alt="" style={{ height: "2.5rem" }} />
+              <img src={app} alt="" style={{ height: "2.5rem"}} />
             </a>
           </div>
+          
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ export const CartContainer = styled.div`
     line-height: 2rem;
     position: sticky;
     top: 4.5rem;
-    box-shadow: 0 5px 4px 1px lightgray;
+    box-shadow: 0px 5px 15px 1px lightgray;
     border-radius: 5px;
 
     > .place-order-btn {
