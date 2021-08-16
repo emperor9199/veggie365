@@ -4,14 +4,16 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
 // import veggieLogo from "../../img/veggie-logo.svg";
 import PersonIcon from "@material-ui/icons/Person";
+import { userLogout } from "../../redux/actions/userActions";
 
 const SecondaryNav = ({ setToggle, toggle }) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [dropDownItem, setDropDownItem] = useState(false);
   const [cata, setCata] = useState();
@@ -48,6 +50,10 @@ const SecondaryNav = ({ setToggle, toggle }) => {
     };
     fetchCata();
   }, []);
+
+  const handleLogout = () => {
+    dispatch(userLogout());
+  };
 
   return (
     <SecondaryNavContainer className={show ? "active" : ""}>
@@ -160,7 +166,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             {/* cart */}
             <div className="mobile-right">
               <Link
-                to="/update-profile"
+                to={Object.keys(user).length ? "/update-profile" : "/login"}
                 style={{
                   textDecoration: "none",
                   color: "white",
@@ -209,10 +215,34 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           {/* <div className="mobile-search-container">
             <SearchBox lab="mobile" />
           </div> */}
+          <div>
+            {Object.keys(user).length ? (
+              <p style={{ fontSize: "1.8rem" }}>Hello, {user.user_name}</p>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p
+                  style={{
+                    fontSize: "1.3rem",
+                  }}
+                  onClick={() => setToggle(!toggle)}
+                >
+                  Login
+                </p>
+              </Link>
+            )}
+          </div>
+
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
               onClick={() => setToggle(!toggle)}
-              style={{ fontSize: "1.3rem" }}
+              style={{
+                fontSize: "1.3rem",
+                borderBottom: "1px solid white",
+                margin: "0 5rem",
+              }}
             >
               Home
             </p>
@@ -231,7 +261,12 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           >
             <p
               onClick={() => setToggle(!toggle)}
-              style={{ fontSize: "1.3rem" }}
+              style={{
+                fontSize: "1.3rem",
+                borderBottom: "1px solid white",
+                margin: "0 5rem",
+                marginTop: "1rem",
+              }}
             >
               Your Orders
             </p>
@@ -242,7 +277,12 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           >
             <p
               onClick={() => setToggle(!toggle)}
-              style={{ fontSize: "1.3rem" }}
+              style={{
+                fontSize: "1.3rem",
+                borderBottom: "1px solid white",
+                margin: "0 5rem",
+                marginTop: "1rem",
+              }}
             >
               About Us
             </p>
@@ -250,11 +290,36 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
               onClick={() => setToggle(!toggle)}
-              style={{ fontSize: "1.3rem" }}
+              style={{
+                fontSize: "1.3rem",
+                borderBottom: "1px solid white",
+                margin: "0 5rem",
+                marginTop: "1rem",
+              }}
             >
               Contact Us
             </p>
           </Link>
+          {Object.keys(user).length ? (
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <p
+                onClick={() => {
+                  setToggle(!toggle);
+                  handleLogout();
+                }}
+                style={{
+                  fontSize: "1.3rem",
+                  borderBottom: "1px solid white",
+                  margin: "0 5rem",
+                  marginTop: "1rem",
+                }}
+              >
+                Logout
+              </p>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </SecondaryNavContainer>
