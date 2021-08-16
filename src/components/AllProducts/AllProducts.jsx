@@ -12,9 +12,9 @@ function AllProducts() {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  if (!Object.keys(user).length) {
-    history.push("/login");
-  }
+  // if (!Object.keys(user).length) {
+  //   history.push("/login");
+  // }
 
   let { catName } = useParams();
   let { catID } = useParams();

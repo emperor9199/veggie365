@@ -116,7 +116,7 @@ function StarProducts({ no, categoryName, categoryid }) {
                 </div> */}
                 <Link
                   className="link_class"
-                  to="/product/flower"
+                  to={`/product/${product.product_id}`}
                   style={{ textDecoration: "none" }}
                 >
                   <div className="starproduct_title">

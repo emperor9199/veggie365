@@ -19,7 +19,7 @@ const PaymentScreen = () => {
   //order confirmed
 
   const {
-    shippingAddress,
+    // shippingAddress,
     // paymentMethod,
     cartItems,
     cartItemsId,
@@ -63,8 +63,7 @@ const PaymentScreen = () => {
   useEffect(() => {
     if (success) {
       // history.push(`/order/${orders[0].order_id}`);
-      history.push(`/your-order-his`);
-
+      // history.push(`/your-order-his`);
       // dispatch({ type: ORDER_RESET });
     }
   }, [orders, history, success]);
@@ -85,7 +84,7 @@ const PaymentScreen = () => {
             value="paypal"
             name="paymentMethod"
             onChange={(e) => setPaymentMethod(e.target.value)}
-            checked
+            defaultChecked
             required
           />
           PayPal

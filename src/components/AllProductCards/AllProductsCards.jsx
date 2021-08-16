@@ -8,9 +8,9 @@ function AllProductsCards({ sliceData, pprice, handleAddToCart }) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  if (!Object.keys(user).length) {
-    history.push("/login");
-  }
+  // if (!Object.keys(user).length) {
+  //   history.push("/login");
+  // }
 
   console.log("sliceData", sliceData);
   console.log("pprice", pprice);
