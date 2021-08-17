@@ -92,6 +92,13 @@ const PaymentScreen = () => {
     let placedOrder = {};
     placedOrder["total"] = Number(totalPrice);
     placedOrder["item"] = itemArray;
+    const orderAddress = shippingAddress?.find(
+      (item) =>
+        item.user_address_name === localStorage.getItem("user_address_ref")
+    );
+
+    placedOrder["user_address_id"] = orderAddress.user_address_id;
+
     if (paymentMethod === "razorpay") {
       placedOrder["payment"] = 1;
 
@@ -136,14 +143,6 @@ const PaymentScreen = () => {
         alert(response.error.description);
       });
     } else {
-      // fetch user_address_id
-
-      const orderAddress = shippingAddress?.find(
-        (item) =>
-          item.user_address_name === localStorage.getItem("user_address_ref")
-      );
-
-      placedOrder["user_address_id"] = orderAddress.user_address_id;
       dispatch(createOrder(placedOrder));
     }
 
