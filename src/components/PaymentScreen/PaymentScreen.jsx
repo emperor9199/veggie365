@@ -114,14 +114,8 @@ const PaymentScreen = () => {
         order_id: localStorage.getItem("order_id"),
         // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
         handler: function (response) {
-          const orderAddress = shippingAddress?.find(
-            (item) =>
-              item.user_address_name ===
-              localStorage.getItem("user_address_ref")
-          );
-
-          placedOrder["user_address_id"] = orderAddress.user_address_id;
           dispatch(createOrder(placedOrder));
+          dispatch({ type: ORDER_RESET });
         },
         prefill: {
           name: "Veggie User",
@@ -144,6 +138,7 @@ const PaymentScreen = () => {
       });
     } else {
       dispatch(createOrder(placedOrder));
+      dispatch({ type: ORDER_RESET });
     }
 
     // history.push(`/your-order-his`);
