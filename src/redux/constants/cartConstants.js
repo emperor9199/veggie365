@@ -1,3 +1,4 @@
+export const CREATE_CART_ARRAY = "CREATE_CART_ARRAY";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DECREASE_QTY = "DECREASE_QTY";
 export const CART_EMPTY = "CART_EMPTY";

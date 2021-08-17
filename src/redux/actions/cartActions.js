@@ -4,13 +4,19 @@ import {
   SAVE_PAYMENT_METHOD,
   ORDER_PRICES,
   ADD_SHIPPING_ADDRESS,
+  CREATE_CART_ARRAY,
   // UPDATE_SHIPPING_ADDRESS,
   // SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 import axios from "axios";
 
+export const createCartArray = (unit_id_array) => (dispatch) => {
+  dispatch({ type: CREATE_CART_ARRAY, payload: unit_id_array });
+};
+
 export const addToCart =
-  (product, pid, unit_price, unit_name, unit_id,qty) => (dispatch, getState) => {
+  (product, pid, unit_price, unit_name, unit_id, qty) =>
+  (dispatch, getState) => {
     let localCartItems500,
       localCartItemsId500,
       localCartItems1,
@@ -49,7 +55,7 @@ export const addToCart =
         qty: qty,
         unit_name: unit_name,
         unit_total: Number(unit_price),
-        unit_id: Number(unit_id)
+        unit_id: Number(unit_id),
       },
     });
 
