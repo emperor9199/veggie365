@@ -43,6 +43,7 @@ export const orderReducer = produce((state = initialState, action) => {
       state.error = false;
       state.success = false;
       state.orders = [];
+      localStorage.removeItem("order_id");
       return;
     }
 
