@@ -162,6 +162,10 @@
   font-size: 1.2rem;
   font-weight: 500;
   margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .starproduct_price {
   font-weight: 500;

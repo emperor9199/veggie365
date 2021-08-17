@@ -58,9 +58,9 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product, unit_price, unit) => {
+  const handleAddToCart = (product, unit_price, unit,price_unit_id) => {
     dispatch(
-      addToCart(product, product.product_id, Number(unit_price), unit, 1)
+      addToCart(product, product.product_id, Number(unit_price), unit,price_unit_id, 1)
     ); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
@@ -107,7 +107,7 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                 <div className="starproduct_img">
                   <img
                     className="starproduct_img_data"
-                    src={product.product_img}
+                    src={product.product_cover_img}
                     alt={product.product_name}
                   />
                   {/* <div className="starproduct_dis_label">4%</div> */}
@@ -123,7 +123,7 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                   to="/product/flower"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="starproduct_title">
+                  <div className="similarproduct_title">
                     {product.product_name}
                   </div>
                   <div className="starproduct_high">
@@ -159,7 +159,8 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                           handleAddToCart(
                             product,
                             p.product_price,
-                            p.price_unit_name
+                            p.price_unit_name,
+                            p.price_unit_id
                           )
                         }
                         key={key}

@@ -79,12 +79,13 @@ const PaymentScreen = () => {
     let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
 
     let itemArray = [];
+    console.log(orderItems);
 
     orderItems.map((item) => {
       let orderObj = {};
       orderObj["product_id"] = item.p_id;
       orderObj["product_price"] = item.unit_price;
-      orderObj["price_unit_id"] = 2;
+      orderObj["price_unit_id"] = item.unit_id;
       orderObj["order_quantity"] = item.qty;
       itemArray.push(orderObj);
     });
@@ -99,7 +100,7 @@ const PaymentScreen = () => {
       var options = {
         key: "rzp_test_mCQYP1VXS2KYbo", // Enter the Key ID generated from the Dashboard
         // key_secret: "Zj6I7kFH6JTbJy7tEDrVLl0p",
-        amount: placedOrder["total"] * 100,
+        amount: Number(totalPrice) * 100,
         currency: "INR",
         name: "Veggie",
         description: "Test Transaction",

@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 
 export const addToCart =
-  (product, pid, unit_price, unit_name, qty) => (dispatch, getState) => {
+  (product, pid, unit_price, unit_name, unit_id,qty) => (dispatch, getState) => {
     let localCartItems500,
       localCartItemsId500,
       localCartItems1,
@@ -49,6 +49,7 @@ export const addToCart =
         qty: qty,
         unit_name: unit_name,
         unit_total: Number(unit_price),
+        unit_id: Number(unit_id)
       },
     });
 

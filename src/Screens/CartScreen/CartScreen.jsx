@@ -26,8 +26,9 @@ const CartScreen = (props) => {
   } = useSelector((state) => state.addToCartReducer);
 
   const increaseItemQty = (product) => {
+    console.log(product);
     dispatch(
-      addToCart(product, product.p_id, product.unit_price, product.unit_name, 1)
+      addToCart(product, product.p_id, product.unit_price, product.unit_name,product.unit_id, 1)
     );
   };
 

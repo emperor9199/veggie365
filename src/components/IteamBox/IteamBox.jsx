@@ -10,6 +10,7 @@ function IteamBox({
   setYousave,
   setUnit,
   setCutmrpD,
+  setPriceUnitId
 }) {
   let priceUnitId;
   let firstPrice, price_unit_name, discount;
@@ -34,6 +35,7 @@ function IteamBox({
 
   setUnit(selectedUnit);
   setCutmrp(defaultIteam);
+  setPriceUnitId(selectedIteam)
 
   const onChangeValue = (event) => {
     var val = event.target.value;
@@ -45,6 +47,7 @@ function IteamBox({
         setSelectedUnit(pro.price_unit_name);
         let newDis = pro.discount === 0 ? 10 : pro.discount;
         setCutmrpD(pro.product_price + newDis);
+        setPriceUnitId(pro.price_unit_id);
         //console.log("pro",pro);
       });
   };

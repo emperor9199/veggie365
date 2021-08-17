@@ -51,6 +51,7 @@ function SoloProduct() {
   const [ourPrice, setOurPrice] = useState();
   const [youSave, setYousave] = useState();
   const [unit, setUnit] = useState();
+  const [priceUnitID, setPriceUnitId] = useState();
 
   reload && window.location.reload();
 
@@ -73,8 +74,8 @@ function SoloProduct() {
     fetchProducts();
   }, [pid]);
 
-  const handleAddToCart = (product, Pproduct_id, cutMRP, unit) => {
-    dispatch(addToCart(product, Pproduct_id, Number(cutMRP), unit, 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, Pproduct_id, cutMRP, unit,priceUnitID) => {
+    dispatch(addToCart(product, Pproduct_id, Number(cutMRP), unit,priceUnitID, 1)); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
 
@@ -92,7 +93,7 @@ function SoloProduct() {
     total_quantity;
 
   products.map((propt) => {
-    PImg = propt.product_img;
+    PImg = propt.product_cover_img;
     product_name = propt.product_name;
     product_about = propt.product_about;
     product_fresh_till = propt.product_fresh_till;
@@ -113,7 +114,7 @@ function SoloProduct() {
   });
 
   const [img, setImg] = useState(null);
-
+  
   return (
     <div className="soloproduct_container">
       <div className="soloproduct_content">
@@ -154,6 +155,7 @@ function SoloProduct() {
                 setYousave={setYousave}
                 setUnit={setUnit}
                 setCutmrpD={setCutmrpD}
+                setPriceUnitId={setPriceUnitId}
               />
             </div>
             <div className="soloproduct_btns_con">
@@ -161,7 +163,7 @@ function SoloProduct() {
                 <div
                   className="soloproduct_Buy_btn"
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit)
+                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit,priceUnitID)
                   }
                 >
                   Add To Cart
@@ -185,7 +187,7 @@ function SoloProduct() {
                   to="/place-order"
                   style={{ textDecoration: "none", color: "#fff" }}
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit)
+                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit,priceUnitID)
                   }
                 >
                   <div

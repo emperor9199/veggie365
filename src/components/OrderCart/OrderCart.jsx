@@ -23,7 +23,7 @@ const OrderCart = ({ expanded, setExpanded }) => {
 
   const increaseItemQty = (product) => {
     dispatch(
-      addToCart(product, product.p_id, product.unit_price, product.unit_name, 1)
+      addToCart(product, product.p_id, product.unit_price, product.unit_name, product.unit_id,1)
     );
   };
 

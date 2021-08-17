@@ -34,9 +34,9 @@ function AllProductsCards({ sliceData, pprice }) {
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = (product, unit_price, unit) => {
+  const handleAddToCart = (product, unit_price, unit,price_unit_id) => {
     dispatch(
-      addToCart(product, product.product_id, Number(unit_price), unit, 1)
+      addToCart(product, product.product_id, Number(unit_price), unit,price_unit_id, 1)
     ); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
@@ -56,7 +56,7 @@ function AllProductsCards({ sliceData, pprice }) {
               <div className="starproduct_img">
                 <img
                   className="starproduct_img_data"
-                  src={product.product_img}
+                  src={product.product_cover_img}
                   alt={product.product_name}
                 />
                 {/* <div className="starproduct_dis_label">4%</div> */}
@@ -104,7 +104,8 @@ function AllProductsCards({ sliceData, pprice }) {
                         handleAddToCart(
                           product,
                           p.product_price,
-                          p.price_unit_name
+                          p.price_unit_name,
+                          p.price_unit_id
                         )
                       }
                     >
