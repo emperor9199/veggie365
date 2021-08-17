@@ -28,9 +28,13 @@ import MyOrders from "./components/MyOrders/MyOrders";
 import CabScreen from "./Screens/CabScreen/CabScreen";
 import TestPayment from "./Screens/TestPayment";
 import UpdatePage from "./components/UpdatePage/UpdatePage";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import {createCartArray}  from "./redux/actions/cartActions";
 
 function App() {
   const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +49,40 @@ function App() {
     //   }
     // };
   }, []);
+  const [Price, setPrice] = useState([]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
 
+    const fetchProducts = async () => {
+      const { data } = await authAxios.get("/product/price");
+      setPrice(data);
+    };
+
+    fetchProducts();
+  }, []);
+  var arr = [-10];
+  
+  Price?.map((p) => {
+        arr?.map((a) => {
+            if(a !== p.price_unit_id){
+                arr.push(p.price_unit_id);
+            }
+        })
+    })
+    var newarr = new Set(arr);
+    var newnew = [...newarr];
+    var finalArr = newnew.shift();
+  
+    dispatch(createCartArray(newnew.sort()));
   return (
     <>
       <Router>

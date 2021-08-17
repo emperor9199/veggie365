@@ -92,6 +92,7 @@
   color: rgb(221, 105, 62);
   font-size: 0.8rem;
   font-weight: 500;
+  overflow: hidden;
 }
 .starproduct_color_card_subt {
   font-weight: 500;
@@ -170,10 +171,12 @@
 .starproduct_price {
   font-weight: 500;
   font-size: 0.9rem;
+  overflow: hidden;
 }
 .starproduct_price_delete {
   font-size: 0.8rem;
   color: grey;
+  overflow: hidden;
 }
 .starproduct_btn_con {
   display: flex;
