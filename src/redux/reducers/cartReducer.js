@@ -64,7 +64,7 @@ export const addToCartReducer = produce((state = initialState, action) => {
     case ADD_TO_CART: {
       const { p_id, qty, unit_price, unit_name } = action.payload;
 
-      if (unit_name === "500 Gm") {
+      if (unit_name === "500 gm") {
         if (state.cartItems500[p_id]) {
           state.cartItems500[p_id].qty = state.cartItems500[p_id].qty + qty;
           state.cartItems500[p_id].unit_total =
@@ -73,7 +73,7 @@ export const addToCartReducer = produce((state = initialState, action) => {
           state.cartItems500[p_id] = action.payload;
           state.cartItemsId500.push(p_id);
         }
-      } else if (unit_name === "1 kg") {
+      } else if (unit_name === "1 Kg") {
         if (state.cartItems1[p_id]) {
           state.cartItems1[p_id].qty = state.cartItems1[p_id].qty + qty;
           state.cartItems1[p_id].unit_total =
@@ -82,7 +82,7 @@ export const addToCartReducer = produce((state = initialState, action) => {
           state.cartItems1[p_id] = action.payload;
           state.cartItemsId1.push(p_id);
         }
-      } else if (unit_name === "૨ કિલો ") {
+      } else if (unit_name === "2 Kg") {
         if (state.cartItems2[p_id]) {
           state.cartItems2[p_id].qty = state.cartItems2[p_id].qty + qty;
           state.cartItems2[p_id].unit_total =
