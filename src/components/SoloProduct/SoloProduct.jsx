@@ -23,6 +23,7 @@ function SoloProduct() {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "0",
+      display: "none",
       "& > * + *": {
         marginTop: theme.spacing(2),
       },
@@ -74,8 +75,10 @@ function SoloProduct() {
     fetchProducts();
   }, [pid]);
 
-  const handleAddToCart = (product, Pproduct_id, cutMRP, unit,priceUnitID) => {
-    dispatch(addToCart(product, Pproduct_id, Number(cutMRP), unit,priceUnitID, 1)); //if dropdown appears then put dropdown value in place of qty
+  const handleAddToCart = (product, Pproduct_id, cutMRP, unit, priceUnitID) => {
+    dispatch(
+      addToCart(product, Pproduct_id, Number(cutMRP), unit, priceUnitID, 1)
+    ); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
 
@@ -114,7 +117,7 @@ function SoloProduct() {
   });
 
   const [img, setImg] = useState(null);
-  
+
   return (
     <div className="soloproduct_container">
       <div className="soloproduct_content">
@@ -163,7 +166,13 @@ function SoloProduct() {
                 <div
                   className="soloproduct_Buy_btn"
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit,priceUnitID)
+                    handleAddToCart(
+                      products[0],
+                      Pproduct_id,
+                      cutMRP,
+                      unit,
+                      priceUnitID
+                    )
                   }
                 >
                   Add To Cart
@@ -187,7 +196,13 @@ function SoloProduct() {
                   to="/place-order"
                   style={{ textDecoration: "none", color: "#fff" }}
                   onClick={() =>
-                    handleAddToCart(products[0], Pproduct_id, cutMRP, unit,priceUnitID)
+                    handleAddToCart(
+                      products[0],
+                      Pproduct_id,
+                      cutMRP,
+                      unit,
+                      priceUnitID
+                    )
                   }
                 >
                   <div

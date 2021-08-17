@@ -15,6 +15,7 @@ function Alert(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    display: "none",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
@@ -58,9 +59,16 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product, unit_price, unit,price_unit_id) => {
+  const handleAddToCart = (product, unit_price, unit, price_unit_id) => {
     dispatch(
-      addToCart(product, product.product_id, Number(unit_price), unit,price_unit_id, 1)
+      addToCart(
+        product,
+        product.product_id,
+        Number(unit_price),
+        unit,
+        price_unit_id,
+        1
+      )
     ); //if dropdown appears then put dropdown value in place of qty
     setOpen(true);
   };
