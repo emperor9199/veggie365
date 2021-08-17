@@ -16,7 +16,7 @@ export const CabContainer = styled.div`
     flex-direction: column;
     margin: 2rem 0;
 
-    > button {
+     .cabbtn {
       border: none;
       outline: none;
       padding: 0.5rem;
@@ -27,7 +27,7 @@ export const CabContainer = styled.div`
       cursor: pointer;
     }
 
-    > button:hover {
+     .cabbtn:hover {
       background-color: #3eab4e;
     }
   }
