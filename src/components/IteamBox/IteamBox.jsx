@@ -52,7 +52,6 @@ function IteamBox({
         setCutmrpD(pro.product_price + newDis);
         setPriceUnitId(pro.price_unit_id);
         setUnitGM(pro.unit_in_gm);
-        //console.log("pro",pro);
       });
   };
   return (

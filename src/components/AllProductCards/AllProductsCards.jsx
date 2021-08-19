@@ -55,8 +55,6 @@ function AllProductsCards({ sliceData, pprice }) {
     setOpen(true);
   };
 
-  // console.log("sliceData", sliceData);
-  // console.log("pprice", pprice);
   return (
     <div className="allproducts_cards_container">
       {sliceData.map((product) => {

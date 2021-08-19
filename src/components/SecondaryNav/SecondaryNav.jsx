@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
-// import veggieLogo from "../../img/veggie-logo.svg";
 import PersonIcon from "@material-ui/icons/Person";
 import { userLogout } from "../../redux/actions/userActions";
 
@@ -18,21 +17,12 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   const [dropDownItem, setDropDownItem] = useState(false);
   const [cata, setCata] = useState();
   const { user } = useSelector((state) => state.userLoginReducer);
-  // const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
-  //   (state) => state.addToCartReducer
-  // );
 
   var hereData = useSelector((state) => state.addToCartReducer);
 
-  var localCartId = JSON.parse(localStorage.getItem("cartUnitDataId"));
   var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
-  var cartFinalId = JSON.parse(localStorage.getItem("cartFinalId"));
-  // console.log(localCardData);
 
   var sumArr = [];
-  var filledArr = [];
-  var pushArr = [];
-  var dataArr = [];
 
   localCardData?.map((item) => {
     if (hereData[item].length) {
@@ -81,9 +71,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         <Link to="/" style={{ textDecoration: "none", color: "white" }}>
           <p>Home</p>
         </Link>
-        {/* <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-          <p>Products</p>
-        </Link> */}
         <Link
           to="/your-order-his"
           style={{ textDecoration: "none", color: "white" }}
@@ -111,10 +98,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           </div>
         </span>
         <div className={show ? "search-container" : "not-show"}>
-          {/* <input type="text" placeholder="Search Product..." />
-          <button>
-            <SearchIcon />
-          </button> */}
           <div className="primary_serach_box">
             <SearchBox lab="secondary" />
           </div>
@@ -171,13 +154,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
               {toggle ? "X" : "☰"}
             </button>
 
-            {/* <Link to="/">
-              <img
-                src={veggieLogo}
-                alt="logo"
-                style={{ width: "11vw", padding: ".5rem" }}
-              />
-            </Link> */}
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               <h2>VEGGIE-365</h2>
             </Link>
@@ -224,11 +200,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         <div
           className={toggle ? "mobile-nav-items " : "mobile-nav-items-no-show"}
         >
-          {/* hide */}
-
-          {/* <div className="mobile-search-container">
-            <SearchBox lab="mobile" />
-          </div> */}
           <div>
             {Object.keys(user).length ? (
               <p style={{ fontSize: "1.8rem" }}>Hello, {user.user_name}</p>
@@ -261,14 +232,6 @@ const SecondaryNav = ({ setToggle, toggle }) => {
               Home
             </p>
           </Link>
-          {/* <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <p
-              onClick={() => setToggle(!toggle)}
-              style={{ fontSize: "1.3rem" }}
-            >
-              Products
-            </p>
-          </Link> */}
           <Link
             to="/your-order-his"
             style={{ textDecoration: "none", color: "white" }}

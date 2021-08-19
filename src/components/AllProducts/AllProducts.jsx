@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { allproducts } from "../../Data/AllProducts";
 import "./AllProducts.css";
 import SortingBar from "../SortingBar/SortingBar";
 import AllProductsCards from "../AllProductCards/AllProductsCards";
@@ -61,18 +60,7 @@ function AllProducts() {
     });
   });
   const [sortVal, setSortval] = useState("acends");
-  console.log(sortVal);
 
-  // if (sortVal === "acend"){
-  //     allproducts.sort((a,b) => {
-  //         return(a.price - b.price);
-  //     })
-  // }
-  // if(sortVal === "desc"){
-  //     allproducts.sort((a,b) => {
-  //         return(b.price - a.price);
-  //     })
-  // }
   if (sortVal === "acends") {
     products.sort((a, b) => {
       let fa = a.product_name.toLowerCase(),
@@ -127,7 +115,6 @@ function AllProducts() {
         <hr />
         <div className="allproducts_cards">
           <AllProductsCards
-            productData={allproducts}
             sliceData={sliceData}
             pprice={pprice}
             handleAddToCart={handleAddToCart}

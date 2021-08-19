@@ -8,10 +8,6 @@ function CommentSec({ comment, Pproduct_id, setRload }) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
-  // if (!Object.keys(user).length) {
-  //   history.push("/login");
-  // }
-
   const [loadMore, setLoadmore] = useState(false);
   const [showMore, setShowMore] = useState(false);
 

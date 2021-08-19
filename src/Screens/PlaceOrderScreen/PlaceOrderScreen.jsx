@@ -5,7 +5,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import ShippingScreen from "../../components/ShippingScreen/ShippingScreen";
 import PaymentScreen from "../../components/PaymentScreen/PaymentScreen";
 import { PlaceOrderContainer } from "./Styles";
 import { useSelector } from "react-redux";

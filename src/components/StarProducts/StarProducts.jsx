@@ -102,10 +102,7 @@ function StarProducts({ no, categoryName, categoryid }) {
 
   return (
     <div className="starproducts_container">
-      <div className="starproducts_head_title">
-        {categoryName}
-        {/* <span className="starproducts_head_dic"> (10% off)</span> */}
-      </div>
+      <div className="starproducts_head_title">{categoryName}</div>
       <div className="starproducts_line" />
       <div className="starproducts_card_con">
         {sliceData.map((product, key) => {
@@ -127,10 +124,6 @@ function StarProducts({ no, categoryName, categoryid }) {
                 </div>
               </Link>
               <div className="starproduct_data">
-                {/* <div className="starproduct_rating">
-                  <StarIcon style={{ color: "gold" }} />
-                  <StarIcon style={{ color: "gold" }} />
-                </div> */}
                 <Link
                   className="link_class"
                   to={`/product/${product.product_id}`}

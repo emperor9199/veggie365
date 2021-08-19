@@ -10,9 +10,7 @@ import * as yup from "yup";
 
 function UpdateForm(props) {
   const { user } = useSelector((state) => state.userLoginReducer);
-  console.log(user);
   const Contactno = /^[6-9]\d{9}$/;
-  // const userData = JSON.parse(localStorage.getItem("loggedUser"));
   const userPassword = user.user_password;
 
   const schema = yup.object().shape({
@@ -44,10 +42,6 @@ function UpdateForm(props) {
   const LastName = FullName.split(" ")[1];
 
   const dispatch = useDispatch();
-  //   const { userID } = useSelector((state) => state.userLoginReducer);
-  //   if (!Object.keys(userID).length) {
-  //     historyTwo.push("/login");
-  //   }
 
   const { loading, newUser } = useSelector(
     (state) => state.userRegistrationReducer
@@ -64,12 +58,6 @@ function UpdateForm(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  //   useEffect(() => {
-  //     if (Object.keys(user).length) {
-  //       historyTwo.push("/");
-  //     }
-  //   }, [props.history, user]);
 
   return (
     <div className="LoginPageForm_container common_flex">
@@ -204,10 +192,6 @@ function UpdateForm(props) {
             </div>
           </form>
         </div>
-        {/* <div className="loginform_or_label common_flex">OR</div>
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <div className="signupform_external_btn common_flex">Login</div>
-        </Link> */}
       </div>
     </div>
   );

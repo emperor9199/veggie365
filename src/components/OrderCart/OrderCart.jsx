@@ -12,15 +12,6 @@ import { CartContainer } from "./Styles";
 const OrderCart = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
 
-  // const {
-  //   cartItems500,
-  //   cartItemsId500,
-  //   cartItems1,
-  //   cartItemsId1,
-  //   cartItems2,
-  //   cartItemsId2,
-  // } = useSelector((state) => state.addToCartReducer);
-
   const increaseItemQty = (product) => {
     dispatch(
       addToCart(
@@ -55,24 +46,6 @@ const OrderCart = ({ expanded, setExpanded }) => {
   }
 
   var { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
-  var printtotal = itemsPrice;
-
-  // var itemprice500 = cartItemsId500.reduce(
-  //   (a, c) => a + cartItems500[c].unit_price * cartItems500[c].qty,
-  //   0
-  // );
-
-  // var itemprice1 = cartItemsId1.reduce(
-  //   (a, c) => a + cartItems1[c].unit_price * cartItems1[c].qty,
-  //   0
-  // );
-
-  // var itemprice2 = cartItemsId2.reduce(
-  //   (a, c) => a + cartItems2[c].unit_price * cartItems2[c].qty,
-  //   0
-  // );
-
-  // itemsPrice = itemprice500 + itemprice1 + itemprice2;
 
   deliveryPrice = 0;
   taxPrice = 0;
@@ -84,15 +57,9 @@ const OrderCart = ({ expanded, setExpanded }) => {
 
   var hereData = useSelector((state) => state.addToCartReducer);
 
-  var localCartId = JSON.parse(localStorage.getItem("cartUnitDataId"));
   var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
-  var cartFinalId = JSON.parse(localStorage.getItem("cartFinalId"));
-  // console.log(localCardData);
 
   var sumArr = [];
-  var filledArr = [];
-  var pushArr = [];
-  var dataArr = [];
 
   localCardData?.map((item) => {
     if (hereData[item].length) {
@@ -108,8 +75,6 @@ const OrderCart = ({ expanded, setExpanded }) => {
   var todayDate = date.split(" ");
   todayDate = todayDate[0] + " " + todayDate[1] + " " + todayDate[2];
 
-  var grandtotal = printtotal + taxPrice + deliveryPrice;
-
   return (
     <>
       {sumArr.length === 0 ? (
@@ -122,8 +87,6 @@ const OrderCart = ({ expanded, setExpanded }) => {
             <div className="cart-left">
               {sumArr?.map((itemOne) => {
                 return itemOne?.map((item) => {
-                  // itemSum += item.unit_total;
-
                   return (
                     <div>
                       <div key={item.p_id} className="cart-inner-container">

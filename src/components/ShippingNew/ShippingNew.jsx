@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./shippingStyle.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  addShippingAddress,
-  updateShippingAddress,
-} from "../../redux/actions/cartActions";
+import { addShippingAddress } from "../../redux/actions/cartActions";
 
 var val = "";
 
@@ -67,19 +64,6 @@ const ShippingNew = ({ expanded, setExpanded }) => {
     localStorage.removeItem("foundAddr");
     localStorage.removeItem("user_address_ref");
     localStorage.setItem("user_address_ref", val);
-
-    //   localStorage.setItem("user_address_ref", val);
-    // if (localStorage.getItem("foundAddr") || findAddress) {
-    //   dispatch(updateShippingAddress(userAddressId, val, address, pincode)); // update address
-    //   localStorage.removeItem("foundAddr");
-    //   localStorage.removeItem("user_address_ref");
-    //   localStorage.setItem("user_address_ref", val);
-    // } else {
-    //   dispatch(addShippingAddress(val, address, pincode)); // add new address
-    //   localStorage.removeItem("foundAddr");
-    //   localStorage.removeItem("user_address_ref");
-    //   localStorage.setItem("user_address_ref", val);
-    // }
 
     setExpanded("panel2");
   };

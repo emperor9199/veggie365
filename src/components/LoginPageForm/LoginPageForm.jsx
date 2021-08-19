@@ -86,18 +86,6 @@ function LoginPageForm(props) {
               <span className="error_msg">{errors.Password?.message}</span>
             </div>
             <div className="login_form_fields_extra">
-              {/* <div className="remember_me_field">
-                <label htmlFor="Remember" className="form_label">
-                  <input
-                    type="checkbox"
-                    name="Remember"
-                    id="Remember"
-                    value="Remember Me"
-                    className="loginform_check"
-                  />
-                  Remember Me
-                </label>
-              </div> */}
               <div
                 className="forgot_password_field loginform_or_label"
                 style={{ marginRight: ".9rem", cursor: "pointer" }}

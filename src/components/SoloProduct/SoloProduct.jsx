@@ -8,7 +8,6 @@ import AboutProduct from "../AboutProduct/AboutProduct";
 import SimilarProducts from "../SimilarProducts/SimilarProducts";
 import CommentSec from "../CommentSec/CommentSec";
 import LargeImage from "../LargeImage/LargeImage";
-// import SmallImage from "../SmallImage/SmallImage";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -129,9 +128,6 @@ function SoloProduct() {
     <div className="soloproduct_container">
       <div className="soloproduct_content">
         <div className="solo_sec1">
-          {/* <div className="small_img">
-            <SmallImage setImg={setImg} images={images} PImg={PImg} />
-          </div> */}
           <div className="large_img">
             <LargeImage img={img} PImg={PImg} />
           </div>
@@ -149,9 +145,6 @@ function SoloProduct() {
                 ₹{cutMRP} Per/{unit}{" "}
               </span>
             </div>
-            {/* <div className="soloproduct_price_original soloproduct_common_font">
-              Discount: 5%
-            </div> */}
             <div className="soloproduct_price soloproduct_common_font">
               You Save:{" "}
               <span className="original_pri">₹{cutMRPD - cutMRP}.00</span>

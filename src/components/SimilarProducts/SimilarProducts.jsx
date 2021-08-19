@@ -124,14 +124,9 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                     src={product.product_cover_img}
                     alt={product.product_name}
                   />
-                  {/* <div className="starproduct_dis_label">4%</div> */}
                 </div>
               </Link>
               <div className="starproduct_data">
-                {/* <div className="starproduct_rating">
-                  <StarIcon style={{ color: "gold" }} />
-                  <StarIcon style={{ color: "gold" }} />
-                </div> */}
                 <Link
                   className="link_class"
                   to="/product/flower"

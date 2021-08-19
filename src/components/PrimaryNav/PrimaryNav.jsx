@@ -6,33 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
 import { userLogout } from "../../redux/actions/userActions";
-// import SearchIcon from "@material-ui/icons/Search";
 import UpdateIcon from "@material-ui/icons/Update";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import veggieLogo from "../../img/veggie-logo.svg";
-// import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
-// import "./PrimaryNav.css";
 
 const PrimaryNav = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
-  // const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
-  //   (state) => state.addToCartReducer
-  // );
 
   var hereData = useSelector((state) => state.addToCartReducer);
 
-  var localCartId = JSON.parse(localStorage.getItem("cartUnitDataId"));
   var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
-  var cartFinalId = JSON.parse(localStorage.getItem("cartFinalId"));
-  // console.log(localCardData);
 
   var sumArr = [];
-  var filledArr = [];
-  var pushArr = [];
-  var dataArr = [];
 
   localCardData?.map((item) => {
     if (hereData[item].length) {

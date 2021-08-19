@@ -33,7 +33,6 @@ function SearchBox({ lab }) {
   }, []);
 
   const handleSearch = (event) => {
-    // console.log(event.target.value);
     const searched = products.filter((search) =>
       search.product_name
         .toLowerCase()
@@ -46,9 +45,6 @@ function SearchBox({ lab }) {
     } else if (searchData.length === 0) {
       setTxt("No match Found");
     }
-    // else if(event.target.value !== ""){
-    //   setFocus(true)
-    // }
   };
   const handleOnblur = (event) => {
     if (event.target.value === "") {
@@ -59,9 +55,7 @@ function SearchBox({ lab }) {
   return (
     <SearchBoxStyle className={lab === "mobile" ? "mobile" : ""}>
       <SearchContainer className={lab === "mobile" ? "mobile" : ""}>
-        {/* <div className="search-container"> */}
         <SearchInner className={lab === "mobile" ? "mobile" : ""}>
-          {/* <div className="search-inner"> */}
           <input
             type="text"
             placeholder="Search Product..."
@@ -72,10 +66,8 @@ function SearchBox({ lab }) {
           <button>
             <SearchIcon />
           </button>
-          {/* </div> */}
         </SearchInner>
 
-        {/* <div className={lab ? "vk" : "vk1"} style={{display : !focus && "none"}}> */}
         <MainNav
           className={
             focus
@@ -87,8 +79,6 @@ function SearchBox({ lab }) {
               : "hide"
           }
         >
-          {/* searchData aa var ma result chhe so, have enu design krvu pdse. if length 0 then no match
-          ne css file nikadi deje ne console check krje search kre etle khbr pdi jase */}
           {searchData.length === 0 && focus ? (
             <div className="search_resule">{txt}</div>
           ) : (
@@ -117,9 +107,7 @@ function SearchBox({ lab }) {
             })
           )}
         </MainNav>
-        {/* </div> */}
       </SearchContainer>
-      {/* </div> */}
     </SearchBoxStyle>
   );
 }

@@ -38,9 +38,9 @@ function CabOrders() {
   }, []);
 
   let myOrder = orders.filter((ord) => ord.user_id === userr[0].user_id);
-  const newCabOrder = myOrder.sort((a,b) => {
-    return(b.cab_order_id - a.cab_order_id)}
-    );
+  const newCabOrder = myOrder.sort((a, b) => {
+    return b.cab_order_id - a.cab_order_id;
+  });
 
   const checkStatus = (sta) => {
     if (sta === 0) {
@@ -64,8 +64,6 @@ function CabOrders() {
       setLoading(false);
       window.location.reload();
     }, 5000);
-
-    // checkStatus(4);
   };
 
   return (
@@ -81,7 +79,9 @@ function CabOrders() {
               </div>
               <div className="caborder_cab_body">
                 <div className="myorder_id">Order Id: {cabo.cab_order_id}</div>
-                <div className="myorder_id">Date: {String(cabo.created_at).substring(0, 10)}</div>
+                <div className="myorder_id">
+                  Date: {String(cabo.created_at).substring(0, 10)}
+                </div>
                 <div className="caborder_cab_body_add">
                   <div className="myorder_delivery_add">Delivery Address </div>
                   <div className="myorder_delivery_add_data">
@@ -90,16 +90,6 @@ function CabOrders() {
                 </div>
                 <div className="myorder_card_body_title">
                   Order Status: {checkStatus(cabo.cab_order_status)}
-                  {/* {cabo.cab_order_status === 0 ? (
-                    <div
-                      className="myorder_cancel_btn"
-                      onClick={() => handleCancel(cabo.order_id)}
-                    >
-                      Cancel
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
                 </div>
               </div>
             </div>

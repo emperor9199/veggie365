@@ -1,5 +1,4 @@
 import React from "react";
-// import LargeImage from '../LargeImage/LargeImage';
 import "./SmallImage.css";
 
 function SmallImage({ setImg, images, PImg }) {
