@@ -9,7 +9,7 @@ function LoginPage() {
   const url = window.location.href;
   const ProductionUrl = url.includes("http://localhost:3000")
     ? "http://localhost:3000"
-    : "https://veggi.netlify.app";
+    : "https://veggie-365.netlify.app/";
 
   const renderForm = () => {
     if (url === `${ProductionUrl}/login`) {
