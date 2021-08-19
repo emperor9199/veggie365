@@ -42,13 +42,16 @@ export const createOrder = (order, payment) => async (dispatch) => {
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     const paymentResponse = await authAxios.post("/order/payment", payment);
     dispatch({ type: CART_EMPTY });
-
+    JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+      localStorage.removeItem(`${item}`);
+    });
     localStorage.removeItem("itemsPrice");
     localStorage.removeItem("deliveryPrice");
     localStorage.removeItem("taxPrice");
     localStorage.removeItem("totalPrice");
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
+    dispatch({ type: ORDER_RESET });
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
@@ -60,7 +63,7 @@ export const createOrder = (order, payment) => async (dispatch) => {
   }
 };
 
-export const cancelOrder = (oid) => async () => {
+export const cancelOrder = (oid) => async (dispatch) => {
   try {
     const authAxios = axios.create({
       baseURL: "https://dharm.ga/api",
@@ -74,5 +77,17 @@ export const cancelOrder = (oid) => async () => {
     await authAxios.patch("https://dharm.ga/api/order/cancel", {
       order_id: oid,
     });
+
+    dispatch({ type: CART_EMPTY });
+    JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+      localStorage.removeItem(`${item}`);
+    });
+    localStorage.removeItem("itemsPrice");
+    localStorage.removeItem("deliveryPrice");
+    localStorage.removeItem("taxPrice");
+    localStorage.removeItem("totalPrice");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+    dispatch({ type: ORDER_RESET });
   } catch (e) {}
 };

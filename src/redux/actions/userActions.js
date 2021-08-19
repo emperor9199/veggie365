@@ -9,6 +9,7 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 import { CART_EMPTY } from "../constants/cartConstants";
+import { ORDER_RESET } from "../constants/orderConstants";
 
 export const userLogin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_LOGIN_LOADING });
@@ -52,15 +53,13 @@ export const userLogout = () => (dispatch) => {
   localStorage.removeItem("taxPrice");
   localStorage.removeItem("totalPrice");
   localStorage.removeItem("orders");
-  localStorage.removeItem("cartItems500");
-  localStorage.removeItem("cartItemsId500");
-  localStorage.removeItem("cartItems1");
-  localStorage.removeItem("cartItemsId1");
-  localStorage.removeItem("cartItems2");
-  localStorage.removeItem("cartItemsId2");
+  JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+    localStorage.removeItem(`${item}`);
+  });
 
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: CART_EMPTY });
+  dispatch({ type: ORDER_RESET });
 };
 
 export const userRegister =

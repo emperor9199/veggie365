@@ -197,9 +197,18 @@ export const addToCartReducer = produce((state = initialState, action) => {
     }
 
     case CART_EMPTY: {
-      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((cartdata) => {
-        localStorage.setItem(`${cartdata}`, JSON.stringify(state[cartdata]));
+      // JSON.parse(localStorage.getItem("cartUnitData5"))?.map((cartdata) => {
+      //   localStorage.setItem(`${cartdata}`, JSON.stringify(state[cartdata]));
+      // });
+      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+        localStorage.removeItem(`${item}`);
       });
+      localStorage.removeItem("itemsPrice");
+      localStorage.removeItem("deliveryPrice");
+      localStorage.removeItem("taxPrice");
+      localStorage.removeItem("totalPrice");
+      localStorage.removeItem("shippingAddress");
+      localStorage.removeItem("paymentMethod");
 
       JSON.parse(localStorage.getItem("cartUnitData5"))?.map((data) => {
         state[data] = [];
