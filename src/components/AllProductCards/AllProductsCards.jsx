@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./AllProductsCards.css";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,6 @@ function Alert(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    display: "none",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 function AllProductsCards({ sliceData, pprice }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [redAlert, setRedAlert] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -46,6 +46,12 @@ function AllProductsCards({ sliceData, pprice }) {
         1
       )
     ); //if dropdown appears then put dropdown value in place of qty
+    setRedAlert(true);
+    setOpen(true);
+  };
+
+  const handleSoldOut = () => {
+    setRedAlert(true);
     setOpen(true);
   };
 
@@ -54,6 +60,7 @@ function AllProductsCards({ sliceData, pprice }) {
   return (
     <div className="allproducts_cards_container">
       {sliceData.map((product) => {
+        let qty = product.total_quantity;
         return (
           <div className="allproduct_card" key={product.product_id}>
             <Link
@@ -84,9 +91,16 @@ function AllProductsCards({ sliceData, pprice }) {
                 <div className="starproduct_high">SQ Special | Best Price</div>
                 {pprice
                   .filter((item) => item.product_id === product.product_id)
-                  .map((p) => {
+                  .map((p, key) => {
                     return (
-                      <div>
+                      <div key={key} className="soldoutlab">
+                        {qty < p.unit_in_gm ? (
+                          <div className="soldOutLabel common_flex">
+                            Sold Out
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <del className="starproduct_price_delete">
                           MRP: ₹
                           {p.discount === 0
@@ -104,18 +118,22 @@ function AllProductsCards({ sliceData, pprice }) {
             <div className="starproduct_btn_con">
               {pprice
                 .filter((item) => item.product_id === product.product_id)
-                .map((p) => {
+                .map((p, key) => {
                   return (
                     <div
                       className="starproduct_btn"
-                      onClick={() =>
-                        handleAddToCart(
-                          product,
-                          p.product_price,
-                          p.price_unit_name,
-                          p.price_unit_id
-                        )
+                      onClick={
+                        qty > p.unit_in_gm
+                          ? () =>
+                              handleAddToCart(
+                                product,
+                                p.product_price,
+                                p.price_unit_name,
+                                p.price_unit_id
+                              )
+                          : () => handleSoldOut()
                       }
+                      key={key}
                     >
                       ADD
                       {/* snackbar */}
@@ -125,8 +143,13 @@ function AllProductsCards({ sliceData, pprice }) {
                           autoHideDuration={1000}
                           onClose={handleClose}
                         >
-                          <Alert onClose={handleClose} severity="success">
-                            Item added in your Cart
+                          <Alert
+                            onClose={handleClose}
+                            severity={!redAlert ? "success" : "error"}
+                          >
+                            {!redAlert
+                              ? "Item added in your Cart"
+                              : "Product Sold Out"}
                           </Alert>
                         </Snackbar>
                       </div>

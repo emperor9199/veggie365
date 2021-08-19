@@ -15,7 +15,6 @@ function Alert(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    display: "none",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
@@ -25,13 +24,19 @@ const useStyles = makeStyles((theme) => ({
 function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [redAlert, setRedAlert] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
+    setRedAlert(false);
     setOpen(false);
+  };
+
+  const handleSoldOut = () => {
+    setRedAlert(true);
+    setOpen(true);
   };
 
   const dispatch = useDispatch();
@@ -104,6 +109,7 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
       </div>
       <div className="SimilarProducts_card_con">
         {sliceData.map((product, key) => {
+          let qty = product.total_quantity;
           return (
             <div className="starproduct_card" key={key}>
               <Link
@@ -141,7 +147,14 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                     .filter((item) => item.product_id === product.product_id)
                     .map((p, key) => {
                       return (
-                        <div>
+                        <div key={key} className="soldoutlab">
+                          {qty < p.unit_in_gm ? (
+                            <div className="soldOutLabel common_flex">
+                              Sold Out
+                            </div>
+                          ) : (
+                            ""
+                          )}
                           <del className="starproduct_price_delete">
                             MRP: ₹
                             {p.discount === 0
@@ -163,13 +176,16 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                     return (
                       <div
                         className="starproduct_btn"
-                        onClick={() =>
-                          handleAddToCart(
-                            product,
-                            p.product_price,
-                            p.price_unit_name,
-                            p.price_unit_id
-                          )
+                        onClick={
+                          qty > p.unit_in_gm
+                            ? () =>
+                                handleAddToCart(
+                                  product,
+                                  p.product_price,
+                                  p.price_unit_name,
+                                  p.price_unit_id
+                                )
+                            : () => handleSoldOut()
                         }
                         key={key}
                       >
@@ -181,8 +197,13 @@ function SimilarProducts({ Pcategory_id, Pproduct_id, setRload }) {
                             autoHideDuration={1000}
                             onClose={handleClose}
                           >
-                            <Alert onClose={handleClose} severity="success">
-                              Item added in your Cart
+                            <Alert
+                              onClose={handleClose}
+                              severity={!redAlert ? "success" : "error"}
+                            >
+                              {!redAlert
+                                ? "Item added in your Cart"
+                                : "Product Sold Out"}
                             </Alert>
                           </Snackbar>
                         </div>

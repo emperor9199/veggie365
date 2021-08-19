@@ -27,9 +27,9 @@ local?.map((item) => {
   newLocalValues.push(`cartItemsId${item}`);
 });
 
-setTimeout(() => {
-  localStorage.setItem("cartUnitData2", JSON.stringify(newLocalKeys));
-}, 1000);
+// setTimeout(() => {
+localStorage.setItem("cartUnitData2", JSON.stringify(newLocalKeys));
+// }, 1000);
 
 // console.log(newLocalOne);
 console.log(newLocalKeys);
@@ -146,8 +146,18 @@ const initialState = {
 export const addToCartReducer = produce((state = initialState, action) => {
   switch (action.type) {
     case CREATE_CART_ARRAY: {
+      window.onload = function () {
+        if (!localStorage.justOnce) {
+          localStorage.setItem("justOnce", "true");
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+        }
+      };
+
       var newLocalKeyss = [];
       var newLocalValuess = [];
+
       local?.map((item) => {
         newLocalKeyss.push(`cartItems${item}`);
         newLocalValuess.push(`cartItemsId${item}`);
@@ -165,16 +175,17 @@ export const addToCartReducer = produce((state = initialState, action) => {
       //   localStorage.setItem("cartIdNew", JSON.stringify(blankArr));
       // }, 600);
 
-      setTimeout(() => {
-        localStorage.setItem("cartUnitData5", JSON.stringify(newLocalKeyss));
-        localStorage.setItem("cartUnitDataId", JSON.stringify(newLocalValuess));
-        localStorage.setItem("cartFinalId", JSON.stringify(local));
-      }, 500);
+      // setTimeout(() => {
+      localStorage.setItem("cartUnitData5", JSON.stringify(newLocalKeyss));
+      // localStorage.setItem("cartUnitDataId", JSON.stringify(newLocalValuess));
+      // localStorage.setItem("cartFinalId", JSON.stringify(local));
+      // }, 500);
       state.cartUnitData = newLocalKeys;
 
       localStorage.setItem("newLocalKeys", JSON.stringify(newLocalKeys));
 
       // state.dummy = action.payload;
+
       return;
     }
 
@@ -400,12 +411,13 @@ export const addToCartReducer = produce((state = initialState, action) => {
     }
 
     case CART_EMPTY: {
-      state.cartItems500 = {};
-      state.cartItemsId500 = [];
-      state.cartItems1 = {};
-      state.cartItemsId1 = [];
-      state.cartItems2 = {};
-      state.cartItemsId2 = [];
+      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((cartdata) => {
+        localStorage.setItem(`${cartdata}`, JSON.stringify(state[cartdata]));
+      });
+
+      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((data) => {
+        state[data] = [];
+      });
 
       return;
     }

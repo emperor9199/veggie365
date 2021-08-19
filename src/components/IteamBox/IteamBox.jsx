@@ -10,10 +10,11 @@ function IteamBox({
   setYousave,
   setUnit,
   setCutmrpD,
-  setPriceUnitId
+  setPriceUnitId,
+  setUnitGM,
 }) {
   let priceUnitId;
-  let firstPrice, price_unit_name, discount;
+  let firstPrice, price_unit_name, discount, unitgm;
 
   const [defaultIteam, setDefaultiteam] = useState();
   const [selectedIteam, setSelectedIteam] = useState();
@@ -24,6 +25,7 @@ function IteamBox({
     firstPrice = priceid.product_price;
     price_unit_name = priceid.price_unit_name;
     discount = priceid.discount === 0 ? 10 : priceid.discount;
+    unitgm = priceid.unit_in_gm;
   });
 
   useEffect(() => {
@@ -31,11 +33,12 @@ function IteamBox({
     setDefaultiteam(firstPrice);
     setSelectedUnit(price_unit_name);
     setCutmrpD(firstPrice + discount);
-  }, [priceUnitId, firstPrice, price_unit_name, discount, setCutmrpD]);
+    setUnitGM(unitgm);
+  }, [priceUnitId, firstPrice, price_unit_name, discount, setCutmrpD, unitgm]);
 
   setUnit(selectedUnit);
   setCutmrp(defaultIteam);
-  setPriceUnitId(selectedIteam)
+  setPriceUnitId(selectedIteam);
 
   const onChangeValue = (event) => {
     var val = event.target.value;
@@ -48,6 +51,7 @@ function IteamBox({
         let newDis = pro.discount === 0 ? 10 : pro.discount;
         setCutmrpD(pro.product_price + newDis);
         setPriceUnitId(pro.price_unit_id);
+        setUnitGM(pro.unit_in_gm);
         //console.log("pro",pro);
       });
   };

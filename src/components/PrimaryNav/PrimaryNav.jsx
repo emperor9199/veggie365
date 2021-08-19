@@ -18,9 +18,30 @@ import SearchBox from "../SearchBox/SearchBox";
 const PrimaryNav = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
-  const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
-    (state) => state.addToCartReducer
-  );
+  // const { cartItemsId500, cartItemsId1, cartItemsId2 } = useSelector(
+  //   (state) => state.addToCartReducer
+  // );
+
+  var hereData = useSelector((state) => state.addToCartReducer);
+
+  var localCartId = JSON.parse(localStorage.getItem("cartUnitDataId"));
+  var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
+  var cartFinalId = JSON.parse(localStorage.getItem("cartFinalId"));
+  // console.log(localCardData);
+
+  var sumArr = [];
+  var filledArr = [];
+  var pushArr = [];
+  var dataArr = [];
+
+  localCardData?.map((item) => {
+    if (hereData[item].length) {
+      hereData[item]?.map((item2) => {
+        sumArr.push(hereData[item]);
+      });
+    }
+  });
+
   const [profileOptions, setProfileOptions] = useState(false);
 
   const handleLogout = () => {
@@ -112,11 +133,7 @@ const PrimaryNav = () => {
             className="nav-specific-link"
           >
             <Bagde
-              badgeContent={
-                cartItemsId500.length +
-                cartItemsId1.length +
-                cartItemsId2.length
-              }
+              badgeContent={sumArr.length}
               color="error"
               style={{
                 cursor: "pointer",

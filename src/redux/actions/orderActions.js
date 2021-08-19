@@ -8,7 +8,7 @@ import { CART_EMPTY } from "../constants/cartConstants";
 
 import axios from "axios";
 
-export const createOrder = (order) => async (dispatch) => {
+export const createOrder = (order, payment) => async (dispatch) => {
   dispatch({ type: ORDER_CREATE_REQUEST });
 
   try {
@@ -25,10 +25,12 @@ export const createOrder = (order) => async (dispatch) => {
     const response = await authAxios.post("/order", order);
 
     if (order.payment === 1) {
+      localStorage.removeItem("order_id");
       localStorage.setItem("order_id", response.data.payment.id);
-      localStorage.setItem("order_id", response.data.payment.id);
+      localStorage.setItem("order_id_second", response.data.order_id);
     } else {
       localStorage.removeItem("order_id");
+      localStorage.removeItem("order_id_second");
     }
 
     const { data } = await authAxios.get("/order");
@@ -38,13 +40,9 @@ export const createOrder = (order) => async (dispatch) => {
     }, 200);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
+    const paymentResponse = await authAxios.post("/order/payment", payment);
     dispatch({ type: CART_EMPTY });
-    localStorage.removeItem("cartItems500");
-    localStorage.removeItem("cartItemsId500");
-    localStorage.removeItem("cartItems1");
-    localStorage.removeItem("cartItemsId1");
-    localStorage.removeItem("cartItems2");
-    localStorage.removeItem("cartItemsId2");
+
     localStorage.removeItem("itemsPrice");
     localStorage.removeItem("deliveryPrice");
     localStorage.removeItem("taxPrice");

@@ -44,6 +44,17 @@ export const orderReducer = produce((state = initialState, action) => {
       state.success = false;
       state.orders = [];
       localStorage.removeItem("order_id");
+      localStorage.removeItem("order_id_second");
+      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+        localStorage.removeItem(`${item}`);
+      });
+      localStorage.removeItem("itemsPrice");
+      localStorage.removeItem("deliveryPrice");
+      localStorage.removeItem("taxPrice");
+      localStorage.removeItem("totalPrice");
+      localStorage.removeItem("shippingAddress");
+      localStorage.removeItem("paymentMethod");
+
       return;
     }
 

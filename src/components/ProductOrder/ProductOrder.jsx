@@ -47,13 +47,12 @@ function ProductOrder({ label, myCabOrder }) {
   }, []);
 
   let myOrder = orders.filter((ord) => ord.user_id === user[0].user_id);
-  const newOrder = myOrder.sort((a,b) => {
-    return(b.order_id - a.order_id)}
-    );
-  const newCabOrder = myCabOrder.sort((a,b) => {
-    return(b.cab_order_id - a.cab_order_id)}
-    );
- 
+  const newOrder = myOrder.sort((a, b) => {
+    return b.order_id - a.order_id;
+  });
+  const newCabOrder = myCabOrder.sort((a, b) => {
+    return b.cab_order_id - a.cab_order_id;
+  });
 
   const checkStatus = (sta) => {
     if (sta === 0) {
@@ -69,29 +68,30 @@ function ProductOrder({ label, myCabOrder }) {
     }
   };
 
-
   // return label !== "my" ? myOrder.length : myCabOrder.length === 0 ? (
   //   <EmptyOrders lab={label === "my" ? "pro" : "cab"}/>
   // ) : (
-  
+
   return label === "my" ? (
     newOrder.length === 0 ? (
       <EmptyOrders lab={label === "my" ? "pro" : "cab"} />
     ) : (
-      newOrder.map((ord, key) => {
+      newOrder?.map((ord, key) => {
         return (
           <>
             {loading && <LoadingBox />}
             <div className="myorder_card" key={key}>
               <div className="myorder_card_head">
                 <div>
-                <div className="myorder_id">Order Id: {ord.order_id}</div>
-                <div className="myorder_id">Date: {String(ord.created_at).substring(0, 10)}</div>
+                  <div className="myorder_id">Order Id: {ord.order_id}</div>
+                  <div className="myorder_id">
+                    Date: {String(ord.created_at).substring(0, 10)}
+                  </div>
                 </div>
                 <div className="myorder_add">
-                <div className="myorder_delivery_add">Delivery Address </div>
-                  <div className="myorder_delivery_add_data">  
-                {add
+                  <div className="myorder_delivery_add">Delivery Address </div>
+                  <div className="myorder_delivery_add_data">
+                    {add
                       .filter(
                         (addId) => addId.user_address_id === ord.user_address_id
                       )
@@ -104,7 +104,8 @@ function ProductOrder({ label, myCabOrder }) {
                           </div>
                         );
                       })}
-                      </div> </div>
+                  </div>{" "}
+                </div>
               </div>
               <hr />
               {soloorder
@@ -173,7 +174,7 @@ function ProductOrder({ label, myCabOrder }) {
   ) : newCabOrder.length === 0 ? (
     <EmptyOrders lab={label === "my" ? "pro" : "cab"} />
   ) : (
-    newCabOrder.map((cabo, key) => {
+    newCabOrder?.map((cabo, key) => {
       return (
         <div className="caborder_card" key={key}>
           <div className="caborder_cab_img">
@@ -181,7 +182,9 @@ function ProductOrder({ label, myCabOrder }) {
           </div>
           <div className="caborder_cab_body">
             <div className="myorder_id">Order Id: {cabo.cab_order_id}</div>
-            <div className="myorder_id">Date: {String(cabo.created_at).substring(0, 10)}</div>
+            <div className="myorder_id">
+              Date: {String(cabo.created_at).substring(0, 10)}
+            </div>
             <div className="caborder_cab_body_add">
               <div className="myorder_delivery_add">Delivery Address </div>
               <div className="myorder_delivery_add_data">

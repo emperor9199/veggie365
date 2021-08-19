@@ -26,7 +26,7 @@ import AllProducts from "./components/AllProducts/AllProducts";
 // import TestComment from "./Screens/TestComment";
 import MyOrders from "./components/MyOrders/MyOrders";
 import CabScreen from "./Screens/CabScreen/CabScreen";
-import TestPayment from "./Screens/TestPayment";
+// import TestPayment from "./Screens/TestPayment";
 import UpdatePage from "./components/UpdatePage/UpdatePage";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -36,19 +36,19 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
 
-    // document.addEventListener("contextmenu", function (e) {
-    //   e.preventDefault();
-    // });
+  // document.addEventListener("contextmenu", function (e) {
+  //   e.preventDefault();
+  // });
 
-    // document.onkeydown = function (e) {
-    //   if (e.ctrlKey && e.shiftKey && e.keyCode === "I".charCodeAt(0)) {
-    //     return false;
-    //   }
-    // };
-  }, []);
+  // document.onkeydown = function (e) {
+  //   if (e.ctrlKey && e.shiftKey && e.keyCode === "I".charCodeAt(0)) {
+  //     return false;
+  //   }
+  // };
+  // }, []);
   const [Price, setPrice] = useState([]);
 
   useEffect(() => {
@@ -69,6 +69,7 @@ function App() {
 
     fetchProducts();
   }, []);
+
   var arr = [-10];
 
   Price?.map((p) => {
@@ -83,12 +84,15 @@ function App() {
   var finalArr = newnew.shift();
   localStorage.setItem("cartUnitData", JSON.stringify(newnew.sort()));
 
+  // setTimeout(() => {
   dispatch(createCartArray(newnew.sort()));
+  // }, 500);
+
   return (
     <>
       <Router>
-        {/* <PrimaryNav /> */}
-        {/* <SecondaryNav setToggle={setToggle} toggle={toggle} /> */}
+        <PrimaryNav />
+        <SecondaryNav setToggle={setToggle} toggle={toggle} />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginPage} exact />
@@ -114,7 +118,7 @@ function App() {
           <Route path="/your-order-his" component={MyOrders} exact />
           <Route path="/update-profile" component={UpdatePage} exact />
           <Route path="/book-cab" component={CabScreen} exact />
-          <Route path="/pay" component={TestPayment} exact />
+          {/* <Route path="/pay" component={TestPayment} exact /> */}
           <Redirect to="/" />
         </Switch>
 

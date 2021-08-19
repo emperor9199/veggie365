@@ -180,7 +180,7 @@ export const addShippingAddress =
         //   (item) =>
         //     item.user_address_name === localStorage.getItem("user_address_ref")
         // );
-        dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data });
+        dispatch({ type: ADD_SHIPPING_ADDRESS, payload: data.reverse() });
         // dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: filterAddress });
 
         // localStorage.setItem("shippingAddress", JSON.stringify(data[0]));

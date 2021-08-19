@@ -10,6 +10,7 @@ import upiIcon from "../../img/upi.png";
 import paytmIcon from "../../img/paytm.png";
 import phonepayIcon from "../../img/phonepay.png";
 import rsIcon from "../../img/rs.jpg";
+import { CART_EMPTY } from "../../redux/constants/cartConstants";
 
 const PaymentScreen = () => {
   const dispatch = useDispatch();
@@ -159,14 +160,20 @@ const PaymentScreen = () => {
     let placedOrder = {};
     placedOrder["total"] = Number(totalPrice);
     placedOrder["item"] = orderArr;
-    const orderAddress = shippingAddress?.find(
-      (item) =>
-        item.user_address_name === localStorage.getItem("user_address_ref")
-    );
+    // const orderAddress = shippingAddress?.find(
+    //   (item) =>
+    //     item.user_address_name === localStorage.getItem("user_address_ref")
+    // );
 
-    placedOrder["user_address_id"] = orderAddress.user_address_id;
+    // placedOrder["user_address_id"] = orderAddress.user_address_id;
 
     if (paymentMethod === "razorpay") {
+      const orderAddress = shippingAddress?.find(
+        (item) =>
+          item.user_address_name === localStorage.getItem("user_address_ref")
+      );
+
+      placedOrder["user_address_id"] = orderAddress.user_address_id;
       placedOrder["payment"] = 1;
 
       // integration of razorpay
@@ -181,8 +188,14 @@ const PaymentScreen = () => {
         order_id: localStorage.getItem("order_id"),
         // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
         handler: function (response) {
-          dispatch(createOrder(placedOrder));
-          dispatch({ type: ORDER_RESET });
+          dispatch(
+            createOrder(placedOrder, {
+              order_id: localStorage.getItem("order_id_second"),
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_signature: response.razorpay_signature,
+            })
+          );
         },
         prefill: {
           name: "Veggie User",
@@ -203,9 +216,18 @@ const PaymentScreen = () => {
       rzp1.on("payment.failed", function (response) {
         alert(response.error.description);
       });
+      // dispatch({ type: ORDER_RESET });
+      // dispatch({ type: CART_EMPTY });
     } else {
+      const orderAddress = shippingAddress?.find(
+        (item) =>
+          item.user_address_name === localStorage.getItem("user_address_ref")
+      );
+
+      placedOrder["user_address_id"] = orderAddress.user_address_id;
       dispatch(createOrder(placedOrder));
-      dispatch({ type: ORDER_RESET });
+      // dispatch({ type: ORDER_RESET });
+      // dispatch({ type: CART_EMPTY });
     }
 
     // history.push(`/your-order-his`);
@@ -233,6 +255,7 @@ const PaymentScreen = () => {
     if (success) {
       history.push(`/your-order-his`);
       dispatch({ type: ORDER_RESET });
+      dispatch({ type: CART_EMPTY });
     }
   }, [orders, history, success]);
 

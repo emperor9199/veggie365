@@ -19,11 +19,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 function SoloProduct() {
   const [open, setOpen] = React.useState(false);
+  const [redAlert, setRedAlert] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "0",
-      display: "none",
       "& > * + *": {
         marginTop: theme.spacing(2),
       },
@@ -53,6 +53,7 @@ function SoloProduct() {
   const [youSave, setYousave] = useState();
   const [unit, setUnit] = useState();
   const [priceUnitID, setPriceUnitId] = useState();
+  const [unitGM, setUnitGM] = useState();
 
   reload && window.location.reload();
 
@@ -79,6 +80,12 @@ function SoloProduct() {
     dispatch(
       addToCart(product, Pproduct_id, Number(cutMRP), unit, priceUnitID, 1)
     ); //if dropdown appears then put dropdown value in place of qty
+    setRedAlert(false);
+    setOpen(true);
+  };
+
+  const handleSoldOut = () => {
+    setRedAlert(true);
     setOpen(true);
   };
 
@@ -159,20 +166,24 @@ function SoloProduct() {
                 setUnit={setUnit}
                 setCutmrpD={setCutmrpD}
                 setPriceUnitId={setPriceUnitId}
+                setUnitGM={setUnitGM}
               />
             </div>
             <div className="soloproduct_btns_con">
               <div className="soloproduct_Buy_btn_con">
                 <div
                   className="soloproduct_Buy_btn"
-                  onClick={() =>
-                    handleAddToCart(
-                      products[0],
-                      Pproduct_id,
-                      cutMRP,
-                      unit,
-                      priceUnitID
-                    )
+                  onClick={
+                    total_quantity > unitGM
+                      ? () =>
+                          handleAddToCart(
+                            products[0],
+                            Pproduct_id,
+                            cutMRP,
+                            unit,
+                            priceUnitID
+                          )
+                      : () => handleSoldOut()
                   }
                 >
                   Add To Cart
@@ -183,8 +194,13 @@ function SoloProduct() {
                       autoHideDuration={1000}
                       onClose={handleClose}
                     >
-                      <Alert onClose={handleClose} severity="success">
-                        Item added in your Cart
+                      <Alert
+                        onClose={handleClose}
+                        severity={!redAlert ? "success" : "error"}
+                      >
+                        {!redAlert
+                          ? "Item added in your Cart"
+                          : "Product Sold Out"}
                       </Alert>
                     </Snackbar>
                   </div>
@@ -193,16 +209,21 @@ function SoloProduct() {
               </div>
               <div className="soloproduct_Buy_btn_con">
                 <Link
-                  to="/place-order"
+                  to={
+                    total_quantity > unitGM ? "/place-order" : `/product/${pid}`
+                  }
                   style={{ textDecoration: "none", color: "#fff" }}
-                  onClick={() =>
-                    handleAddToCart(
-                      products[0],
-                      Pproduct_id,
-                      cutMRP,
-                      unit,
-                      priceUnitID
-                    )
+                  onClick={
+                    total_quantity > unitGM
+                      ? () =>
+                          handleAddToCart(
+                            products[0],
+                            Pproduct_id,
+                            cutMRP,
+                            unit,
+                            priceUnitID
+                          )
+                      : () => handleSoldOut()
                   }
                 >
                   <div

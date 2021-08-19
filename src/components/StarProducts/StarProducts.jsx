@@ -15,7 +15,6 @@ function Alert(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    display: "none",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
@@ -25,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 function StarProducts({ no, categoryName, categoryid }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [redAlert, setRedAlert] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -38,6 +38,7 @@ function StarProducts({ no, categoryName, categoryid }) {
 
   const [products, setProducts] = useState([]);
   const [productPrice, setProductPrice] = useState([]);
+  const [unitGM, setUnitGM] = useState([]);
 
   useEffect(() => {
     const authAxios = axios.create({
@@ -69,6 +70,12 @@ function StarProducts({ no, categoryName, categoryid }) {
         1
       )
     ); //if dropdown appears then put dropdown value in place of qty
+    setRedAlert(false);
+    setOpen(true);
+  };
+
+  const handleSoldOut = () => {
+    setRedAlert(true);
     setOpen(true);
   };
 
@@ -102,6 +109,7 @@ function StarProducts({ no, categoryName, categoryid }) {
       <div className="starproducts_line" />
       <div className="starproducts_card_con">
         {sliceData.map((product, key) => {
+          let qty = product.total_quantity;
           return (
             <div className="starproduct_card" key={key}>
               <Link
@@ -138,7 +146,14 @@ function StarProducts({ no, categoryName, categoryid }) {
                     .filter((item) => item.product_id === product.product_id)
                     .map((p, key) => {
                       return (
-                        <div key={key}>
+                        <div key={key} className="soldoutlab">
+                          {qty < p.unit_in_gm ? (
+                            <div className="soldOutLabel common_flex">
+                              Sold Out
+                            </div>
+                          ) : (
+                            ""
+                          )}
                           <del className="starproduct_price_delete">
                             MRP: ₹
                             {p.discount === 0
@@ -160,13 +175,16 @@ function StarProducts({ no, categoryName, categoryid }) {
                     return (
                       <div
                         className="starproduct_btn"
-                        onClick={() =>
-                          handleAddToCart(
-                            product,
-                            p.product_price,
-                            p.price_unit_name,
-                            p.price_unit_id
-                          )
+                        onClick={
+                          qty > p.unit_in_gm
+                            ? () =>
+                                handleAddToCart(
+                                  product,
+                                  p.product_price,
+                                  p.price_unit_name,
+                                  p.price_unit_id
+                                )
+                            : () => handleSoldOut()
                         }
                         key={key}
                       >
@@ -178,8 +196,13 @@ function StarProducts({ no, categoryName, categoryid }) {
                             autoHideDuration={1000}
                             onClose={handleClose}
                           >
-                            <Alert onClose={handleClose} severity="success">
-                              Item added in your Cart
+                            <Alert
+                              onClose={handleClose}
+                              severity={!redAlert ? "success" : "error"}
+                            >
+                              {!redAlert
+                                ? "Item added in your Cart"
+                                : "Product Sold Out"}
                             </Alert>
                           </Snackbar>
                         </div>
