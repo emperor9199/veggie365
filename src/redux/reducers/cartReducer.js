@@ -151,7 +151,7 @@ export const addToCartReducer = produce((state = initialState, action) => {
           localStorage.setItem("justOnce", "true");
           setTimeout(() => {
             window.location.reload();
-          }, 100);
+          }, 500);
         }
       };
 
