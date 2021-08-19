@@ -30,7 +30,7 @@ import TestPayment from "./Screens/TestPayment";
 import UpdatePage from "./components/UpdatePage/UpdatePage";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {createCartArray}  from "./redux/actions/cartActions";
+import { createCartArray } from "./redux/actions/cartActions";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -50,7 +50,7 @@ function App() {
     // };
   }, []);
   const [Price, setPrice] = useState([]);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const authAxios = axios.create({
@@ -70,24 +70,25 @@ function App() {
     fetchProducts();
   }, []);
   var arr = [-10];
-  
+
   Price?.map((p) => {
-        arr?.map((a) => {
-            if(a !== p.price_unit_id){
-                arr.push(p.price_unit_id);
-            }
-        })
-    })
-    var newarr = new Set(arr);
-    var newnew = [...newarr];
-    var finalArr = newnew.shift();
-  
-    dispatch(createCartArray(newnew.sort()));
+    arr?.map((a) => {
+      if (a !== p.price_unit_id) {
+        arr.push(p.price_unit_id);
+      }
+    });
+  });
+  var newarr = new Set(arr);
+  var newnew = [...newarr];
+  var finalArr = newnew.shift();
+  localStorage.setItem("cartUnitData", JSON.stringify(newnew.sort()));
+
+  dispatch(createCartArray(newnew.sort()));
   return (
     <>
       <Router>
-        <PrimaryNav />
-        <SecondaryNav setToggle={setToggle} toggle={toggle} />
+        {/* <PrimaryNav /> */}
+        {/* <SecondaryNav setToggle={setToggle} toggle={toggle} /> */}
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginPage} exact />

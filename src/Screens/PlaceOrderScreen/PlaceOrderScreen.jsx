@@ -115,16 +115,16 @@ const PlaceOrderScreen = () => {
       <div className="price-summary-container">
         <h2>PRICE DETAILS</h2>
         <hr />
-        <p style={{ fontWeight: "bold",color:"#797878" }}>
+        <p style={{ fontWeight: "bold", color: "#797878" }}>
           Items Price : <span style={{ color: "green" }}>₹{itemsPrice}</span>
         </p>
-        <p style={{ fontWeight: "bold" ,color:"#797878"}}>
+        <p style={{ fontWeight: "bold", color: "#797878" }}>
           Delivery Price :{" "}
           <span style={{ color: "green" }}>
             {deliveryPrice === 0 ? "Free" : "₹" + deliveryPrice}
           </span>
         </p>
-        <p style={{ fontWeight: "bold" ,color:"#797878"}}>
+        <p style={{ fontWeight: "bold", color: "#797878" }}>
           Tax Price :{" "}
           <span style={{ color: "green" }}>
             {taxPrice === 0 ? "No Tax" : "₹" + taxPrice}

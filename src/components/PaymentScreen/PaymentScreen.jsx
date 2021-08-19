@@ -24,41 +24,107 @@ const PaymentScreen = () => {
 
   //order confirmed
 
+  // local checking
+  // const local = JSON.parse(localStorage.getItem("cartUnitData"));
+  // var newLocal = [];
+
+  // const localValues = JSON.parse(localStorage.getItem("newLocalKeys"));
+
+  // var localObj = {};
+
+  // localValues?.map((value) => {
+  //   {...localObj,}
+  // });
+
+  // local?.map((item) => {
+  //   newLocal.push(`cartItems${item}`);
+  // });
+
+  // var str = newLocal.join(",");
+  // console.log(str);
+
   var {
     shippingAddress,
     // paymentMethod,
-    cartItems500,
-    cartItemsId500,
-    cartItems1,
-    cartItemsId1,
-    cartItems2,
-    cartItemsId2,
+    // cartItems500,
+    // cartItemsId500,
+    // cartItems1,
+    // cartItemsId1,
+    // cartItems2,
+    // cartItemsId2,
     itemsPrice,
     deliveryPrice,
     taxPrice,
     totalPrice,
+    cartUnitData,
   } = useSelector((state) => state.addToCartReducer);
+
+  var hereData = useSelector((state) => state.addToCartReducer);
+
+  var localCartId = JSON.parse(localStorage.getItem("cartUnitDataId"));
+  var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
+  var cartFinalId = JSON.parse(localStorage.getItem("cartFinalId"));
+  // console.log(localCardData);
+
+  var sumArr = [];
+  var filledArr = [];
+  var pushArr = [];
+  var dataArr = [];
+
+  localCardData?.map((item) => {
+    if (hereData[item].length) {
+      sumArr.push(hereData[item]);
+    }
+  });
+
+  var orderArr = [];
+
+  sumArr?.map((item1) => {
+    item1?.map((item2) => {
+      let orderObj = {};
+      orderObj["product_id"] = item2.p_id;
+      orderObj["product_price"] = item2.unit_price;
+      orderObj["price_unit_id"] = item2.unit_id;
+      orderObj["order_quantity"] = item2.qty;
+      orderArr.push(orderObj);
+    });
+  });
+
+  // var itempricetotal = 0;
+  // cartUnitData?.map((item) => {
+  //   itemsPrice +=
+  //     hereData[item].length &&
+  //     hereData[item].reduce(
+  //       (a, c) => a + hereData[item][c].unit_price * hereData[item][c].qty,
+  //       0
+  //     );
+
+  //   // console.log(hereData[item]);
+  // });
+  // hereData?.map((item) => {});
 
   const { loading, error, success, orders } = useSelector(
     (state) => state.orderReducer
   );
 
-  var itemprice500 = cartItemsId500.reduce(
-    (a, c) => a + cartItems500[c].unit_price * cartItems500[c].qty,
-    0
-  );
+  console.log(itemsPrice);
 
-  var itemprice1 = cartItemsId1.reduce(
-    (a, c) => a + cartItems1[c].unit_price * cartItems1[c].qty,
-    0
-  );
+  // var itemprice500 = cartItemsId500.reduce(
+  //   (a, c) => a + cartItems500[c].unit_price * cartItems500[c].qty,
+  //   0
+  // );
 
-  var itemprice2 = cartItemsId2.reduce(
-    (a, c) => a + cartItems2[c].unit_price * cartItems2[c].qty,
-    0
-  );
+  // var itemprice1 = cartItemsId1.reduce(
+  //   (a, c) => a + cartItems1[c].unit_price * cartItems1[c].qty,
+  //   0
+  // );
 
-  itemsPrice = itemprice500 + itemprice1 + itemprice2;
+  // var itemprice2 = cartItemsId2.reduce(
+  //   (a, c) => a + cartItems2[c].unit_price * cartItems2[c].qty,
+  //   0
+  // );
+
+  // itemsPrice = itemprice500 + itemprice1 + itemprice2;
 
   deliveryPrice = 0;
   taxPrice = 0;
@@ -72,27 +138,27 @@ const PaymentScreen = () => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
 
-    let orderItems500 = cartItemsId500.map((id) => cartItems500[id]);
-    let orderItems1 = cartItemsId1.map((id) => cartItems1[id]);
-    let orderItems2 = cartItemsId2.map((id) => cartItems2[id]);
+    // let orderItems500 = cartItemsId500.map((id) => cartItems500[id]);
+    // let orderItems1 = cartItemsId1.map((id) => cartItems1[id]);
+    // let orderItems2 = cartItemsId2.map((id) => cartItems2[id]);
 
-    let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
+    // let orderItems = [...orderItems500, ...orderItems1, ...orderItems2];
 
-    let itemArray = [];
-    console.log(orderItems);
+    // let itemArray = [];
+    // console.log(orderItems);
 
-    orderItems.map((item) => {
-      let orderObj = {};
-      orderObj["product_id"] = item.p_id;
-      orderObj["product_price"] = item.unit_price;
-      orderObj["price_unit_id"] = item.unit_id;
-      orderObj["order_quantity"] = item.qty;
-      itemArray.push(orderObj);
-    });
+    // orderItems.map((item) => {
+    //   let orderObj = {};
+    //   orderObj["product_id"] = item.p_id;
+    //   orderObj["product_price"] = item.unit_price;
+    //   orderObj["price_unit_id"] = item.unit_id;
+    //   orderObj["order_quantity"] = item.qty;
+    //   itemArray.push(orderObj);
+    // });
 
     let placedOrder = {};
     placedOrder["total"] = Number(totalPrice);
-    placedOrder["item"] = itemArray;
+    placedOrder["item"] = orderArr;
     const orderAddress = shippingAddress?.find(
       (item) =>
         item.user_address_name === localStorage.getItem("user_address_ref")

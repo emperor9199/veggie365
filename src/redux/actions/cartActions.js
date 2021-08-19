@@ -17,31 +17,41 @@ export const createCartArray = (unit_id_array) => (dispatch) => {
 export const addToCart =
   (product, pid, unit_price, unit_name, unit_id, qty) =>
   (dispatch, getState) => {
-    let localCartItems500,
-      localCartItemsId500,
-      localCartItems1,
-      localCartItemsId1,
-      localCartItems2,
-      localCartItemsId2;
-    setTimeout(() => {
-      const {
-        addToCartReducer: {
-          cartItems500,
-          cartItemsId500,
-          cartItems1,
-          cartItemsId1,
-          cartItems2,
-          cartItemsId2,
-        },
-      } = getState();
+    // var localNames = JSON.parse(localStorage.getItem("newLocalKeys"));
 
-      localCartItems500 = cartItems500;
-      localCartItemsId500 = cartItemsId500;
-      localCartItems1 = cartItems1;
-      localCartItemsId1 = cartItemsId1;
-      localCartItems2 = cartItems2;
-      localCartItemsId2 = cartItemsId2;
-    }, 200);
+    // localNames?.map((name) => {
+    //   console.log(name);
+    // });
+
+    // for (var i = 0; i < localNames.lenght; i++) {
+    //   window["local" + localNames[i]] = 0; // create counter1, counter2,...)
+    // }
+
+    // let localCartItems500,
+    //   localCartItemsId500,
+    //   localCartItems1,
+    //   localCartItemsId1,
+    //   localCartItems2,
+    //   localCartItemsId2;
+
+    // setTimeout(() => {
+    //   const {
+    //     addToCartReducer: {
+    //       cartUnitData
+    //     },
+    //   } = getState();
+
+    //   cartUnitData?.map(item=>{
+    //     let item =
+    //   })
+
+    //   localCartItems500 = cartItems500;
+    //   localCartItemsId500 = cartItemsId500;
+    //   localCartItems1 = cartItems1;
+    //   localCartItemsId1 = cartItemsId1;
+    //   localCartItems2 = cartItems2;
+    //   localCartItemsId2 = cartItemsId2;
+    // }, 200);
 
     dispatch({
       type: ADD_TO_CART,
@@ -51,7 +61,7 @@ export const addToCart =
         about: product.product_about,
         img: product.product_img,
         fresh_till: product.product_fresh_till,
-        unit_price: unit_price,
+        unit_price: Number(unit_price),
         qty: qty,
         unit_name: unit_name,
         unit_total: Number(unit_price),
@@ -59,63 +69,73 @@ export const addToCart =
       },
     });
 
-    setTimeout(() => {
-      localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
-      localStorage.setItem(
-        "cartItemsId500",
-        JSON.stringify(localCartItemsId500)
-      );
-      localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
-      localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
-      localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
-      localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
-    }, 200);
+    // setTimeout(() => {
+    //   const {
+    //     addToCartReducer: { itemsPrice },
+    //   } = getState();
+    // }, 500);
+    // setTimeout(() => {
+    //   localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
+    //   localStorage.setItem(
+    //     "cartItemsId500",
+    //     JSON.stringify(localCartItemsId500)
+    //   );
+    //   localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
+    //   localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
+    //   localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
+    //   localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
+    // }, 200);
   };
 
 export const decreaseQty =
-  (productId, unitPrice, unitName) => (dispatch, getState) => {
-    let localCartItems500,
-      localCartItemsId500,
-      localCartItems1,
-      localCartItemsId1,
-      localCartItems2,
-      localCartItemsId2;
+  (productId, unitPrice, unitName, unitId) => (dispatch, getState) => {
+    // let localCartItems500,
+    //   localCartItemsId500,
+    //   localCartItems1,
+    //   localCartItemsId1,
+    //   localCartItems2,
+    //   localCartItemsId2;
 
-    // increase milliseconds if localstorage have some issuues
-    setTimeout(() => {
-      const {
-        addToCartReducer: {
-          cartItems500,
-          cartItemsId500,
-          cartItems1,
-          cartItemsId1,
-          cartItems2,
-          cartItemsId2,
-        },
-      } = getState();
+    // // increase milliseconds if localstorage have some issuues
+    // setTimeout(() => {
+    //   const {
+    //     addToCartReducer: {
+    //       cartItems500,
+    //       cartItemsId500,
+    //       cartItems1,
+    //       cartItemsId1,
+    //       cartItems2,
+    //       cartItemsId2,
+    //     },
+    //   } = getState();
 
-      localCartItems500 = cartItems500;
-      localCartItemsId500 = cartItemsId500;
-      localCartItems1 = cartItems1;
-      localCartItemsId1 = cartItemsId1;
-      localCartItems2 = cartItems2;
-      localCartItemsId2 = cartItemsId2;
-    }, 200);
+    //   localCartItems500 = cartItems500;
+    //   localCartItemsId500 = cartItemsId500;
+    //   localCartItems1 = cartItems1;
+    //   localCartItemsId1 = cartItemsId1;
+    //   localCartItems2 = cartItems2;
+    //   localCartItemsId2 = cartItemsId2;
+    // }, 200);
 
-    setTimeout(() => {
-      localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
-      localStorage.setItem(
-        "cartItemsId500",
-        JSON.stringify(localCartItemsId500)
-      );
-      localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
-      localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
-      localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
-      localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
-    }, 200);
+    // setTimeout(() => {
+    //   localStorage.setItem("cartItems500", JSON.stringify(localCartItems500));
+    //   localStorage.setItem(
+    //     "cartItemsId500",
+    //     JSON.stringify(localCartItemsId500)
+    //   );
+    //   localStorage.setItem("cartItems1", JSON.stringify(localCartItems1));
+    //   localStorage.setItem("cartItemsId1", JSON.stringify(localCartItemsId1));
+    //   localStorage.setItem("cartItems2", JSON.stringify(localCartItems2));
+    //   localStorage.setItem("cartItemsId2", JSON.stringify(localCartItemsId2));
+    // }, 200);
     dispatch({
       type: DECREASE_QTY,
-      payload: { pid: productId, unitPrice: unitPrice, unitName: unitName },
+      payload: {
+        pid: productId,
+        unitPrice: unitPrice,
+        unitName: unitName,
+        unitId: unitId,
+      },
     });
   };
 

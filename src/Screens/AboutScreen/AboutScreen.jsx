@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { AboutContainer } from "./Styles";
 import aboutMain from "../../img/about-1.jpg";
 import aboutSecondary from "../../img/about-4.jpg";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AboutScreen = () => {
   useEffect(() => {
@@ -31,7 +31,9 @@ const AboutScreen = () => {
             maiores consequuntur laboriosam eius quo ducimus molestiae, saepe
             laborum ipsa quaerat sunt error ullam culpa repellat?
           </p>
-          <Link to="/" style={{textDecoration:"none",color:"#4ac85d"}}><button className="aboutbtn">Explore Veggie</button></Link>
+          <Link to="/" style={{ textDecoration: "none", color: "#4ac85d" }}>
+            <button className="aboutbtn">Explore Veggie</button>
+          </Link>
         </div>
       </div>
     </AboutContainer>
