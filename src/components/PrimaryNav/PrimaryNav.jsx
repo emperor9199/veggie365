@@ -44,7 +44,6 @@ const PrimaryNav = () => {
             alt="logo"
             style={{ width: "6vw", padding: ".5rem" }}
           />
-          VEGGIE
         </Link>
       </div>
       <div className="nav-items">
