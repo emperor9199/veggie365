@@ -93,8 +93,6 @@ export const addToCartReducer = produce((state = {}, action) => {
       let newLocalKeyss = [];
       let newLocalValuess = [];
 
-      console.log("1", action.payload);
-
       action.payload?.map((item) => {
         newLocalOnee.push({
           item: `cartItems${item}`,
@@ -108,8 +106,6 @@ export const addToCartReducer = produce((state = {}, action) => {
       // state.cartUnitData = newLocalKeyss;
 
       let newArr = new Map();
-
-      console.log("2", newLocalOnee);
 
       newLocalOnee?.map((data) => {
         newArr.set(
@@ -126,10 +122,7 @@ export const addToCartReducer = produce((state = {}, action) => {
         // );
       });
 
-      console.log("3", newArr);
-
       var latestArrr = Object.fromEntries(newArr);
-      console.log("4", latestArrr);
 
       const newStateArr = {
         ...latestArrr,
@@ -157,8 +150,6 @@ export const addToCartReducer = produce((state = {}, action) => {
         shippingAddress: [],
         savedAddress: {},
       };
-
-      console.log("5", newStateArr);
 
       state.cart = newStateArr;
 
