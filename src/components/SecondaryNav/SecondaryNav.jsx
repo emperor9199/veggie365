@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SecondaryNavContainer } from "./Style";
+import { MobileVisibility, SecondaryNavContainer } from "./Style";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { Link } from "react-router-dom";
 import Bagde from "@material-ui/core/Badge";
@@ -17,6 +17,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   const [dropDownItem, setDropDownItem] = useState(false);
   const [cata, setCata] = useState();
   const { user } = useSelector((state) => state.userLoginReducer);
+  const [toggleMobile, setToggleMobile] = useState(false);
 
   var hereData = useSelector((state) => state.addToCartReducer);
 
@@ -150,8 +151,8 @@ const SecondaryNav = ({ setToggle, toggle }) => {
         <div className="mobile-nav-logo">
           {/* <h3>VEGGIE 365</h3> */}
           <div className="upper">
-            <button onClick={() => setToggle(!toggle)}>
-              {toggle ? "X" : "☰"}
+            <button onClick={() => setToggleMobile(!toggleMobile)}>
+              {toggleMobile ? "X" : "☰"}
             </button>
 
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -197,9 +198,10 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           className={toggle ? "mobile-nav-items " : "mobile-nav-items-no-show"}
-        >
+        > */}
+        <MobileVisibility className={toggleMobile ? "active" : ""}>
           <div>
             {Object.keys(user).length ? (
               <p style={{ fontSize: "1.8rem" }}>Hello, {user.user_name}</p>
@@ -212,7 +214,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
                   style={{
                     fontSize: "1.3rem",
                   }}
-                  onClick={() => setToggle(!toggle)}
+                  onClick={() => setToggleMobile(!toggleMobile)}
                 >
                   Login
                 </p>
@@ -222,7 +224,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
 
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
-              onClick={() => setToggle(!toggle)}
+              onClick={() => setToggleMobile(!toggleMobile)}
               style={{
                 fontSize: "1.3rem",
                 borderBottom: "1px solid white",
@@ -237,7 +239,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             style={{ textDecoration: "none", color: "white" }}
           >
             <p
-              onClick={() => setToggle(!toggle)}
+              onClick={() => setToggleMobile(!toggleMobile)}
               style={{
                 fontSize: "1.3rem",
                 borderBottom: "1px solid white",
@@ -253,7 +255,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             style={{ textDecoration: "none", color: "white" }}
           >
             <p
-              onClick={() => setToggle(!toggle)}
+              onClick={() => setToggleMobile(!toggleMobile)}
               style={{
                 fontSize: "1.3rem",
                 borderBottom: "1px solid white",
@@ -266,7 +268,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           </Link>
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <p
-              onClick={() => setToggle(!toggle)}
+              onClick={() => setToggleMobile(!toggleMobile)}
               style={{
                 fontSize: "1.3rem",
                 borderBottom: "1px solid white",
@@ -281,7 +283,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               <p
                 onClick={() => {
-                  setToggle(!toggle);
+                  setToggleMobile(!toggleMobile);
                   handleLogout();
                 }}
                 style={{
@@ -297,7 +299,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
           ) : (
             ""
           )}
-        </div>
+        </MobileVisibility>
       </div>
     </SecondaryNavContainer>
   );

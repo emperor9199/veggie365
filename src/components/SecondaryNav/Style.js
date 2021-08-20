@@ -184,43 +184,36 @@ export const SecondaryNavContainer = styled.div.attrs((props) => ({
         flex: 1;
       }
 
-      .mobile-nav-items-no-show {
+      /* .mobile-nav-items-no-show {
         display: none;
       }
 
       .mobile-nav-items {
-        background-color: #4ac85d;
-        padding-top: 3vh;
-        height: 900px;
-        text-align: center;
-        animation: nav-amination 0.7s;
-        position: absolute;
-        width: 100%;
-        z-index: 10000;
-        margin-top: 8vh;
-        /* margin-top: calc(100vh - 82vh); */
-
-        @keyframes nav-amination {
-          0% {
-            /* height: 0; */
-            margin-top: -9vh;
-            opacity: 0;
-          }
-          /* 50% { */
-          /* height: 600px; */
-          /* opacity: 0.7; */
-          /* } */
-          100% {
-            /* height: 900px; */
-            margin-top: 8vh;
-            opacity: 1;
-          }
-        }
-
-        p {
-          padding: 1rem 0;
-        }
-      }
+      } */
     }
   }
+`;
+
+export const MobileVisibility = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
+  &.active {
+    background-color: #4ac85d;
+    /* padding-top: 0; */
+    height: 900px;
+    text-align: center;
+    animation: nav-amination 0.7s;
+    /* position: absolute; */
+    width: 100%;
+    z-index: 10000;
+    /* margin-top: 0; */
+    display: block;
+    /* margin-top: calc(100vh - 82vh); */
+
+    p {
+      padding: 1rem 0;
+    }
+  }
+
+  display: none;
 `;
