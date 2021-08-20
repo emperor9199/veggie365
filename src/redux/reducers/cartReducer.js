@@ -229,7 +229,7 @@ export const addToCartReducer = produce((state = {}, action) => {
             if (foundData !== undefined) {
               if (foundData.qty === 1) {
                 state.cart[i] = state.cart[i].filter(
-                  (item) => item === foundData
+                  (item) => item.p_id !== pid
                 );
               } else {
                 foundData.qty = foundData.qty - 1;
