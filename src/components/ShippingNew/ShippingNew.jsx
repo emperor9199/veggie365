@@ -9,7 +9,8 @@ var val = "";
 const ShippingNew = ({ expanded, setExpanded }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoginReducer);
-  const { shippingAddress } = useSelector((state) => state.addToCartReducer);
+  const { cart } = useSelector((state) => state.addToCartReducer);
+  const { shippingAddress } = cart;
   const history = useHistory();
 
   if (!Object.keys(user).length) {

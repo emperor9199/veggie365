@@ -22,13 +22,12 @@ const SecondaryNav = ({ setToggle, toggle }) => {
   var hereData = useSelector((state) => state.addToCartReducer);
 
   var localCardData = JSON.parse(localStorage.getItem("cartUnitData5"));
-
   var sumArr = [];
 
   localCardData?.map((item) => {
-    if (hereData[item].length) {
-      hereData[item]?.map((item2) => {
-        sumArr.push(hereData[item]);
+    if (hereData.cart[item].length) {
+      hereData.cart[item]?.map((item2) => {
+        sumArr.push(hereData.cart[item]);
       });
     }
   });

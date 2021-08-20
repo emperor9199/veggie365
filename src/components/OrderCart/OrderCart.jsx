@@ -37,7 +37,7 @@ const OrderCart = ({ expanded, setExpanded }) => {
   };
 
   // order save
-  const cart = useSelector((state) => state.addToCartReducer);
+  const { cart } = useSelector((state) => state.addToCartReducer);
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
@@ -62,8 +62,8 @@ const OrderCart = ({ expanded, setExpanded }) => {
   var sumArr = [];
 
   localCardData?.map((item) => {
-    if (hereData[item].length) {
-      sumArr.push(hereData[item]);
+    if (hereData.cart[item].length) {
+      sumArr.push(hereData.cart[item]);
     }
   });
 

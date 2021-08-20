@@ -18,8 +18,10 @@ const PaymentScreen = () => {
 
   const history = useHistory();
 
+  var { cart } = useSelector((state) => state.addToCartReducer);
+
   var { shippingAddress, itemsPrice, deliveryPrice, taxPrice, totalPrice } =
-    useSelector((state) => state.addToCartReducer);
+    cart;
 
   var hereData = useSelector((state) => state.addToCartReducer);
 
@@ -28,8 +30,8 @@ const PaymentScreen = () => {
   var sumArr = [];
 
   localCardData?.map((item) => {
-    if (hereData[item].length) {
-      sumArr.push(hereData[item]);
+    if (hereData.cart[item].length) {
+      sumArr.push(hereData.cart[item]);
     }
   });
 

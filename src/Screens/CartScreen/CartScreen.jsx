@@ -42,7 +42,7 @@ const CartScreen = (props) => {
   };
 
   // order save
-  const cart = useSelector((state) => state.addToCartReducer);
+  const { cart } = useSelector((state) => state.addToCartReducer);
   const { user } = useSelector((state) => state.userLoginReducer);
   const history = useHistory();
 
@@ -63,8 +63,8 @@ const CartScreen = (props) => {
   var pushArr = [];
 
   localCardData?.map((item) => {
-    if (hereData[item].length) {
-      sumArr.push(hereData[item]);
+    if (hereData.cart[item].length) {
+      sumArr.push(hereData.cart[item]);
     }
   });
 
@@ -77,13 +77,13 @@ const CartScreen = (props) => {
   var todayDate = date.split(" ");
   todayDate = todayDate[0] + " " + todayDate[1] + " " + todayDate[2];
 
-  var printCartData = [];
+  // var printCartData = [];
 
-  localCardData?.map((item) => {
-    for (let i in hereData[item]) {
-      printCartData.push(hereData[item]);
-    }
-  });
+  // localCardData?.map((item) => {
+  //   for (let i in hereData.cart[item]) {
+  //     printCartData.push(hereData.cart[item]);
+  //   }
+  // });
 
   const sum = sumArr.reduce((a, b) => a + b, 0);
   var itemSum = 0;

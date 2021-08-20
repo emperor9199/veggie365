@@ -43,9 +43,9 @@ const PlaceOrderScreen = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const { itemsPrice, deliveryPrice, taxPrice, totalPrice } = useSelector(
-    (state) => state.addToCartReducer
-  );
+  const { cart } = useSelector((state) => state.addToCartReducer);
+
+  const { itemsPrice, deliveryPrice, taxPrice, totalPrice } = cart;
 
   return (
     <PlaceOrderContainer>
