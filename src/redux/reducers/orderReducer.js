@@ -42,7 +42,7 @@ export const orderReducer = produce((state = initialState, action) => {
       state.error = false;
       state.success = false;
       state.orders = [];
-      localStorage.removeItem("order_id");
+      localStorage.removeItem("order_id_first");
       localStorage.removeItem("order_id_second");
       JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
         localStorage.removeItem(`${item}`);

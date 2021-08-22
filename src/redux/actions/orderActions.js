@@ -8,7 +8,7 @@ import { CART_EMPTY } from "../constants/cartConstants";
 
 import axios from "axios";
 
-export const createOrder = (order, payment) => async (dispatch) => {
+export const createOrderData = (orderData) => async (dispatch) => {
   dispatch({ type: ORDER_CREATE_REQUEST });
 
   try {
@@ -22,15 +22,28 @@ export const createOrder = (order, payment) => async (dispatch) => {
     });
 
     // check id either cash or razorpay
-    const response = await authAxios.post("/order", order);
+    const response = await authAxios.post("/order", orderData);
 
-    if (order.payment === 1) {
-      localStorage.removeItem("order_id");
-      localStorage.setItem("order_id", response.data.payment.id);
-      localStorage.setItem("order_id_second", response.data.order_id);
-    } else {
-      localStorage.removeItem("order_id");
+    if (orderData.payment === 1) {
+      localStorage.removeItem("order_id_first");
       localStorage.removeItem("order_id_second");
+      localStorage.setItem("order_id_first", response.data.order_id);
+      localStorage.setItem("order_id_second", response.data.payment.id);
+    } else {
+      localStorage.removeItem("order_id_first");
+      localStorage.removeItem("order_id_second");
+      // localStorage.setItem("order_id_first", response.data.order_id);
+      dispatch({ type: CART_EMPTY });
+      JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
+        localStorage.removeItem(`${item}`);
+      });
+      localStorage.removeItem("itemsPrice");
+      localStorage.removeItem("deliveryPrice");
+      localStorage.removeItem("taxPrice");
+      localStorage.removeItem("totalPrice");
+      localStorage.removeItem("shippingAddress");
+      localStorage.removeItem("paymentMethod");
+      dispatch({ type: ORDER_RESET });
     }
 
     const { data } = await authAxios.get("/order");
@@ -40,7 +53,21 @@ export const createOrder = (order, payment) => async (dispatch) => {
     }, 200);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-    const paymentResponse = await authAxios.post("/order/payment", payment);
+  } catch (e) {}
+};
+
+export const createOrder = (payment) => async (dispatch) => {
+  try {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
+
+    await authAxios.post("/order/payment", payment);
     dispatch({ type: CART_EMPTY });
     JSON.parse(localStorage.getItem("cartUnitData5"))?.map((item) => {
       localStorage.removeItem(`${item}`);

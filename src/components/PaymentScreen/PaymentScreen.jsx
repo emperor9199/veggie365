@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { savePaymentMethod } from "../../redux/actions/cartActions";
-import { createOrder } from "../../redux/actions/orderActions";
+import { createOrder, createOrderData } from "../../redux/actions/orderActions";
 import { ORDER_RESET } from "../../redux/constants/orderConstants";
 import { PaymentContainer } from "./Styles";
 import cardIcon from "../../img/card-2.png";
@@ -75,6 +75,8 @@ const PaymentScreen = () => {
       placedOrder["user_address_id"] = orderAddress.user_address_id;
       placedOrder["payment"] = 1;
 
+      dispatch(createOrderData(placedOrder));
+
       // integration of razorpay
       var options = {
         key: "rzp_test_mCQYP1VXS2KYbo",
@@ -86,10 +88,10 @@ const PaymentScreen = () => {
         order_id: localStorage.getItem("order_id"),
         handler: function (response) {
           dispatch(
-            createOrder(placedOrder, {
-              order_id: localStorage.getItem("order_id_second"),
+            createOrder({
+              order_id: localStorage.getItem("order_id_first"),
               razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_order_id: response.razorpay_order_id,
+              razorpay_order_id: localStorage.getItem("order_id_second"),
               razorpay_signature: response.razorpay_signature,
             })
           );
@@ -120,7 +122,8 @@ const PaymentScreen = () => {
       );
 
       placedOrder["user_address_id"] = orderAddress.user_address_id;
-      dispatch(createOrder(placedOrder));
+      dispatch(createOrderData(placedOrder));
+      // dispatch(createOrder(placedOrder));
     }
   };
 
