@@ -270,6 +270,7 @@ export const addToCartReducer = produce((state = {}, action) => {
       localStorage.removeItem("totalPrice");
       localStorage.removeItem("shippingAddress");
       localStorage.removeItem("paymentMethod");
+      localStorage.removeItem("isAddress");
 
       JSON.parse(localStorage.getItem("cartUnitData5"))?.map((data) => {
         state.cart[data] = [];

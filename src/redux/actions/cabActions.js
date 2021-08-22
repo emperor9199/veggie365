@@ -11,6 +11,6 @@ export const bookCab = (cabData) => async (dispatch) => {
       },
     });
 
-    await authAxios.post("https://dharm.ga/api/caborder", cabData);
+    await authAxios.post("/caborder", cabData);
   } catch (e) {}
 };

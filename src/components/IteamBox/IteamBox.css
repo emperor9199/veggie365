@@ -20,6 +20,7 @@
 }
 .general_iteam {
   border: 1px solid lightgray;
+  margin-top: 1rem;
 }
 .iteam_box_qty {
   background-color: lightgray;

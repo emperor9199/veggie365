@@ -9,16 +9,16 @@
   /* justify-content: center; */
   flex-direction: column;
 }
-.starproducts_head_title_phone{
+.starproducts_head_title_phone {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.cab_orders_phone{
+.cab_orders_phone {
   display: none;
 }
-.pill_class{
+.pill_class {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,23 +28,23 @@
   margin-bottom: 2rem;
   width: 85vw;
 }
-.pill_class_active{
+.pill_class_active {
   background-color: #4ac85d;
   color: #fff;
 }
-.pill_class_active_left{
+.pill_class_active_left {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border: 1px solid #4ac85d;
   padding: 0.8rem 1rem;
 }
-.pill_class_active_right{
+.pill_class_active_right {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   border: 1px solid #4ac85d;
   padding: 0.8rem 1rem;
 }
-.pill_class_my{
+.pill_class_my {
   flex-basis: 50%;
   display: flex;
   justify-content: center;
@@ -93,7 +93,7 @@
   font-weight: 400;
   color: grey;
   font-weight: 500;
-  
+
   padding-right: 1rem;
 }
 .myorder_card_body {
@@ -136,7 +136,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .myorder_card_head{
+  .myorder_card_head {
     flex-direction: column;
   }
   .myorder_card {

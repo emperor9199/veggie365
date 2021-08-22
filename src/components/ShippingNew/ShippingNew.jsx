@@ -65,7 +65,7 @@ const ShippingNew = ({ expanded, setExpanded }) => {
     localStorage.removeItem("foundAddr");
     localStorage.removeItem("user_address_ref");
     localStorage.setItem("user_address_ref", val);
-
+    localStorage.setItem("isAddress", true);
     setExpanded("panel2");
   };
 

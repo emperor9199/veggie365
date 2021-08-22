@@ -60,70 +60,81 @@ const PaymentScreen = () => {
 
   const handlePaymentMethod = (e) => {
     e.preventDefault();
-    dispatch(savePaymentMethod(paymentMethod));
 
-    let placedOrder = {};
-    placedOrder["total"] = Number(totalPrice);
-    placedOrder["item"] = orderArr;
+    if (localStorage.getItem("isAddress") === "true") {
+      if (JSON.parse(localStorage.getItem("itemsPrice")) > 0) {
+        dispatch(savePaymentMethod(paymentMethod));
 
-    if (paymentMethod === "razorpay") {
-      const orderAddress = shippingAddress?.find(
-        (item) =>
-          item.user_address_name === localStorage.getItem("user_address_ref")
-      );
+        let placedOrder = {};
+        placedOrder["total"] = Number(totalPrice);
+        placedOrder["item"] = orderArr;
 
-      placedOrder["user_address_id"] = orderAddress.user_address_id;
-      placedOrder["payment"] = 1;
-
-      dispatch(createOrderData(placedOrder));
-
-      // integration of razorpay
-      var options = {
-        key: "rzp_test_mCQYP1VXS2KYbo",
-        amount: Number(totalPrice) * 100,
-        currency: "INR",
-        name: "Veggie",
-        description: "Test Transaction",
-        image: "https://example.com/your_logo",
-        order_id: localStorage.getItem("order_id"),
-        handler: function (response) {
-          dispatch(
-            createOrder({
-              order_id: localStorage.getItem("order_id_first"),
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_order_id: localStorage.getItem("order_id_second"),
-              razorpay_signature: response.razorpay_signature,
-            })
+        if (paymentMethod === "razorpay") {
+          const orderAddress = shippingAddress?.find(
+            (item) =>
+              item.user_address_name ===
+              localStorage.getItem("user_address_ref")
           );
-        },
-        prefill: {
-          name: "Veggie User",
-          email: "veggie.user@example.com",
-          contact: "9999999999",
-        },
-        notes: {
-          address: "Razorpay Corporate Office",
-        },
-        theme: {
-          color: "#3399cc",
-        },
-      };
 
-      var rzp1 = new window.Razorpay(options);
-      rzp1.open();
+          placedOrder["user_address_id"] = orderAddress.user_address_id;
+          placedOrder["payment"] = 1;
 
-      rzp1.on("payment.failed", function (response) {
-        alert(response.error.description);
-      });
+          dispatch(createOrderData(placedOrder));
+
+          // integration of razorpay
+          var options = {
+            key: "rzp_test_mCQYP1VXS2KYbo",
+            amount: Number(totalPrice) * 100,
+            currency: "INR",
+            name: "Veggie",
+            description: "Test Transaction",
+            image: "https://example.com/your_logo",
+            order_id: localStorage.getItem("order_id"),
+            handler: function (response) {
+              dispatch(
+                createOrder({
+                  order_id: localStorage.getItem("order_id_first"),
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: localStorage.getItem("order_id_second"),
+                  razorpay_signature: response.razorpay_signature,
+                })
+              );
+            },
+            prefill: {
+              name: "Veggie User",
+              email: "veggie.user@example.com",
+              contact: "9999999999",
+            },
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+
+          var rzp1 = new window.Razorpay(options);
+          rzp1.open();
+
+          rzp1.on("payment.failed", function (response) {
+            alert(response.error.description);
+          });
+        } else {
+          const orderAddress = shippingAddress?.find(
+            (item) =>
+              item.user_address_name ===
+              localStorage.getItem("user_address_ref")
+          );
+
+          placedOrder["user_address_id"] = orderAddress.user_address_id;
+          dispatch(createOrderData(placedOrder));
+          // dispatch(createOrder(placedOrder));
+        }
+      } else {
+        alert("Please Add Items to Your Cart");
+      }
     } else {
-      const orderAddress = shippingAddress?.find(
-        (item) =>
-          item.user_address_name === localStorage.getItem("user_address_ref")
-      );
-
-      placedOrder["user_address_id"] = orderAddress.user_address_id;
-      dispatch(createOrderData(placedOrder));
-      // dispatch(createOrder(placedOrder));
+      alert("Please Add Shipping Address");
     }
   };
 
