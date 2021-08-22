@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cancelOrder } from "../../redux/actions/orderActions";
+import { cancelCabOrder } from "../../redux/actions/cabActions";
+import LoadingBox from "../LoadingBox";
 
 function CabOrders() {
   const [orders, setOrders] = useState([]);
@@ -57,7 +59,7 @@ function CabOrders() {
   };
 
   const handleCancel = (oid) => {
-    dispatch(cancelOrder(oid));
+    dispatch(cancelCabOrder(oid, 4));
     setLoading(true);
 
     setTimeout(() => {
@@ -73,26 +75,43 @@ function CabOrders() {
       ) : (
         newCabOrder.map((cabo, key) => {
           return (
-            <div className="caborder_card" key={key}>
-              <div className="caborder_cab_img">
-                <img src={cab} alt="cab" className="caborder_cab_img_data" />
-              </div>
-              <div className="caborder_cab_body">
-                <div className="myorder_id">Order Id: {cabo.cab_order_id}</div>
-                <div className="myorder_id">
-                  Date: {String(cabo.created_at).substring(0, 10)}
+            <>
+              {loading && <LoadingBox />}
+              <div className="caborder_card" key={key}>
+                <div className="caborder_cab_img">
+                  <img src={cab} alt="cab" className="caborder_cab_img_data" />
                 </div>
-                <div className="caborder_cab_body_add">
-                  <div className="myorder_delivery_add">Delivery Address </div>
-                  <div className="myorder_delivery_add_data">
-                    {cabo.user_address + " " + cabo.user_pincode}
+                <div className="caborder_cab_body">
+                  <div className="myorder_id">
+                    Order Id: {cabo.cab_order_id}
+                  </div>
+                  <div className="myorder_id">
+                    Date: {String(cabo.created_at).substring(0, 10)}
+                  </div>
+                  <div className="caborder_cab_body_add">
+                    <div className="myorder_delivery_add">
+                      Delivery Address{" "}
+                    </div>
+                    <div className="myorder_delivery_add_data">
+                      {cabo.user_address + " " + cabo.user_pincode}
+                    </div>
+                  </div>
+                  <div className="myorder_card_body_title">
+                    Order Status: {checkStatus(cabo.cab_order_status)}
+                    {cabo.cab_order_status === 0 ? (
+                      <div
+                        className="myorder_cancel_btn"
+                        onClick={() => handleCancel(cabo.cab_order_id)}
+                      >
+                        Cancel
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
-                <div className="myorder_card_body_title">
-                  Order Status: {checkStatus(cabo.cab_order_status)}
-                </div>
               </div>
-            </div>
+            </>
           );
         })
       )}
