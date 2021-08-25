@@ -45,7 +45,7 @@ function LoginPageForm(props) {
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="loginform_container">
-        <div className="loginfrom_title common_flex">Login To Veggi</div>
+        <div className="loginfrom_title common_flex">Login To Veggi365</div>
         {loading && <LoadingBox />}
         {error && <ErrorBox msg={error} />}
         <div className="loginform_form">
