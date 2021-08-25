@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -29,8 +29,6 @@ function Footer() {
     fetchProducts();
   }, []);
 
-  
-
   return (
     <div className="footer_container">
       <div className="footer_con">
@@ -39,19 +37,21 @@ function Footer() {
             <div className="cata-inner">
               <h4>CATEGORIES</h4>
               <div className="footer_line" />
-              {
-                cata?.slice(0,5).map((cat,key) => {
-                  return(
-                    <ul key={key}>
-                      <Link to={`/products/${cat.category_id}/${cat.category_name}`}
-                  style={{
-                    textDecoration: "none",
-                    color: "#929a9a",
-                  }}><li>{cat.category_name}</li></Link>
-                    </ul>
-                  )
-                })
-              }
+              {cata?.slice(0, 5).map((cat, key) => {
+                return (
+                  <ul key={key}>
+                    <Link
+                      to={`/products/${cat.category_id}/${cat.category_name}`}
+                      style={{
+                        textDecoration: "none",
+                        color: "#929a9a",
+                      }}
+                    >
+                      <li>{cat.category_name}</li>
+                    </Link>
+                  </ul>
+                );
+              })}
             </div>
           </div>
           <div className="footer_buy_with_us">
@@ -59,10 +59,17 @@ function Footer() {
               <h4>BUY WITH US</h4>
               <div className="footer_line" />
               <ul>
-              <li><Link to="aboutus" style={{
-                    textDecoration: "none",
-                    color: "#929a9a",
-                  }}>About us</Link></li>
+                <li>
+                  <Link
+                    to="aboutus"
+                    style={{
+                      textDecoration: "none",
+                      color: "#929a9a",
+                    }}
+                  >
+                    About us
+                  </Link>
+                </li>
                 <li>Contact Us</li>
                 <li>Services</li>
                 <li>Privacy Policy</li>
@@ -118,24 +125,23 @@ function Footer() {
           </div>
         </div>
         <div className="footer_copy">
-        <div className="copyright common_flex" style={{ marginLeft: "2rem" }}>
-            ©Copyright 2021 VEGGIE 365
+          <div className="copyright common_flex" style={{ marginLeft: "2rem" }}>
+            ©Copyright 2021 VEGGI 365
           </div>
-          
-          <div className="play common_flex" style={{ marginRight: "2rem"}}>
+
+          <div className="play common_flex" style={{ marginRight: "2rem" }}>
             <a href="ab" target="_blank">
               <img
                 src={play}
                 alt=""
-                style={{ height: "2.5rem"}}
+                style={{ height: "2.5rem" }}
                 className="playImage"
               />
             </a>
             <a href="ab" target="_blank">
-              <img src={app} alt="" style={{ height: "2.5rem"}} />
+              <img src={app} alt="" style={{ height: "2.5rem" }} />
             </a>
           </div>
-          
         </div>
       </div>
     </div>

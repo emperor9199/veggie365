@@ -21,7 +21,7 @@ const AboutScreen = () => {
       </div>
       <div className="right-side">
         <div className="right-sub">
-          <h1>VEGGIE 365</h1>
+          <h1>VEGGI 365</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas sint
             temporibus non provident officiis numquam rem facere itaque
