@@ -32,15 +32,15 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // document.addEventListener("contextmenu", function (e) {
-    //   e.preventDefault();
-    // });
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
 
-    // document.onkeydown = function (e) {
-    //   if (e.ctrlKey && e.shiftKey && e.keyCode === "I".charCodeAt(0)) {
-    //     return false;
-    //   }
-    // };
+    document.onkeydown = function (e) {
+      if (e.ctrlKey && e.shiftKey && e.keyCode === "I".charCodeAt(0)) {
+        return false;
+      }
+    };
 
     const authAxios = axios.create({
       baseURL: "https://dharm.ga/api",
