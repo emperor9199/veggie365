@@ -32,7 +32,7 @@ const AboutScreen = () => {
             laborum ipsa quaerat sunt error ullam culpa repellat?
           </p>
           <Link to="/" style={{ textDecoration: "none", color: "#4ac85d" }}>
-            <button className="aboutbtn">Explore Veggie</button>
+            <button className="aboutbtn">Explore Veggi</button>
           </Link>
         </div>
       </div>
