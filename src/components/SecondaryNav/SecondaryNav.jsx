@@ -155,7 +155,7 @@ const SecondaryNav = ({ setToggle, toggle }) => {
             </button>
 
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              <h2>VEGGI-365</h2>
+              <h2>VEGGI365</h2>
             </Link>
             {/* cart */}
             <div className="mobile-right">

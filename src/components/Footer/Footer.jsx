@@ -126,7 +126,7 @@ function Footer() {
         </div>
         <div className="footer_copy">
           <div className="copyright common_flex" style={{ marginLeft: "2rem" }}>
-            ©Copyright 2021 VEGGI 365
+            ©Copyright 2021 VEGGI365
           </div>
 
           <div className="play common_flex" style={{ marginRight: "2rem" }}>
