@@ -109,28 +109,25 @@ export const userRegister =
     }
   };
 
-export const userUpdate =
-  (name, mobile, email, password) => async (dispatch) => {
-    try {
-      const authAxios = axios.create({
-        baseURL: "https://dharm.ga/api",
-        headers: {
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("userToken")
-          )}`,
-        },
-      });
+export const userUpdate = (old_pass, new_pass) => async (dispatch) => {
+  try {
+    const authAxios = axios.create({
+      baseURL: "https://dharm.ga/api",
+      headers: {
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("userToken")
+        )}`,
+      },
+    });
 
-      await authAxios.patch("https://dharm.ga/api/user", {
-        user_name: name,
-        user_phone: Number(mobile),
-        user_email: email,
-        user_password: password,
-      });
+    await authAxios.post("/user/changepass", {
+      old_password: old_pass,
+      new_password: new_pass,
+    });
 
-      setTimeout(() => {
-        dispatch(userLogout());
-      }, 100);
-      //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
-    } catch (error) {}
-  };
+    setTimeout(() => {
+      dispatch(userLogout());
+    }, 100);
+    //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
+  } catch (error) {}
+};
