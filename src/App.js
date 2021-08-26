@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
+import SignupPage from "./components/SignupPage/SignupPage";
 import AboutScreen from "./Screens/AboutScreen/AboutScreen";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import {
@@ -83,7 +84,7 @@ function App() {
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginPage} exact />
-          <Route path="/signup" component={LoginPage} exact />
+          <Route path="/signup" component={SignupPage} exact />
           <Route path="/aboutus" component={AboutScreen} exact />
           <Route path="/cart" component={CartScreen} exact />
           <Route path="/payment" component={PaymentScreen} exact />
