@@ -90,7 +90,7 @@ function LoginPageForm(props) {
                 className="forgot_password_field loginform_or_label"
                 style={{ marginRight: ".9rem", cursor: "pointer" }}
               >
-                Forgot Password
+                {/* Forgot Password */}
               </div>
             </div>
             <div

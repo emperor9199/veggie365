@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,17 +11,15 @@ import * as yup from "yup";
 function UpdateForm(props) {
   const { user } = useSelector((state) => state.userLoginReducer);
   const Contactno = /^[6-9]\d{9}$/;
-  const userPassword = user.user_password;
 
   const schema = yup.object().shape({
-    FirstName: yup.string().required("First Name is Required").max(10),
-    LastName: yup.string().required("Last Name is Required").max(10),
+    FirstName: yup.string().max(10),
+    LastName: yup.string().max(10),
     Email: yup.string().email(),
     Contactno: yup.string().matches(Contactno, "Contact No is Not Valid"),
     Password: yup
       .string()
-      .required("Password is Required")
-      .matches(userPassword, "Not valid Password"),
+      .required("Password is Required"),
     ConfirmPass: yup
       .string()
       .required("Confirm Password is Required")
@@ -38,8 +36,12 @@ function UpdateForm(props) {
   let historyTwo = useHistory();
 
   const FullName = user.user_name;
-  const FirstName = FullName.split(" ")[0];
-  const LastName = FullName.split(" ")[1];
+  const FirstName = FullName?.split(" ")[0];
+  const LastName = FullName?.split(" ")[1];
+
+  const [updateState,setUpdateState] = useState(false);
+  const [err,setErr] = useState(false);
+  let msg = "Invalid Password"
 
   const dispatch = useDispatch();
 
@@ -48,12 +50,22 @@ function UpdateForm(props) {
   );
 
   const handleSignup = (data) => {
-    var fullName = data.FirstName + " " + data.LastName;
+    // var fullName = data.FirstName + " " + data.LastName;
+    setErr(false);
+    if(data.Password === data.ConfirmPass){
+      setErr(true);
+      return;
+    }
     dispatch(
-      userUpdate(fullName, data.Contactno, data.Email, data.ConfirmPass)
+      userUpdate(data.Password, data.ConfirmPass)
     );
 
-    historyTwo.push("/");
+    setTimeout(() => {
+      const updateStatus = localStorage.getItem("updateStatus");
+      console.log(updateStatus);
+      updateStatus === "true" ? historyTwo.push("/login") : setUpdateState(true);
+    },100);
+
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,9 +74,9 @@ function UpdateForm(props) {
   return (
     <div className="LoginPageForm_container common_flex">
       <div className="signupform_container">
-        <div className="loginfrom_title common_flex">Update Profile</div>
+        <div className="loginfrom_title common_flex">Update Password</div>
         {loading && <LoadingBox />}
-        {newUser && <ErrorBox msg={newUser} />}
+        {updateState && <ErrorBox msg={msg} />}
         <div className="loginform_form">
           <form onSubmit={handleSubmit(handleSignup)}>
             <div className="signupform_field">
@@ -81,6 +93,7 @@ function UpdateForm(props) {
                     className="Signupform_input"
                     {...register("FirstName")}
                     defaultValue={FirstName}
+                    disabled
                   />
                   <span className="error_msg">{errors.FirstName?.message}</span>
                 </div>
@@ -98,6 +111,7 @@ function UpdateForm(props) {
                     className="Signupform_input"
                     {...register("LastName")}
                     defaultValue={LastName}
+                    disabled
                   />
                   <span className="error_msg">{errors.LastName?.message}</span>
                 </div>
@@ -174,7 +188,7 @@ function UpdateForm(props) {
                     {...register("ConfirmPass")}
                   />
                   <span className="error_msg">
-                    {errors.ConfirmPass?.message}
+                    {err && "Old Password and New Password not be Same"}
                   </span>
                 </div>
               </div>

@@ -124,10 +124,12 @@ export const userUpdate = (old_pass, new_pass) => async (dispatch) => {
       old_password: old_pass,
       new_password: new_pass,
     });
-
+    localStorage.setItem("updateStatus",true);
     setTimeout(() => {
       dispatch(userLogout());
     }, 100);
     //dispatch({ type: USER_LOGIN_SUCCESSFUL, payload: data });
-  } catch (error) {}
+  } catch (error) {
+    localStorage.setItem("updateStatus",false);
+  }
 };

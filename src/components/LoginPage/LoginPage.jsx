@@ -6,7 +6,7 @@ import LoginPageNav from "../LoginPageNav/LoginPageNav";
 import "./LoginPage.css";
 
 function LoginPage() {
-  
+  localStorage.removeItem("updateStatus");
   return (
     <div className="Loginpage_container">
       <div className="loginpage_navbar">

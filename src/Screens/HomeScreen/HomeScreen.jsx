@@ -63,7 +63,7 @@ const HomeScreen = () => {
           />
         );
       })}
-      <Testinomial />
+      {/* <Testinomial /> */}
     </>
   );
 };
